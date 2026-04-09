@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import ServicesPage from './pages/Services';
 import ContactPage from './pages/Contact';
 import BookingPage from './pages/Booking';
+import InnovationPage from './pages/Innovation';
 import { Page } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -28,6 +29,7 @@ export default function App() {
       case 'services': return <ServicesPage setPage={setPage} />;
       case 'contact': return <ContactPage setPage={setPage} />;
       case 'booking': return <BookingPage setPage={setPage} />;
+      case 'innovation': return <InnovationPage setPage={setPage} />;
       default: return <Home setPage={setPage} />;
     }
   };

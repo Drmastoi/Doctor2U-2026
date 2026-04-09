@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, MessageSquare } from 'lucide-react';
 import { Page } from '../types';
 import Logo from './Logo';
 
@@ -14,13 +14,28 @@ export default function Navbar({ currentPage, setPage }: NavbarProps) {
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'services', label: 'Services' },
+    { id: 'innovation', label: 'Innovation' },
     { id: 'booking', label: 'Book Online' },
     { id: 'contact', label: 'Contact Us' },
   ];
 
   return (
     <nav className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-xl border-b border-slate-100 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Top Contact Bar */}
+      <div className="bg-slate-900 text-white py-2 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1600px] mx-auto flex flex-col sm:flex-row justify-end items-center gap-4 sm:gap-8 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em]">
+          <a href="tel:07488879077" className="flex items-center gap-2 hover:text-teal-400 transition-colors">
+            <Phone size={12} className="text-teal-400" />
+            Call Us: 07488 879077
+          </a>
+          <a href="https://wa.me/443333395773" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-teal-400 transition-colors">
+            <MessageSquare size={12} className="text-teal-400" />
+            WhatsApp: 03333395773
+          </a>
+        </div>
+      </div>
+
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-24 items-center">
           {/* Logo */}
           <div 

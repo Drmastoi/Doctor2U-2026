@@ -1,4 +1,4 @@
-export type Page = 'home' | 'services' | 'contact' | 'booking';
+export type Page = 'home' | 'services' | 'contact' | 'booking' | 'innovation';
 
 export interface FAQ {
   question: string;

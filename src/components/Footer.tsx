@@ -39,6 +39,7 @@ export default function Footer({ setPage }: FooterProps) {
               {[
                 { id: 'home', label: 'Home' },
                 { id: 'services', label: 'Our Services' },
+                { id: 'innovation', label: 'Innovation' },
                 { id: 'booking', label: 'Book Appointment' },
                 { id: 'contact', label: 'Contact Us' }
               ].map((item) => (

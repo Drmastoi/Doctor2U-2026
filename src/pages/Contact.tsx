@@ -18,7 +18,7 @@ export default function ContactPage({ setPage }: ContactPageProps) {
   };
 
   return (
-    <div className="bg-white min-h-screen pt-32 pb-20 relative overflow-hidden">
+    <div className="bg-white min-h-screen pt-32 pb-16 relative overflow-hidden">
       {/* Background Blobs for Modern Feel */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-teal-100/30 rounded-full blur-[120px] animate-blob"></div>
@@ -26,7 +26,7 @@ export default function ContactPage({ setPage }: ContactPageProps) {
         <div className="absolute bottom-[10%] right-[20%] w-[600px] h-[600px] bg-teal-50/40 rounded-full blur-[130px] animate-blob [animation-delay:4s]"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <button 
           onClick={() => setPage('home')}
           className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors mb-8 group"
@@ -35,7 +35,7 @@ export default function ContactPage({ setPage }: ContactPageProps) {
           <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
         </button>
 
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

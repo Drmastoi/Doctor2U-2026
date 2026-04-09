@@ -94,7 +94,7 @@ export default function Home({ setPage }: HomeProps) {
 
       {/* Hero Section - Clean Modern Light Theme */}
       <section className="relative min-h-screen flex items-center pt-32 md:pt-40 overflow-hidden bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="flex flex-col lg:flex-row items-center gap-12 xl:gap-20">
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
@@ -112,7 +112,7 @@ export default function Home({ setPage }: HomeProps) {
                 <span className="uppercase tracking-widest">your Home , Your time , Your Doctor</span>
               </motion.div>
               
-              <h1 className="text-[60px] md:text-[72px] xl:text-[84px] font-display font-bold leading-[1.05] mb-8 text-slate-900 tracking-tighter">
+              <h1 className="text-[60px] font-display font-bold leading-[1.05] mb-8 text-slate-900 tracking-tighter">
                 Private Doctor Care <br />
                 <span className="text-teal-700">At Your Convenience.</span>
               </h1>
@@ -218,8 +218,8 @@ export default function Home({ setPage }: HomeProps) {
       </section>
 
       {/* Trusted By Section */}
-      <section className="py-12 bg-white border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-10 bg-white border-b border-slate-100">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
             <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">NHS PARTNER</span>
             <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">GMC REGISTERED</span>
@@ -230,8 +230,8 @@ export default function Home({ setPage }: HomeProps) {
       </section>
 
       {/* Innovation / Why Choose Us Section - Inspired by the split layout */}
-      <section className="py-32 bg-slate-50 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-20">
             <div className="flex-1">
               <motion.div 
@@ -309,10 +309,10 @@ export default function Home({ setPage }: HomeProps) {
       </section>
 
       {/* Core Services - Refined Cards */}
-      <section className="py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">Our Core Services</h2>
+      <section className="py-24 bg-white">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">Our Core Services</h2>
             <div className="w-20 h-1.5 bg-teal-600 mx-auto rounded-full"></div>
           </div>
 
@@ -356,11 +356,11 @@ export default function Home({ setPage }: HomeProps) {
       </section>
 
       {/* Specialist Services - Clean & Professional */}
-      <section className="py-32 bg-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
+      <section className="py-24 bg-slate-900 text-white">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-8">
             <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">Specialist Medical Services</h2>
+              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight">Specialist Medical Services</h2>
               <p className="text-lg text-slate-400">Comprehensive assessments and expert consultations for every stage of life.</p>
             </div>
             <button 
@@ -398,13 +398,13 @@ export default function Home({ setPage }: HomeProps) {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-32 bg-slate-50 relative overflow-hidden">
+      <section id="how-it-works" className="py-24 bg-slate-50 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-medical-100/40 rounded-full blur-[120px]"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -451,8 +451,8 @@ export default function Home({ setPage }: HomeProps) {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-32 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-20">
             <div className="flex-1">
               <motion.div 
@@ -460,7 +460,7 @@ export default function Home({ setPage }: HomeProps) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-8 leading-tight">
+                <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-8 leading-tight tracking-tight">
                   What Our <br />
                   <span className="text-teal-700">Patients Say.</span>
                 </h2>
@@ -519,9 +519,9 @@ export default function Home({ setPage }: HomeProps) {
       </section>
 
       {/* Blog / Health Insights Section */}
-      <section className="py-32 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-8">
             <div className="max-w-2xl">
               <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">Health <span className="text-teal-700">Insights</span></h2>
               <p className="text-lg text-slate-600 leading-relaxed">Expert medical advice and the latest news from the world of private healthcare.</p>
@@ -571,9 +571,9 @@ export default function Home({ setPage }: HomeProps) {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-32 bg-white relative overflow-hidden">
+      <section className="py-24 bg-white relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20">
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">Common <span className="text-teal-700">Questions</span></h2>
             <p className="text-lg text-slate-600">Everything you need to know about our private medical services.</p>
           </div>
@@ -617,8 +617,8 @@ export default function Home({ setPage }: HomeProps) {
       </section>
 
       {/* Area Section */}
-      <section className="py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-white">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-20">
             <div className="flex-1 order-2 lg:order-1">
               <div className="relative">
@@ -641,7 +641,7 @@ export default function Home({ setPage }: HomeProps) {
             </div>
             
             <div className="flex-1 order-1 lg:order-2">
-              <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-8">Serving Lancashire & Manchester</h2>
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-8 tracking-tight">Serving Lancashire & Manchester</h2>
               <p className="text-lg text-slate-600 mb-10 leading-relaxed">
                 We provide expert medical care across the entire North West region. Whether you're in the heart of Manchester or the quiet corners of Lancashire, our doctors are ready to help.
               </p>
@@ -665,8 +665,8 @@ export default function Home({ setPage }: HomeProps) {
       </section>
 
       {/* CTA Section - High Impact */}
-      <section className="py-32 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-24 px-4">
+        <div className="max-w-[1600px] mx-auto">
           <div className="relative rounded-[4rem] overflow-hidden bg-medical-900 p-12 md:p-24 text-center">
             <div className="absolute inset-0 opacity-20">
               <img 
