@@ -284,6 +284,59 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
         </div>
       </section>
 
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-24 bg-slate-50 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-medical-100/40 rounded-full blur-[120px]"></div>
+        </div>
+
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 bg-teal-100 border border-teal-200 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
+            >
+              <Activity size={12} />
+              <span>Simple Process</span>
+            </motion.div>
+            <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight text-slate-900">
+              How It <span className="text-teal-700">Works</span>
+            </h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Your journey to better health is simple, secure, and completely tailored to your needs.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+            {/* Connecting Line */}
+            <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent -translate-y-1/2 z-0"></div>
+
+            {[
+              { icon: ClipboardList, title: "1. Prepare (Optional)", desc: "Use our AI tool to organise your symptoms and get initial health insights." },
+              { icon: Stethoscope, title: "2. Consult", desc: "Speak with a doctor via Video, in our Clinic, or at your Home." },
+              { icon: HeartPulse, title: "3. Treatment", desc: "Receive your personalised plan, prescriptions, and specialist referrals." }
+            ].map((step, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2 }}
+                className="relative z-10 flex flex-col items-center text-center group"
+              >
+                <div className="w-24 h-24 rounded-[2rem] bg-white border border-slate-100 flex items-center justify-center text-teal-600 mb-8 group-hover:scale-110 group-hover:bg-teal-700 group-hover:text-white transition-all duration-500 shadow-xl shadow-teal-900/5">
+                  <step.icon size={40} />
+                </div>
+                <h3 className="text-2xl font-display font-bold mb-4 text-slate-900">{step.title}</h3>
+                <p className="text-slate-600 leading-relaxed">{step.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* What Is Doctor 2 U Help Section */}
       <section className="py-20 bg-white border-b border-slate-50">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -413,59 +466,6 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                   <div className="w-2 h-2 rounded-full bg-medical-500 group-hover:scale-150 transition-transform"></div>
                   <span className="font-medium group-hover:text-medical-400 transition-colors">{title}</span>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-24 bg-slate-50 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-medical-100/40 rounded-full blur-[120px]"></div>
-        </div>
-
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 bg-teal-100 border border-teal-200 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
-            >
-              <Activity size={12} />
-              <span>Simple Process</span>
-            </motion.div>
-            <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight text-slate-900">
-              How It <span className="text-teal-700">Works</span>
-            </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Your journey to better health is simple, secure, and completely tailored to your needs.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-            {/* Connecting Line */}
-            <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent -translate-y-1/2 z-0"></div>
-
-            {[
-              { icon: ClipboardList, title: "1. Prepare (Optional)", desc: "Use our AI tool to organise your symptoms and get initial health insights." },
-              { icon: Stethoscope, title: "2. Consult", desc: "Speak with a doctor via Video, in our Clinic, or at your Home." },
-              { icon: HeartPulse, title: "3. Treatment", desc: "Receive your personalised plan, prescriptions, and specialist referrals." }
-            ].map((step, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className="relative z-10 flex flex-col items-center text-center group"
-              >
-                <div className="w-24 h-24 rounded-[2rem] bg-white border border-slate-100 flex items-center justify-center text-teal-600 mb-8 group-hover:scale-110 group-hover:bg-teal-700 group-hover:text-white transition-all duration-500 shadow-xl shadow-teal-900/5">
-                  <step.icon size={40} />
-                </div>
-                <h3 className="text-2xl font-display font-bold mb-4 text-slate-900">{step.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
           </div>
