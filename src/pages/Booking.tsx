@@ -1,13 +1,14 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Calendar, ShieldCheck, Clock, ArrowLeft } from 'lucide-react';
+import { Calendar, ShieldCheck, Clock, ArrowLeft, Brain, CheckCircle2 } from 'lucide-react';
 import { Page } from '../types';
 
 interface BookingPageProps {
   setPage: (page: Page) => void;
+  sharedInsights?: string;
 }
 
-export default function BookingPage({ setPage }: BookingPageProps) {
+export default function BookingPage({ setPage, sharedInsights }: BookingPageProps) {
   return (
     <div className="bg-white min-h-screen pt-32 pb-16 relative overflow-hidden">
       {/* Background Blobs for Modern Feel */}
@@ -46,6 +47,25 @@ export default function BookingPage({ setPage }: BookingPageProps) {
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
           <div className="lg:col-span-1 space-y-4">
+            {sharedInsights && (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-teal-700 text-white p-6 rounded-2xl shadow-xl shadow-teal-900/20 border border-teal-600 mb-6"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <Brain size={20} className="text-teal-300" />
+                  <h3 className="font-bold tracking-tight">Insights Attached</h3>
+                </div>
+                <p className="text-xs text-teal-100 leading-relaxed mb-4 line-clamp-4">
+                  {sharedInsights}
+                </p>
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-teal-300">
+                  <CheckCircle2 size={12} />
+                  Ready for your Doctor
+                </div>
+              </motion.div>
+            )}
             {[
               { icon: Calendar, title: "Instant Booking", desc: "Real-time availability with immediate confirmation." },
               { icon: ShieldCheck, title: "Secure Portal", desc: "End-to-end encryption for your medical data." },

@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowRight, ShieldCheck, Clock, MapPin, Star, CheckCircle2, Phone, Play, 
   Activity, Users, Award, HeartPulse, MessageSquare, ChevronDown, ChevronUp,
-  Calendar, Video, Home as HomeIcon, ChevronLeft, ChevronRight
+  Calendar, Video, Home as HomeIcon, ChevronLeft, ChevronRight,
+  ShieldAlert, Brain, Sparkles, ClipboardList, Stethoscope
 } from 'lucide-react';
 import { Page, SERVICES, FAQ, Testimonial, BlogPost } from '../types';
 import Logo from '../components/Logo';
+import { GoogleGenAI } from "@google/genai";
 
 const FAQS: FAQ[] = [
   {
@@ -74,17 +76,70 @@ const BLOG_POSTS: BlogPost[] = [
 
 interface HomeProps {
   setPage: (page: Page) => void;
+  setSharedInsights: (insights: string) => void;
 }
 
-export default function Home({ setPage }: HomeProps) {
+export default function Home({ setPage, setSharedInsights }: HomeProps) {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [testimonialIdx, setTestimonialIdx] = useState(0);
+  const [symptoms, setSymptoms] = useState('');
+  const [aiInsights, setAiInsights] = useState('');
+  const [isLoadingInsights, setIsLoadingInsights] = useState(false);
+
+  const getInsights = async () => {
+    if (!symptoms.trim()) return;
+    
+    setIsLoadingInsights(true);
+    setAiInsights('');
+    
+    // Step 2: Smart Triage - Check for emergency keywords
+    const emergencyKeywords = ['chest pain', 'shortness of breath', 'stroke', 'numbness', 'heavy bleeding', 'unconscious', 'seizure'];
+    const hasEmergency = emergencyKeywords.some(keyword => symptoms.toLowerCase().includes(keyword));
+
+    if (hasEmergency) {
+      setAiInsights("⚠️ EMERGENCY ALERT: Your symptoms suggest a potentially serious medical condition that requires immediate attention. \n\nPLEASE CALL 999 OR ATTEND YOUR NEAREST A&E IMMEDIATELY. \n\nDo not wait for an online consultation or AI insights if you are experiencing severe pain, difficulty breathing, or signs of a stroke.");
+      setIsLoadingInsights(false);
+      return;
+    }
+    
+    try {
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: `As a professional medical assistant for "Doctor 2 U Help", provide health insights and suggestions based on these symptoms: "${symptoms}". 
+        Focus on potential health domains to explore, lifestyle factors, and preparation for a doctor's consultation. 
+        IMPORTANT: Your response MUST be professional, calm, and reassuring. 
+        MANDATORY: You must NOT provide a diagnosis or prescribe medication. 
+        MANDATORY: You must include a clear disclaimer at the end stating that this is not a substitute for professional medical advice and that the user should book a consultation with a qualified doctor.`,
+      });
+      
+      setAiInsights(response.text || 'Unable to generate insights at this time. Please try again.');
+    } catch (error) {
+      console.error('Error generating insights:', error);
+      setAiInsights('An error occurred while generating insights. Please ensure your internet connection is stable and try again.');
+    } finally {
+      setIsLoadingInsights(false);
+    }
+  };
+
+  const handleShareWithDoctor = () => {
+    setSharedInsights(aiInsights);
+    setPage('booking');
+  };
 
   const nextTestimonial = () => setTestimonialIdx((prev) => (prev + 1) % TESTIMONIALS.length);
   const prevTestimonial = () => setTestimonialIdx((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
 
   return (
     <div className="flex flex-col relative overflow-hidden bg-white">
+      {/* Disclaimer Banner */}
+      <div className="bg-amber-50 border-b border-amber-100 py-2 px-4 relative z-50">
+        <div className="max-w-[1600px] mx-auto flex items-center justify-center gap-3 text-amber-800 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center">
+          <ShieldAlert size={12} className="shrink-0" />
+          <span>Important: AI insights do not diagnose, treat, or replace professional medical advice.</span>
+        </div>
+      </div>
+
       {/* Background Blobs for Modern Feel */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-teal-100/30 rounded-full blur-[120px] animate-blob"></div>
@@ -114,11 +169,11 @@ export default function Home({ setPage }: HomeProps) {
               
               <h1 className="text-[60px] font-display font-bold leading-[1.05] mb-8 text-slate-900 tracking-tighter">
                 Private Doctor Care <br />
-                <span className="text-teal-700">At Your Convenience.</span>
+                <span className="text-teal-700">Enhanced by AI Insights.</span>
               </h1>
               
               <p className="text-lg md:text-xl text-slate-600 mb-12 leading-relaxed max-w-xl mx-auto lg:mx-0 tracking-tight">
-                Premium medical consultations in Lancashire & Manchester. Whether online, in-clinic, or a home visit, we bring expert healthcare to you on your terms.
+                Get professional medical consultations at home, in-clinic, or online. Use our AI tool to prepare your health insights, then speak with a qualified doctor for your treatment plan, prescriptions, and referrals.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start items-center">
@@ -229,80 +284,47 @@ export default function Home({ setPage }: HomeProps) {
         </div>
       </section>
 
-      {/* Innovation / Why Choose Us Section - Inspired by the split layout */}
-      <section className="py-24 bg-slate-50 relative overflow-hidden">
+      {/* What Is Doctor 2 U Help Section */}
+      <section className="py-20 bg-white border-b border-slate-50">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-20">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1">
-              <motion.div 
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="max-w-xl"
-              >
-                <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-8 leading-tight">
-                  Innovation in <br />
-                  <span className="text-teal-700">Personalised Care.</span>
-                </h2>
-                <p className="text-lg text-slate-600 mb-10 leading-relaxed">
-                  We combine traditional medical values with modern convenience. No more waiting weeks for an appointment. Doctor2U brings the clinic to you, or connects you instantly online.
-                </p>
-                
-                <div className="space-y-6">
-                  {[
-                    { icon: <Clock className="text-teal-600" />, title: 'Same Day Appointments', desc: 'Book and be seen within hours, not weeks.' },
-                    { icon: <Users className="text-teal-600" />, title: 'Expert Clinicians', desc: 'Consult with highly experienced private doctors.' },
-                    { icon: <ShieldCheck className="text-teal-600" />, title: 'Absolute Privacy', desc: 'Discrete, confidential, and professional service.' }
-                  ].map((item, i) => (
-                    <div key={i} className="flex gap-4 p-4 rounded-2xl hover:bg-white transition-colors duration-300">
-                      <div className="mt-1">{item.icon}</div>
-                      <div>
-                        <h4 className="font-bold text-slate-900 mb-1">{item.title}</h4>
-                        <p className="text-sm text-slate-500">{item.desc}</p>
-                      </div>
+              <div className="inline-flex items-center gap-2 bg-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
+                <Activity size={14} />
+                Doctor-Led Medical Service
+              </div>
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-8 tracking-tighter">Healthcare Redefined</h2>
+              <p className="text-xl text-slate-600 mb-8 leading-relaxed">
+                Doctor 2 U is a premium medical service providing expert consultations on your terms. We offer an optional AI-powered preparation tool to help you organise your health concerns before your appointment, ensuring a deeper and more effective consultation with our clinicians.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  { icon: Stethoscope, title: "Expert Doctors", desc: "GMC registered private clinicians." },
+                  { icon: ClipboardList, title: "Full Treatment", desc: "Prescriptions, referrals & plans." },
+                  { icon: MapPin, title: "Flexible Care", desc: "Home, Clinic, or Online visits." },
+                  { icon: Brain, title: "AI Preparation", desc: "Optional tool for health insights." }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="shrink-0 w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600">
+                      <item.icon size={20} />
                     </div>
-                  ))}
-                </div>
-              </motion.div>
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-sm">{item.title}</h4>
+                      <p className="text-xs text-slate-500">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            
-            <div className="flex-1 grid grid-cols-2 gap-6">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="innovation-card aspect-square flex flex-col justify-end p-8 group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-medical-900 to-transparent z-10"></div>
+            <div className="flex-1 relative">
+              <div className="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
                 <img 
-                  src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=600" 
-                  alt="Technology" 
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800" 
+                  alt="AI Health Analysis" 
+                  className="w-full h-[450px] object-cover"
+                  referrerPolicy="no-referrer"
                 />
-                <div className="relative z-20">
-                  <Activity className="text-medical-400 mb-4" />
-                  <h3 className="text-xl font-bold text-white">Modern Tech</h3>
-                </div>
-              </motion.div>
-              
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="innovation-card aspect-square flex flex-col justify-end p-8 group mt-12"
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-medical-900 to-transparent z-10"></div>
-                <img 
-                  src="https://images.unsplash.com/photo-1505751172107-5739a00723a5?auto=format&fit=crop&q=80&w=600" 
-                  alt="Care" 
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="relative z-20">
-                  <HeartPulse className="text-medical-400 mb-4" />
-                  <h3 className="text-xl font-bold text-white">Patient First</h3>
-                </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>
@@ -427,9 +449,9 @@ export default function Home({ setPage }: HomeProps) {
             <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent -translate-y-1/2 z-0"></div>
 
             {[
-              { icon: Calendar, title: "1. Book", desc: "Select your service and preferred time through our secure portal." },
-              { icon: Video, title: "2. Consult", desc: "Speak with Dr. Iqbal via video link, in-clinic, or at your home." },
-              { icon: HeartPulse, title: "3. Recover", desc: "Receive your treatment plan, prescriptions, or referrals instantly." }
+              { icon: ClipboardList, title: "1. Prepare (Optional)", desc: "Use our AI tool to organise your symptoms and get initial health insights." },
+              { icon: Stethoscope, title: "2. Consult", desc: "Speak with a doctor via Video, in our Clinic, or at your Home." },
+              { icon: HeartPulse, title: "3. Treatment", desc: "Receive your personalised plan, prescriptions, and specialist referrals." }
             ].map((step, i) => (
               <motion.div 
                 key={i}
@@ -446,6 +468,101 @@ export default function Home({ setPage }: HomeProps) {
                 <p className="text-slate-600 leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI Health Insights Section */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="inline-flex items-center gap-2 bg-medical-100 border border-medical-200 text-medical-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
+              >
+                <Brain size={12} />
+                <span>AI-Powered Preparation</span>
+              </motion.div>
+              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight text-slate-900">
+                Optional: <span className="text-teal-700">AI Health Insights</span>
+              </h2>
+              <p className="text-lg text-slate-600">
+                Use our optional AI tool to help organise your thoughts and prepare for your consultation. This is a support tool to enhance your conversation with our doctors.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 rounded-[3rem] p-8 md:p-12 border border-slate-100 shadow-sm">
+              <div className="mb-8">
+                <label htmlFor="symptoms" className="block text-sm font-bold text-slate-700 uppercase tracking-widest mb-4">
+                  Describe your symptoms or health concerns
+                </label>
+                <textarea
+                  id="symptoms"
+                  rows={4}
+                  value={symptoms}
+                  onChange={(e) => setSymptoms(e.target.value)}
+                  placeholder="e.g., I've been feeling unusually tired lately and having occasional headaches..."
+                  className="w-full bg-white border border-slate-200 rounded-2xl p-6 text-slate-900 focus:ring-2 focus:ring-teal-700 focus:border-transparent transition-all resize-none shadow-inner"
+                />
+              </div>
+
+              <div className="flex justify-center mb-10">
+                <button
+                  onClick={getInsights}
+                  disabled={isLoadingInsights || !symptoms.trim()}
+                  className={`bg-teal-700 text-white px-12 py-5 rounded-2xl font-bold text-lg shadow-xl shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed`}
+                >
+                  {isLoadingInsights ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      Generating Insights...
+                    </>
+                  ) : (
+                    <>
+                      Get Insights
+                      <Sparkles size={20} />
+                    </>
+                  )}
+                </button>
+              </div>
+
+              <AnimatePresence>
+                {aiInsights && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="bg-white rounded-3xl p-8 border border-teal-100 shadow-sm"
+                  >
+                    <div className="flex items-center gap-3 mb-6 text-teal-700">
+                      <Brain size={24} />
+                      <h3 className="text-xl font-bold">Your Health Insights</h3>
+                    </div>
+                    <div className="prose prose-slate max-w-none">
+                      <div className="text-slate-600 leading-relaxed whitespace-pre-wrap">
+                        {aiInsights}
+                      </div>
+                    </div>
+                    
+                    {/* Step 1: Clinical Handoff Button */}
+                    {!aiInsights.includes('EMERGENCY ALERT') && (
+                      <div className="mt-8 pt-8 border-t border-slate-100 flex justify-end">
+                        <button
+                          onClick={handleShareWithDoctor}
+                          className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all flex items-center gap-2 shadow-lg shadow-teal-900/10"
+                        >
+                          Share with my Doctor & Book
+                          <ArrowRight size={18} />
+                        </button>
+                      </div>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </section>
@@ -566,6 +683,69 @@ export default function Home({ setPage }: HomeProps) {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Who This Is For Section */}
+      <section className="py-24 bg-slate-900 text-white">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-4xl md:text-6xl font-display font-bold mb-10 tracking-tighter">Who Doctor 2 U Help Is For</h2>
+              <div className="space-y-8">
+                <div className="flex gap-6">
+                  <div className="w-14 h-14 rounded-2xl bg-teal-500/20 flex items-center justify-center text-teal-400 shrink-0">
+                    <Activity size={28} />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold mb-2 tracking-tight">Unexplained Symptoms</h3>
+                    <p className="text-slate-400 leading-relaxed">People with ongoing or unexplained symptoms looking for root-cause insights.</p>
+                  </div>
+                </div>
+                <div className="flex gap-6">
+                  <div className="w-14 h-14 rounded-2xl bg-teal-500/20 flex items-center justify-center text-teal-400 shrink-0">
+                    <HeartPulse size={28} />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold mb-2 tracking-tight">Preventative Medicine</h3>
+                    <p className="text-slate-400 leading-relaxed">Those interested in functional medicine to optimise long-term health and longevity.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-12 rounded-[3rem]">
+              <h3 className="text-2xl font-bold mb-8 tracking-tight">Comprehensive Medical Care</h3>
+              <p className="text-slate-400 mb-10 leading-relaxed">
+                Whether you need a one-off consultation or ongoing management, our doctors provide full medical support including:
+              </p>
+              <ul className="space-y-4 mb-10">
+                {[
+                  "Private Prescriptions",
+                  "Specialist Referral Letters",
+                  "Blood Test & Scan Bookings",
+                  "Chronic Disease Management",
+                  "Personalised Treatment Plans"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-slate-300">
+                    <CheckCircle2 size={18} className="text-teal-400" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <button 
+                onClick={() => setPage('treatment-plan')}
+                className="w-full bg-white text-slate-900 border border-slate-200 py-5 rounded-2xl font-bold hover:bg-slate-50 transition-all shadow-sm mb-4"
+              >
+                View Sample Health Plan
+              </button>
+              <button 
+                onClick={() => setPage('booking')}
+                className="w-full bg-teal-600 text-white py-5 rounded-2xl font-bold hover:bg-teal-700 transition-all shadow-lg"
+              >
+                Get Your Health Insights
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -715,6 +895,11 @@ export default function Home({ setPage }: HomeProps) {
                   <MessageSquare size={20} />
                   WhatsApp: 03333395773
                 </a>
+              </div>
+              <div className="mt-12 pt-12 border-t border-white/10">
+                <p className="text-slate-400 text-[10px] uppercase tracking-[0.3em] font-bold max-w-3xl mx-auto leading-relaxed">
+                  Doctor 2 U Help is a support tool. All medical decisions, diagnoses, and treatments must be made by a qualified clinician. We do not prescribe medication or replace the need for a face-to-face medical consultation.
+                </p>
               </div>
             </div>
           </div>

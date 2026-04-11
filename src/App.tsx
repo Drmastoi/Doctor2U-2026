@@ -12,11 +12,13 @@ import ServicesPage from './pages/Services';
 import ContactPage from './pages/Contact';
 import BookingPage from './pages/Booking';
 import InnovationPage from './pages/Innovation';
+import TreatmentPlan from './pages/TreatmentPlan';
 import { Page } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
   const [page, setPage] = useState<Page>('home');
+  const [sharedInsights, setSharedInsights] = useState<string>('');
 
   // Scroll to top on page change
   useEffect(() => {
@@ -25,12 +27,13 @@ export default function App() {
 
   const renderPage = () => {
     switch (page) {
-      case 'home': return <Home setPage={setPage} />;
+      case 'home': return <Home setPage={setPage} setSharedInsights={setSharedInsights} />;
       case 'services': return <ServicesPage setPage={setPage} />;
       case 'contact': return <ContactPage setPage={setPage} />;
-      case 'booking': return <BookingPage setPage={setPage} />;
+      case 'booking': return <BookingPage setPage={setPage} sharedInsights={sharedInsights} />;
       case 'innovation': return <InnovationPage setPage={setPage} />;
-      default: return <Home setPage={setPage} />;
+      case 'treatment-plan': return <TreatmentPlan setPage={setPage} />;
+      default: return <Home setPage={setPage} setSharedInsights={setSharedInsights} />;
     }
   };
 
