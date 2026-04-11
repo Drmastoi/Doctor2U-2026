@@ -347,7 +347,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                       <Brain size={20} />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-slate-900 tracking-tight">AI Health Insights</h3>
+                      <h3 className="text-xl font-bold text-slate-900 tracking-tight">Get Your AI Health Insights</h3>
                       <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Optional Preparation Tool</p>
                     </div>
                   </div>
