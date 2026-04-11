@@ -284,55 +284,152 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
         </div>
       </section>
 
-      {/* How It Works Section */}
+      {/* Integrated Journey Section: How It Works + AI Tool */}
       <section id="how-it-works" className="py-24 bg-slate-50 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-medical-100/40 rounded-full blur-[120px]"></div>
         </div>
 
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 bg-teal-100 border border-teal-200 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
-            >
-              <Activity size={12} />
-              <span>Simple Process</span>
-            </motion.div>
-            <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight text-slate-900">
-              How It <span className="text-teal-700">Works</span>
-            </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Your journey to better health is simple, secure, and completely tailored to your needs.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-            {/* Connecting Line */}
-            <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent -translate-y-1/2 z-0"></div>
-
-            {[
-              { icon: ClipboardList, title: "1. Prepare (Optional)", desc: "Use our AI tool to organise your symptoms and get initial health insights." },
-              { icon: Stethoscope, title: "2. Consult", desc: "Speak with a doctor via Video, in our Clinic, or at your Home." },
-              { icon: HeartPulse, title: "3. Treatment", desc: "Receive your personalised plan, prescriptions, and specialist referrals." }
-            ].map((step, i) => (
+          <div className="flex flex-col lg:flex-row gap-16 items-start">
+            {/* Left Column: The Process */}
+            <div className="lg:w-1/3">
               <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className="relative z-10 flex flex-col items-center text-center group"
+                className="inline-flex items-center gap-2 bg-teal-100 border border-teal-200 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
               >
-                <div className="w-24 h-24 rounded-[2rem] bg-white border border-slate-100 flex items-center justify-center text-teal-600 mb-8 group-hover:scale-110 group-hover:bg-teal-700 group-hover:text-white transition-all duration-500 shadow-xl shadow-teal-900/5">
-                  <step.icon size={40} />
-                </div>
-                <h3 className="text-2xl font-display font-bold mb-4 text-slate-900">{step.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{step.desc}</p>
+                <Activity size={12} />
+                <span>The Journey</span>
               </motion.div>
-            ))}
+              <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 tracking-tight text-slate-900">
+                How It <span className="text-teal-700">Works</span>
+              </h2>
+              
+              <div className="space-y-8 relative">
+                {/* Vertical Line */}
+                <div className="absolute left-6 top-8 bottom-8 w-px bg-slate-200 hidden sm:block"></div>
+                
+                {[
+                  { icon: ClipboardList, title: "1. Prepare (Optional)", desc: "Use the tool on the right to organise your symptoms and get initial insights." },
+                  { icon: Stethoscope, title: "2. Consult", desc: "Speak with a doctor via Video, in our Clinic, or at your Home." },
+                  { icon: HeartPulse, title: "3. Treatment", desc: "Receive your personalised plan, prescriptions, and specialist referrals." }
+                ].map((step, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="flex gap-6 relative z-10 group"
+                  >
+                    <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-teal-600 shrink-0 shadow-lg shadow-teal-900/5 group-hover:bg-teal-700 group-hover:text-white transition-all duration-300">
+                      <step.icon size={24} />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-900 mb-1">{step.title}</h3>
+                      <p className="text-sm text-slate-500 leading-relaxed">{step.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mt-12 pt-8 border-t border-slate-100">
+                <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+                  <span className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] w-full sm:w-auto mb-2 sm:mb-0">Patient Benefits:</span>
+                  {['GMC Registered Doctors', 'Same-day Prescriptions', 'Private Referrals'].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs text-slate-500 font-bold uppercase tracking-wider">
+                      <div className="w-1.5 h-1.5 rounded-full bg-teal-500"></div>
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: AI Tool */}
+            <div className="lg:w-2/3 w-full">
+              <div className="bg-white rounded-[3rem] p-8 md:p-12 border border-slate-100 shadow-2xl shadow-teal-900/5 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-teal-50 rounded-bl-[100px] -z-0"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-medical-100 flex items-center justify-center text-medical-700">
+                      <Brain size={20} />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900 tracking-tight">AI Health Insights</h3>
+                      <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Optional Preparation Tool</p>
+                    </div>
+                  </div>
+
+                  <div className="mb-8">
+                    <textarea
+                      id="symptoms"
+                      rows={4}
+                      value={symptoms}
+                      onChange={(e) => setSymptoms(e.target.value)}
+                      placeholder="Describe your symptoms or health concerns (e.g., fatigue, headaches)..."
+                      className="w-full bg-slate-50 border border-slate-100 rounded-2xl p-6 text-slate-900 focus:ring-2 focus:ring-teal-700 focus:border-transparent transition-all resize-none shadow-inner text-sm"
+                    />
+                  </div>
+
+                  <div className="flex justify-between items-center gap-4">
+                    <p className="text-[10px] text-slate-400 font-medium max-w-[250px] leading-tight">
+                      *AI insights do not diagnose or replace professional medical advice.
+                    </p>
+                    <button
+                      onClick={getInsights}
+                      disabled={isLoadingInsights || !symptoms.trim()}
+                      className={`bg-teal-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed text-sm whitespace-nowrap`}
+                    >
+                      {isLoadingInsights ? (
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      ) : (
+                        <>
+                          Get Insights
+                          <Sparkles size={18} />
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  <AnimatePresence>
+                    {aiInsights && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="mt-8 pt-8 border-t border-slate-100 overflow-hidden"
+                      >
+                        <div className="bg-slate-50 rounded-2xl p-6 border border-teal-50">
+                          <div className="flex items-center gap-2 mb-4 text-teal-700">
+                            <Brain size={18} />
+                            <h4 className="font-bold text-sm">Generated Insights</h4>
+                          </div>
+                          <div className="text-slate-600 text-sm leading-relaxed whitespace-pre-wrap mb-6">
+                            {aiInsights}
+                          </div>
+                          
+                          {!aiInsights.includes('EMERGENCY ALERT') && (
+                            <div className="flex justify-end">
+                              <button
+                                onClick={handleShareWithDoctor}
+                                className="bg-teal-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-teal-800 transition-all flex items-center gap-2 text-xs shadow-md"
+                              >
+                                Share & Book Consultation
+                                <ArrowRight size={14} />
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -468,101 +565,6 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* AI Health Insights Section */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="inline-flex items-center gap-2 bg-medical-100 border border-medical-200 text-medical-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
-              >
-                <Brain size={12} />
-                <span>AI-Powered Preparation</span>
-              </motion.div>
-              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight text-slate-900">
-                Optional: <span className="text-teal-700">AI Health Insights</span>
-              </h2>
-              <p className="text-lg text-slate-600">
-                Use our optional AI tool to help organise your thoughts and prepare for your consultation. This is a support tool to enhance your conversation with our doctors.
-              </p>
-            </div>
-
-            <div className="bg-slate-50 rounded-[3rem] p-8 md:p-12 border border-slate-100 shadow-sm">
-              <div className="mb-8">
-                <label htmlFor="symptoms" className="block text-sm font-bold text-slate-700 uppercase tracking-widest mb-4">
-                  Describe your symptoms or health concerns
-                </label>
-                <textarea
-                  id="symptoms"
-                  rows={4}
-                  value={symptoms}
-                  onChange={(e) => setSymptoms(e.target.value)}
-                  placeholder="e.g., I've been feeling unusually tired lately and having occasional headaches..."
-                  className="w-full bg-white border border-slate-200 rounded-2xl p-6 text-slate-900 focus:ring-2 focus:ring-teal-700 focus:border-transparent transition-all resize-none shadow-inner"
-                />
-              </div>
-
-              <div className="flex justify-center mb-10">
-                <button
-                  onClick={getInsights}
-                  disabled={isLoadingInsights || !symptoms.trim()}
-                  className={`bg-teal-700 text-white px-12 py-5 rounded-2xl font-bold text-lg shadow-xl shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed`}
-                >
-                  {isLoadingInsights ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      Generating Insights...
-                    </>
-                  ) : (
-                    <>
-                      Get Insights
-                      <Sparkles size={20} />
-                    </>
-                  )}
-                </button>
-              </div>
-
-              <AnimatePresence>
-                {aiInsights && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="bg-white rounded-3xl p-8 border border-teal-100 shadow-sm"
-                  >
-                    <div className="flex items-center gap-3 mb-6 text-teal-700">
-                      <Brain size={24} />
-                      <h3 className="text-xl font-bold">Your Health Insights</h3>
-                    </div>
-                    <div className="prose prose-slate max-w-none">
-                      <div className="text-slate-600 leading-relaxed whitespace-pre-wrap">
-                        {aiInsights}
-                      </div>
-                    </div>
-                    
-                    {/* Step 1: Clinical Handoff Button */}
-                    {!aiInsights.includes('EMERGENCY ALERT') && (
-                      <div className="mt-8 pt-8 border-t border-slate-100 flex justify-end">
-                        <button
-                          onClick={handleShareWithDoctor}
-                          className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all flex items-center gap-2 shadow-lg shadow-teal-900/10"
-                        >
-                          Share with my Doctor & Book
-                          <ArrowRight size={18} />
-                        </button>
-                      </div>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
           </div>
         </div>
       </section>
