@@ -97,7 +97,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
     const hasEmergency = emergencyKeywords.some(keyword => symptoms.toLowerCase().includes(keyword));
 
     if (hasEmergency) {
-      setAiInsights("⚠️ EMERGENCY ALERT: Your symptoms suggest a potentially serious medical condition that requires immediate attention. \n\nPLEASE CALL 999 OR ATTEND YOUR NEAREST A&E IMMEDIATELY. \n\nDo not wait for an online consultation or AI insights if you are experiencing severe pain, difficulty breathing, or signs of a stroke.");
+      setAiInsights("⚠️ EMERGENCY ALERT: Your symptoms suggest a potentially serious medical condition that requires immediate attention. \n\nPLEASE CALL 999 OR ATTEND YOUR NEAREST A&E IMMEDIATELY. \n\nDo not wait for an online consultation or AI analysis if you are experiencing severe pain, difficulty breathing, or signs of a stroke.");
       setIsLoadingInsights(false);
       return;
     }
@@ -113,10 +113,10 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
         MANDATORY: You must include a clear disclaimer at the end stating that this is not a substitute for professional medical advice and that the user should book a consultation with a qualified doctor.`,
       });
       
-      setAiInsights(response.text || 'Unable to generate insights at this time. Please try again.');
+      setAiInsights(response.text || 'Unable to generate analysis at this time. Please try again.');
     } catch (error) {
-      console.error('Error generating insights:', error);
-      setAiInsights('An error occurred while generating insights. Please ensure your internet connection is stable and try again.');
+      console.error('Error generating analysis:', error);
+      setAiInsights('An error occurred while generating analysis. Please ensure your internet connection is stable and try again.');
     } finally {
       setIsLoadingInsights(false);
     }
@@ -136,7 +136,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
       <div className="bg-amber-50 border-b border-amber-100 py-2 px-4 relative z-50">
         <div className="max-w-[1600px] mx-auto flex items-center justify-center gap-3 text-amber-800 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center">
           <ShieldAlert size={12} className="shrink-0" />
-          <span>Important: AI insights do not diagnose, treat, or replace professional medical advice.</span>
+          <span>Important: AI analysis does not diagnose, treat, or replace professional medical advice.</span>
         </div>
       </div>
 
@@ -169,11 +169,11 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
               
               <h1 className="text-[60px] font-display font-bold leading-[1.05] mb-8 text-slate-900 tracking-tighter">
                 Private Doctor Care <br />
-                <span className="text-teal-700">Enhanced by AI Insights.</span>
+                <span className="text-teal-700">Enhanced by AI.</span>
               </h1>
               
               <p className="text-lg md:text-xl text-slate-600 mb-12 leading-relaxed max-w-xl mx-auto lg:mx-0 tracking-tight">
-                Get professional medical consultations at home, in-clinic, or online. Use our AI tool to prepare your health insights, then speak with a qualified doctor for your treatment plan, prescriptions, and referrals.
+                Get professional medical consultations at home, in-clinic, or online. Use our AI tool to prepare your health analysis, then speak with a qualified doctor for your treatment plan, prescriptions, and referrals.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start items-center">
@@ -312,7 +312,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                 <div className="absolute left-6 top-8 bottom-8 w-px bg-slate-200 hidden sm:block"></div>
                 
                 {[
-                  { icon: ClipboardList, title: "1. Prepare (Optional)", desc: "Use the tool on the right to organise your symptoms and get initial insights." },
+                  { icon: ClipboardList, title: "1. Prepare (Optional)", desc: "Use the tool on the right to organise your symptoms and get initial analysis." },
                   { icon: Stethoscope, title: "2. Consult", desc: "Speak with a doctor via Video, in our Clinic, or at your Home." },
                   { icon: HeartPulse, title: "3. Treatment", desc: "Receive your personalised plan, prescriptions, and specialist referrals." }
                 ].map((step, i) => (
@@ -347,7 +347,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                       <Brain size={20} />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-slate-900 tracking-tight">Get Your AI Health Insights</h3>
+                      <h3 className="text-xl font-bold text-slate-900 tracking-tight">Get Your AI Health</h3>
                       <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Optional Preparation Tool</p>
                     </div>
                   </div>
@@ -365,7 +365,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
 
                   <div className="flex justify-between items-center gap-4">
                     <p className="text-[10px] text-slate-400 font-medium max-w-[250px] leading-tight">
-                      *AI insights do not diagnose or replace professional medical advice.
+                      *AI analysis does not diagnose or replace professional medical advice.
                     </p>
                     <button
                       onClick={getInsights}
@@ -376,7 +376,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                         <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                       ) : (
                         <>
-                          Get Insights
+                          Get Health
                           <Sparkles size={18} />
                         </>
                       )}
@@ -394,7 +394,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                         <div className="bg-slate-50 rounded-2xl p-6 border border-teal-50">
                           <div className="flex items-center gap-2 mb-4 text-teal-700">
                             <Brain size={18} />
-                            <h4 className="font-bold text-sm">Generated Insights</h4>
+                            <h4 className="font-bold text-sm">Generated Analysis</h4>
                           </div>
                           <div className="text-slate-600 text-sm leading-relaxed whitespace-pre-wrap mb-6">
                             {aiInsights}
@@ -557,7 +557,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                   { icon: Stethoscope, title: "Expert Doctors", desc: "GMC registered private clinicians." },
                   { icon: ClipboardList, title: "Full Treatment", desc: "Prescriptions, referrals & plans." },
                   { icon: MapPin, title: "Flexible Care", desc: "Home, Clinic, or Online visits." },
-                  { icon: Brain, title: "AI Preparation", desc: "Optional tool for health insights." }
+                  { icon: Brain, title: "AI Preparation", desc: "Optional tool for health analysis." }
                 ].map((item, i) => (
                   <div key={i} className="flex gap-3">
                     <div className="shrink-0 w-8 h-8 rounded-lg bg-teal-50 flex items-center justify-center text-teal-600">
@@ -658,7 +658,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-end justify-between mb-10 gap-6">
             <div className="max-w-xl">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4 tracking-tight">Health <span className="text-teal-700">Insights</span></h2>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4 tracking-tight">Health <span className="text-teal-700">Analysis</span></h2>
               <p className="text-base text-slate-600 leading-relaxed">Expert medical advice and the latest news from the world of private healthcare.</p>
             </div>
             <button className="text-teal-700 font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all group">
@@ -718,7 +718,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold mb-1 tracking-tight">Unexplained Symptoms</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">People with ongoing or unexplained symptoms looking for root-cause insights.</p>
+                    <p className="text-sm text-slate-400 leading-relaxed">People with ongoing or unexplained symptoms looking for root-cause analysis.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -762,7 +762,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                   onClick={() => setPage('booking')}
                   className="flex-1 bg-teal-600 text-white py-4 rounded-xl font-bold hover:bg-teal-700 transition-all shadow-lg text-sm"
                 >
-                  Get Insights
+                  Get Analysis
                 </button>
               </div>
             </div>
