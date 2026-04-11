@@ -334,18 +334,6 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                   </motion.div>
                 ))}
               </div>
-
-              <div className="mt-12 pt-8 border-t border-slate-100">
-                <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
-                  <span className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] w-full sm:w-auto mb-2 sm:mb-0">Patient Benefits:</span>
-                  {['GMC Registered Doctors', 'Same-day Prescriptions', 'Private Referrals'].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-slate-500 font-bold uppercase tracking-wider">
-                      <div className="w-1.5 h-1.5 rounded-full bg-teal-500"></div>
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
 
             {/* Right Column: AI Tool */}
@@ -431,6 +419,123 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
               </div>
             </div>
           </div>
+
+          {/* Full Width Patient Benefits Bar */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16 pt-8 border-t border-slate-200"
+          >
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <span className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.3em]">Patient Benefits & Standards</span>
+              <div className="flex flex-wrap justify-center md:justify-end gap-x-12 gap-y-4">
+                {['GMC Registered Doctors', 'Same-day Prescriptions', 'Private Referrals'].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 text-xs text-slate-600 font-bold uppercase tracking-widest group">
+                    <div className="w-2 h-2 rounded-full bg-teal-500 group-hover:scale-125 transition-transform"></div>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Specialist Services - Clean & Professional */}
+      <section className="py-24 bg-slate-900 text-white">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-8">
+            <div className="max-w-2xl">
+              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight">Specialist Medical Services</h2>
+              <p className="text-lg text-slate-400">Comprehensive assessments and expert consultations for every stage of life.</p>
+            </div>
+            <button 
+              onClick={() => setPage('booking')}
+              className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all shadow-lg shadow-teal-900/20"
+            >
+              View All Services
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              'Accident & Injury Claims', 'Drivers Medicals', 'Health Screening (MOT)', 
+              'Life Insurance Medicals', 'Medical Assessments', 'Chronic Disease Management', 
+              'Care Home Visits', 'Children\'s Health Checks', 'Private Referrals', 
+              'Private Scan Booking', 'Specialist Consultations', 'Home Visits'
+            ].map((title, idx) => (
+              <motion.div
+                key={title}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.05 }}
+                className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group cursor-pointer"
+                onClick={() => setPage('booking')}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-2 h-2 rounded-full bg-medical-500 group-hover:scale-150 transition-transform"></div>
+                  <span className="font-medium group-hover:text-medical-400 transition-colors">{title}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Core Services - Sleeker & Condensed */}
+      <section className="py-20 bg-white">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-12">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2 tracking-tight">Our Core Services</h2>
+              <div className="w-12 h-1 bg-teal-600 rounded-full"></div>
+            </div>
+            <button 
+              onClick={() => setPage('services')}
+              className="text-teal-700 font-bold text-sm hover:text-teal-800 flex items-center gap-2 group"
+            >
+              View Details
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {SERVICES.map((service, idx) => (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                onClick={() => setPage('services')}
+                className={`group relative rounded-3xl p-6 transition-all duration-300 cursor-pointer overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-teal-900/5 ${
+                  idx === 0 ? 'bg-teal-700 text-white border-teal-600' : 'bg-slate-50 hover:bg-white text-slate-900'
+                }`}
+              >
+                <div className="relative z-10">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 shadow-sm transition-all duration-300 ${
+                    idx === 0 ? 'bg-white/10 text-white group-hover:bg-white group-hover:text-teal-700' : 'bg-white text-teal-700 group-hover:bg-teal-700 group-hover:text-white'
+                  }`}>
+                    {service.id === 'online' && <Activity size={24} />}
+                    {service.id === 'face-to-face' && <Users size={24} />}
+                    {service.id === 'home-visit' && <MapPin size={24} />}
+                  </div>
+                  <h3 className="text-xl font-display font-bold mb-2 tracking-tight">{service.title}</h3>
+                  <p className={`text-sm mb-6 line-clamp-2 leading-relaxed ${idx === 0 ? 'text-teal-50' : 'text-slate-500'}`}>{service.description}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xl font-bold">{service.price}</span>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+                      idx === 0 ? 'bg-white text-teal-700' : 'bg-white text-slate-900 group-hover:bg-teal-700 group-hover:text-white'
+                    }`}>
+                      <ArrowRight size={14} />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -476,95 +581,6 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                 />
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Services - Refined Cards */}
-      <section className="py-24 bg-white">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">Our Core Services</h2>
-            <div className="w-20 h-1.5 bg-teal-600 mx-auto rounded-full"></div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {SERVICES.map((service, idx) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                onClick={() => setPage('services')}
-                className={`group relative rounded-[2.5rem] p-10 transition-all duration-500 cursor-pointer overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-teal-900/10 ${
-                  idx === 0 ? 'md:col-span-2 bg-teal-700 text-white border-teal-600' : 'bg-slate-50 hover:bg-white text-slate-900'
-                }`}
-              >
-                <div className="relative z-10 h-full flex flex-col">
-                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 shadow-sm transition-all duration-500 ${
-                    idx === 0 ? 'bg-white/10 text-white group-hover:bg-white group-hover:text-teal-700' : 'bg-white text-teal-700 group-hover:bg-teal-700 group-hover:text-white'
-                  }`}>
-                    {service.id === 'online' && <Activity size={32} />}
-                    {service.id === 'face-to-face' && <Users size={32} />}
-                    {service.id === 'home-visit' && <MapPin size={32} />}
-                  </div>
-                  <h3 className={`text-2xl md:text-3xl font-display font-bold mb-4 tracking-tight ${idx === 0 ? 'text-white' : 'text-slate-900'}`}>{service.title}</h3>
-                  <p className={`mb-10 leading-relaxed ${idx === 0 ? 'text-teal-50' : 'text-slate-500'}`}>{service.description}</p>
-                  <div className="mt-auto flex items-center justify-between">
-                    <span className={`text-2xl font-bold ${idx === 0 ? 'text-white' : 'text-teal-700'}`}>{service.price}</span>
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${
-                      idx === 0 ? 'bg-white text-teal-700 group-hover:scale-110' : 'bg-white text-slate-900 group-hover:bg-teal-700 group-hover:text-white group-hover:scale-110'
-                    }`}>
-                      <ArrowRight size={20} />
-                    </div>
-                  </div>
-                </div>
-                {idx !== 0 && <div className="absolute top-0 right-0 w-32 h-32 bg-teal-700/5 rounded-bl-[100px] -z-0 group-hover:bg-teal-700/10 transition-all"></div>}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Specialist Services - Clean & Professional */}
-      <section className="py-24 bg-slate-900 text-white">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-8">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight">Specialist Medical Services</h2>
-              <p className="text-lg text-slate-400">Comprehensive assessments and expert consultations for every stage of life.</p>
-            </div>
-            <button 
-              onClick={() => setPage('booking')}
-              className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all shadow-lg shadow-teal-900/20"
-            >
-              View All Services
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              'Accident & Injury Claims', 'Drivers Medicals', 'Health Screening (MOT)', 
-              'Life Insurance Medicals', 'Medical Assessments', 'Chronic Disease Management', 
-              'Care Home Visits', 'Children\'s Health Checks', 'Private Referrals', 
-              'Private Scan Booking', 'Specialist Consultations', 'Home Visits'
-            ].map((title, idx) => (
-              <motion.div
-                key={title}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05 }}
-                className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group cursor-pointer"
-                onClick={() => setPage('booking')}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-2 h-2 rounded-full bg-medical-500 group-hover:scale-150 transition-transform"></div>
-                  <span className="font-medium group-hover:text-medical-400 transition-colors">{title}</span>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
