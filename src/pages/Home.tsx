@@ -540,43 +540,43 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
       </section>
 
       {/* What Is Doctor 2 U Help Section */}
-      <section className="py-20 bg-white border-b border-slate-50">
+      <section className="py-16 bg-white border-b border-slate-50">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1">
-              <div className="inline-flex items-center gap-2 bg-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
-                <Activity size={14} />
+              <div className="inline-flex items-center gap-2 bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-[9px] font-bold mb-4 tracking-[0.2em] uppercase">
+                <Activity size={12} />
                 Doctor-Led Medical Service
               </div>
-              <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-8 tracking-tighter">Healthcare Redefined</h2>
-              <p className="text-xl text-slate-600 mb-8 leading-relaxed">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-6 tracking-tighter">Healthcare Redefined</h2>
+              <p className="text-lg text-slate-600 mb-6 leading-relaxed">
                 Doctor 2 U is a premium medical service providing expert consultations on your terms. We offer an optional AI-powered preparation tool to help you organise your health concerns before your appointment, ensuring a deeper and more effective consultation with our clinicians.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   { icon: Stethoscope, title: "Expert Doctors", desc: "GMC registered private clinicians." },
                   { icon: ClipboardList, title: "Full Treatment", desc: "Prescriptions, referrals & plans." },
                   { icon: MapPin, title: "Flexible Care", desc: "Home, Clinic, or Online visits." },
                   { icon: Brain, title: "AI Preparation", desc: "Optional tool for health insights." }
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="shrink-0 w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600">
-                      <item.icon size={20} />
+                  <div key={i} className="flex gap-3">
+                    <div className="shrink-0 w-8 h-8 rounded-lg bg-teal-50 flex items-center justify-center text-teal-600">
+                      <item.icon size={16} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-sm">{item.title}</h4>
-                      <p className="text-xs text-slate-500">{item.desc}</p>
+                      <h4 className="font-bold text-slate-900 text-xs">{item.title}</h4>
+                      <p className="text-[10px] text-slate-500">{item.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
             <div className="flex-1 relative">
-              <div className="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
+              <div className="rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white">
                 <img 
                   src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800" 
                   alt="AI Health Analysis" 
-                  className="w-full h-[450px] object-cover"
+                  className="w-full h-[350px] object-cover"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -586,43 +586,43 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 bg-white overflow-hidden">
+      <section className="py-16 bg-white overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-20">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1">
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-8 leading-tight tracking-tight">
+                <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-6 leading-tight tracking-tight">
                   What Our <br />
                   <span className="text-teal-700">Patients Say.</span>
                 </h2>
-                <p className="text-lg text-slate-600 mb-10 leading-relaxed">
+                <p className="text-base text-slate-600 mb-8 leading-relaxed">
                   We pride ourselves on providing a level of care that exceeds expectations. Read about the experiences of those who trust us with their health.
                 </p>
-                <div className="flex gap-4">
+                <div className="flex gap-3">
                   <button 
                     onClick={prevTestimonial}
-                    className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center hover:bg-teal-700 hover:text-white hover:border-teal-700 transition-all"
+                    className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-teal-700 hover:text-white hover:border-teal-700 transition-all"
                   >
-                    <ChevronLeft size={20} />
+                    <ChevronLeft size={18} />
                   </button>
                   <button 
                     onClick={nextTestimonial}
-                    className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center hover:bg-teal-700 hover:text-white hover:border-teal-700 transition-all"
+                    className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-teal-700 hover:text-white hover:border-teal-700 transition-all"
                   >
-                    <ChevronRight size={20} />
+                    <ChevronRight size={18} />
                   </button>
                 </div>
               </motion.div>
             </div>
 
             <div className="flex-1 relative">
-              <div className="bg-slate-50 rounded-[3rem] p-12 md:p-16 relative overflow-hidden min-h-[400px] flex flex-col justify-center shadow-sm border border-slate-100">
-                <div className="absolute top-10 right-10 opacity-10">
-                  <MessageSquare size={120} className="text-teal-100" />
+              <div className="bg-slate-50 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden min-h-[350px] flex flex-col justify-center shadow-sm border border-slate-100">
+                <div className="absolute top-8 right-8 opacity-5">
+                  <MessageSquare size={100} className="text-teal-100" />
                 </div>
                 
                 <AnimatePresence mode="wait">
@@ -633,17 +633,17 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.4 }}
                   >
-                    <div className="flex items-center gap-1 text-yellow-400 mb-8">
+                    <div className="flex items-center gap-1 text-yellow-400 mb-6">
                       {[...Array(TESTIMONIALS[testimonialIdx].rating)].map((_, i) => (
-                        <Star key={i} size={20} fill="currentColor" />
+                        <Star key={i} size={16} fill="currentColor" />
                       ))}
                     </div>
-                    <p className="text-2xl font-display font-medium text-slate-900 mb-8 leading-relaxed italic">
+                    <p className="text-xl font-display font-medium text-slate-900 mb-6 leading-relaxed italic">
                       "{TESTIMONIALS[testimonialIdx].quote}"
                     </p>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-lg">{TESTIMONIALS[testimonialIdx].name}</h4>
-                      <p className="text-teal-700 font-medium">{TESTIMONIALS[testimonialIdx].location}</p>
+                      <h4 className="font-bold text-slate-900 text-base">{TESTIMONIALS[testimonialIdx].name}</h4>
+                      <p className="text-teal-700 text-sm font-medium">{TESTIMONIALS[testimonialIdx].location}</p>
                     </div>
                   </motion.div>
                 </AnimatePresence>
@@ -654,20 +654,20 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
       </section>
 
       {/* Blog / Health Insights Section */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-8">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">Health <span className="text-teal-700">Insights</span></h2>
-              <p className="text-lg text-slate-600 leading-relaxed">Expert medical advice and the latest news from the world of private healthcare.</p>
+          <div className="flex flex-col md:flex-row items-end justify-between mb-10 gap-6">
+            <div className="max-w-xl">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4 tracking-tight">Health <span className="text-teal-700">Insights</span></h2>
+              <p className="text-base text-slate-600 leading-relaxed">Expert medical advice and the latest news from the world of private healthcare.</p>
             </div>
-            <button className="text-teal-700 font-bold flex items-center gap-2 hover:gap-4 transition-all group">
+            <button className="text-teal-700 font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all group">
               View All Articles
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {BLOG_POSTS.map((post, i) => (
               <motion.div 
                 key={post.id}
@@ -675,28 +675,28 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-slate-100 group cursor-pointer hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] overflow-hidden shadow-sm border border-slate-100 group cursor-pointer hover:shadow-lg transition-all duration-500"
               >
-                <div className="h-64 overflow-hidden relative">
+                <div className="h-48 overflow-hidden relative">
                   <img 
                     src={post.image} 
                     alt={post.title} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-teal-700">
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest text-teal-700">
                     {post.date}
                   </div>
                 </div>
-                <div className="p-10">
-                  <h3 className="text-2xl font-display font-bold text-slate-900 mb-4 group-hover:text-teal-700 transition-colors leading-tight">
+                <div className="p-6">
+                  <h3 className="text-xl font-display font-bold text-slate-900 mb-3 group-hover:text-teal-700 transition-colors leading-tight">
                     {post.title}
                   </h3>
-                  <p className="text-slate-500 mb-8 leading-relaxed">
+                  <p className="text-sm text-slate-500 mb-6 leading-relaxed line-clamp-2">
                     {post.excerpt}
                   </p>
-                  <div className="flex items-center gap-2 text-teal-700 font-bold text-sm">
-                    Read More <ArrowRight size={16} />
+                  <div className="flex items-center gap-2 text-teal-700 font-bold text-xs">
+                    Read More <ArrowRight size={14} />
                   </div>
                 </div>
               </motion.div>
@@ -706,38 +706,38 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
       </section>
 
       {/* Who This Is For Section */}
-      <section className="py-24 bg-slate-900 text-white">
+      <section className="py-16 bg-slate-900 text-white">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl md:text-6xl font-display font-bold mb-10 tracking-tighter">Who Doctor 2 U Help Is For</h2>
-              <div className="space-y-8">
-                <div className="flex gap-6">
-                  <div className="w-14 h-14 rounded-2xl bg-teal-500/20 flex items-center justify-center text-teal-400 shrink-0">
-                    <Activity size={28} />
+              <h2 className="text-3xl md:text-5xl font-display font-bold mb-8 tracking-tighter">Who Doctor 2 U Help Is For</h2>
+              <div className="space-y-6">
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center text-teal-400 shrink-0">
+                    <Activity size={24} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold mb-2 tracking-tight">Unexplained Symptoms</h3>
-                    <p className="text-slate-400 leading-relaxed">People with ongoing or unexplained symptoms looking for root-cause insights.</p>
+                    <h3 className="text-xl font-bold mb-1 tracking-tight">Unexplained Symptoms</h3>
+                    <p className="text-sm text-slate-400 leading-relaxed">People with ongoing or unexplained symptoms looking for root-cause insights.</p>
                   </div>
                 </div>
-                <div className="flex gap-6">
-                  <div className="w-14 h-14 rounded-2xl bg-teal-500/20 flex items-center justify-center text-teal-400 shrink-0">
-                    <HeartPulse size={28} />
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center text-teal-400 shrink-0">
+                    <HeartPulse size={24} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold mb-2 tracking-tight">Preventative Medicine</h3>
-                    <p className="text-slate-400 leading-relaxed">Those interested in functional medicine to optimise long-term health and longevity.</p>
+                    <h3 className="text-xl font-bold mb-1 tracking-tight">Preventative Medicine</h3>
+                    <p className="text-sm text-slate-400 leading-relaxed">Those interested in functional medicine to optimise long-term health and longevity.</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-12 rounded-[3rem]">
-              <h3 className="text-2xl font-bold mb-8 tracking-tight">Comprehensive Medical Care</h3>
-              <p className="text-slate-400 mb-10 leading-relaxed">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-[2.5rem]">
+              <h3 className="text-xl font-bold mb-6 tracking-tight">Comprehensive Medical Care</h3>
+              <p className="text-sm text-slate-400 mb-8 leading-relaxed">
                 Whether you need a one-off consultation or ongoing management, our doctors provide full medical support including:
               </p>
-              <ul className="space-y-4 mb-10">
+              <ul className="space-y-3 mb-8">
                 {[
                   "Private Prescriptions",
                   "Specialist Referral Letters",
@@ -745,53 +745,55 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                   "Chronic Disease Management",
                   "Personalised Treatment Plans"
                 ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-slate-300">
-                    <CheckCircle2 size={18} className="text-teal-400" />
+                  <li key={i} className="flex items-center gap-2 text-sm text-slate-300">
+                    <CheckCircle2 size={16} className="text-teal-400" />
                     {item}
                   </li>
                 ))}
               </ul>
-              <button 
-                onClick={() => setPage('treatment-plan')}
-                className="w-full bg-white text-slate-900 border border-slate-200 py-5 rounded-2xl font-bold hover:bg-slate-50 transition-all shadow-sm mb-4"
-              >
-                View Sample Health Plan
-              </button>
-              <button 
-                onClick={() => setPage('booking')}
-                className="w-full bg-teal-600 text-white py-5 rounded-2xl font-bold hover:bg-teal-700 transition-all shadow-lg"
-              >
-                Get Your Health Insights
-              </button>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button 
+                  onClick={() => setPage('treatment-plan')}
+                  className="flex-1 bg-white text-slate-900 border border-slate-200 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all shadow-sm text-sm"
+                >
+                  Sample Health Plan
+                </button>
+                <button 
+                  onClick={() => setPage('booking')}
+                  className="flex-1 bg-teal-600 text-white py-4 rounded-xl font-bold hover:bg-teal-700 transition-all shadow-lg text-sm"
+                >
+                  Get Insights
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">Common <span className="text-teal-700">Questions</span></h2>
-            <p className="text-lg text-slate-600">Everything you need to know about our private medical services.</p>
+      <section className="py-16 bg-white relative overflow-hidden">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4 tracking-tight">Common <span className="text-teal-700">Questions</span></h2>
+            <p className="text-base text-slate-600">Everything you need to know about our private medical services.</p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {FAQS.map((faq, i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="border border-slate-100 rounded-3xl overflow-hidden"
+                className="border border-slate-100 rounded-2xl overflow-hidden"
               >
                 <button 
                   onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                  className={`w-full flex items-center justify-between p-8 text-left transition-all ${activeFaq === i ? 'bg-teal-50' : 'bg-white hover:bg-slate-50'}`}
+                  className={`w-full flex items-center justify-between p-6 text-left transition-all ${activeFaq === i ? 'bg-teal-50' : 'bg-white hover:bg-slate-50'}`}
                 >
-                  <span className="text-lg font-bold text-slate-900">{faq.question}</span>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${activeFaq === i ? 'bg-teal-700 text-white rotate-180' : 'bg-slate-100 text-slate-400'}`}>
-                    <ChevronDown size={20} />
+                  <span className="text-base font-bold text-slate-900">{faq.question}</span>
+                  <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all ${activeFaq === i ? 'bg-teal-700 text-white rotate-180' : 'bg-slate-100 text-slate-400'}`}>
+                    <ChevronDown size={16} />
                   </div>
                 </button>
                 <AnimatePresence>
@@ -802,7 +804,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="p-8 pt-0 bg-medical-50 text-slate-600 leading-relaxed text-lg border-t border-white/50">
+                      <div className="p-6 pt-0 bg-medical-50 text-slate-600 leading-relaxed text-base border-t border-white/50">
                         {faq.answer}
                       </div>
                     </motion.div>
@@ -815,12 +817,12 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
       </section>
 
       {/* Area Section */}
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-20">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1 order-2 lg:order-1">
               <div className="relative">
-                <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl">
+                <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-xl">
                   <img 
                     src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=1000" 
                     alt="Community Care" 
@@ -828,34 +830,34 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                     referrerPolicy="no-referrer"
                   />
                 </div>
-                <div className="absolute -bottom-10 -right-10 glass-card p-8 rounded-3xl max-w-xs hidden md:block">
-                  <div className="flex items-center gap-1 text-yellow-400 mb-3">
-                    {[1,2,3,4,5].map(i => <Star key={i} size={14} fill="currentColor" />)}
+                <div className="absolute -bottom-6 -right-6 glass-card p-6 rounded-2xl max-w-[200px] hidden md:block">
+                  <div className="flex items-center gap-1 text-yellow-400 mb-2">
+                    {[1,2,3,4,5].map(i => <Star key={i} size={10} fill="currentColor" />)}
                   </div>
-                  <p className="text-sm font-medium text-slate-700 italic">"The gold standard for private healthcare in the North West."</p>
-                  <p className="mt-4 font-bold text-slate-900">Michael T., Lancashire</p>
+                  <p className="text-xs font-medium text-slate-700 italic">"The gold standard for private healthcare."</p>
+                  <p className="mt-2 font-bold text-slate-900 text-[10px]">Michael T., Lancashire</p>
                 </div>
               </div>
             </div>
             
             <div className="flex-1 order-1 lg:order-2">
-              <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-8 tracking-tight">Serving Lancashire & Manchester</h2>
-              <p className="text-lg text-slate-600 mb-10 leading-relaxed">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-6 tracking-tight">Serving Lancashire & Manchester</h2>
+              <p className="text-base text-slate-600 mb-8 leading-relaxed">
                 We provide expert medical care across the entire North West region. Whether you're in the heart of Manchester or the quiet corners of Lancashire, our doctors are ready to help.
               </p>
-              <div className="grid grid-cols-2 gap-4 mb-12">
+              <div className="grid grid-cols-2 gap-3 mb-8">
                 {['Manchester', 'Preston', 'Blackburn', 'Bolton', 'Lancaster', 'Chorley', 'Wigan', 'Burnley'].map(area => (
-                  <div key={area} className="flex items-center gap-3 text-slate-700 font-semibold">
-                    <CheckCircle2 size={18} className="text-teal-700" />
+                  <div key={area} className="flex items-center gap-2 text-slate-700 font-semibold text-sm">
+                    <CheckCircle2 size={14} className="text-teal-700" />
                     {area}
                   </div>
                 ))}
               </div>
               <button 
                 onClick={() => setPage('contact')}
-                className="text-teal-700 font-bold text-lg flex items-center gap-2 hover:gap-4 transition-all"
+                className="text-teal-700 font-bold text-base flex items-center gap-2 hover:gap-3 transition-all"
               >
-                Check your area <ArrowRight size={20} />
+                Check your area <ArrowRight size={18} />
               </button>
             </div>
           </div>
@@ -863,9 +865,9 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
       </section>
 
       {/* CTA Section - High Impact */}
-      <section className="py-24 px-4">
+      <section className="py-16 px-4">
         <div className="max-w-[1600px] mx-auto">
-          <div className="relative rounded-[4rem] overflow-hidden bg-medical-900 p-12 md:p-24 text-center">
+          <div className="relative rounded-[3rem] overflow-hidden bg-medical-900 p-10 md:p-16 text-center">
             <div className="absolute inset-0 opacity-20">
               <img 
                 src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1920" 
@@ -877,45 +879,45 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
             <div className="absolute inset-0 bg-medical-900/80"></div>
             
             <div className="relative z-10">
-              <h2 className="text-4xl md:text-7xl font-display font-bold text-white mb-8 tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">
                 Your Health, <br />
                 <span className="text-medical-400">Our Priority.</span>
               </h2>
-              <p className="text-xl text-slate-300 mb-12 max-w-2xl mx-auto">
+              <p className="text-lg text-slate-300 mb-10 max-w-xl mx-auto">
                 Join the hundreds of patients who trust Doctor2U for their private medical needs.
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <motion.button 
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setPage('booking')}
-                  className="bg-teal-700 text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-teal-800 transition-all shadow-2xl w-full sm:w-auto"
+                  className="bg-teal-700 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-teal-800 transition-all shadow-2xl w-full sm:w-auto"
                 >
                   Book Appointment
                 </motion.button>
                 <a 
                   href="tel:07488879077"
-                  className="flex items-center gap-4 text-2xl font-bold text-white hover:text-teal-400 transition-colors"
+                  className="flex items-center gap-3 text-xl font-bold text-white hover:text-teal-400 transition-colors"
                 >
-                  <div className="bg-white/10 p-3 rounded-xl backdrop-blur-md">
-                    <Phone size={28} />
+                  <div className="bg-white/10 p-2.5 rounded-lg backdrop-blur-md">
+                    <Phone size={24} />
                   </div>
                   07488 879077
                 </a>
               </div>
-              <div className="mt-8 flex justify-center">
+              <div className="mt-6 flex justify-center">
                 <a 
                   href="https://wa.me/443333395773" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-teal-400 hover:text-white transition-colors font-bold"
+                  className="flex items-center gap-2 text-teal-400 hover:text-white transition-colors font-bold text-sm"
                 >
-                  <MessageSquare size={20} />
+                  <MessageSquare size={18} />
                   WhatsApp: 03333395773
                 </a>
               </div>
-              <div className="mt-12 pt-12 border-t border-white/10">
-                <p className="text-slate-400 text-[10px] uppercase tracking-[0.3em] font-bold max-w-3xl mx-auto leading-relaxed">
+              <div className="mt-10 pt-10 border-t border-white/10">
+                <p className="text-slate-400 text-[9px] uppercase tracking-[0.3em] font-bold max-w-2xl mx-auto leading-relaxed">
                   Doctor 2 U Help is a support tool. All medical decisions, diagnoses, and treatments must be made by a qualified clinician. We do not prescribe medication or replace the need for a face-to-face medical consultation.
                 </p>
               </div>
