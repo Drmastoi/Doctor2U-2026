@@ -143,33 +143,47 @@ export default function PrivateDoctorManchesterPage({ setPage }: PrivateDoctorMa
             <p className="text-lg text-slate-600 mb-6 leading-relaxed">
               Manchester is home to some of the world's leading medical facilities, yet accessing primary care can still be Frustratingly slow. Our <strong>Private Doctor Manchester</strong> service was established to provide a convenient, reliable, and high-quality alternative for those who value their time and their health.
             </p>
-
             <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">The Benefits of Private Healthcare in Manchester</h3>
             <p className="text-slate-600 mb-6 leading-relaxed">
-              Why do thousands of Manchester residents choose private doctors each year? The answer lies in the quality of the interaction and the speed of the follow-up. 
+              Why do thousands of Manchester residents choose private doctors each year? The answer lies in the quality of the interaction and the speed of the follow-up. While the NHS provides a vital service, the current strain on primary care means that "same-day" access is often a luxury. We have consciously designed our Manchester private clinic to remove the friction of modern healthcare.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
                 <h4 className="text-xl font-bold text-slate-900 mb-4">30-Minute Consultations</h4>
-                <p className="text-sm text-slate-500">No rushing. You have a full half-hour to discuss clinical history, lifestyle factors, and treatment goals with your doctor.</p>
+                <p className="text-sm text-slate-500">No rushing. You have a full half-hour to discuss clinical history, lifestyle factors, and treatment goals with your doctor. This is more than double the average time allowed in a standard surgery, allowing for true clinical depth.</p>
               </div>
               <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
                 <h4 className="text-xl font-bold text-slate-900 mb-4">Same-Day Prescriptions</h4>
-                <p className="text-sm text-slate-500">Medication is issued during your appointment. We can send prescriptions electronically to the pharmacy of your choice.</p>
+                <p className="text-sm text-slate-500">Medication is issued during your appointment. We can send prescriptions electronically to the pharmacy of your choice in Manchester center or near your home, ensuring treatment begins immediately.</p>
               </div>
               <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
                 <h4 className="text-xl font-bold text-slate-900 mb-4">Expert Referrals</h4>
-                <p className="text-sm text-slate-500">Need a specialist? We have a network of private consultants across Manchester and Lancashire for fast-track referrals.</p>
+                <p className="text-sm text-slate-500">Need a specialist? We have a network of private consultants across Manchester and Lancashire for fast-track referrals. Whether you need a cardiologist, dermatologist, or orthopedic surgeon, we can bridge that gap.</p>
               </div>
               <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
                 <h4 className="text-xl font-bold text-slate-900 mb-4">Diagnostic Precision</h4>
-                <p className="text-sm text-slate-500">We arrange blood tests, ECGs, and advanced imaging (MRI/CT) with results typically returned within 48 hours.</p>
+                <p className="text-sm text-slate-500">We arrange blood tests, ECGs, and advanced imaging (MRI/CT) with results typically returned within 48 hours. Our clinic is positioned to leverage Manchester's world-class diagnostic infrastructure.</p>
               </div>
             </div>
 
+            <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">Meeting E-E-A-T Standards: Our Clinical Integrity</h3>
+            <p className="text-slate-600 mb-6 leading-relaxed">
+              Trust is the foundation of any medical relationship. At Doctor2U, we ensure that every patient interaction meets the highest standards of General Medical Council (GMC) regulations. Our doctors are not just clinicians; they are health advocates who practice under a rigorous <button onClick={() => setPage('clinical-governance')} className="text-teal-700 font-bold hover:underline">Clinical Governance</button> framework. We believe that by providing direct access to <button onClick={() => setPage('our-doctors')} className="text-teal-700 font-bold hover:underline">GMC-registered doctors</button>, we provide more than just an appointment—we provide peace of mind.
+            </p>
+
+            <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">Specialised Care Across Manchester</h3>
+            <p className="text-slate-600 mb-8 leading-relaxed">
+              We recognize that medical needs are diverse. That is why we have established specialist care pathways within our Manchester practice. If you are a parent seeking an <button onClick={() => setPage('urgent-childrens-doctor-manchester')} className="text-teal-700 font-bold hover:underline">urgent children's doctor in Manchester</button>, or you require immediate assistance for infections such as <button onClick={() => setPage('emergency-uti-treatment-manchester')} className="text-teal-700 font-bold hover:underline">Emergency UTI treatment</button>, we have the clinical expertise ready to assist. For our more vulnerable community members, we offer dedicated <button onClick={() => setPage('elderly-care-home-visit-manchester')} className="text-teal-700 font-bold hover:underline">elderly care home visits</button> to ensure continuity of care in a comfortable setting.
+            </p>
+
             <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">NICE-Aligned Clinical Standards</h3>
             <p className="text-slate-600 mb-8 leading-relaxed">
-              Every clinical decision made by our private doctors is backed by the latest evidence. We align our practice with the National Institute for Health and Care Excellence (NICE) guidelines. Whether we are managing minor infections, childhood illnesses, or complex chronic conditions, you can be rest assured that your care follows the Gold standard of UK medical practice.
+              Every clinical decision made by our private doctors is backed by the latest evidence. We align our practice with the National Institute for Health and Care Excellence (NICE) guidelines. Whether we are managing minor infections, respiratory issues like <button onClick={() => setPage('chest-infection-home-visit-manchester')} className="text-teal-700 font-bold hover:underline">chest infections</button>, or complex chronic conditions, you can be rest assured that your care follows the Gold standard of UK medical practice.
+            </p>
+
+            <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">A Patient-First Philosophy in the North West</h3>
+            <p className="text-slate-600 mb-8 leading-relaxed">
+              Our Manchester practice is built on a simple "Patient-First" philosophy. This means zero registration requirements, transparent pricing, and a commitment to seeing you on the same day you call. We don't believe in barriers; we believe in health. From our central Manchester clinical hub, we serve the entire Greater Manchester footprint including Salford, Trafford, and Stockport. If you are experiencing <button onClick={() => setPage('out-of-hours-doctor-manchester')} className="text-teal-700 font-bold hover:underline">out-of-hours health concerns</button>, our extended availability ensures you are never left without a professional medical opinion.
             </p>
 
             <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">Innovative AI Pre-Consultation Insights</h3>

@@ -172,6 +172,11 @@ export default function SameDayDoctorManchester({ setPage }: SameDayDoctorManche
                   Our private doctor service is engineered for speed without sacrificing the depth of clinical investigation. From our Manchester clinic hub, we manage a highly mobile and responsive team of GMC-registered private doctors available for immediate consultations, prescriptions, and specialist referrals. By leveraging a streamlined booking process and our optional AI pre-assessment tools, we ensure that you move from 'symptom' to 'solution' faster than any other primary care provider in the North West.
                 </p>
 
+                <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">Meeting Manchester's Urgent Care Needs</h3>
+                <p className="text-slate-600 mb-8 leading-relaxed">
+                  The demand for immediate medical access in Manchester is higher than ever. Whether it is a <button onClick={() => setPage('urgent-childrens-doctor-manchester')} className="text-teal-700 font-bold hover:underline">childhood illness</button> that has worsened overnight or a sudden <button onClick={() => setPage('chest-infection-home-visit-manchester')} className="text-teal-700 font-bold hover:underline">respiratory infection</button>, the need for clinical answers cannot always wait for a standard appointment. Our "Same-Day" philosophy is built on the understanding that timely intervention often prevents minor issues from becoming major health crises.
+                </p>
+
                 <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">Comprehensive Same-Day Services in Manchester</h3>
                 <p className="text-slate-600 mb-6 leading-relaxed">
                   Accessing a private doctor on the same day allows for decisive clinical action. We understand that an urgent medical concern often requires more than just a conversation—it requires action. Our Manchester appointments include:
@@ -181,14 +186,14 @@ export default function SameDayDoctorManchester({ setPage }: SameDayDoctorManche
                     <CheckCircle2 size={24} className="text-teal-700 shrink-0" />
                     <div>
                       <h4 className="font-bold text-slate-900 mb-1">Acute Illness & Infection Control</h4>
-                      <p className="text-xs text-slate-500">Rapid assessment and treatment for respiratory infections, UTIs, tonsillitis, ear infections, and sudden-onset pains. We can initiate treatment within minutes of your consultation concluding.</p>
+                      <p className="text-xs text-slate-500">Rapid assessment and treatment for respiratory infections, <button onClick={() => setPage('emergency-uti-treatment-manchester')} className="text-teal-700 font-bold hover:underline">Urinary Tract Infections (UTIs)</button>, tonsillitis, ear infections, and sudden-onset pains. We can initiate treatment within minutes of your consultation concluding.</p>
                     </div>
                   </li>
                   <li className="flex gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 transition-all shadow-sm">
                     <CheckCircle2 size={24} className="text-teal-700 shrink-0" />
                     <div>
                       <h4 className="font-bold text-slate-900 mb-1">Diagnostic Urgency (Tests & Imaging)</h4>
-                      <p className="text-xs text-slate-500">If your condition requires more than a physical check, we arrange immediate blood tests and fast-track radiology referrals (MRI, CT, Ultrasound) in Manchester, with results often back within 24-48 hours.</p>
+                      <p className="text-xs text-slate-500">If your condition requires more than a physical check, we arrange immediate blood tests and fast-track radiology referrals (MRI, CT, Ultrasound) in Manchester, with results often back within 24-48 hours. This is crucial for managing <button onClick={() => setPage('back-pain-home-visit-manchester')} className="text-teal-700 font-bold hover:underline">acute back pain</button> or unexplained symptoms.</p>
                     </div>
                   </li>
                   <li className="flex gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 transition-all shadow-sm">
@@ -199,6 +204,11 @@ export default function SameDayDoctorManchester({ setPage }: SameDayDoctorManche
                     </div>
                   </li>
                 </ul>
+
+                <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">Trust & Authority: GMC Registered Excellence</h3>
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  Any "same-day" service is only as good as the clinicians providing it. At Doctor2U, we pride ourselves on a transparent and authoritative approach to medicine. You can <button onClick={() => setPage('our-doctors')} className="text-teal-700 font-bold hover:underline">meet our team of GMC-registered doctors</button> online before your visit. We believe that seeing the qualifications and experience of your doctor builds the necessary trust for a successful clinical relationship. Furthermore, our commitment to <button onClick={() => setPage('clinical-governance')} className="text-teal-700 font-bold hover:underline">Clinical Governance</button> ensures that we always maintain the highest safety standards, even when working under rapid response conditions.
+                </p>
 
                 <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">Clinical Standards: Safe, Professional, and NICE-Aligned</h3>
                 <p className="text-slate-600 mb-6 leading-relaxed">
