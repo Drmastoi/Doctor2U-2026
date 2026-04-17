@@ -1,4 +1,4 @@
-export type Page = 'home' | 'services' | 'contact' | 'booking' | 'innovation' | 'treatment-plan';
+export type Page = 'home' | 'services' | 'contact' | 'booking' | 'innovation' | 'treatment-plan' | 'service-private-gp' | 'service-home-visit' | 'service-drivers-medicals' | 'service-health-screening' | 'service-childrens-health' | 'service-accident-injury' | 'service-life-insurance' | 'service-chronic-care' | 'service-referrals' | 'privacy' | 'pgp-manchester' | 'pgp-preston' | 'pgp-blackburn' | 'hvd-manchester' | 'hvd-lancashire' | 'same-day-doctor-manchester' | 'doctor-home-visit-manchester';
 
 export interface FAQ {
   question: string;
@@ -18,6 +18,7 @@ export interface BlogPost {
   excerpt: string;
   date: string;
   image: string;
+  link?: Page;
 }
 
 export interface Service {

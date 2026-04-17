@@ -12,40 +12,44 @@ import { GoogleGenAI } from "@google/genai";
 
 const FAQS: FAQ[] = [
   {
+    question: "Do you see children?",
+    answer: "Yes, we provide medical consultations for children of all ages. All practitioners are experienced in paediatric care and we offer a comfortable environment for younger patients."
+  },
+  {
+    question: "Can you see my NHS records?",
+    answer: "Private doctors do not have direct access to your NHS GP records. We recommend bringing any relevant medical history, recent test results, or current medication lists to your consultation."
+  },
+  {
+    question: "Do you share information with my NHS GP?",
+    answer: "With your consent, we can share a summary of your consultation and any treatment plans with your regular NHS GP to ensure continuity of care. This is entirely optional."
+  },
+  {
     question: "Do you accept private medical insurance?",
     answer: "At present, we operate on a self-pay basis to keep our pricing transparent and accessible. We can provide detailed invoices if you wish to claim back from your insurer independently."
   },
   {
     question: "How quickly can I get a prescription?",
     answer: "Prescriptions are typically issued during or immediately after your consultation. We can send them electronically to your preferred local pharmacy for same-day collection."
-  },
-  {
-    question: "What areas do you cover for home visits?",
-    answer: "We cover the majority of Lancashire and Greater Manchester, including Preston, Blackburn, Bolton, Wigan, and surrounding areas. Contact us if you're unsure if we cover your location."
-  },
-  {
-    question: "Are your doctors GMC registered?",
-    answer: "Yes, all our clinicians are fully GMC registered, licensed to practice in the UK, and have extensive experience in both NHS and private practice."
   }
 ];
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    name: "Sarah Thompson",
-    location: "Manchester",
-    quote: "The most professional and unhurried medical experience I've had. Dr. Iqbal took the time to listen and explain everything clearly. Highly recommended.",
+    name: "Ahmed Raza",
+    location: "Manchester - City Centre",
+    quote: "I needed a private doctor in Manchester fast. I used the AI tool first which helped me organise my symptoms, and the consultation was seamless. Highly recommend.",
     rating: 5
   },
   {
-    name: "James Wilson",
-    location: "Preston",
-    quote: "Booking was seamless, and the home visit was exactly what I needed. Professional, discrete, and very reassuring. A gold standard service.",
+    name: "Sarah Jenkins",
+    location: "Preston - Home Visit",
+    quote: "Finding a home visit doctor in Preston is usually impossible. Doctor2U arrived within 3 hours, and the doctor was thorough and very professional.",
     rating: 5
   },
   {
     name: "Emma Roberts",
-    location: "Blackburn",
-    quote: "Excellent online consultation. It saved me so much time and the follow-up was fantastic. Truly healthcare redefined for the modern age.",
+    location: "Blackburn - Clinic",
+    quote: "Used the AI analysis before my appointment in Blackburn. It felt like the doctor already understood my symptoms. Efficient and modern healthcare.",
     rating: 5
   }
 ];
@@ -53,52 +57,67 @@ const TESTIMONIALS: Testimonial[] = [
 const BLOG_POSTS: BlogPost[] = [
   {
     id: '1',
-    title: "The Benefits of Regular Health Screenings",
-    excerpt: "Why proactive health checks are the key to long-term wellness and early detection of potential issues.",
-    date: "April 12, 2026",
-    image: "https://images.unsplash.com/photo-1505751172107-5739a00723a5?auto=format&fit=crop&q=80&w=800"
+    title: "Accessing a Private Doctor in Manchester",
+    excerpt: "Why residents are choosing Private Doctor services in Manchester for same-day prescriptions and unhurried clinical time.",
+    date: "April 15, 2026",
+    image: "https://images.unsplash.com/photo-1505751172107-5739a00723a5?auto=format&fit=crop&q=80&w=800",
+    link: 'pgp-manchester' as Page
   },
   {
     id: '2',
-    title: "Managing Stress in a Fast-Paced World",
-    excerpt: "Practical medical advice and lifestyle changes to help manage daily stress and improve mental clarity.",
-    date: "April 5, 2026",
-    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800"
+    title: "Home Visit Doctors: The Best Choice for Lancashire",
+    excerpt: "The rise of home-based medical care across Preston and Blackburn. Find out why a Home Visit Doctor in Lancashire might be right for you.",
+    date: "April 8, 2026",
+    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800",
+    link: 'hvd-lancashire' as Page
   },
   {
     id: '3',
-    title: "Understanding Private Referrals",
-    excerpt: "How our private referral system works and how it can speed up your access to specialist treatments.",
-    date: "March 28, 2026",
-    image: "https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=800"
+    title: "Booking a Private Doctor in Preston",
+    excerpt: "Fast-track your health with a Private Doctor in Preston. Avoiding the 2-week wait for an appointment and getting results in 48 hours.",
+    date: "April 2, 2026",
+    image: "https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=800",
+    link: 'pgp-preston' as Page
+  },
+  {
+    id: '4',
+    title: "Drivers Medicals in Manchester: What to Bring",
+    excerpt: "Preparing for your HGV or Taxi medical in Manchester. A complete list of forms, vision tests, and requirements.",
+    date: "March 25, 2026",
+    image: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=800",
+    link: 'service-drivers-medicals' as Page
   }
 ];
 
 interface HomeProps {
   setPage: (page: Page) => void;
-  setSharedInsights: (insights: string) => void;
+  setSharedAnalysis: (analysis: string) => void;
 }
 
-export default function Home({ setPage, setSharedInsights }: HomeProps) {
+export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [testimonialIdx, setTestimonialIdx] = useState(0);
   const [symptoms, setSymptoms] = useState('');
-  const [aiInsights, setAiInsights] = useState('');
-  const [isLoadingInsights, setIsLoadingInsights] = useState(false);
+  const [aiAnalysis, setAiAnalysis] = useState('');
+  const [isLoadingAnalysis, setIsLoadingAnalysis] = useState(false);
 
-  const getInsights = async () => {
+  React.useEffect(() => {
+    document.title = "Doctor2U | Private Doctor & Home Visit Doctor in Manchester & Lancashire";
+  }, []);
+
+  const getAnalysis = async () => {
     if (!symptoms.trim()) return;
     
-    setIsLoadingInsights(true);
-    setAiInsights('');
+    setIsLoadingAnalysis(true);
+    setAiAnalysis('');
     
     // Step 2: Smart Triage - Check for emergency keywords
     const emergencyKeywords = ['chest pain', 'shortness of breath', 'stroke', 'numbness', 'heavy bleeding', 'unconscious', 'seizure'];
     const hasEmergency = emergencyKeywords.some(keyword => symptoms.toLowerCase().includes(keyword));
 
     if (hasEmergency) {
-      setAiInsights("⚠️ EMERGENCY ALERT: Your symptoms suggest a potentially serious medical condition that requires immediate attention. \n\nPLEASE CALL 999 OR ATTEND YOUR NEAREST A&E IMMEDIATELY. \n\nDo not wait for an online consultation or AI analysis if you are experiencing severe pain, difficulty breathing, or signs of a stroke.");
-      setIsLoadingInsights(false);
+      setAiAnalysis("⚠️ EMERGENCY ALERT: Your symptoms suggest a potentially serious medical condition that requires immediate attention. \n\nPLEASE CALL 999 OR ATTEND YOUR NEAREST A&E IMMEDIATELY. \n\nDo not wait for an online consultation or AI analysis if you are experiencing severe pain, difficulty breathing, or signs of a stroke.");
+      setIsLoadingAnalysis(false);
       return;
     }
     
@@ -106,24 +125,24 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
       const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
-        contents: `As a professional medical assistant for "Doctor 2 U Help", provide health insights and suggestions based on these symptoms: "${symptoms}". 
-        Focus on potential health domains to explore, lifestyle factors, and preparation for a doctor's consultation. 
+        contents: `As a professional medical assistant for "Doctor2U", provide a pre-consultation analysis based on these symptoms: "${symptoms}". 
+        Focus on potential health domains for the doctor to explore, lifestyle factors to discuss, and preparation for your consultation. 
         IMPORTANT: Your response MUST be professional, calm, and reassuring. 
         MANDATORY: You must NOT provide a diagnosis or prescribe medication. 
-        MANDATORY: You must include a clear disclaimer at the end stating that this is not a substitute for professional medical advice and that the user should book a consultation with a qualified doctor.`,
+        MANDATORY: You must include a clear disclaimer at the end stating that this is not a substitute for professional medical advice/diagnosis and that the user should book a consultation with a qualified GMC-registered doctor.`,
       });
       
-      setAiInsights(response.text || 'Unable to generate analysis at this time. Please try again.');
+      setAiAnalysis(response.text || 'Unable to generate analysis at this time. Please try again.');
     } catch (error) {
       console.error('Error generating analysis:', error);
-      setAiInsights('An error occurred while generating analysis. Please ensure your internet connection is stable and try again.');
+      setAiAnalysis('An error occurred while generating analysis. Please ensure your internet connection is stable and try again.');
     } finally {
-      setIsLoadingInsights(false);
+      setIsLoadingAnalysis(false);
     }
   };
 
   const handleShareWithDoctor = () => {
-    setSharedInsights(aiInsights);
+    setSharedAnalysis(aiAnalysis);
     setPage('booking');
   };
 
@@ -168,12 +187,12 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
               </motion.div>
               
               <h1 className="text-[60px] font-display font-bold leading-[1.05] mb-8 text-slate-900 tracking-tighter">
-                Private Doctor Care <br />
-                <span className="text-teal-700">Enhanced by AI.</span>
+                Private Doctor in Manchester <br />
+                <span className="text-teal-700">& Lancashire.</span>
               </h1>
               
               <p className="text-lg md:text-xl text-slate-600 mb-12 leading-relaxed max-w-xl mx-auto lg:mx-0 tracking-tight">
-                Get professional medical consultations at home, in-clinic, or online. Use our AI tool to prepare your health analysis, then speak with a qualified doctor for your treatment plan, prescriptions, and referrals.
+                Gain structured medical insights with our optional AI tool, review them in your own time, and share your analysis with our GMC-registered doctors for a comprehensive consultation, treatment plan, and prescriptions across Lancashire and Manchester.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start items-center">
@@ -183,7 +202,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                   onClick={() => setPage('booking')}
                   className="bg-teal-700 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center justify-center gap-3 w-full sm:w-auto"
                 >
-                  Book Appointment
+                  Book Online
                   <ArrowRight size={20} />
                 </motion.button>
                 
@@ -213,7 +232,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                 <div className="hidden sm:block w-px h-10 bg-slate-200"></div>
                 <div className="flex flex-col">
                   <span className="text-3xl font-display font-bold text-slate-900">4.9/5</span>
-                  <span className="text-xs uppercase tracking-widest text-slate-400 font-semibold">Patient Rating</span>
+                  <span className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">Google Reviews</span>
                 </div>
               </div>
             </motion.div>
@@ -265,9 +284,45 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                     ))}
                   </div>
                   <span className="text-sm font-bold text-slate-900">500+ Happy Patients</span>
+                  <span className="text-[10px] text-slate-400 block">Based on 2023-2026 feedback</span>
                 </div>
               </motion.div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3-Step Process Strip */}
+      <section className="bg-teal-700 py-8 relative z-20 shadow-2xl">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
+            <div className="flex items-center gap-4 text-white group">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-teal-400 border border-white/20 group-hover:bg-white group-hover:text-teal-700 transition-all text-xs">1</div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Step One</p>
+                <p className="text-sm font-bold">AI health insights (optional)</p>
+              </div>
+            </div>
+            <div className="hidden md:block text-teal-500/30">
+              <ArrowRight size={20} />
+            </div>
+            <div className="flex items-center gap-4 text-white group">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-teal-400 border border-white/20 group-hover:bg-white group-hover:text-teal-700 transition-all text-xs">2</div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Step Two</p>
+                <p className="text-sm font-bold">Share with doctor & book consultation</p>
+              </div>
+            </div>
+            <div className="hidden md:block text-teal-500/30">
+              <ArrowRight size={20} />
+            </div>
+            <div className="flex items-center gap-4 text-white group">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-teal-400 border border-white/20 group-hover:bg-white group-hover:text-teal-700 transition-all text-xs">3</div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Step Three</p>
+                <p className="text-sm font-bold">Personalised plan & prescriptions/referrals</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -276,7 +331,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
       <section className="py-10 bg-white border-b border-slate-100">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-            <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">NHS PARTNER</span>
+            <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">NHS-EXPERIENCED DOCTORS</span>
             <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">GMC REGISTERED</span>
             <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">BMA MEMBER</span>
             <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">ICO CERTIFIED</span>
@@ -312,9 +367,9 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                 <div className="absolute left-6 top-8 bottom-8 w-px bg-slate-200 hidden sm:block"></div>
                 
                 {[
-                  { icon: ClipboardList, title: "1. Prepare (Optional)", desc: "Use the tool on the right to organise your symptoms and get initial analysis." },
-                  { icon: Stethoscope, title: "2. Consult", desc: "Speak with a doctor via Video, in our Clinic, or at your Home." },
-                  { icon: HeartPulse, title: "3. Treatment", desc: "Receive your personalised plan, prescriptions, and specialist referrals." }
+                  { icon: ClipboardList, title: "1. AI health insights (optional)", desc: "Use our optional tool to gain structured insights and review them in your own time." },
+                  { icon: Stethoscope, title: "2. Share with doctor & book consultation", desc: "Choose to share your analysis and book a private consultation at your home or in-clinic." },
+                  { icon: HeartPulse, title: "3. Personalised plan & prescriptions/referrals", desc: "Speak with a GMC-registered doctor and receive your expert treatment plan and medical support." }
                 ].map((step, i) => (
                   <motion.div 
                     key={i}
@@ -347,44 +402,96 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                       <Brain size={20} />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-slate-900 tracking-tight">Get Your AI Health</h3>
-                      <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Optional Preparation Tool</p>
+                      <h3 className="text-xl font-bold text-slate-900 tracking-tight">Optional AI Health Insights: Prepare for Your Consultation</h3>
                     </div>
                   </div>
 
-                  <div className="mb-8">
+                  <div className="mb-6">
+                    <p className="text-sm text-slate-600 leading-relaxed mb-4">
+                      Our optional AI tool helps you organize your health concerns into a structured summary, ensuring you feel prepared and focused when speaking with our GMC-registered doctors.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-teal-50/50 p-4 rounded-2xl border border-teal-100/50">
+                      <div className="flex flex-col gap-1">
+                        <span className="text-[10px] font-bold text-teal-700 uppercase tracking-wider">Step 1</span>
+                        <p className="text-xs text-slate-600 font-medium leading-tight line-clamp-2">Enter symptoms and any specific questions you have.</p>
+                      </div>
+                      <div className="flex flex-col gap-1 border-t md:border-t-0 md:border-l border-teal-100/50 pt-3 md:pt-0 md:pl-4">
+                        <span className="text-[10px] font-bold text-teal-700 uppercase tracking-wider">Step 2</span>
+                        <p className="text-xs text-slate-600 font-medium leading-tight line-clamp-2">Review your AI-generated health insights privately.</p>
+                      </div>
+                      <div className="flex flex-col gap-1 border-t md:border-t-0 md:border-l border-teal-100/50 pt-3 md:pt-0 md:pl-4">
+                        <span className="text-[10px] font-bold text-teal-700 uppercase tracking-wider">Step 3</span>
+                        <p className="text-xs text-slate-600 font-medium leading-tight line-clamp-2">Optionally share your analysis with a doctor and book online.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
                     <textarea
                       id="symptoms"
                       rows={4}
                       value={symptoms}
                       onChange={(e) => setSymptoms(e.target.value)}
-                      placeholder="Describe your symptoms or health concerns (e.g., fatigue, headaches)..."
+                      placeholder="Describe your symptoms or health concerns (e.g., fatigue, breathlessness)..."
                       className="w-full bg-slate-50 border border-slate-100 rounded-2xl p-6 text-slate-900 focus:ring-2 focus:ring-teal-700 focus:border-transparent transition-all resize-none shadow-inner text-sm"
                     />
                   </div>
 
+                  <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100 mb-6">
+                    <h4 className="font-bold text-slate-900 text-sm mb-4 flex items-center gap-2">
+                      <ShieldCheck size={16} className="text-teal-600" />
+                      How we use your data
+                    </h4>
+                    <p className="text-[11px] text-slate-500 leading-relaxed">
+                      Your information is processed securely using industry-standard encryption. We use your data exclusively to prepare information for our clinical team to review during your consultation. We never sell your medical data or use it for marketing without explicit consent.
+                    </p>
+                  </div>
+
                   <div className="flex justify-between items-center gap-4">
                     <p className="text-[10px] text-slate-400 font-medium max-w-[250px] leading-tight">
-                      *AI analysis does not diagnose or replace professional medical advice.
+                      *This tool is for personal preparation only; it does not diagnose, treat, or replace the clinical judgment of a qualified doctor.
                     </p>
                     <button
-                      onClick={getInsights}
-                      disabled={isLoadingInsights || !symptoms.trim()}
+                      onClick={getAnalysis}
+                      disabled={isLoadingAnalysis || !symptoms.trim()}
                       className={`bg-teal-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed text-sm whitespace-nowrap`}
                     >
-                      {isLoadingInsights ? (
+                      {isLoadingAnalysis ? (
                         <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                       ) : (
                         <>
-                          Get Health
+                          Get Analysis
                           <Sparkles size={18} />
                         </>
                       )}
                     </button>
                   </div>
 
+                  <div className="mt-8 pt-8 border-t border-slate-100">
+                    <h4 className="font-bold text-slate-900 text-sm mb-4">How the AI Tool Fits Into Your Care</h4>
+                    <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                      Our AI tool is designed to empower you by organizing your health information before you speak with a clinician. It acts as a bridge between your initial concerns and a professional consultation, ensuring every minute with your doctor is used effectively.
+                    </p>
+                    <ul className="space-y-2 mb-4">
+                      {[
+                        "You enter your symptoms and any specific health questions.",
+                        "The tool creates a structured summary and suggests topics for your consultation.",
+                        "You can review these insights privately or choose to share them with our team.",
+                        "A GMC-registered doctor reviews the shared analysis alongside their own clinical assessment to create your plan."
+                      ].map((item, i) => (
+                        <li key={i} className="flex gap-2 text-[11px] text-slate-500">
+                          <CheckCircle2 size={12} className="text-teal-600 shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="text-[10px] text-slate-400 font-bold italic leading-tight border-l-2 border-teal-500 pl-3">
+                      The AI tool is a preparatory aid only; it does not diagnose, treat, or replace the professional judgment of our GMC-registered doctors.
+                    </p>
+                  </div>
+
                   <AnimatePresence>
-                    {aiInsights && (
+                    {aiAnalysis && (
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
@@ -394,21 +501,26 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                         <div className="bg-slate-50 rounded-2xl p-6 border border-teal-50">
                           <div className="flex items-center gap-2 mb-4 text-teal-700">
                             <Brain size={18} />
-                            <h4 className="font-bold text-sm">Generated Analysis</h4>
+                            <h4 className="font-bold text-sm">Generated Analysis Summary</h4>
                           </div>
                           <div className="text-slate-600 text-sm leading-relaxed whitespace-pre-wrap mb-6">
-                            {aiInsights}
+                            {aiAnalysis}
                           </div>
                           
-                          {!aiInsights.includes('EMERGENCY ALERT') && (
-                            <div className="flex justify-end">
-                              <button
-                                onClick={handleShareWithDoctor}
-                                className="bg-teal-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-teal-800 transition-all flex items-center gap-2 text-xs shadow-md"
-                              >
-                                Share & Book Consultation
-                                <ArrowRight size={14} />
-                              </button>
+                          {!aiAnalysis.includes('EMERGENCY ALERT') && (
+                            <div className="mt-8 space-y-4">
+                              <div className="flex justify-end">
+                                <button
+                                  onClick={handleShareWithDoctor}
+                                  className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all flex items-center gap-2 text-sm shadow-lg shadow-teal-900/20 group"
+                                >
+                                  Share Analysis & Book Appointment
+                                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                </button>
+                              </div>
+                              <p className="text-[11px] text-slate-500 text-right leading-relaxed max-w-sm ml-auto">
+                                Your analysis summary will be securely sent to our clinical team. You can then choose a convenient time for your online consultation, clinic visit, or home visit, where a GMC-registered doctor will review your details with you personally.
+                              </p>
                             </div>
                           )}
                         </div>
@@ -460,23 +572,28 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              'Accident & Injury Claims', 'Drivers Medicals', 'Health Screening (MOT)', 
-              'Life Insurance Medicals', 'Medical Assessments', 'Chronic Disease Management', 
-              'Care Home Visits', 'Children\'s Health Checks', 'Private Referrals', 
-              'Private Scan Booking', 'Specialist Consultations', 'Home Visits'
-            ].map((title, idx) => (
+              { title: 'Private Doctor Consultations', page: 'service-private-gp' },
+              { title: 'Home Visit Doctor', page: 'service-home-visit' },
+              { title: 'Drivers Medicals (HGV/Taxi)', page: 'service-drivers-medicals' },
+              { title: 'Health Screening (MOT)', page: 'service-health-screening' },
+              { title: 'Children\'s Health Checks', page: 'service-childrens-health' },
+              { title: 'Accident & Injury Claims', page: 'service-accident-injury' },
+              { title: 'Life Insurance Medicals', page: 'service-life-insurance' },
+              { title: 'Chronic Disease Management', page: 'service-chronic-care' },
+              { title: 'Private Referrals & Scans', page: 'service-referrals' },
+            ].map((item, idx) => (
               <motion.div
-                key={title}
+                key={item.title}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.05 }}
                 className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group cursor-pointer"
-                onClick={() => setPage('booking')}
+                onClick={() => setPage(item.page as Page)}
               >
                 <div className="flex items-center gap-4">
                   <div className="w-2 h-2 rounded-full bg-medical-500 group-hover:scale-150 transition-transform"></div>
-                  <span className="font-medium group-hover:text-medical-400 transition-colors">{title}</span>
+                  <span className="font-medium group-hover:text-medical-400 transition-colors">{item.title}</span>
                 </div>
               </motion.div>
             ))}
@@ -585,6 +702,72 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
         </div>
       </section>
 
+      {/* What Happens After I Book Section */}
+      <section className="py-24 bg-slate-50 border-y border-slate-100">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">What Happens <span className="text-teal-700">After I Book?</span></h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">Providing reassurance and clarity from the moment you schedule your appointment.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { title: "Immediate Confirmation", desc: "You'll receive an instant confirmation email and SMS with all the details of your booking." },
+              { title: "Secure Video Link", desc: "For online consultations, a secure, encrypted video link is sent 10 minutes before your start time." },
+              { title: "Clinical Discussion", desc: "Spend a full 30 minutes with our GMC doctor discussing your concerns in depth." },
+              { title: "Follow-Up Support", desc: "Receive your treatment plan, prescription, and any necessary specialist referrals immediately after." }
+            ].map((item, i) => (
+              <div key={i} className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all group">
+                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600 mb-6 group-hover:bg-teal-700 group-hover:text-white transition-all">
+                  <CheckCircle2 size={20} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">{item.title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Meet Your Doctor Section */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="flex-1">
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-8 tracking-tight">Meet Your <span className="text-teal-700">Doctors</span></h2>
+              <div className="space-y-8">
+                <div className="bg-slate-50 p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col md:flex-row gap-8 items-center md:items-start group hover:shadow-xl transition-all">
+                  <div className="w-32 h-32 rounded-3xl overflow-hidden shrink-0 border-4 border-white shadow-md">
+                    <img src="https://i.pravatar.cc/150?u=doc1" alt="Dr. Ahmed Iqbal" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Dr. Ahmed Iqbal</h3>
+                    <p className="text-teal-700 font-bold text-sm mb-4 uppercase tracking-widest">GMC Number: 7041470</p>
+                    <p className="text-slate-600 leading-relaxed mb-6">Expert General Practitioner with extensive experience in both NHS and private practice. Specialising in preventative medicine and health screenings.</p>
+                    <div className="flex flex-wrap gap-2">
+                      {['MBBS', 'MRCGP', 'MRCS'].map(tag => (
+                        <span key={tag} className="px-3 py-1 bg-white border border-slate-200 rounded-full text-[10px] font-bold text-slate-500 uppercase tracking-widest">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex-1 grid grid-cols-2 gap-6">
+              <div className="bg-teal-700 p-8 rounded-[2.5rem] text-white shadow-xl shadow-teal-900/20">
+                <ShieldCheck size={40} className="mb-6 text-teal-400" />
+                <h4 className="text-xl font-bold mb-4">GMC Registered</h4>
+                <p className="text-teal-100/70 text-sm leading-relaxed">All our clinicians are fully licensed to practice in the UK and adhere to the highest clinical standards set by the General Medical Council.</p>
+              </div>
+              <div className="bg-slate-900 p-8 rounded-[2.5rem] text-white shadow-xl">
+                <Award size={40} className="mb-6 text-teal-400" />
+                <h4 className="text-xl font-bold mb-4">500+ Reviews</h4>
+                <p className="text-teal-100/70 text-sm leading-relaxed">Our patients consistently rate us 4.9/5 for professional care, convenience, and thoroughness.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section className="py-16 bg-white overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -675,7 +858,8 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-[2rem] overflow-hidden shadow-sm border border-slate-100 group cursor-pointer hover:shadow-lg transition-all duration-500"
+                onClick={() => post.link && setPage(post.link)}
+                className={`bg-white rounded-[2rem] overflow-hidden shadow-sm border border-slate-100 group cursor-pointer hover:shadow-lg transition-all duration-500 ${post.link ? 'hover:border-teal-200' : ''}`}
               >
                 <div className="h-48 overflow-hidden relative">
                   <img 
@@ -710,7 +894,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-5xl font-display font-bold mb-8 tracking-tighter">Who Doctor 2 U Help Is For</h2>
+              <h2 className="text-3xl md:text-5xl font-display font-bold mb-8 tracking-tighter">Who Doctor2U Is For</h2>
               <div className="space-y-6">
                 <div className="flex gap-4">
                   <div className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center text-teal-400 shrink-0">
@@ -718,7 +902,25 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold mb-1 tracking-tight">Unexplained Symptoms</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">People with ongoing or unexplained symptoms looking for root-cause analysis.</p>
+                    <p className="text-sm text-slate-400 leading-relaxed">People with ongoing or unexplained symptoms looking for root-cause analysis. Start by using our AI tool to structure your symptom history, then decide if you'd like to share the analysis with a doctor for a deeper clinical review.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center text-teal-400 shrink-0">
+                    <Clock size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-1 tracking-tight">Busy Professionals</h3>
+                    <p className="text-sm text-slate-400 leading-relaxed">People seeking fast access to medical care while juggling a hectic schedule. Get a quick summary of your health insights in your own time, then optionally share it with a doctor and book a same-day appointment.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center text-teal-400 shrink-0">
+                    <Users size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-1 tracking-tight">Worried Parents</h3>
+                    <p className="text-sm text-slate-400 leading-relaxed">Parents needing reassurance and professional advice for their child's health. Use the AI tool to clarify your child's symptoms first, then choose to share the summary with a doctor for a comprehensive review.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -726,8 +928,8 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
                     <HeartPulse size={24} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-1 tracking-tight">Preventative Medicine</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">Those interested in functional medicine to optimise long-term health and longevity.</p>
+                    <h3 className="text-xl font-bold mb-1 tracking-tight">Ongoing Conditions</h3>
+                    <p className="text-sm text-slate-400 leading-relaxed">Those managing long-term health issues. Track changes by structuring your regular symptoms through our AI tool first, then share the report with your doctor during your next management check-up.</p>
                   </div>
                 </div>
               </div>
@@ -770,8 +972,208 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
         </div>
       </section>
 
+      {/* Accreditation Strip Section */}
+      <section className="py-12 bg-white border-y border-slate-100">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap justify-between items-center gap-8 md:gap-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+            {[
+              { name: 'General Medical Council', desc: 'Fully Licensed Practicioners' },
+              { name: 'British Medical Association', desc: 'Professional Representation' },
+              { name: 'Information Commissioner\'s Office', desc: 'Secure Data Handling (ICO)' },
+              { name: 'General Practice Excellence', desc: 'UK Medical Standards' }
+            ].map((acc, i) => (
+              <div key={i} className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-400 text-[10px] border border-slate-200">
+                  {acc.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div>
+                  <p className="font-bold text-slate-900 text-xs tracking-tight">{acc.name}</p>
+                  <p className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">{acc.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Patient Stories Section - Trust & Reputation */}
+      <section className="py-24 bg-white">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">Patient <span className="text-teal-700">Stories</span></h2>
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto">Why patients choose Doctor2U for their private doctor and home visit needs across the North West.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+              <div className="flex gap-1 text-teal-600 mb-4">
+                {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+              </div>
+              <p className="text-slate-700 mb-6 italic leading-relaxed">"The home visit in <span className="font-bold">Preston</span> was a lifesaver. My daughter was unwell and we couldn't get an NHS slot. The doctor was here within 2 hours."</p>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-slate-200"></div>
+                <div>
+                  <p className="font-bold text-slate-900">Sarah J.</p>
+                  <p className="text-xs text-slate-400">Preston - Home Visit</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+              <div className="flex gap-1 text-teal-600 mb-4">
+                {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+              </div>
+              <p className="text-slate-700 mb-6 italic leading-relaxed">"Excellent private doctor in <span className="font-bold">Manchester</span>. Used the AI tool to list my symptoms, and the consultation focused exactly on what mattered."</p>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-slate-200"></div>
+                <div>
+                  <p className="font-bold text-slate-900">Ahmed R.</p>
+                  <p className="text-xs text-slate-400">Manchester - Clinic</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+              <div className="flex gap-1 text-teal-600 mb-4">
+                {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+              </div>
+              <p className="text-slate-700 mb-6 italic leading-relaxed">"Professional and fast. Had my drivers medical in <span className="font-bold">Blackburn</span> and the form was completed same-day. Highly efficient."</p>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-slate-200"></div>
+                <div>
+                  <p className="font-bold text-slate-900">Mark T.</p>
+                  <p className="text-xs text-slate-400">Blackburn - Drivers Medical</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-12 text-center">
+            <p className="text-slate-500 font-medium">Trusted by over 500+ patients across <span className="text-teal-700">Manchester & Lancashire</span></p>
+          </div>
+        </div>
+      </section>
+
+      {/* Areas We Cover Section */}
+      <section className="py-24 bg-slate-50 border-y border-slate-100">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-16">
+            <div className="flex-1">
+              <div className="text-left mb-16">
+                <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">Private Doctor <span className="text-teal-700">Manchester & Lancashire</span></h2>
+                <p className="text-lg text-slate-600 max-w-2xl leading-relaxed">Providing private doctor and home visit services across all major boroughs. Our clinicians are local to your community, ensuring fast and reliable care.</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  { name: 'Manchester', text: 'Comprehensive private doctor services across Central and Greater Manchester.', page: 'pgp-manchester' as Page },
+                  { name: 'Preston', text: 'Fast access to private doctor consultations and home visits in the Preston area.', page: 'pgp-preston' as Page },
+                  { name: 'Blackburn', text: 'Expert clinical care delivered at your home or in-clinic for Blackburn residents.', page: 'pgp-blackburn' as Page },
+                  { name: 'Home Visits Manchester', text: 'Our doctors visit you at home across the entire city and surrounding areas.', page: 'hvd-manchester' as Page },
+                  { name: 'Home Visits Lancashire', text: 'Dedicated home-based medical care for patients throughout Lancashire.', page: 'hvd-lancashire' as Page },
+                  { name: 'Bolton', text: 'Flexible medical support and professional assessments for the Bolton community.' },
+                  { name: 'Lancaster', text: 'Dedicated private medical consultations available throughout Lancaster.' },
+                  { name: 'Chorley', text: 'Quality private healthcare and same-day home visits in Chorley.' },
+                  { name: 'Wigan', text: 'Reliable private doctor services and drivers medicals available in Wigan.' },
+                  { name: 'Burnley', text: 'Unhurried medical consultations for individuals and families in Burnley.' }
+                ].map((area, i) => (
+                  <div 
+                    key={i} 
+                    onClick={() => area.page && setPage(area.page as Page)}
+                    className={`bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all ${area.page ? 'cursor-pointer hover:border-teal-200' : ''}`}
+                  >
+                    <h3 className="font-bold text-slate-900 mb-2 flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <MapPin size={16} className="text-teal-600" />
+                        {area.name}
+                      </div>
+                      {area.page && <ArrowRight size={14} className="text-teal-200 group-hover:text-teal-600" />}
+                    </h3>
+                    <p className="text-xs text-slate-500 leading-relaxed">{area.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="lg:w-1/3">
+              <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl sticky top-32">
+                <h3 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">Leave a Review</h3>
+                <p className="text-sm text-slate-500 mb-8 leading-relaxed">
+                  Your feedback helps us maintain the highest standards of care. If you've used our service, please share your experience.
+                </p>
+                
+                <div className="space-y-6">
+                  <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Suggested Template</p>
+                    <p className="text-sm text-slate-600 italic leading-relaxed">
+                      "Professional and unhurried consultation with Dr [Name]. The booking process was seamless and the [Home Visit/Clinic] appointment provided exactly the care I was looking for. Highly recommended for private healthcare in [Your Area]."
+                    </p>
+                  </div>
+                  
+                  <button className="w-full bg-teal-700 text-white py-4 rounded-xl font-bold shadow-lg shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center justify-center gap-2">
+                    Review on Google
+                    <ArrowRight size={18} />
+                  </button>
+                  
+                  <p className="text-[10px] text-center text-slate-400 font-medium">Verified patient reviews only</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="py-16 bg-white relative overflow-hidden">
+        {/* JSON-LD LocalBusiness Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "MedicalClinic",
+            "name": "Doctor2U",
+            "image": "https://doctor2u.co.uk/logo.png",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Manchester",
+              "addressRegion": "Greater Manchester",
+              "postalCode": "M1",
+              "addressCountry": "UK"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 53.4808,
+              "longitude": -2.2426
+            },
+            "url": "https://doctor2u.co.uk",
+            "telephone": "+447488879077",
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday"
+                ],
+                "opens": "00:00",
+                "closes": "23:59"
+              }
+            ]
+          })}
+        </script>
+        {/* JSON-LD FAQ Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": FAQS.map(faq => ({
+              "@type": "Question",
+              "name": faq.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+              }
+            }))
+          })}
+        </script>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4 tracking-tight">Common <span className="text-teal-700">Questions</span></h2>
@@ -918,7 +1320,7 @@ export default function Home({ setPage, setSharedInsights }: HomeProps) {
               </div>
               <div className="mt-10 pt-10 border-t border-white/10">
                 <p className="text-slate-400 text-[9px] uppercase tracking-[0.3em] font-bold max-w-2xl mx-auto leading-relaxed">
-                  Doctor 2 U Help is a support tool. All medical decisions, diagnoses, and treatments must be made by a qualified clinician. We do not prescribe medication or replace the need for a face-to-face medical consultation.
+                  Doctor2U is a registered private medical service. The AI support tool helps organize your health information for your doctor but does not provide diagnosis or treatment. All medical decisions, prescriptions, and referrals are made solely by GMC-registered clinicians during your consultation.
                 </p>
               </div>
             </div>

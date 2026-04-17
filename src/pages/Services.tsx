@@ -95,7 +95,7 @@ export default function ServicesPage({ setPage }: ServicesProps) {
                   onClick={() => setPage('booking')}
                   className="bg-teal-700 text-white px-8 py-4 rounded-2xl font-bold hover:bg-teal-800 transition-all self-start flex items-center gap-2 shadow-lg shadow-teal-900/20"
                 >
-                  Book This Service
+                  Book Online
                   <ArrowRight size={18} />
                 </button>
               </div>

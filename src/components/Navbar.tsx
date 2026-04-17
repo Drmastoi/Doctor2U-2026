@@ -64,7 +64,7 @@ export default function Navbar({ currentPage, setPage }: NavbarProps) {
               className="bg-teal-700 text-white px-8 py-3 rounded-2xl text-sm font-bold hover:bg-teal-800 transition-all shadow-lg shadow-teal-900/20 flex items-center gap-2"
             >
               <Phone size={16} />
-              Book Now
+              Book Online
             </button>
           </div>
 
@@ -99,12 +99,12 @@ export default function Navbar({ currentPage, setPage }: NavbarProps) {
           ))}
           <button 
             onClick={() => {
-              setPage('contact');
+              setPage('booking');
               setIsMenuOpen(false);
             }}
             className="w-full bg-teal-700 text-white px-4 py-3 rounded-xl text-base font-semibold text-center"
           >
-            Book Now
+            Book Online
           </button>
         </div>
       )}
