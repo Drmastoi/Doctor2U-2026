@@ -6,6 +6,7 @@ import {
   ChevronDown, Activity, AlertCircle, HeartPulse, Calendar
 } from 'lucide-react';
 import { Page } from '../../types';
+import HubLink from '../../components/HubLink';
 
 interface DoctorHomeVisitManchesterProps {
   setPage: (page: Page) => void;
@@ -450,6 +451,7 @@ export default function DoctorHomeVisitManchester({ setPage }: DoctorHomeVisitMa
              ))}
           </div>
         </div>
+        <HubLink setPage={setPage} index={14} />
       </div>
     </div>
   );

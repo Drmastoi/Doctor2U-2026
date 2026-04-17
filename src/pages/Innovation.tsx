@@ -6,6 +6,7 @@ import {
   Brain, FileText, Home as HomeIcon, Stethoscope, ClipboardList, Search
 } from 'lucide-react';
 import { Page } from '../types';
+import HubLink from '../components/HubLink';
 
 interface InnovationPageProps {
   setPage: (page: Page) => void;
@@ -345,6 +346,9 @@ export default function InnovationPage({ setPage }: InnovationPageProps) {
           <p className="mt-12 text-slate-500 text-sm max-w-3xl mx-auto">
             These partnerships demonstrate our commitment to excellence and innovation in healthcare technology, ensuring our clients receive world-class solutions backed by industry-leading expertise.
           </p>
+        </div>
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+           <HubLink setPage={setPage} index={9} />
         </div>
       </section>
     </div>

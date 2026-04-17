@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield, ArrowLeft, Brain, Lock, Eye } from 'lucide-react';
 import { Page } from '../types';
+import HubLink from '../components/HubLink';
 import { motion } from 'framer-motion';
 
 interface PrivacyPolicyProps {
@@ -76,6 +77,7 @@ export default function PrivacyPolicy({ setPage }: PrivacyPolicyProps) {
             Under GDPR, you have the right to access your medical records, request corrections, or ask for your data to be deleted (subject to clinical record-keeping requirements).
           </p>
         </div>
+        <HubLink setPage={setPage} index={11} />
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import {
   FileText, ArrowLeft, HeartPulse, Activity, ShieldCheck 
 } from 'lucide-react';
 import { Page } from '../types';
+import HubLink from '../components/HubLink';
 
 interface TreatmentPlanProps {
   setPage: (page: Page) => void;
@@ -155,6 +156,7 @@ export default function TreatmentPlan({ setPage }: TreatmentPlanProps) {
             </div>
           </div>
         </motion.div>
+        <HubLink setPage={setPage} index={13} />
       </div>
     </div>
   );

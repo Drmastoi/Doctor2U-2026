@@ -1,5 +1,6 @@
 import React from 'react';
 import { Page, FAQ } from '../types';
+import HubLink from '../components/HubLink';
 import { motion } from 'motion/react';
 import { CheckCircle2, ArrowRight, Phone, MessageSquare, ChevronDown } from 'lucide-react';
 
@@ -161,6 +162,9 @@ export default function ServiceDetail({
           </div>
         </section>
       )}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <HubLink setPage={setPage} index={12} />
+      </div>
     </div>
   );
 }

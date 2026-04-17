@@ -6,6 +6,7 @@ import {
   ArrowRight, CheckCircle2
 } from 'lucide-react';
 import { Page } from '../types';
+import HubLink from '../components/HubLink';
 
 interface AboutUsProps {
   setPage: (page: Page) => void;
@@ -31,8 +32,17 @@ export default function AboutUs({ setPage }: AboutUsProps) {
               <h1 className="text-4xl md:text-8xl font-display font-bold text-slate-900 mb-10 tracking-tighter leading-[0.9]">
                 Bringing <br /> <span className="text-teal-700 italic">Clinical</span> <br /> Excellence Home.
               </h1>
+              <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium max-w-2xl mb-8">
+                Doctor2U is a UK-based private GP service dedicated to bringing uncompromised primary care directly to your door.
+              </p>
+              <div className="p-8 bg-teal-50 rounded-3xl border border-teal-100 mb-10">
+                <h4 className="font-bold text-teal-950 mb-2">Our Response Time Promise</h4>
+                <p className="text-teal-800 leading-relaxed">
+                  We understand that medical needs are urgent. We promise a same-day response for all Manchester bookings, with most home visits conducted within 4 hours of initial contact.
+                </p>
+              </div>
               <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium max-w-2xl">
-                Founded in Manchester, Doctor2U is on a mission to redefine the patient experience. We blend traditional medical values with cutting-edge technology to deliver unhurried, home-based care.
+                Founded in Manchester, our mission is to redefine the patient experience by blending traditional medical values with cutting-edge technology.
               </p>
             </motion.div>
           </div>
@@ -170,6 +180,7 @@ export default function AboutUs({ setPage }: AboutUsProps) {
             ))}
           </div>
         </div>
+        <HubLink setPage={setPage} index={1} />
       </div>
     </div>
   );

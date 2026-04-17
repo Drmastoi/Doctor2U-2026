@@ -87,6 +87,7 @@ export default function Footer({ setPage }: FooterProps) {
               {[
                 { id: 'doctor-home-visit-manchester', label: 'Home Visit GP Manchester' },
                 { id: 'same-day-doctor-manchester', label: 'Same-Day Doctor Manchester' },
+                { id: 'urgent-doctor-manchester', label: 'Urgent Doctor Manchester' },
                 { id: 'pgp-manchester', label: 'Private Doctor Central' },
                 { id: 'out-of-hours-doctor-manchester', label: 'Out Of Hours Doctor' },
                 { id: 'doctor-nursing-home-manchester', label: 'Nursing Home Visits' }

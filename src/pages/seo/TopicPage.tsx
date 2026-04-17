@@ -5,6 +5,7 @@ import {
   Phone, AlertCircle, Activity, HeartPulse, Stethoscope 
 } from 'lucide-react';
 import { Page } from '../../types';
+import HubLink from '../../components/HubLink';
 
 interface TopicPageProps {
   setPage: (page: Page) => void;
@@ -31,6 +32,24 @@ export default function TopicPage({
     if (metaTag) metaTag.setAttribute('content', metaDesc);
     window.scrollTo(0, 0);
   }, [metaTitle, metaDesc]);
+
+  const homeVisitAnchors = [
+    "home visit doctor in Manchester",
+    "private GP home visit across Manchester",
+    "doctor at your door in Manchester",
+    "same-day home visit GP Manchester"
+  ];
+
+  const sameDayGpAnchors = [
+    "same-day GP in Manchester",
+    "Manchester same-day doctor consultation",
+    "urgent medical appointment in Manchester",
+    "private GP clinic Manchester"
+  ];
+
+  const anchorIdx = h1.length % homeVisitAnchors.length;
+  const homeAnchor = homeVisitAnchors[anchorIdx];
+  const gpAnchor = sameDayGpAnchors[anchorIdx];
 
   return (
     <div className="bg-white min-h-screen pt-32 pb-24">
@@ -97,13 +116,17 @@ export default function TopicPage({
         {/* Conditions Section */}
         <section className="mb-24">
           <h2 className="text-3xl font-display font-bold text-slate-900 mb-10 tracking-tight italic">{conditionsLabel}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
             {conditions.map(condition => (
               <div key={condition} className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-slate-100 transition-all hover:border-teal-200 shadow-sm">
                 <CheckCircle2 size={24} className="text-teal-600 shrink-0" />
                 <span className="font-bold text-slate-900 tracking-tight">{condition}</span>
               </div>
             ))}
+          </div>
+          
+          <div className="p-8 bg-teal-50 rounded-[2rem] border border-teal-100 text-teal-900 font-bold italic text-center">
+            Need immediate care? We offer a <button onClick={() => setPage('doctor-home-visit-manchester')} className="text-teal-700 underline underline-offset-4 decoration-2 decoration-teal-300 hover:text-teal-900 transition-colors">{homeAnchor}</button> for patients who prefer to be seen at home.
           </div>
         </section>
 
@@ -157,17 +180,23 @@ export default function TopicPage({
           <h2 className="text-3xl md:text-5xl font-display font-bold mb-8 tracking-tighter leading-tight italic">
             {ctaText}
           </h2>
-          <button 
-            onClick={() => setPage('booking')}
-            className="bg-medical-500 text-slate-900 px-12 py-5 rounded-2xl font-black text-xl hover:bg-medical-400 transition-all shadow-2xl"
-          >
-            Request Doctor Now
-          </button>
+          <div className="flex flex-col items-center gap-6">
+            <button 
+              onClick={() => setPage('booking')}
+              className="bg-medical-500 text-slate-900 px-12 py-5 rounded-2xl font-black text-xl hover:bg-medical-400 transition-all shadow-2xl"
+            >
+              Request Doctor Now
+            </button>
+            <p className="text-sm text-slate-400">
+              Or book a <button onClick={() => setPage('same-day-doctor-manchester')} className="text-teal-400 font-bold hover:underline">{gpAnchor}</button> for faster clinic access.
+            </p>
+          </div>
         </div>
 
         {/* Footer Internal Links */}
-        <div className="mt-24 pt-12 border-t border-slate-100">
-           <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-300 mb-8">Authoritative Resources</h4>
+        <div className="mt-24 pt-12 border-t border-slate-100 italic">
+           <HubLink setPage={setPage} index={h1.length} />
+           <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-300 mt-8 mb-8">Authoritative Resources</h4>
            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
              {[
                { id: 'our-doctors', label: 'Meet Our GMC Team' },

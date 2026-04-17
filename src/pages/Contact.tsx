@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send, MessageSquare, Clock, CheckCircle2, ArrowLeft } from 'lucide-react';
 import { Page } from '../types';
+import HubLink from '../components/HubLink';
 
 interface ContactPageProps {
   setPage: (page: Page) => void;
@@ -192,6 +193,7 @@ export default function ContactPage({ setPage }: ContactPageProps) {
             )}
           </motion.div>
         </div>
+        <HubLink setPage={setPage} index={8} />
       </div>
     </div>
   );

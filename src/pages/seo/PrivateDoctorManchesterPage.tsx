@@ -6,6 +6,7 @@ import {
   ChevronDown, Calendar, Activity, ClipboardList
 } from 'lucide-react';
 import { Page } from '../../types';
+import HubLink from '../../components/HubLink';
 
 interface PrivateDoctorManchesterProps {
   setPage: (page: Page) => void;
@@ -143,6 +144,9 @@ export default function PrivateDoctorManchesterPage({ setPage }: PrivateDoctorMa
             <p className="text-lg text-slate-600 mb-6 leading-relaxed">
               Manchester is home to some of the world's leading medical facilities, yet accessing primary care can still be Frustratingly slow. Our <strong>Private Doctor Manchester</strong> service was established to provide a convenient, reliable, and high-quality alternative for those who value their time and their health.
             </p>
+            <div className="bg-teal-50 p-6 rounded-2xl border border-teal-100 mb-8 font-bold text-teal-900">
+               We also provide a <button onClick={() => setPage('doctor-home-visit-manchester')} className="text-teal-700 underline underline-offset-4 decoration-2 decoration-teal-300 hover:text-teal-900 transition-colors">home visit GP in Manchester</button> for patients who cannot travel.
+            </div>
             <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">The Benefits of Private Healthcare in Manchester</h3>
             <p className="text-slate-600 mb-6 leading-relaxed">
               Why do thousands of Manchester residents choose private doctors each year? The answer lies in the quality of the interaction and the speed of the follow-up. While the NHS provides a vital service, the current strain on primary care means that "same-day" access is often a luxury. We have consciously designed our Manchester private clinic to remove the friction of modern healthcare.
@@ -261,6 +265,7 @@ export default function PrivateDoctorManchesterPage({ setPage }: PrivateDoctorMa
             </a>
           </div>
         </div>
+        <HubLink setPage={setPage} index={4} />
       </section>
     </div>
   );

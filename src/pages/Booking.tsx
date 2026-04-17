@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, ShieldCheck, Clock, ArrowLeft, Brain, CheckCircle2 } from 'lucide-react';
 import { Page } from '../types';
+import HubLink from '../components/HubLink';
 
 interface BookingPageProps {
   setPage: (page: Page) => void;
@@ -115,6 +116,7 @@ export default function BookingPage({ setPage, sharedAnalysis }: BookingPageProp
             </motion.div>
           </div>
         </div>
+        <HubLink setPage={setPage} index={7} />
       </div>
     </div>
   );

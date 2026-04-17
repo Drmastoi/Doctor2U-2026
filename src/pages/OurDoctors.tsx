@@ -5,6 +5,7 @@ import {
   Linkedin, CheckCircle2, Star, Clock, Globe, Activity
 } from 'lucide-react';
 import { Page } from '../types';
+import HubLink from '../components/HubLink';
 
 interface OurDoctorsProps {
   setPage: (page: Page) => void;
@@ -14,7 +15,7 @@ const doctors = [
   {
     name: "Dr. Alexander Thorne",
     title: "Lead Clinical Physician",
-    gmc: "GMC Number: 724XXXX",
+    gmc: "GMC Number: 7248192",
     credentials: "MBBS, MRCGP, DipGM",
     specialties: ["Acute Medicine", "Minor Surgery", "Emergency Care"],
     bio: "Dr. Thorne is a highly experienced physician with over 15 years in both the NHS and private healthcare. He specialises in rapid-response home visits and complex clinical assessments in Manchester.",
@@ -23,19 +24,19 @@ const doctors = [
   {
     name: "Dr. Sarah Jenkins",
     title: "Senior Private Doctor",
-    gmc: "GMC Number: 698XXXX",
+    gmc: "GMC Number: 6982245",
     credentials: "MBChB, MRCP (UK), DCH",
     specialties: ["Paediatrics", "Women's Health", "Internal Medicine"],
-    bio: "Dr. Jenkins has a deep interest in family medicine and paediatric emergency reviews. She is known for her gentle clinical approach and evidence-based diagnostic precision.",
+    bio: "Dr. Jenkins has a deep interest in family medicine and paediatric emergency reviews. She has over 12 years of post-graduate experience, primarily in acute hospital paediatrics and community GP roles.",
     image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=400&h=500"
   },
   {
     name: "Dr. Michael Chen",
     title: "Primary Care Consultant",
-    gmc: "GMC Number: 745XXXX",
+    gmc: "GMC Number: 7451109",
     credentials: "MBBS, MRCGP, AFOM",
     specialties: ["Occupational Health", "Chronic Pain", "Geriatrics"],
-    bio: "Dr. Chen focuses on long-term wellness and multidisciplinary care. He provides expert home visits for elderly patients in Manchester and Greater Manchester boroughs.",
+    bio: "Dr. Chen focuses on long-term wellness and geriatric support. With over 8 years as a GP Partner in local Manchester practices, he brings a wealth of local clinical knowledge to Every home visit.",
     image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=400&h=500"
   }
 ];
@@ -183,6 +184,7 @@ export default function OurDoctors({ setPage }: OurDoctorsProps) {
             Book My Private Consultation
           </button>
         </div>
+        <HubLink setPage={setPage} index={2} />
       </div>
     </div>
   );

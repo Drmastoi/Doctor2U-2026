@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { Page, SERVICES, FAQ, Testimonial, BlogPost } from '../types';
 import Logo from '../components/Logo';
+import HubLink from '../components/HubLink';
 import { GoogleGenAI } from "@google/genai";
 
 const FAQS: FAQ[] = [
@@ -1325,6 +1326,7 @@ export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
               </div>
             </div>
           </div>
+          <HubLink setPage={setPage} index={0} />
         </div>
       </section>
     </div>

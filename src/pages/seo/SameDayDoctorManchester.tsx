@@ -5,6 +5,7 @@ import {
   MapPin, Phone, Activity, AlertCircle, Calendar, HeartPulse, Stethoscope, ChevronDown
 } from 'lucide-react';
 import { Page } from '../../types';
+import HubLink from '../../components/HubLink';
 
 interface SameDayDoctorManchesterProps {
   setPage: (page: Page) => void;
@@ -162,6 +163,9 @@ export default function SameDayDoctorManchester({ setPage }: SameDayDoctorManche
                 <p className="text-lg text-slate-600 mb-8 leading-relaxed">
                   The traditional healthcare model often forces patients into 'triage' systems where the goal is to manage volume, rather than provide immediate resolution. At Doctor2U, we have inverted this model. We reserve dedicated clinical slots in our Manchester roster specifically for urgent, same-day requests, ensuring that the 'wait' is measured in hours, not weeks.
                 </p>
+                <div className="bg-teal-50 p-6 rounded-2xl border border-teal-100 mb-8 font-bold text-teal-900">
+                   We also provide a <button onClick={() => setPage('doctor-home-visit-manchester')} className="text-teal-700 underline underline-offset-4 decoration-2 decoration-teal-300 hover:text-teal-900 transition-colors">home visit GP in Manchester</button> for patients who cannot travel.
+                </div>
                 <div className="flex items-center gap-4 p-8 bg-teal-50 rounded-3xl border border-teal-100 mb-10">
                   <AlertCircle size={32} className="text-teal-700 shrink-0" />
                   <p className="text-teal-900 font-medium italic leading-relaxed">
@@ -281,6 +285,7 @@ export default function SameDayDoctorManchester({ setPage }: SameDayDoctorManche
             </a>
           </div>
         </div>
+        <HubLink setPage={setPage} index={5} />
       </section>
     </div>
   );

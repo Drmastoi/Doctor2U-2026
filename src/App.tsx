@@ -24,6 +24,7 @@ import AboutUs from './pages/AboutUs';
 import OurDoctors from './pages/OurDoctors';
 import ClinicalGovernance from './pages/ClinicalGovernance';
 import TopicPage from './pages/seo/TopicPage';
+import UrgentDoctorManchester from './pages/seo/UrgentDoctorManchester';
 import { Page } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -289,6 +290,9 @@ export default function App() {
 
       case 'doctor-home-visit-manchester':
         return <DoctorHomeVisitManchester setPage={setPage} />;
+
+      case 'urgent-doctor-manchester':
+        return <UrgentDoctorManchester setPage={setPage} />;
 
       case 'about-us':
         return <AboutUs setPage={setPage} />;

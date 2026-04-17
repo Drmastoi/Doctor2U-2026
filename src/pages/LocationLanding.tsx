@@ -1,5 +1,6 @@
 import React from 'react';
 import { Page, FAQ } from '../types';
+import HubLink from '../components/HubLink';
 import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowRight, Phone, MapPin, ShieldCheck, Clock, Star, MessageSquare, ChevronDown, BrainCircuit, Users, Stethoscope } from 'lucide-react';
 
@@ -329,6 +330,7 @@ export default function LocationLanding({
             </a>
           </div>
         </div>
+        <HubLink setPage={setPage} index={10} />
       </section>
     </div>
   );

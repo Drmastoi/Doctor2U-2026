@@ -6,6 +6,7 @@ import {
   Search, Lock, Info
 } from 'lucide-react';
 import { Page } from '../types';
+import HubLink from '../components/HubLink';
 
 interface ClinicalGovernanceProps {
   setPage: (page: Page) => void;
@@ -43,9 +44,13 @@ export default function ClinicalGovernance({ setPage }: ClinicalGovernanceProps)
           <div className="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-xl shadow-slate-200/50">
             <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-4">
               <Scale className="text-teal-600" />
-              1. Regulatory Compliance
+              1. Care Delivery & Regulatory Compliance
             </h2>
             <div className="prose prose-slate max-w-none text-slate-600">
+              <p className="mb-4 font-bold">How care is delivered:</p>
+              <p className="mb-6">
+                Our care is delivered through structured 30-minute consultation blocks. This allows for rigorous clinical history taking, a physical examination using portable diagnostic tools, and a collaborative treatment plan. Every consultation is documented in a secure, encrypted clinical record.
+              </p>
               <p className="mb-4">
                 All Doctor2U services are delivered by GMC-registered physicians. We strictly adhere to the General Medical Council's guidelines on 'Good Medical Practice'.
               </p>
@@ -61,6 +66,28 @@ export default function ClinicalGovernance({ setPage }: ClinicalGovernanceProps)
                 <li className="flex gap-3">
                   <CheckCircle2 size={20} className="text-teal-600 shrink-0" />
                   <span>Strict adherence to data protection (GDPR) and patient confidentiality.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-red-50 p-10 rounded-[3rem] border border-red-100 shadow-xl shadow-red-200/20">
+            <h2 className="text-2xl font-bold text-red-900 mb-6 flex items-center gap-4">
+              <AlertCircle className="text-red-600" />
+              4. Safety & Escalation Protocols
+            </h2>
+            <div className="prose prose-slate max-w-none text-red-900/80">
+              <p className="mb-4">
+                Our doctors are trained to identify 'red flag' symptoms that require immediate secondary care intervention. 
+              </p>
+              <ul className="space-y-4">
+                <li className="flex gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-600 mt-2 shrink-0"></div>
+                  <span><strong>NHS/Hospital Escalation:</strong> If a patient's clinical state exceeds the safety threshold for home management, our doctors will coordinate immediate escalation to the nearest NHS Accident & Emergency department or arrange emergency ambulance transport.</span>
+                </li>
+                <li className="flex gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-600 mt-2 shrink-0"></div>
+                  <span><strong>Continuity of Care:</strong> Following any escalation, we ensure a clinical summary is provided to the treating hospital team and your regular NHS GP.</span>
                 </li>
               </ul>
             </div>
@@ -167,6 +194,7 @@ export default function ClinicalGovernance({ setPage }: ClinicalGovernanceProps)
             </button>
           </div>
         </div>
+        <HubLink setPage={setPage} index={3} />
       </div>
     </div>
   );

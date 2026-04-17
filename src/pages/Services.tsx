@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { SERVICES, Page } from '../types';
+import HubLink from '../components/HubLink';
 import { Video, User, Home as HomeIcon, CheckCircle2, ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface ServicesProps {
@@ -122,6 +123,9 @@ export default function ServicesPage({ setPage }: ServicesProps) {
               </div>
             ))}
           </div>
+        </div>
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+           <HubLink setPage={setPage} index={6} />
         </div>
       </div>
     </div>
