@@ -20,6 +20,10 @@ import HomeVisitManchester from './pages/seo/HomeVisitManchester';
 import PrivateDoctorManchesterPage from './pages/seo/PrivateDoctorManchesterPage';
 import SameDayDoctorManchester from './pages/seo/SameDayDoctorManchester';
 import DoctorHomeVisitManchester from './pages/seo/DoctorHomeVisitManchester';
+import AboutUs from './pages/AboutUs';
+import OurDoctors from './pages/OurDoctors';
+import ClinicalGovernance from './pages/ClinicalGovernance';
+import TopicPage from './pages/seo/TopicPage';
 import { Page } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -285,6 +289,266 @@ export default function App() {
 
       case 'doctor-home-visit-manchester':
         return <DoctorHomeVisitManchester setPage={setPage} />;
+
+      case 'about-us':
+        return <AboutUs setPage={setPage} />;
+      
+      case 'our-doctors':
+        return <OurDoctors setPage={setPage} />;
+      
+      case 'clinical-governance':
+        return <ClinicalGovernance setPage={setPage} />;
+
+      // SEO Topic Cluster Pages
+      case 'urgent-childrens-doctor-manchester':
+        return (
+          <TopicPage 
+            setPage={setPage}
+            title="Urgent Children's Doctor"
+            subtitle="Paediatric Home Visits"
+            h1="Urgent Private Children's Doctor in Manchester"
+            metaTitle="Urgent Private Children's Doctor Manchester | Same-Day Home Visit"
+            metaDesc="Need a paediatrician or private doctor for your child in Manchester? Same-day home visits for fever, infections, and acute childhood illness. Professional, child-friendly care."
+            openingText="Managing a sick child is stressful. We bring expert clinical assessment for children directly to your home in Manchester, avoiding the noise and wait times of crowded emergency departments."
+            conditionsLabel="Childhood conditions we assess at home"
+            conditions={["Acute Fever & Coughs", "Ear & Throat Infections", "Vomiting & Dehydration", "Rashes & Skin Concerns", "Asthma & Breathing Checks", "Abdominal Pain Management"]}
+            whyChooseUs={[
+              { title: "Child-Friendly Approach", desc: "Our doctors are experienced in making children feel safe and comfortable during assessments." },
+              { title: "Rapid Response", desc: "We prioritise paediatric calls to ensure you have clinical answers as fast as possible." },
+              { title: "Clinical Support", desc: "Referrals and prescriptions provided immediately where clinically indicated." }
+            ]}
+            faqs={[
+              { q: "What age of children do you see?", a: "We see children of all ages, from infants to adolescents." },
+              { q: "Is a home visit better than a clinic for a sick child?", a: "Yes, it reduces exposure to other illnesses and allows the child to be assessed in a familiar environment." }
+            ]}
+            ctaText="Expert care for your child today."
+          />
+        );
+
+      case 'emergency-uti-treatment-manchester':
+        return (
+          <TopicPage 
+            setPage={setPage}
+            title="Emergency UTI Doctor"
+            subtitle="Rapid UTI Treatment"
+            h1="Emergency Private UTI Treatment in Manchester"
+            metaTitle="Private UTI Treatment Manchester | Emergency Doctor Home Visit"
+            metaDesc="Fast, private emergency UTI treatment in Manchester. Same-day doctor home visits, instant prescriptions, and clinical assessment for urinary infections."
+            openingText="UTIs can be intensely painful and require immediate antibiotic intervention. Skip the multi-day GP wait and get a private doctor to your home in Manchester for rapid treatment today."
+            conditionsLabel="UTI-Related Services"
+            conditions={["Instant Urinalysis Testing", "Rapid Antibiotic Prescribing", "Complex UTI Management", "Pain Management Support", "Kidney Infection Triage", "Specialist Referral Coordination"]}
+            whyChooseUs={[
+              { title: "Immediate Testing", desc: "Our doctors carry dipstick urinalysis kits for instant results during your home visit." },
+              { title: "Same-Day Antibiotics", desc: "Private prescriptions issued immediately to start your recovery without delay." },
+              { title: "Expert Clinical Advice", desc: "Guidance on symptom management and lifestyle adjustments to prevent recurrence." }
+            ]}
+            faqs={[
+              { q: "Can you prescribe antibiotics for a UTI at my home?", a: "Yes, once a clinical diagnosis (and urinalysis if needed) is performed, we can issue an electronic prescription." },
+              { q: "How fast can you visit for a UTI?", a: "We aim for same-day visits, typically within 2-4 hours of booking." }
+            ]}
+            ctaText="Get fast relief from UTI pain today."
+          />
+        );
+
+      case 'elderly-care-home-visit-manchester':
+        return (
+          <TopicPage 
+            setPage={setPage}
+            title="Elderly Care Specialist"
+            subtitle="Home Visits for Seniors"
+            h1="Private Doctor for Elderly Care in Manchester"
+            metaTitle="Private Doctor for Elderly Care Manchester | Senior Home Visit Experts"
+            metaDesc="Expert private medical care for older adults in Manchester. Comprehensive home visit assessments, chronic disease monitoring, and geriatric support."
+            openingText="Our senior family members deserve unhurried, expert medical attention. We provide specialist-led home visits across Manchester focused on the unique needs of older patients."
+            conditionsLabel="Elderly care focus areas"
+            conditions={["Mobility & Fall Assessment", "Cognitive Health Reviews", "Medication Optimisation", "Chronic Pain Management", "Heart & Respiratory Checks", "Post-Hospital Support"]}
+            whyChooseUs={[
+              { title: "Unhurried Consultations", desc: "We take the time to listen and perform a thorough clinical review, never rushing our senior patients." },
+              { title: "At-Home Convenience", desc: "Avoid the logistical stress of transport and clinic wait rooms for patients with mobility issues." },
+              { title: "Care Coordination", desc: "We can liaise with family members and NHS GPs to ensure a unified care plan." }
+            ]}
+            faqs={[
+              { q: "Can you visit someone in a residential home?", a: "Yes, we visit private residences and residential care settings across Greater Manchester." },
+              { q: "Do you offer chronic disease monitoring?", a: "Yes, we frequently monitor conditions like diabetes, hypertension, and early-stage dementia." }
+            ]}
+            ctaText="Support your loved ones with expert care."
+          />
+        );
+
+      case 'chest-infection-home-visit-manchester':
+        return (
+          <TopicPage 
+            setPage={setPage}
+            title="Chest Infection Clinic"
+            subtitle="Urgent Respiratory Care"
+            h1="Private Doctor for Chest Infections in Manchester"
+            metaTitle="Private Chest Infection Doctor Manchester | Same-Day Home Visit"
+            metaDesc="Urgent clinical assessment for chest infections, bronchitis, and pneumonia in Manchester. Same-day home visits by private doctors with instant prescriptions."
+            openingText="A heavy chest or persistent cough can be debilitating. Our doctors provide urgent respiratory assessments at home, ensuring you get the correct treatment before conditions worsen."
+            conditionsLabel="Respiratory symptoms we treat"
+            conditions={["Acute Bronchitis", "Pneumonia Assessment", "Asthma Flare-Ups", "COPD Monitoring", "Severe Cough Management", "Oxygen Level Checks (Pulse Oximetry)"]}
+            whyChooseUs={[
+              { title: "Clinical Assessment", desc: "Our doctors perform thorough chest auscultation (listening to lungs) to accurately diagnose your condition." },
+              { title: "Oximetry Monitoring", desc: "We monitor blood oxygen levels instantly to ensure you are safe to remain at home." },
+              { title: "Rapid Antibiotics", desc: "Prescribing the right medication immediately to prevent hospital admission." }
+            ]}
+            faqs={[
+              { q: "Can you rule out pneumonia at home?", a: "Our doctors can perform a clinical assessment that strongly indicates pneumonia; we can then arrange imaging if needed." },
+              { q: "Can you provide sick notes for work?", a: "Yes, we can provide private Fit Notes if you are unable to work due to respiratory illness." }
+            ]}
+            ctaText="Breathe easier with a professional review."
+          />
+        );
+
+      case 'back-pain-home-visit-manchester':
+        return (
+          <TopicPage 
+            setPage={setPage}
+            title="Urgent Back Pain Support"
+            subtitle="Home Management of Pain"
+            h1="Private Doctor for Acute Back Pain in Manchester"
+            metaTitle="Acute Back Pain Treatment Manchester | Emergency Doctor Home Visit"
+            metaDesc="Sudden, immobilising back pain? Our private doctors in Manchester provide rapid home visit assessments and pain management plans to get you moving again."
+            openingText="Acute back pain can make it impossible to even reach your car, let alone a clinic. Our doctors bring the assessment to you, providing expert pain management and diagnostic clarity."
+            conditionsLabel="Back pain focus"
+            conditions={["Acute Sciatica Relief", "Mechanical Back Pain", "Disc Injury Triage", "Muscle Spasms", "Neurological Checks", "Imaging Referrals (MRI)"]}
+            whyChooseUs={[
+              { title: "Pain Management", desc: "Initial assessment and prescribing of effective analgesics to manage acute discomfort." },
+              { title: "Neurological Screening", desc: "Checking for 'Red Flags' to ensure your pain isn't hiding a more serious underlying issue." },
+              { title: "Fast-Track MRI", desc: "Arranging immediate imaging at Manchester's leading private diagnostic centres." }
+            ]}
+            faqs={[
+              { q: "Can you help if I am too painful to move?", a: "Yes, a home visit is the ideal solution for patients who are immobilised by acute pain." },
+              { q: "Do you offer steroid injections?", a: "We typically focus on oral medication and diagnostic triage first, but can refer for specialist injections." }
+            ]}
+            ctaText="Get help for your back pain at home."
+          />
+        );
+
+      case 'same-day-flu-doctor-manchester':
+        return (
+          <TopicPage 
+            setPage={setPage}
+            title="Flu & Cold Clinic"
+            subtitle="Rapid Recovery Support"
+            h1="Private Same-Day Doctor for Flu in Manchester"
+            metaTitle="Same-Day Flu Treatment Manchester | Private Doctor Home Visits"
+            metaDesc="Feeling severely unwell with flu or a cold? Our private Manchester doctors provide same-day home visits to assess complications and provide treatment."
+            openingText="When flu symptoms become severe, a professional clinical review can provide peace of mind and prevent complications like secondary infections. Get an expert to your home today."
+            conditionsLabel="Viral Illness Support"
+            conditions={["Severe Flu Assessment", "Secondary Infection Checks", "Hydration Support", "Viral Triage", "Fever Management", "Prescription of Antivirals"]}
+            whyChooseUs={[
+              { title: "Avoid Public Transport", desc: "Don't risk spreading the virus or exhausting yourself by travelling to a clinic while febrile." },
+              { title: "Full Clinical Check", desc: "We check ears, throat, and chest to ensure no underlying bacterial triggers." },
+              { title: "Immediate Medication", desc: "Access to private antivirals and effective symptomatic relief." }
+            ]}
+            faqs={[
+              { q: "Is this for COVID too?", a: "Yes, we assess all respiratory viruses including COVID and Influenza." },
+              { q: "Can you check my children as well?", a: "Yes, we can perform family-wide viral assessments during a single visit block (additional fees apply)." }
+            ]}
+            ctaText="Start your recovery with an expert visit."
+          />
+        );
+
+      case 'doctor-nursing-home-manchester':
+        return (
+          <TopicPage 
+            setPage={setPage}
+            title="Nursing Home Doctor"
+            subtitle="On-Site Medical Support"
+            h1="Private Doctor for Nursing & Care Homes in Manchester"
+            metaTitle="Private Doctor for Care Homes Manchester | Specialist Medical Support"
+            metaDesc="Enhanced medical support for nursing and care homes in Manchester. Private doctor visits, specialist second opinions, and unhurried clinical reviews."
+            openingText="We provide a higher level of medical attendance for residents in care settings. Supporting staff and families, we ensure unhurried medical oversight for complex patients."
+            conditionsLabel="Residential support areas"
+            conditions={["Complex Multimorbidity", "End-of-Life Medical Care", "Palliative Support", "Urgent Clinical Triage", "Medication Reviews", "Family Liaison & Goal Setting"]}
+            whyChooseUs={[
+              { title: "Consistent Presence", desc: "We provide continuity for residents, building trust with the patient and care staff alike." },
+              { title: "Unhurried Reviews", desc: "Allowing more time than a typical brief NHS care home round to explore complex issues." },
+              { title: "Diagnostic Clarity", desc: "Helping keep residents out of hospital by providing high-quality on-site diagnostics." }
+            ]}
+            faqs={[
+              { q: "Can you work with our regular GP?", a: "Absolutely. We complement existing care and ensure all findings are shared with the patient's record." },
+              { q: "How often can you visit?", a: "We offer both ad-hoc urgent visits and routine scheduled support for care settings." }
+            ]}
+            ctaText="Enhance resident care with clinical support."
+          />
+        );
+
+      case 'out-of-hours-doctor-manchester':
+        return (
+          <TopicPage 
+            setPage={setPage}
+            title="Out Of Hours Doctor"
+            subtitle="Evenings & Weekends"
+            h1="Private Out Of Hours Doctor in Manchester"
+            metaTitle="Private Out Of Hours Doctor Manchester | Evening & Weekend Visits"
+            metaDesc="Need a doctor after 6pm or at the weekend? Our private Manchester out-of-hours service provides rapid home visits when other surgeries are closed."
+            openingText="Medical issues don't follow a 9-to-5 schedule. Our private out-of-hours service ensures you have access to expert medical care in Manchester throughout the evening and weekend."
+            conditionsLabel="Out of hours support"
+            conditions={["Evening Home Visits", "Weekend Clinical Triage", "Bank Holiday Availability", "Night-Time Panic Support", "Urgent Prescription Redo", "Immediate Specialist Triage"]}
+            whyChooseUs={[
+              { title: "Always Available", desc: "We offer slots during the evenings, weekends, and holiday periods when routine surgeries are unavailable." },
+              { title: "Rapid Attendance", desc: "Designed for urgent issues that cannot wait until the next working day." },
+              { title: "Professional Triage", desc: "Getting you the right level of care without the long wait of an A&E department." }
+            ]}
+            faqs={[
+              { q: "Are you open on Sundays?", a: "Yes, our private service operates throughout the weekend for urgent home visit requests." },
+              { q: "What is the surcharge for OOH?", a: "Please check our primary pricing page for late evening and weekend rates." }
+            ]}
+            ctaText="Get a doctor whenever you need one."
+          />
+        );
+
+      case 'post-op-care-home-visit-manchester':
+        return (
+          <TopicPage 
+            setPage={setPage}
+            title="Post-Operative Support"
+            subtitle="Recovery at Home"
+            h1="Private Doctor for Post-Op Recovery in Manchester"
+            metaTitle="Private Post-Op Doctor Manchester | Home Healing Support"
+            metaDesc="Recovering from surgery in Manchester? Our private doctors provide at-home post-operative checks, wound monitoring, and pain management support."
+            openingText="Transitioning from hospital to home after surgery can be daunting. Our doctors provide clinical oversight to ensure your recovery remains on track and complications are caught early."
+            conditionsLabel="Post-operative focus"
+            conditions={["Wound Healing Monitoring", "Surgical Site Infection Check", "Pain Management Optimisation", "Thrombosis (DVT) Screening", "Physical Recovery Advice", "Liaison with Surgical Team"]}
+            whyChooseUs={[
+              { title: "Clinical Reassurance", desc: "Ensuring your recovery is proceeding normally and addressing any concerns before they become issues." },
+              { title: "At-Home Convenience", desc: "Eliminate the painful and tiring journey back to a clinic for a simple post-op check." },
+              { title: "Expert Oversight", desc: "Managed by doctors who understand the complexities of surgical recovery and wound care." }
+            ]}
+            faqs={[
+              { q: "Can you change surgical dressings?", a: "We can monitor healing and advise; complex dressing changes are usually best handled by a nurse, but we provide medical oversight." },
+              { q: "Can you prescribe more pain relief?", a: "Yes, we can optimize your post-op analgesia if your hospital-issued medication is insufficient." }
+            ]}
+            ctaText="Secure your post-op recovery today."
+          />
+        );
+
+      case 'ear-infection-home-visit-manchester':
+        return (
+          <TopicPage 
+            setPage={setPage}
+            title="Ear Infection Treatment"
+            subtitle="Otology at Home"
+            h1="Private Doctor for Ear Infections in Manchester"
+            metaTitle="Private Ear Infection Doctor Manchester | Home Visit Treatment"
+            metaDesc="Intense ear pain or hearing loss? Our private Manchester doctors provide rapid home visit assessments for ear infections and immediate treatment."
+            openingText="Ear pain is among the most distressing symptoms, especially for children. Our doctors bring the otoscope to you, providing a clear diagnosis and rapid relief in your own home."
+            conditionsLabel="Ear-related focus"
+            conditions={["Acute Otitis Media", "Swimmers Ear (Otitis Externa)", "Ear Canal Blockage Check", "Sudden Hearing Loss Triage", "Eardrum Perforation Screening", "Pain Management Support"]}
+            whyChooseUs={[
+              { title: "Direct Visualisation", desc: "Our doctors use professional diagnostic tools to see beyond the canal and accurately diagnose the cause of pain." },
+              { title: "Rapid Pain Relief", desc: "Prescribing effective combined antibiotic and steroid drops for immediate relief." },
+              { title: "Follow-Up Coordination", desc: "Arranging microsuction or specialist ENT referral if the infection is persistent." }
+            ]}
+            faqs={[
+              { q: "Can you treat my child's ear infection at home?", a: "Yes, ear infections are a very common reason for our paediatric home visits." },
+              { q: "Can you check for glue ear?", a: "Our doctors can perform a visual check; we can then refer for formal audiology if indicated." }
+            ]}
+            ctaText="Get relief from ear pain today."
+          />
+        );
 
       default: return <Home setPage={setPage} setSharedAnalysis={setSharedAnalysis} />;
     }

@@ -154,21 +154,25 @@ export default function DoctorHomeVisitManchester({ setPage }: DoctorHomeVisitMa
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
             {[
-              "Fever, infections, and flu-like illness",
-              "Chest infections, cough, and breathlessness",
-              "Urinary tract infections (UTIs)",
-              "Abdominal pain, vomiting, diarrhoea",
-              "Skin infections and rashes",
-              "Minor injuries and acute pain",
-              "Elderly care and mobility-related issues",
-              "Children’s illnesses"
+              { label: "Fever, infections, and flu-like illness", id: 'same-day-flu-doctor-manchester' },
+              { label: "Chest infections, cough, and breathlessness", id: 'chest-infection-home-visit-manchester' },
+              { label: "Urinary tract infections (UTIs)", id: 'emergency-uti-treatment-manchester' },
+              { label: "Acute Back pain & Spasms", id: 'back-pain-home-visit-manchester' },
+              { label: "Skin infections and rashes", id: 'doctor-home-visit-manchester' },
+              { label: "Minor injuries and acute pain", id: 'doctor-home-visit-manchester' },
+              { label: "Elderly care and mobility issues", id: 'elderly-care-home-visit-manchester' },
+              { label: "Children’s illnesses", id: 'urgent-childrens-doctor-manchester' }
             ].map((item) => (
-              <div key={item} className="flex items-center gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-teal-200 hover:bg-white transition-all">
+              <button 
+                key={item.label} 
+                onClick={() => setPage(item.id as Page)}
+                className="flex items-center gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-teal-200 hover:bg-white transition-all text-left w-full"
+              >
                 <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-teal-700 shadow-sm border border-slate-100 group-hover:bg-teal-700 group-hover:text-white transition-all">
                   <CheckCircle2 size={18} />
                 </div>
-                <span className="font-bold text-slate-900 tracking-tight">{item}</span>
-              </div>
+                <span className="font-bold text-slate-900 tracking-tight">{item.label}</span>
+              </button>
             ))}
           </div>
           <div className="bg-teal-50 p-8 rounded-[2.5rem] border border-teal-100">
@@ -414,21 +418,37 @@ export default function DoctorHomeVisitManchester({ setPage }: DoctorHomeVisitMa
         </section>
 
         {/* Footer Internal Links */}
-        <div className="mt-24 pt-12 border-t border-slate-100 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { id: 'pgp-manchester', label: 'Private Doctor Manchester' },
-            { id: 'same-day-doctor-manchester', label: 'Same-Day Doctor Manchester' },
-            { id: 'contact', label: 'Contact Us' },
-            { id: 'booking', label: 'Book Appointment' }
-          ].map(link => (
-            <button
-              key={link.id}
-              onClick={() => setPage(link.id as Page)}
-              className="text-sm font-bold text-slate-400 hover:text-teal-700 text-left transition-colors"
-            >
-              / {link.label}
-            </button>
-          ))}
+        <div className="mt-24 pt-12 border-t border-slate-100 grid grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="space-y-4">
+             <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-300">Authority Pages</h4>
+             {[
+               { id: 'our-doctors', label: 'Meet Our Doctors' },
+               { id: 'clinical-governance', label: 'Clinical Governance' },
+               { id: 'about-us', label: 'Our Mission & Story' }
+             ].map(link => (
+               <button key={link.id} onClick={() => setPage(link.id as Page)} className="block text-sm font-bold text-slate-500 hover:text-teal-700 transition-colors uppercase tracking-tight">/ {link.label}</button>
+             ))}
+          </div>
+          <div className="space-y-4">
+             <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-300">Specialist Visits</h4>
+             {[
+               { id: 'urgent-childrens-doctor-manchester', label: 'Children\'s Home Visit' },
+               { id: 'elderly-care-home-visit-manchester', label: 'Elderly Medical Care' },
+               { id: 'emergency-uti-treatment-manchester', label: 'UTI Rapid Treatment' }
+             ].map(link => (
+               <button key={link.id} onClick={() => setPage(link.id as Page)} className="block text-sm font-bold text-slate-500 hover:text-teal-700 transition-colors uppercase tracking-tight">/ {link.label}</button>
+             ))}
+          </div>
+          <div className="space-y-4">
+             <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-300">Urgent Support</h4>
+             {[
+               { id: 'out-of-hours-doctor-manchester', label: 'Out Of Hours Doctor' },
+               { id: 'chest-infection-home-visit-manchester', label: 'Chest Infection Visit' },
+               { id: 'back-pain-home-visit-manchester', label: 'Acute Back Pain Doctor' }
+             ].map(link => (
+               <button key={link.id} onClick={() => setPage(link.id as Page)} className="block text-sm font-bold text-slate-500 hover:text-teal-700 transition-colors uppercase tracking-tight">/ {link.label}</button>
+             ))}
+          </div>
         </div>
       </div>
     </div>

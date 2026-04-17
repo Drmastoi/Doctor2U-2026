@@ -32,16 +32,16 @@ export default function Footer({ setPage }: FooterProps) {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* About Doctor2U / EEAT column */}
           <div>
-            <h4 className="text-lg font-bold mb-8 text-slate-900">Quick Links</h4>
+            <h4 className="text-lg font-bold mb-8 text-slate-900">About Doctor2U</h4>
             <ul className="space-y-4">
               {[
-                { id: 'home', label: 'Home' },
-                { id: 'services', label: 'Our Services' },
-                { id: 'innovation', label: 'Innovation' },
-                { id: 'booking', label: 'Book Online' },
-                { id: 'contact', label: 'Contact Us' }
+                { id: 'about-us', label: 'Our Mission' },
+                { id: 'our-doctors', label: 'Our GMC Doctors' },
+                { id: 'clinical-governance', label: 'Clinical Governance' },
+                { id: 'innovation', label: 'AI Health Innovation' },
+                { id: 'contact', label: 'Contact & Support' }
               ].map((item) => (
                 <li key={item.id}>
                   <button 
@@ -56,52 +56,40 @@ export default function Footer({ setPage }: FooterProps) {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Specialist Care Cluster */}
           <div>
-            <h4 className="text-lg font-bold mb-8 text-slate-900">Contact Us</h4>
-            <ul className="space-y-6">
-              <li className="flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-700 shrink-0 border border-teal-100">
-                  <Phone size={18} />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 uppercase font-bold tracking-widest mb-1">Call Us</p>
-                  <a href="tel:07488879077" className="text-slate-700 hover:text-teal-700 font-bold transition-colors">07488 879077</a>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-700 shrink-0 border border-teal-100">
-                  <MapPin size={18} />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 uppercase font-bold tracking-widest mb-1">Headquarters</p>
-                  <p className="text-slate-700 font-bold leading-tight">Doctor2U Ltd<br />Manchester City Centre<br />Central Clinic, M1 1AD</p>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-700 shrink-0 border border-teal-100">
-                  <Mail size={18} />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 uppercase font-bold tracking-widest mb-1">Email Us</p>
-                  <a href="mailto:hello@doctor2u.co.uk" className="text-slate-700 hover:text-teal-700 font-bold transition-colors">hello@doctor2u.co.uk</a>
-                </div>
-              </li>
+            <h4 className="text-lg font-bold mb-8 text-slate-900">Specialist Home Care</h4>
+            <ul className="space-y-4">
+              {[
+                { id: 'urgent-childrens-doctor-manchester', label: 'Urgent Children\'s Doctor' },
+                { id: 'emergency-uti-treatment-manchester', label: 'Emergency UTI Treatment' },
+                { id: 'elderly-care-home-visit-manchester', label: 'Elderly Specialist Care' },
+                { id: 'chest-infection-home-visit-manchester', label: 'Chest Infection Support' },
+                { id: 'back-pain-home-visit-manchester', label: 'Acute Back Pain Relief' }
+              ].map((item) => (
+                <li key={item.id}>
+                  <button 
+                    onClick={() => setPage(item.id as Page)}
+                    className="text-slate-500 hover:text-teal-700 transition-colors flex items-center gap-2 group text-left"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-teal-600 opacity-0 group-hover:opacity-100 transition-all"></div>
+                    {item.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Locations */}
           <div>
-            <h4 className="text-lg font-bold mb-8 text-slate-900">Our Locations</h4>
+            <h4 className="text-lg font-bold mb-8 text-slate-900">Manchester Locations</h4>
             <ul className="space-y-4">
               {[
-                { id: 'pgp-manchester', label: 'Private Doctor Manchester' },
-                { id: 'pgp-preston', label: 'Private Doctor Preston' },
-                { id: 'pgp-blackburn', label: 'Private Doctor Blackburn' },
-                { id: 'hvd-manchester', label: 'Home Visit Doctor Manchester' },
-                { id: 'doctor-home-visit-manchester', label: 'Private Home Doctor Manchester' },
+                { id: 'doctor-home-visit-manchester', label: 'Home Visit GP Manchester' },
                 { id: 'same-day-doctor-manchester', label: 'Same-Day Doctor Manchester' },
-                { id: 'hvd-lancashire', label: 'Home Visit Doctor Lancashire' }
+                { id: 'pgp-manchester', label: 'Private Doctor Central' },
+                { id: 'out-of-hours-doctor-manchester', label: 'Out Of Hours Doctor' },
+                { id: 'doctor-nursing-home-manchester', label: 'Nursing Home Visits' }
               ].map((item) => (
                 <li key={item.id}>
                   <button 
