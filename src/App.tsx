@@ -27,6 +27,7 @@ import TopicPage from './pages/seo/TopicPage';
 import UrgentDoctorManchester from './pages/seo/UrgentDoctorManchester';
 import { Page } from './types';
 import { motion, AnimatePresence } from 'motion/react';
+import { Calendar, Phone } from 'lucide-react';
 
 export default function App() {
   const [page, setPage] = useState<Page>('home');
@@ -585,6 +586,26 @@ export default function App() {
       <Footer setPage={setPage} />
       
       <ChatBot />
+
+      {/* Mobile Bottom Quick-Care Bar */}
+      <div className="md:hidden fixed bottom-6 left-4 right-4 z-[90]">
+        <div className="bg-slate-900/95 backdrop-blur-xl rounded-full p-2 flex items-center justify-between shadow-2xl shadow-slate-900/40 border border-white/10">
+          <button 
+            onClick={() => setPage('booking')}
+            className="flex-1 flex items-center justify-center gap-3 text-white py-4 px-6 rounded-full font-bold text-sm bg-teal-700"
+          >
+            <Calendar size={18} />
+            <span>Book Visit</span>
+          </button>
+          <div className="w-px h-8 bg-white/10 mx-2"></div>
+          <a 
+            href="tel:07488879077"
+            className="w-14 h-14 rounded-full flex items-center justify-center text-white bg-slate-800 hover:bg-slate-700 transition-all border border-white/5"
+          >
+            <Phone size={22} />
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

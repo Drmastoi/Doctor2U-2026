@@ -105,6 +105,14 @@ export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
   const [isSendingEmail, setIsSendingEmail] = useState(false);
   const [emailStatus, setEmailStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  const QUICK_SYMPTOMS = [
+    "Persistent Fatigue",
+    "Skin Rash or Irritation",
+    "Lower Back Pain",
+    "Breathlessness",
+    "Recurring Headaches"
+  ];
+
   React.useEffect(() => {
     document.title = "Doctor2U | Private Doctor & Home Visit Doctor in Manchester & Lancashire";
   }, []);
@@ -342,6 +350,72 @@ IMPORTANT GUIDELINES:
         </div>
       </section>
 
+      {/* The Doctor2U Difference - Unique Pillar Trinity */}
+      <section className="py-24 bg-white relative z-20">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-end justify-between mb-16 gap-8">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
+                <Award size={12} />
+                <span>The Patient-First Choice</span>
+              </div>
+              <h2 className="text-4xl md:text-6xl font-display font-bold text-slate-900 tracking-tighter leading-[0.95]">
+                Why Thousands Choose <br />
+                <span className="text-teal-700">Doctor2U.</span>
+              </h2>
+            </div>
+            <p className="text-lg text-slate-500 max-w-md font-medium leading-relaxed">
+              We've combined clinical expertise with modern innovation to create a healthcare experience that respects your time and health.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Sparkles,
+                title: "AI-Powered Preparation",
+                subtitle: "The Innovation",
+                desc: "Map your symptoms with our clinical-grade AI tool before your appointment. Walk in feeling prepared and walk out with a clear medical roadmap.",
+                accent: "bg-amber-50 text-amber-700",
+                border: "border-amber-100/50"
+              },
+              {
+                icon: HomeIcon,
+                title: "Care That Comes to You",
+                subtitle: "The Convenience",
+                desc: "No more waiting rooms. Choose from secure Video calls, local Clinic visits, or Expert Home visits across Manchester and Lancashire.",
+                accent: "bg-teal-50 text-teal-700",
+                border: "border-teal-100/50"
+              },
+              {
+                icon: ShieldCheck,
+                title: "Full Clinical Authority",
+                subtitle: "The Treatment",
+                desc: "We don't just 'suggest'—we treat. Receive GMC-registered prescriptions, private specialist referrals, and blood tests on the same day.",
+                accent: "bg-indigo-50 text-indigo-700",
+                border: "border-indigo-100/50"
+              }
+            ].map((pillar, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`p-10 rounded-[2.5rem] border ${pillar.border} bg-white shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 group flex flex-col items-center text-center md:items-start md:text-left`}
+              >
+                <div className={`w-16 h-16 rounded-2xl ${pillar.accent} flex items-center justify-center mb-8 group-hover:rotate-6 transition-transform duration-500`}>
+                  <pillar.icon size={32} />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 mb-2 block">{pillar.subtitle}</span>
+                <h3 className="text-2xl font-display font-bold text-slate-900 mb-4 tracking-tight leading-tight">{pillar.title}</h3>
+                <p className="text-slate-500 leading-relaxed text-sm">{pillar.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 3-Step Process Strip */}
       <section className="bg-teal-700 py-8 relative z-20 shadow-2xl">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -536,6 +610,27 @@ IMPORTANT GUIDELINES:
                     </div>
                   </div>
 
+                  {/* Enhanced Progress Tracker */}
+                  <div className="mb-10 flex items-center justify-between px-2 relative">
+                    <div className="absolute top-1/2 left-0 w-full h-px bg-slate-200 -z-10"></div>
+                    {[
+                      { label: "Describe", active: !aiAnalysis && !isLoadingAnalysis },
+                      { label: "Review", active: isLoadingAnalysis },
+                      { label: "Consult", active: !!aiAnalysis }
+                    ].map((step, i) => (
+                      <div key={i} className="flex flex-col items-center gap-2">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold border-2 transition-all duration-500 ${
+                          step.active ? 'bg-teal-700 border-teal-700 text-white scale-110 shadow-lg' : 'bg-white border-slate-200 text-slate-400'
+                        }`}>
+                          {i + 1}
+                        </div>
+                        <span className={`text-[9px] font-bold uppercase tracking-wider ${step.active ? 'text-teal-700' : 'text-slate-400'}`}>
+                          {step.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
                   <div className="mb-6">
                     <p className="text-sm text-slate-600 leading-relaxed mb-4">
                       Our optional AI tool helps you organize your health concerns into a structured summary, ensuring you feel prepared and focused when speaking with our GMC-registered doctors.
@@ -566,6 +661,22 @@ IMPORTANT GUIDELINES:
                       className="w-full border focus:ring-2 focus:ring-teal-700 focus:border-transparent transition-all resize-none shadow-inner text-sm"
                       style={{ borderColor: '#185908', borderWidth: '3px', borderRadius: '18px', backgroundColor: '#f0f2f9' }}
                     />
+                  </div>
+
+                  {/* Quick-Select Symptoms */}
+                  <div className="mb-8 overflow-x-auto no-scrollbar pb-2">
+                    <div className="flex gap-2 min-w-max">
+                      <span className="text-[10px] font-bold text-teal-800/60 uppercase tracking-widest self-center mr-2">Quick Start:</span>
+                      {QUICK_SYMPTOMS.map((symptom) => (
+                        <button
+                          key={symptom}
+                          onClick={() => setSymptoms(symptom)}
+                          className="px-4 py-2 rounded-full border border-teal-800/10 bg-white/40 backdrop-blur-sm text-[11px] font-bold text-teal-900 hover:bg-teal-700 hover:text-white transition-all whitespace-nowrap shadow-sm"
+                        >
+                          {symptom}
+                        </button>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100 mb-6">
@@ -715,6 +826,32 @@ IMPORTANT GUIDELINES:
         </div>
       </section>
 
+      {/* What Happens After I Book Section */}
+      <section className="py-24 bg-white border-y border-slate-100">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">What Happens <span className="text-teal-700">After I Book?</span></h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">Providing reassurance and clarity from the moment you schedule your appointment.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { title: "Immediate Confirmation", desc: "You'll receive an instant confirmation email and SMS with all the details of your booking." },
+              { title: "Secure Video Link", desc: "For online consultations, a secure, encrypted video link is sent 10 minutes before your start time." },
+              { title: "Clinical Discussion", desc: "Spend a full 30 minutes with our GMC doctor discussing your concerns in depth." },
+              { title: "Follow-Up Support", desc: "Receive your treatment plan, prescription, and any necessary specialist referrals immediately after." }
+            ].map((item, i) => (
+              <div key={i} className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all group">
+                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600 mb-6 group-hover:bg-teal-700 group-hover:text-white transition-all">
+                  <CheckCircle2 size={20} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">{item.title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Specialist Services - Clean & Professional */}
       <section className="py-24 bg-slate-900 text-white">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -859,32 +996,6 @@ IMPORTANT GUIDELINES:
                 />
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What Happens After I Book Section */}
-      <section className="py-24 bg-slate-50 border-y border-slate-100">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">What Happens <span className="text-teal-700">After I Book?</span></h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">Providing reassurance and clarity from the moment you schedule your appointment.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { title: "Immediate Confirmation", desc: "You'll receive an instant confirmation email and SMS with all the details of your booking." },
-              { title: "Secure Video Link", desc: "For online consultations, a secure, encrypted video link is sent 10 minutes before your start time." },
-              { title: "Clinical Discussion", desc: "Spend a full 30 minutes with our GMC doctor discussing your concerns in depth." },
-              { title: "Follow-Up Support", desc: "Receive your treatment plan, prescription, and any necessary specialist referrals immediately after." }
-            ].map((item, i) => (
-              <div key={i} className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all group">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600 mb-6 group-hover:bg-teal-700 group-hover:text-white transition-all">
-                  <CheckCircle2 size={20} />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3">{item.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
