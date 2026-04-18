@@ -26,6 +26,12 @@
   --color-teal-700: #0f766e;
   --color-teal-800: #115e59;
   --color-teal-900: #134e4a;
+
+  --color-brand-primary: #1CB5E0;
+  --color-brand-secondary: #001B48;
+  --color-brand-muted: #64748B;
+  --color-brand-accent: #F47C3C;
+  --color-brand-success: #3AB9A3;
 }
 
 @layer base {

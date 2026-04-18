@@ -25,6 +25,7 @@ import OurDoctors from './pages/OurDoctors';
 import ClinicalGovernance from './pages/ClinicalGovernance';
 import TopicPage from './pages/seo/TopicPage';
 import UrgentDoctorManchester from './pages/seo/UrgentDoctorManchester';
+import PrestonLandingPage from './pages/PrestonLandingPage';
 import { Page } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, Phone } from 'lucide-react';
@@ -205,33 +206,12 @@ export default function App() {
       case 'privacy':
         return <PrivacyPolicy setPage={setPage} />;
 
+      case 'preston':
+      case 'pgp-preston':
+        return <PrestonLandingPage setPage={setPage} />;
+
       case 'pgp-manchester':
         return <PrivateDoctorManchesterPage setPage={setPage} />;
-
-      case 'pgp-preston':
-        return (
-          <LocationLanding 
-            setPage={setPage}
-            locationName="Preston"
-            serviceType="Private Doctor"
-            h1="Private Doctor in Preston – Expert Care Without the Wait"
-            openingParagraph="Providing residents of Preston and surrounding Lancashire areas with premium private medical care. Our GMC-registered doctors are available for face-to-face clinic appointments or convenient home visits, ensuring you get a diagnosis and treatment plan faster than ever."
-            price="£100"
-            inclusions={["Full 30-minute appointment", "Immediate private prescriptions", "Rapid referrals to local specialists", "Diagnostic test orders (Blood/Scans)"]}
-            whyChooseUs={[
-              "Lancashire Focus: We understand the local healthcare landscape and work with top specialists.",
-              "No Membership Required: Access our services whenever you need, pay-as-you-go.",
-              "Advanced Technology: Integrating AI insights to optimize your face-to-face time.",
-              "Home Visit Priority: We offer dedicated morning and evening slots for home visits in Preston."
-            ]}
-            faqs={[
-              { question: "Where is your Preston clinic located?", answer: "Our clinic is situated in a quiet, accessible professional park with free on-site parking." },
-              { question: "Do you offer weekend appointments?", answer: "Yes, we provide weekend availability for both clinic and home visits in the Preston area." },
-              { question: "How soon do I get my results?", answer: "Most basic blood test results are returned within 24-48 hours." }
-            ]}
-            image="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1200"
-          />
-        );
 
       case 'pgp-blackburn':
         return (

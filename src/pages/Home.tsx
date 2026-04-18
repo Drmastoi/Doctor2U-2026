@@ -104,6 +104,7 @@ export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
   const [isLoadingAnalysis, setIsLoadingAnalysis] = useState(false);
   const [isSendingEmail, setIsSendingEmail] = useState(false);
   const [emailStatus, setEmailStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [isEmergencyConfirmed, setIsEmergencyConfirmed] = useState(false);
 
   const QUICK_SYMPTOMS = [
     "Persistent Fatigue",
@@ -652,6 +653,20 @@ IMPORTANT GUIDELINES:
                   </div>
 
                   <div className="mb-4">
+                    <label className="flex items-start gap-3 p-3 bg-rose-50 border border-rose-100 rounded-xl cursor-pointer group mb-4">
+                      <div className="relative flex items-center mt-0.5">
+                        <input
+                          type="checkbox"
+                          checked={isEmergencyConfirmed}
+                          onChange={(e) => setIsEmergencyConfirmed(e.target.checked)}
+                          className="w-5 h-5 rounded border-rose-300 text-teal-700 focus:ring-teal-700 cursor-pointer"
+                        />
+                      </div>
+                      <span className="text-[11px] font-bold text-rose-900 leading-tight">
+                        I confirm this is not a medical emergency and I am not experiencing symptoms of a heart attack, stroke, or severe breathing difficulty.
+                      </span>
+                    </label>
+
                     <textarea
                       id="symptoms"
                       rows={4}
@@ -695,7 +710,7 @@ IMPORTANT GUIDELINES:
                     </p>
                     <button
                       onClick={getAnalysis}
-                      disabled={isLoadingAnalysis || !symptoms.trim()}
+                      disabled={isLoadingAnalysis || !symptoms.trim() || !isEmergencyConfirmed}
                       className={`bg-teal-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed text-sm whitespace-nowrap`}
                     >
                       {isLoadingAnalysis ? (
