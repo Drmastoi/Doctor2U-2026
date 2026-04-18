@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { 
   ArrowRight, ShieldCheck, Clock, MapPin, CheckCircle2, Phone, 
   Activity, Users, HeartPulse, MessageSquare, Send, Mail,
-  Brain, FileText, Home as HomeIcon, Stethoscope, ClipboardList, Search
+  Brain, FileText, Home as HomeIcon, Stethoscope, ClipboardList, Search, ShieldAlert
 } from 'lucide-react';
 import { Page } from '../types';
 import HubLink from '../components/HubLink';
@@ -15,10 +15,31 @@ interface InnovationPageProps {
 export default function InnovationPage({ setPage }: InnovationPageProps) {
   const [formState, setFormState] = useState({ name: '', email: '', service: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsSending(true);
+    setError(null);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formState, source: 'Innovation Page' })
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        setError('Failed to send message. Please try again.');
+      }
+    } catch (err) {
+      setError('An error occurred. Please check your connection.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -319,11 +340,23 @@ export default function InnovationPage({ setPage }: InnovationPageProps) {
                       onChange={e => setFormState({...formState, message: e.target.value})}
                     ></textarea>
                   </div>
+                  {error && (
+                    <div className="bg-rose-50 border border-rose-100 text-rose-700 p-4 rounded-xl text-xs font-bold flex items-center gap-2">
+                      <ShieldAlert size={14} />
+                      {error}
+                    </div>
+                  )}
                   <button 
                     type="submit"
-                    className="w-full bg-teal-600 text-white py-4 rounded-xl font-bold hover:bg-teal-700 transition-all shadow-lg shadow-teal-900/20"
+                    disabled={isSending}
+                    className="w-full bg-teal-600 text-white py-4 rounded-xl font-bold hover:bg-teal-700 transition-all shadow-lg shadow-teal-900/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    Send Message
+                    {isSending ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        Sending...
+                      </>
+                    ) : 'Send Message'}
                   </button>
                 </form>
               )}

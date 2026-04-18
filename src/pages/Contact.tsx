@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Send, MessageSquare, Clock, CheckCircle2, ArrowLeft } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageSquare, Clock, CheckCircle2, ArrowLeft, ShieldAlert } from 'lucide-react';
 import { Page } from '../types';
 import HubLink from '../components/HubLink';
 
@@ -11,11 +11,31 @@ interface ContactPageProps {
 export default function ContactPage({ setPage }: ContactPageProps) {
   const [formState, setFormState] = useState({ name: '', email: '', phone: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, send to backend
-    setIsSubmitted(true);
+    setIsSending(true);
+    setError(null);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formState, source: 'Contact Page' })
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        setError('Failed to send message. Please try again.');
+      }
+    } catch (err) {
+      setError('An error occurred. Please check your connection.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -179,12 +199,28 @@ export default function ContactPage({ setPage }: ContactPageProps) {
                     onChange={e => setFormState({...formState, message: e.target.value})}
                   ></textarea>
                 </div>
+                {error && (
+                  <div className="bg-rose-50 border border-rose-100 text-rose-700 p-4 rounded-xl text-xs font-bold flex items-center gap-2">
+                    <ShieldAlert size={14} />
+                    {error}
+                  </div>
+                )}
                 <button 
                   type="submit"
-                  className="w-full bg-teal-700 text-white py-5 rounded-2xl font-bold text-lg hover:bg-teal-800 transition-all shadow-xl shadow-teal-900/20 flex items-center justify-center gap-2 group"
+                  disabled={isSending}
+                  className="w-full bg-teal-700 text-white py-5 rounded-2xl font-bold text-lg hover:bg-teal-800 transition-all shadow-xl shadow-teal-900/20 flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  Send Message
+                  {isSending ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      Send Message
+                    </>
+                  )}
                 </button>
                 <p className="text-center text-[10px] text-slate-400 uppercase tracking-widest font-bold">
                   Your data is secure and confidential.

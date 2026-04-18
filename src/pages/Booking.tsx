@@ -106,7 +106,7 @@ export default function BookingPage({ setPage, sharedAnalysis }: BookingPageProp
                   title="Carepatron Online Booking" 
                   width="100%" 
                   height="100%" 
-                  src="https://book.carepatron.com/Dr-Awais-Iqbal/Dr?p=j9wuVM76SOWEgZEfX9IMJA&s=atKBw9zD&e=i" 
+                  src="https://book.carepatron.com/DOCTOR-2-U/Dr?p=j9wuVM76SOWEgZEfX9IMJA&s=atKBw9zD&e=i" 
                   style={{ border: 0 }}
                   referrerPolicy="no-referrer"
                   className="relative z-10"

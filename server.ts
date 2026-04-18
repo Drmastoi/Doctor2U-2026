@@ -54,6 +54,49 @@ async function startServer() {
       res.status(500).json({ error: "Failed to send email" });
     }
   });
+  
+  // Contact Form API Endpoint
+  app.post("/api/contact", async (req, res) => {
+    const { name, email, phone, message, service, source } = req.body;
+    
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY is missing");
+      return res.status(500).json({ error: "Email service not configured." });
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
+    try {
+      const { data, error } = await resend.emails.send({
+        from: 'Contact Form <hello@doctor2u.co.uk>',
+        to: ['drawais@gmail.com'],
+        subject: `New Contact Form Submission: ${name}`,
+        html: `
+          <h1>New Contact Request</h1>
+          <p><strong>Source:</strong> ${source || 'General Contact Form'}</p>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
+          ${service ? `<p><strong>Service of Interest:</strong> ${service}</p>` : ''}
+          <hr />
+          <h2>Message:</h2>
+          <div style="font-family: sans-serif; line-height: 1.6; color: #334155;">
+            ${message.replace(/\n/g, '<br />')}
+          </div>
+        `,
+      });
+
+      if (error) {
+        console.error("Resend error:", error);
+        return res.status(400).json({ error });
+      }
+
+      res.status(200).json({ message: "Message sent successfully", data });
+    } catch (error) {
+      console.error("Server error:", error);
+      res.status(500).json({ error: "Failed to send message" });
+    }
+  });
 
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
