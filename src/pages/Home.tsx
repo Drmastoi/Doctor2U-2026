@@ -4,12 +4,13 @@ import {
   ArrowRight, ShieldCheck, Clock, MapPin, Star, CheckCircle2, Phone, Play, 
   Activity, Users, Award, HeartPulse, MessageSquare, ChevronDown, ChevronUp,
   Calendar, Video, Home as HomeIcon, ChevronLeft, ChevronRight,
-  ShieldAlert, Brain, Sparkles, ClipboardList, Stethoscope
+  ShieldAlert, Brain, Sparkles, ClipboardList, Stethoscope, Check
 } from 'lucide-react';
 import { Page, SERVICES, FAQ, Testimonial, BlogPost } from '../types';
 import Logo from '../components/Logo';
 import HubLink from '../components/HubLink';
 import { GoogleGenAI } from "@google/genai";
+import Markdown from 'react-markdown';
 
 const FAQS: FAQ[] = [
   {
@@ -101,6 +102,8 @@ export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
   const [symptoms, setSymptoms] = useState('');
   const [aiAnalysis, setAiAnalysis] = useState('');
   const [isLoadingAnalysis, setIsLoadingAnalysis] = useState(false);
+  const [isSendingEmail, setIsSendingEmail] = useState(false);
+  const [emailStatus, setEmailStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   React.useEffect(() => {
     document.title = "Doctor2U | Private Doctor & Home Visit Doctor in Manchester & Lancashire";
@@ -126,11 +129,27 @@ export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
       const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
-        contents: `As a professional medical assistant for "Doctor2U", provide a pre-consultation analysis based on these symptoms: "${symptoms}". 
-        Focus on potential health domains for the doctor to explore, lifestyle factors to discuss, and preparation for your consultation. 
-        IMPORTANT: Your response MUST be professional, calm, and reassuring. 
-        MANDATORY: You must NOT provide a diagnosis or prescribe medication. 
-        MANDATORY: You must include a clear disclaimer at the end stating that this is not a substitute for professional medical advice/diagnosis and that the user should book a consultation with a qualified GMC-registered doctor.`,
+        contents: `As a professional medical assistant for "Doctor2U", provide a highly structured, professional pre-consultation analysis based on these symptoms: "${symptoms}". 
+
+Please structure your response into these exact bolded sections:
+
+**1. Summary of Health Concerns**
+Briefly summarize the symptoms in a professional, empathetic tone.
+
+**2. Possible Clinical Themes for Discussion**
+Outline potential areas, body systems, or health domains that the doctor might explore based on your input. Do NOT provide a diagnosis, but explain why these areas are relevant for clinical exploration.
+
+**3. What to Discuss with Your Doctor during your Appointment**
+Provide a structured list of specific questions, observations (e.g., triggers, timing, severity), or lifestyle factors the patient should mention to help the doctor during the consultation.
+
+**4. Consultation Preparation**
+List any information or vitals (like heart rate or temperature) the patient should have ready if available.
+
+IMPORTANT GUIDELINES:
+- Use bold headers and clear bullet points for structure.
+- DO NOT provide a diagnosis or prescribe any medication.
+- Ensure the tone is calm, professional, and reassuring.
+- MANDATORY: Include a clear disclaimer at the end stating that this AI-generated summary is for preparation only and is not a substitute for professional medical advice or diagnosis.`,
       });
       
       setAiAnalysis(response.text || 'Unable to generate analysis at this time. Please try again.');
@@ -142,9 +161,39 @@ export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
     }
   };
 
-  const handleShareWithDoctor = () => {
-    setSharedAnalysis(aiAnalysis);
-    setPage('booking');
+  const handleShareWithDoctor = async () => {
+    setIsSendingEmail(true);
+    setEmailStatus('idle');
+    try {
+      const response = await fetch('/api/send-analysis', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          analysis: aiAnalysis,
+          symptoms: symptoms 
+        }),
+      });
+
+      if (response.ok) {
+        setEmailStatus('success');
+        setSharedAnalysis(aiAnalysis);
+        // Delay navigation slightly so user can see success message
+        setTimeout(() => {
+          setPage('booking');
+        }, 1500);
+      } else {
+        const errorData = await response.json();
+        console.error('Failed to send email:', errorData);
+        setEmailStatus('error');
+      }
+    } catch (error) {
+      console.error('Error sharing analysis:', error);
+      setEmailStatus('error');
+    } finally {
+      setIsSendingEmail(false);
+    }
   };
 
   const nextTestimonial = () => setTestimonialIdx((prev) => (prev + 1) % TESTIMONIALS.length);
@@ -339,6 +388,78 @@ export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
           </div>
         </div>
       </section>
+      
+      {/* Home Visit Benefits CTA */}
+      <section className="py-20 bg-teal-50/30">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-[4rem] p-8 md:p-16 border border-teal-100 shadow-2xl shadow-teal-900/10 flex flex-col lg:flex-row items-center gap-12 overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-teal-50 rounded-full blur-[100px] -z-0 opacity-50"></div>
+            
+            <div className="flex-1 relative z-10 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
+                <HomeIcon size={14} />
+                <span>The Home Visit Advantage</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight text-slate-900 leading-tight">
+                Medical Care Where <br />
+                <span className="text-teal-700">You Are Most Comfortable.</span>
+              </h2>
+              <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                Experience the gold standard of private medical care. Our home visits eliminate the stress of travel and waiting rooms, allowing for a thorough consultation and physical examination in the peace of your own home.
+              </p>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 text-left">
+                {[
+                  "No travel or waiting rooms required",
+                  "Comprehensive physical examination",
+                  "Same-day visits often available",
+                  "GMC-registered expert doctors",
+                  "Prescriptions delivered to your door",
+                  "Manchester & Lancashire coverage"
+                ].map((benefit, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-6 h-6 rounded-full bg-teal-100 flex items-center justify-center shrink-0">
+                      <Check size={14} className="text-teal-700" />
+                    </div>
+                    <span className="text-sm font-semibold text-slate-700">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+              
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setPage('booking')}
+                className="bg-teal-700 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center justify-center gap-3 w-full sm:w-auto"
+              >
+                Book a Home Visit Now
+                <ArrowRight size={20} />
+              </motion.button>
+            </div>
+            
+            <div className="flex-1 w-full lg:w-auto relative group">
+              <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
+                <img 
+                  src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=800"
+                  alt="Doctor at home visit"
+                  className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-700"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-teal-900/40 to-transparent"></div>
+              </div>
+              
+              {/* Floating Badge */}
+              <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 max-w-[200px] hidden md:block">
+                <div className="flex items-center gap-2 mb-2">
+                  <Star className="text-amber-400 fill-amber-400" size={16} />
+                  <span className="text-sm font-bold text-slate-900">Rated Excellent</span>
+                </div>
+                <p className="text-[10px] text-slate-500 leading-tight">"The most convenient doctor visit I've ever had. Truly exceptional care." - Sarah, Manchester</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Integrated Journey Section: How It Works + AI Tool */}
       <section id="how-it-works" className="py-24 bg-slate-50 relative overflow-hidden">
@@ -393,8 +514,11 @@ export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
             </div>
 
             {/* Right Column: AI Tool */}
-            <div className="lg:w-2/3 w-full">
-              <div className="bg-white rounded-[3rem] p-8 md:p-12 border border-slate-100 shadow-2xl shadow-teal-900/5 relative overflow-hidden">
+            <div className={`lg:w-2/3 w-full`}>
+              <div 
+                className="rounded-[3rem] p-8 md:p-12 border border-slate-100 shadow-2xl shadow-teal-900/5 relative overflow-hidden"
+                style={{ backgroundColor: '#cee8d1' }}
+              >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-teal-50 rounded-bl-[100px] -z-0"></div>
                 
                 <div className="relative z-10">
@@ -403,7 +527,12 @@ export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
                       <Brain size={20} />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-slate-900 tracking-tight">Optional AI Health Insights: Prepare for Your Consultation</h3>
+                      <h3 
+                        className="font-bold text-slate-900 tracking-tight"
+                        style={{ fontSize: '29px', color: '#0a4816', borderWidth: '2px', borderRadius: '2px' }}
+                      >
+                        Get Your AI Health Insights <span className="text-sm text-amber-500 block sm:inline mt-1 sm:mt-0">(Optional)</span>
+                      </h3>
                     </div>
                   </div>
 
@@ -434,7 +563,8 @@ export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
                       value={symptoms}
                       onChange={(e) => setSymptoms(e.target.value)}
                       placeholder="Describe your symptoms or health concerns (e.g., fatigue, breathlessness)..."
-                      className="w-full bg-slate-50 border border-slate-100 rounded-2xl p-6 text-slate-900 focus:ring-2 focus:ring-teal-700 focus:border-transparent transition-all resize-none shadow-inner text-sm"
+                      className="w-full border focus:ring-2 focus:ring-teal-700 focus:border-transparent transition-all resize-none shadow-inner text-sm"
+                      style={{ borderColor: '#185908', borderWidth: '3px', borderRadius: '18px', backgroundColor: '#f0f2f9' }}
                     />
                   </div>
 
@@ -504,19 +634,49 @@ export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
                             <Brain size={18} />
                             <h4 className="font-bold text-sm">Generated Analysis Summary</h4>
                           </div>
-                          <div className="text-slate-600 text-sm leading-relaxed whitespace-pre-wrap mb-6">
-                            {aiAnalysis}
+                          <div className="text-slate-600 text-sm leading-relaxed mb-6 [&_strong]:text-slate-900 [&_strong]:font-bold [&_h3]:text-slate-900 [&_h3]:font-bold [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mt-2 [&_p]:mb-4">
+                            <Markdown>{aiAnalysis}</Markdown>
                           </div>
                           
                           {!aiAnalysis.includes('EMERGENCY ALERT') && (
                             <div className="mt-8 space-y-4">
-                              <div className="flex justify-end">
+                              <div className="flex flex-col items-end gap-3">
+                                {emailStatus === 'success' && (
+                                  <motion.div 
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className="bg-emerald-100 text-emerald-700 px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2"
+                                  >
+                                    <CheckCircle2 size={14} />
+                                    Analysis shared with clinican! Redirecting...
+                                  </motion.div>
+                                )}
+                                {emailStatus === 'error' && (
+                                  <motion.div 
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className="bg-rose-100 text-rose-700 px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2"
+                                  >
+                                    <ShieldAlert size={14} />
+                                    Failed to share. Please check RESEND_API_KEY.
+                                  </motion.div>
+                                )}
                                 <button
                                   onClick={handleShareWithDoctor}
-                                  className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all flex items-center gap-2 text-sm shadow-lg shadow-teal-900/20 group"
+                                  disabled={isSendingEmail}
+                                  className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all flex items-center gap-2 text-sm shadow-lg shadow-teal-900/20 group disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                  Share Analysis & Book Appointment
-                                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                  {isSendingEmail ? (
+                                    <>
+                                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                      Sharing with Clinician...
+                                    </>
+                                  ) : (
+                                    <>
+                                      Share Analysis & Book Appointment
+                                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                    </>
+                                  )}
                                 </button>
                               </div>
                               <p className="text-[11px] text-slate-500 text-right leading-relaxed max-w-sm ml-auto">

@@ -104,7 +104,6 @@ export default function BookingPage({ setPage, sharedAnalysis }: BookingPageProp
               <div style={{ display: 'grid', width: '100%', height: '100%', minWidth: '320px', minHeight: '800px' }}>
                 <iframe 
                   title="Carepatron Online Booking" 
-                  alt="Book appointments online via Carepatron" 
                   width="100%" 
                   height="100%" 
                   src="https://book.carepatron.com/Dr-Awais-Iqbal/Dr?p=j9wuVM76SOWEgZEfX9IMJA&s=atKBw9zD&e=i" 
