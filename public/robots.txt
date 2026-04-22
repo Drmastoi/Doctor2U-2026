@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://doctor2u.co.uk/sitemap.xml
+Sitemap: https://www.doctor2u.co.uk/sitemap.xml
