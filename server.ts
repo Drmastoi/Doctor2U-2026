@@ -20,11 +20,15 @@ const PORT = Number(process.env.PORT || 3000);
 function renderApp(url: string) {
   const helmetContext: { helmet?: any } = {};
   const appHtml = renderToString(
-    <HelmetProvider context={helmetContext}>
-      <StaticRouter location={url}>
-        <App />
-      </StaticRouter>
-    </HelmetProvider>
+    React.createElement(
+      HelmetProvider,
+      { context: helmetContext },
+      React.createElement(
+        StaticRouter,
+        { location: url },
+        React.createElement(App)
+      )
+    )
   );
 
   const { helmet } = helmetContext;
@@ -46,13 +50,13 @@ function injectApp(template: string, appHtml: string, head: string) {
     .replace('<!--app-html-->', appHtml);
 }
 
-async function getTemplate(vite?: ViteDevServer) {
+async function getTemplate(vite?: ViteDevServer, url = '/') {
   const templatePath = vite
     ? path.resolve(process.cwd(), 'index.html')
     : path.resolve(process.cwd(), 'dist', 'index.html');
 
   const template = await fs.readFile(templatePath, 'utf-8');
-  return vite ? vite.transformIndexHtml('/', template) : template;
+  return vite ? vite.transformIndexHtml(url, template) : template;
 }
 
 async function startServer() {
@@ -175,13 +179,13 @@ async function startServer() {
   }
 
   app.get('*', async (req, res) => {
-    if (path.extname(req.path)) {
+    if (req.path.startsWith('/api/') || path.extname(req.path)) {
       res.status(404).end();
       return;
     }
 
     try {
-      const template = await getTemplate(vite);
+      const template = await getTemplate(vite, req.originalUrl);
       const { appHtml, head } = renderApp(req.originalUrl);
       const html = injectApp(template, appHtml, head);
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
@@ -190,7 +194,7 @@ async function startServer() {
       console.error('SSR render failed:', error);
 
       try {
-        const template = await getTemplate(vite);
+        const template = await getTemplate(vite, req.originalUrl);
         const html = injectApp(template, '', '');
         res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
       } catch (fallbackError) {
