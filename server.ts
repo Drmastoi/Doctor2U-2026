@@ -1,28 +1,91 @@
-import express from "express";
-import { createServer as createViteServer } from "vite";
-import path from "path";
-import { fileURLToPath } from "url";
-import { Resend } from 'resend';
+import fs from 'fs/promises';
+import path from 'path';
+
 import dotenv from 'dotenv';
+import express from 'express';
+import React from 'react';
+import { HelmetProvider } from 'react-helmet-async';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom/server';
+import { Resend } from 'resend';
+import { createServer as createViteServer, type ViteDevServer } from 'vite';
+
+import App from './src/App';
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const CANONICAL_HOST = 'www.doctor2u.co.uk';
+const PORT = Number(process.env.PORT || 3000);
+
+function renderApp(url: string) {
+  const helmetContext: { helmet?: any } = {};
+  const appHtml = renderToString(
+    <HelmetProvider context={helmetContext}>
+      <StaticRouter location={url}>
+        <App />
+      </StaticRouter>
+    </HelmetProvider>
+  );
+
+  const { helmet } = helmetContext;
+  const head = [
+    helmet?.title?.toString() ?? '',
+    helmet?.priority?.toString() ?? '',
+    helmet?.meta?.toString() ?? '',
+    helmet?.link?.toString() ?? '',
+  ]
+    .filter(Boolean)
+    .join('\n');
+
+  return { appHtml, head };
+}
+
+function injectApp(template: string, appHtml: string, head: string) {
+  return template
+    .replace('<!--app-head-->', head)
+    .replace('<!--app-html-->', appHtml);
+}
+
+async function getTemplate(vite?: ViteDevServer) {
+  const templatePath = vite
+    ? path.resolve(process.cwd(), 'index.html')
+    : path.resolve(process.cwd(), 'dist', 'index.html');
+
+  const template = await fs.readFile(templatePath, 'utf-8');
+  return vite ? vite.transformIndexHtml('/', template) : template;
+}
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const isProduction = process.env.NODE_ENV === 'production';
+  const distPath = path.resolve(process.cwd(), 'dist');
 
   app.use(express.json());
 
-  // Email API Endpoint
-  app.post("/api/send-analysis", async (req, res) => {
+  app.use((req, res, next) => {
+    const host = (req.headers.host || '').split(':')[0];
+    if (host === 'doctor2u.co.uk') {
+      res.redirect(301, `https://${CANONICAL_HOST}${req.originalUrl}`);
+      return;
+    }
+    next();
+  });
+
+  app.get('/favicon.ico', (_req, res) => {
+    res.redirect(301, '/favicon.svg');
+  });
+
+  app.get(/^\/.+\/_service-worker\.js$/, (_req, res) => {
+    res.redirect(302, '/_service-worker.js');
+  });
+
+  app.post('/api/send-analysis', async (req, res) => {
     const { analysis, symptoms } = req.body;
-    
+
     if (!process.env.RESEND_API_KEY) {
-      console.error("RESEND_API_KEY is missing");
-      return res.status(500).json({ error: "Email service not configured. Please add RESEND_API_KEY to environment variables." });
+      console.error('RESEND_API_KEY is missing');
+      res.status(500).json({ error: 'Email service not configured. Please add RESEND_API_KEY to environment variables.' });
+      return;
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
@@ -44,24 +107,25 @@ async function startServer() {
       });
 
       if (error) {
-        console.error("Resend error:", error);
-        return res.status(400).json({ error });
+        console.error('Resend error:', error);
+        res.status(400).json({ error });
+        return;
       }
 
-      res.status(200).json({ message: "Email sent successfully", data });
+      res.status(200).json({ message: 'Email sent successfully', data });
     } catch (error) {
-      console.error("Server error:", error);
-      res.status(500).json({ error: "Failed to send email" });
+      console.error('Server error:', error);
+      res.status(500).json({ error: 'Failed to send email' });
     }
   });
-  
-  // Contact Form API Endpoint
-  app.post("/api/contact", async (req, res) => {
+
+  app.post('/api/contact', async (req, res) => {
     const { name, email, phone, message, service, source } = req.body;
-    
+
     if (!process.env.RESEND_API_KEY) {
-      console.error("RESEND_API_KEY is missing");
-      return res.status(500).json({ error: "Email service not configured." });
+      console.error('RESEND_API_KEY is missing');
+      res.status(500).json({ error: 'Email service not configured.' });
+      return;
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
@@ -87,33 +151,56 @@ async function startServer() {
       });
 
       if (error) {
-        console.error("Resend error:", error);
-        return res.status(400).json({ error });
+        console.error('Resend error:', error);
+        res.status(400).json({ error });
+        return;
       }
 
-      res.status(200).json({ message: "Message sent successfully", data });
+      res.status(200).json({ message: 'Message sent successfully', data });
     } catch (error) {
-      console.error("Server error:", error);
-      res.status(500).json({ error: "Failed to send message" });
+      console.error('Server error:', error);
+      res.status(500).json({ error: 'Failed to send message' });
     }
   });
 
-  // Vite middleware for development
-  if (process.env.NODE_ENV !== "production") {
-    const vite = await createViteServer({
+  let vite: ViteDevServer | undefined;
+  if (!isProduction) {
+    vite = await createViteServer({
       server: { middlewareMode: true },
-      appType: "spa",
+      appType: 'custom',
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
-    });
+    app.use(express.static(distPath, { index: false }));
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
+  app.get('*', async (req, res) => {
+    if (path.extname(req.path)) {
+      res.status(404).end();
+      return;
+    }
+
+    try {
+      const template = await getTemplate(vite);
+      const { appHtml, head } = renderApp(req.originalUrl);
+      const html = injectApp(template, appHtml, head);
+      res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
+    } catch (error) {
+      vite?.ssrFixStacktrace(error as Error);
+      console.error('SSR render failed:', error);
+
+      try {
+        const template = await getTemplate(vite);
+        const html = injectApp(template, '', '');
+        res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
+      } catch (fallbackError) {
+        console.error('Fallback render failed:', fallbackError);
+        res.status(500).end('Internal Server Error');
+      }
+    }
+  });
+
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
 }
