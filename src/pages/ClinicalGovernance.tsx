@@ -1,18 +1,15 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { 
   ShieldCheck, AlertCircle, FileText, CheckCircle2, 
   Activity, Users, Scale, HeartPulse, Microscope,
   Search, Lock, Info
 } from 'lucide-react';
-import { Page } from '../types';
+import { useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
 
-interface ClinicalGovernanceProps {
-  setPage: (page: Page) => void;
-}
-
-export default function ClinicalGovernance({ setPage }: ClinicalGovernanceProps) {
+export default function ClinicalGovernance() {
+  const navigate = useNavigate();
   React.useEffect(() => {
     document.title = "Clinical Governance & Safety | Medical Standards | Doctor2U";
   }, []);
@@ -181,20 +178,20 @@ export default function ClinicalGovernance({ setPage }: ClinicalGovernanceProps)
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
-              onClick={() => setPage('contact')}
+              onClick={() => navigate('/contact')}
               className="bg-medical-500 text-slate-900 px-8 py-4 rounded-xl font-bold hover:bg-medical-400 transition-all font-display"
             >
               Contact Governance Team
             </button>
             <button 
-              onClick={() => setPage('our-doctors')}
+              onClick={() => navigate('/our-doctors')}
               className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all"
             >
               View Doctor Profiles
             </button>
           </div>
         </div>
-        <HubLink setPage={setPage} index={3} />
+        <HubLink index={3} />
       </div>
     </div>
   );

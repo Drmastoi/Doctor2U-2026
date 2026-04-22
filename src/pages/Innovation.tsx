@@ -5,14 +5,10 @@ import {
   Activity, Users, HeartPulse, MessageSquare, Send, Mail,
   Brain, FileText, Home as HomeIcon, Stethoscope, ClipboardList, Search, ShieldAlert
 } from 'lucide-react';
-import { Page } from '../types';
+import { Link } from 'react-router-dom';
 import HubLink from '../components/HubLink';
 
-interface InnovationPageProps {
-  setPage: (page: Page) => void;
-}
-
-export default function InnovationPage({ setPage }: InnovationPageProps) {
+export default function InnovationPage() {
   const [formState, setFormState] = useState({ name: '', email: '', service: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
@@ -381,7 +377,7 @@ export default function InnovationPage({ setPage }: InnovationPageProps) {
           </p>
         </div>
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-           <HubLink setPage={setPage} index={9} />
+           <HubLink index={9} />
         </div>
       </section>
     </div>

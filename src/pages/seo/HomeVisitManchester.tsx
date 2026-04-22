@@ -1,17 +1,17 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { 
   CheckCircle2, ArrowRight, Home as HomeIcon, Clock, ShieldCheck, Star, 
   MapPin, Phone, MessageSquare, BrainCircuit, Users, Stethoscope, 
   ChevronDown, Calendar, Activity
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Page } from '../../types';
 
-interface HomeVisitManchesterProps {
-  setPage: (page: Page) => void;
-}
+interface HomeVisitManchesterProps {}
 
-export default function HomeVisitManchester({ setPage }: HomeVisitManchesterProps) {
+export default function HomeVisitManchester({}: HomeVisitManchesterProps) {
+  const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = React.useState<number | null>(null);
 
   React.useEffect(() => {
@@ -138,7 +138,7 @@ export default function HomeVisitManchester({ setPage }: HomeVisitManchesterProp
             </p>
             <div className="flex flex-wrap gap-4">
               <button 
-                onClick={() => setPage('booking')}
+                onClick={() => navigate('/book')}
                 className="bg-teal-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-500 transition-all shadow-xl shadow-teal-900/40 flex items-center gap-2 text-lg"
               >
                 Book Same-Day Visit
@@ -294,7 +294,7 @@ export default function HomeVisitManchester({ setPage }: HomeVisitManchesterProp
                     </ul>
 
                     <button 
-                      onClick={() => setPage('booking')}
+                      onClick={() => navigate('/book')}
                       className="w-full bg-white text-slate-900 py-4 rounded-xl font-bold hover:bg-teal-50 transition-all flex items-center justify-center gap-2"
                     >
                       Book Now
@@ -360,11 +360,11 @@ export default function HomeVisitManchester({ setPage }: HomeVisitManchesterProp
               <div className="space-y-8">
                 <div className="flex gap-6">
                   <div className="w-14 h-14 rounded-2xl bg-slate-900 flex items-center justify-center text-white shrink-0 shadow-lg">
-                    <BrainCircuit size={28} />
+                    <Activity size={28} />
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-slate-900 mb-2">Step 1: AI Analysis</h4>
-                    <p className="text-slate-500 leading-relaxed">Start with our optional AI tool to structure your medical data and health concerns securely.</p>
+                    <h4 className="text-xl font-bold text-slate-900 mb-2">Step 1: Clinical Triage</h4>
+                    <p className="text-slate-500 leading-relaxed">Rapid review of your symptoms by our medical team to ensure home assessment is appropriate.</p>
                   </div>
                 </div>
                 <div className="flex gap-6">
@@ -442,7 +442,7 @@ export default function HomeVisitManchester({ setPage }: HomeVisitManchesterProp
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <button 
-                  onClick={() => setPage('booking')}
+                  onClick={() => navigate('/book')}
                   className="bg-white text-teal-900 px-10 py-5 rounded-2xl font-bold hover:bg-teal-50 transition-all shadow-xl shadow-black/20 flex items-center gap-2 group"
                 >
                   Book My Visit

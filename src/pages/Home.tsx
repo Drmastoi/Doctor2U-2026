@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'motion/react';
 import { 
   ArrowRight, ShieldCheck, Clock, MapPin, Star, CheckCircle2, Phone, Play, 
   Activity, Users, Award, HeartPulse, MessageSquare, ChevronDown, ChevronUp,
   Calendar, Video, Home as HomeIcon, ChevronLeft, ChevronRight,
   ShieldAlert, Brain, Sparkles, ClipboardList, Stethoscope, Check
 } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Page, SERVICES, FAQ, Testimonial, BlogPost } from '../types';
 import Logo from '../components/Logo';
 import HubLink from '../components/HubLink';
@@ -56,14 +57,14 @@ const TESTIMONIALS: Testimonial[] = [
   }
 ];
 
-const BLOG_POSTS: BlogPost[] = [
+const BLOG_POSTS = [
   {
     id: '1',
     title: "Accessing a Private Doctor in Manchester",
     excerpt: "Why residents are choosing Private Doctor services in Manchester for same-day prescriptions and unhurried clinical time.",
     date: "April 15, 2026",
     image: "https://images.unsplash.com/photo-1505751172107-5739a00723a5?auto=format&fit=crop&q=80&w=800",
-    link: 'pgp-manchester' as Page
+    link: '/private-doctor/manchester'
   },
   {
     id: '2',
@@ -71,7 +72,7 @@ const BLOG_POSTS: BlogPost[] = [
     excerpt: "The rise of home-based medical care across Preston and Blackburn. Find out why a Home Visit Doctor in Lancashire might be right for you.",
     date: "April 8, 2026",
     image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800",
-    link: 'hvd-lancashire' as Page
+    link: '/home-visit-doctor/manchester'
   },
   {
     id: '3',
@@ -79,7 +80,7 @@ const BLOG_POSTS: BlogPost[] = [
     excerpt: "Fast-track your health with a Private Doctor in Preston. Avoiding the 2-week wait for an appointment and getting results in 48 hours.",
     date: "April 2, 2026",
     image: "https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=800",
-    link: 'pgp-preston' as Page
+    link: '/pgp-preston'
   },
   {
     id: '4',
@@ -87,16 +88,71 @@ const BLOG_POSTS: BlogPost[] = [
     excerpt: "Preparing for your HGV or Taxi medical in Manchester. A complete list of forms, vision tests, and requirements.",
     date: "March 25, 2026",
     image: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=800",
-    link: 'service-drivers-medicals' as Page
+    link: '/services/drivers-medicals'
   }
 ];
 
-interface HomeProps {
-  setPage: (page: Page) => void;
-  setSharedAnalysis: (analysis: string) => void;
-}
+export default function Home() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const getPath = (id: string) => {
+    const paths: Record<string, string> = {
+      'home': '/',
+      'services': '/services',
+      'contact': '/contact',
+      'booking': '/book',
+      'innovation': '/innovation',
+      'privacy': '/privacy',
+      'about-us': '/about-us',
+      'our-doctors': '/our-doctors',
+      'clinical-governance': '/clinical-governance',
+      'urgent-childrens-doctor-manchester': '/urgent-childrens-doctor-manchester',
+      'emergency-uti-treatment-manchester': '/emergency-uti-treatment-manchester',
+      'elderly-care-home-visit-manchester': '/elderly-care-home-visit-manchester',
+      'chest-infection-home-visit-manchester': '/chest-infection-home-visit-manchester',
+      'back-pain-home-visit-manchester': '/back-pain-home-visit-manchester',
+      'doctor-home-visit-manchester': '/doctor-home-visit-manchester',
+      'same-day-doctor-manchester': '/same-day-doctor-manchester',
+      'urgent-doctor-manchester': '/urgent-doctor-manchester',
+      'pgp-manchester': '/private-doctor/manchester',
+      'pgp-preston': '/pgp-preston',
+      'pgp-blackburn': '/pgp-blackburn',
+      'hvd-manchester': '/home-visit-doctor/manchester',
+      'hvd-lancashire': '/home-visit-doctor/lancashire',
+      'out-of-hours-doctor-manchester': '/out-of-hours-doctor-manchester',
+      'doctor-nursing-home-manchester': '/doctor-nursing-home-manchester',
+      'service-private-gp': '/services/private-gp',
+      'service-home-visit': '/services/home-visit',
+      'service-drivers-medicals': '/services/drivers-medicals',
+      'service-health-screening': '/services/health-screening',
+      'service-childrens-health': '/services/childrens-health',
+      'service-accident-injury': '/services/accident-injury',
+      'service-life-insurance': '/services/life-insurance',
+      'service-chronic-care': '/services/chronic-care',
+      'service-referrals': '/services/referrals',
+      'treatment-plan': '/treatment-plan'
+    };
+    return paths[id] || '/';
+  };
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  // Parallax transforms for the hero section
+  const heroScale = useTransform(smoothProgress, [0, 0.15], [1, 1.1]);
+  const heroTextY = useTransform(smoothProgress, [0, 0.25], [0, -60]);
+  const heroImageY = useTransform(smoothProgress, [0, 0.25], [0, 40]);
+  const heroOpacity = useTransform(smoothProgress, [0, 0.3], [1, 0]);
+  const blob1Y = useTransform(smoothProgress, [0, 0.4], [0, -120]);
+  const blob2Y = useTransform(smoothProgress, [0, 0.4], [0, 120]);
+
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [testimonialIdx, setTestimonialIdx] = useState(0);
   const [symptoms, setSymptoms] = useState('');
@@ -113,10 +169,6 @@ export default function Home({ setPage, setSharedAnalysis }: HomeProps) {
     "Breathlessness",
     "Recurring Headaches"
   ];
-
-  React.useEffect(() => {
-    document.title = "Doctor2U | Private Doctor & Home Visit Doctor in Manchester & Lancashire";
-  }, []);
 
   const getAnalysis = async () => {
     if (!symptoms.trim()) return;
@@ -187,10 +239,9 @@ IMPORTANT GUIDELINES:
 
       if (response.ok) {
         setEmailStatus('success');
-        setSharedAnalysis(aiAnalysis);
         // Delay navigation slightly so user can see success message
         setTimeout(() => {
-          setPage('booking');
+          navigate('/book');
         }, 1500);
       } else {
         const errorData = await response.json();
@@ -209,141 +260,159 @@ IMPORTANT GUIDELINES:
   const prevTestimonial = () => setTestimonialIdx((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
 
   return (
-    <div className="flex flex-col relative overflow-hidden bg-white">
+    <div ref={containerRef} className="flex flex-col relative overflow-hidden bg-white">
       {/* Disclaimer Banner */}
       <div className="bg-amber-50 border-b border-amber-100 py-2 px-4 relative z-50">
-        <div className="max-w-[1600px] mx-auto flex items-center justify-center gap-3 text-amber-800 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center">
+        <div className="max-w-[1600px] mx-auto flex items-center justify-center gap-3 text-amber-800 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center text-wrap lg:text-nowrap">
           <ShieldAlert size={12} className="shrink-0" />
           <span>Important: AI analysis does not diagnose, treat, or replace professional medical advice.</span>
         </div>
       </div>
 
-      {/* Background Blobs for Modern Feel */}
+      {/* Background Blobs for Modern Feel with Parallax */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-teal-100/30 rounded-full blur-[120px] animate-blob"></div>
-        <div className="absolute top-[20%] left-[-10%] w-[400px] h-[400px] bg-medical-100/20 rounded-full blur-[100px] animate-blob [animation-delay:2s]"></div>
-        <div className="absolute bottom-[10%] right-[20%] w-[600px] h-[600px] bg-teal-50/40 rounded-full blur-[130px] animate-blob [animation-delay:4s]"></div>
+        <motion.div 
+          style={{ y: blob1Y }}
+          className="absolute top-[-15%] right-[-10%] w-[600px] h-[600px] bg-teal-100/30 rounded-full blur-[130px] animate-blob"
+        ></motion.div>
+        <motion.div 
+          style={{ y: blob2Y }}
+          className="absolute top-[25%] left-[-15%] w-[500px] h-[500px] bg-medical-100/20 rounded-full blur-[110px] animate-blob [animation-delay:2s]"
+        ></motion.div>
+        <motion.div 
+          style={{ y: blob1Y }}
+          className="absolute bottom-[20%] right-[15%] w-[700px] h-[700px] bg-teal-50/40 rounded-full blur-[140px] animate-blob [animation-delay:4s]"
+        ></motion.div>
       </div>
 
-      {/* Hero Section - Clean Modern Light Theme */}
-      <section className="relative min-h-screen flex items-center pt-32 md:pt-40 overflow-hidden bg-white">
+      {/* Hero Section - Clean Modern Light Theme with Parallax */}
+      <section className="relative h-[90vh] flex items-center pt-32 md:pt-40 overflow-hidden bg-white">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="flex flex-col lg:flex-row items-center gap-12 xl:gap-20">
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              style={{ y: heroTextY, opacity: heroOpacity }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="flex-1 text-center lg:text-left"
             >
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-xs font-bold mb-8 tracking-wide"
-              >
+              <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-2 rounded-full text-[11px] font-bold mb-10 tracking-[0.2em] uppercase">
                 <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
-                <span className="uppercase tracking-widest">your Home , Your time , Your Doctor</span>
-              </motion.div>
+                <span>Your Home • Your Time • Your Doctor</span>
+              </div>
               
-              <h1 className="text-[60px] font-display font-bold leading-[1.05] mb-8 text-slate-900 tracking-tighter">
-                Private Doctor in Manchester <br />
-                <span className="text-teal-700">& Lancashire.</span>
+              <h1 className="text-[55px] md:text-[80px] font-display font-bold leading-[1.02] mb-8 text-slate-900 tracking-tighter">
+                Modern Health, <br />
+                <span className="text-teal-700 italic">Redefined.</span>
               </h1>
               
-              <p className="text-lg md:text-xl text-slate-600 mb-12 leading-relaxed max-w-xl mx-auto lg:mx-0 tracking-tight">
-                Gain structured medical insights with our optional AI tool, review them in your own time, and share your analysis with our GMC-registered doctors for a comprehensive consultation, treatment plan, and prescriptions across Lancashire and Manchester.
+              <p className="text-xl md:text-2xl text-slate-600 mb-14 leading-relaxed max-w-2xl mx-auto lg:mx-0 tracking-tight font-medium opacity-80 line-clamp-3">
+                Experience GMC-registered medical care that respects your time. 
+                Use AI health insights to prepare, speak with local experts, and get treatment plans on your own terms.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start items-center">
+              <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center">
                 <motion.button 
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => setPage('booking')}
-                  className="bg-teal-700 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center justify-center gap-3 w-full sm:w-auto"
+                  onClick={() => navigate('/book')}
+                  className="bg-teal-700 text-white px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center justify-center gap-4 w-full sm:w-auto active:scale-95"
                 >
-                  Book Online
-                  <ArrowRight size={20} />
+                  Book Appointment
+                  <ArrowRight size={24} />
                 </motion.button>
                 
                 <motion.button 
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ x: 5 }}
                   onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="flex items-center gap-3 text-slate-900 font-bold text-lg group"
+                  className="flex items-center gap-4 text-slate-900 font-bold text-xl group px-6 py-4"
                 >
-                  <div className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-slate-50 transition-all">
-                    <Play size={20} fill="currentColor" className="text-teal-600" />
+                  <div className="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-slate-50 transition-all shadow-sm">
+                    <Play size={24} fill="currentColor" className="text-teal-600 translate-x-0.5" />
                   </div>
-                  Watch how it works
+                  See how it works
                 </motion.button>
               </div>
 
-              <div className="mt-16 flex flex-wrap items-center justify-center lg:justify-start gap-8 md:gap-12">
-                <div className="flex flex-col">
-                  <span className="text-3xl font-display font-bold text-slate-900">100%</span>
-                  <span className="text-xs uppercase tracking-widest text-slate-400 font-semibold">Transparent Fees</span>
+              <div className="mt-20 flex flex-wrap items-center justify-center lg:justify-start gap-12 md:gap-16">
+                <div className="flex flex-col gap-1">
+                  <span className="text-4xl font-display font-bold text-slate-900 leading-none">100%</span>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-bold">Transparent</span>
                 </div>
-                <div className="hidden sm:block w-px h-10 bg-slate-200"></div>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-display font-bold text-slate-900">24/7</span>
-                  <span className="text-xs uppercase tracking-widest text-slate-400 font-semibold">Care Available</span>
+                <div className="w-px h-12 bg-slate-100 hidden sm:block"></div>
+                <div className="flex flex-col gap-1">
+                  <span className="text-4xl font-display font-bold text-slate-900 leading-none">24/7</span>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-bold">Available</span>
                 </div>
-                <div className="hidden sm:block w-px h-10 bg-slate-200"></div>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-display font-bold text-slate-900">4.9/5</span>
-                  <span className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">Google Reviews</span>
+                <div className="w-px h-12 bg-slate-100 hidden sm:block"></div>
+                <div className="flex flex-col gap-1">
+                  <span className="text-4xl font-display font-bold text-slate-900 leading-none">4.9/5</span>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-bold">Reviews</span>
                 </div>
               </div>
             </motion.div>
 
             <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              style={{ scale: heroScale, y: heroImageY, opacity: heroOpacity }}
+              initial={{ opacity: 0, scale: 0.9, x: 50 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
               className="flex-1 relative hidden lg:block"
             >
-              <div className="relative z-10 rounded-tl-[120px] rounded-br-[120px] rounded-tr-3xl rounded-bl-3xl overflow-hidden border-[1px] border-slate-100 shadow-2xl shadow-teal-900/10">
+              <div className="relative z-10 rounded-[5rem] overflow-hidden border border-white/50 shadow-[0_50px_100px_-20px_rgba(13,71,161,0.15)] group">
                 <img 
                   src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=1000" 
-                  alt="Doctor providing home care to a patient" 
-                  className="w-full h-[650px] object-cover hover:scale-105 transition-transform duration-1000"
+                  alt="Doctor providing home care" 
+                  className="w-full h-[700px] object-cover transition-transform duration-[2000ms] group-hover:scale-110"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent"></div>
+                <div className="absolute inset-x-0 bottom-0 p-12 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pt-40">
+                  <div className="flex items-center gap-4 text-white">
+                    <div className="w-12 h-12 rounded-2xl bg-teal-500/20 backdrop-blur-md flex items-center justify-center border border-white/20">
+                      <Stethoscope size={24} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold opacity-80 uppercase tracking-widest leading-none mb-1">Clinic & Home</p>
+                      <h4 className="text-2xl font-bold tracking-tight">Personalised Assessment</h4>
+                    </div>
+                  </div>
+                </div>
               </div>
               
-              {/* Floating elements with Glassmorphism */}
+              {/* Floating elements with Parallax-Aware Motion */}
               <motion.div 
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-6 -left-12 bg-white/80 backdrop-blur-xl p-6 rounded-3xl z-20 border border-white/40 shadow-2xl shadow-teal-900/10"
+                animate={{ y: [0, -20, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-10 -left-12 bg-white/90 backdrop-blur-2xl p-8 rounded-[2.5rem] z-20 border border-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)]"
               >
-                <div className="flex items-center gap-4">
-                  <div className="bg-teal-700 p-3 rounded-2xl text-white shadow-lg shadow-teal-700/20">
-                    <ShieldCheck size={24} />
+                <div className="flex items-center gap-5">
+                  <div className="bg-teal-700 w-16 h-16 rounded-[1.25rem] text-white shadow-xl shadow-teal-700/30 flex items-center justify-center">
+                    <ShieldCheck size={32} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Professional Care</p>
-                    <p className="text-lg font-display font-bold text-slate-900">Certified Excellence</p>
+                    <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.3em] mb-1">GMC Registered</p>
+                    <p className="text-xl font-display font-bold text-slate-900 tracking-tight leading-none">Quality Certified</p>
                   </div>
                 </div>
               </motion.div>
 
               <motion.div 
-                animate={{ y: [0, 15, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-20 -right-8 bg-white/80 backdrop-blur-xl p-5 rounded-2xl z-20 border border-white/40 shadow-2xl shadow-teal-900/10"
+                animate={{ y: [0, 20, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute top-20 -right-12 bg-white/90 backdrop-blur-2xl p-6 rounded-[2rem] z-20 border border-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)]"
               >
-                <div className="flex items-center gap-3">
-                  <div className="flex -space-x-2">
+                <div className="flex items-center gap-4">
+                  <div className="flex -space-x-3">
                     {[1,2,3].map(i => (
-                      <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-slate-100 overflow-hidden shadow-sm">
-                        <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="User" />
+                      <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-100 overflow-hidden shadow-sm">
+                        <img src={`https://i.pravatar.cc/100?img=${i+15}`} alt="User" />
                       </div>
                     ))}
                   </div>
-                  <span className="text-sm font-bold text-slate-900">500+ Happy Patients</span>
-                  <span className="text-[10px] text-slate-400 block">Based on 2023-2026 feedback</span>
+                  <div>
+                    <span className="text-sm font-bold text-slate-900 block leading-tight">Trusted Care</span>
+                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">500+ Patients</span>
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
@@ -351,66 +420,73 @@ IMPORTANT GUIDELINES:
         </div>
       </section>
 
-      {/* The Doctor2U Difference - Unique Pillar Trinity */}
-      <section className="py-24 bg-white relative z-20">
+      {/* The Doctor2U Difference - Scroll-Triggered Reveal */}
+      <section className="py-32 bg-white relative z-20">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-end justify-between mb-16 gap-8">
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
-                <Award size={12} />
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col lg:flex-row items-end justify-between mb-24 gap-12"
+          >
+            <div className="max-w-3xl text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-slate-100 text-slate-600 px-5 py-2 rounded-full text-[11px] font-bold mb-8 tracking-[0.3em] uppercase">
+                <Award size={14} className="text-teal-600" />
                 <span>The Patient-First Choice</span>
               </div>
-              <h2 className="text-4xl md:text-6xl font-display font-bold text-slate-900 tracking-tighter leading-[0.95]">
-                Why Thousands Choose <br />
-                <span className="text-teal-700">Doctor2U.</span>
+              <h2 className="text-5xl md:text-8xl font-display font-bold text-slate-900 tracking-tighter leading-[0.9] mb-4">
+                Redefining the <br />
+                <span className="text-teal-700 italic">Medical Standard.</span>
               </h2>
             </div>
-            <p className="text-lg text-slate-500 max-w-md font-medium leading-relaxed">
+            <p className="text-xl text-slate-500 max-w-md font-medium leading-relaxed pb-2">
               We've combined clinical expertise with modern innovation to create a healthcare experience that respects your time and health.
             </p>
-          </div>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               {
                 icon: Sparkles,
                 title: "AI-Powered Preparation",
                 subtitle: "The Innovation",
                 desc: "Map your symptoms with our clinical-grade AI tool before your appointment. Walk in feeling prepared and walk out with a clear medical roadmap.",
-                accent: "bg-amber-50 text-amber-700",
-                border: "border-amber-100/50"
+                accent: "bg-teal-50 text-teal-700",
+                gradient: "from-teal-50 to-teal-100/30"
               },
               {
                 icon: HomeIcon,
                 title: "Care That Comes to You",
                 subtitle: "The Convenience",
                 desc: "No more waiting rooms. Choose from secure Video calls, local Clinic visits, or Expert Home visits across Manchester and Lancashire.",
-                accent: "bg-teal-50 text-teal-700",
-                border: "border-teal-100/50"
+                accent: "bg-teal-600 text-white",
+                gradient: "from-white to-teal-50/20"
               },
               {
                 icon: ShieldCheck,
                 title: "Full Clinical Authority",
                 subtitle: "The Treatment",
                 desc: "We don't just 'suggest'—we treat. Receive GMC-registered prescriptions, private specialist referrals, and blood tests on the same day.",
-                accent: "bg-indigo-50 text-indigo-700",
-                border: "border-indigo-100/50"
+                accent: "bg-teal-900 text-teal-100",
+                gradient: "from-white to-slate-50"
               }
             ].map((pillar, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className={`p-10 rounded-[2.5rem] border ${pillar.border} bg-white shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 group flex flex-col items-center text-center md:items-start md:text-left`}
+                transition={{ delay: i * 0.2, duration: 0.6 }}
+                whileHover={{ y: -15, scale: 1.02 }}
+                className={`p-12 rounded-[3.5rem] border border-slate-100 bg-gradient-to-br ${pillar.gradient} shadow-sm hover:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.08)] transition-all duration-700 group flex flex-col items-center text-center md:items-start md:text-left cursor-pointer`}
               >
-                <div className={`w-16 h-16 rounded-2xl ${pillar.accent} flex items-center justify-center mb-8 group-hover:rotate-6 transition-transform duration-500`}>
-                  <pillar.icon size={32} />
+                <div className={`w-20 h-20 rounded-[1.75rem] ${pillar.accent} flex items-center justify-center mb-10 shadow-lg group-hover:rotate-12 transition-transform duration-500`}>
+                  <pillar.icon size={40} />
                 </div>
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 mb-2 block">{pillar.subtitle}</span>
-                <h3 className="text-2xl font-display font-bold text-slate-900 mb-4 tracking-tight leading-tight">{pillar.title}</h3>
-                <p className="text-slate-500 leading-relaxed text-sm">{pillar.desc}</p>
+                <span className="text-[11px] font-extrabold uppercase tracking-[0.4em] text-teal-700/50 mb-4 block leading-none">{pillar.subtitle}</span>
+                <h3 className="text-3xl font-display font-bold text-slate-900 mb-6 tracking-tight leading-none group-hover:text-teal-700 transition-colors">{pillar.title}</h3>
+                <p className="text-slate-500 leading-relaxed text-lg font-medium opacity-80">{pillar.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -504,7 +580,7 @@ IMPORTANT GUIDELINES:
               <motion.button 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => setPage('booking')}
+                onClick={() => navigate('/book')}
                 className="bg-teal-700 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center justify-center gap-3 w-full sm:w-auto"
               >
                 Book a Home Visit Now
@@ -876,7 +952,7 @@ IMPORTANT GUIDELINES:
               <p className="text-lg text-slate-400">Comprehensive assessments and expert consultations for every stage of life.</p>
             </div>
             <button 
-              onClick={() => setPage('booking')}
+              onClick={() => navigate('/book')}
               className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all shadow-lg shadow-teal-900/20"
             >
               View All Services
@@ -902,7 +978,7 @@ IMPORTANT GUIDELINES:
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.05 }}
                 className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group cursor-pointer"
-                onClick={() => setPage(item.page as Page)}
+                onClick={() => navigate(getPath(item.page))}
               >
                 <div className="flex items-center gap-4">
                   <div className="w-2 h-2 rounded-full bg-medical-500 group-hover:scale-150 transition-transform"></div>
@@ -923,7 +999,7 @@ IMPORTANT GUIDELINES:
               <div className="w-12 h-1 bg-teal-600 rounded-full"></div>
             </div>
             <button 
-              onClick={() => setPage('services')}
+              onClick={() => navigate('/services')}
               className="text-teal-700 font-bold text-sm hover:text-teal-800 flex items-center gap-2 group"
             >
               View Details
@@ -939,7 +1015,7 @@ IMPORTANT GUIDELINES:
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                onClick={() => setPage('services')}
+                onClick={() => navigate('/services')}
                 className={`group relative rounded-3xl p-6 transition-all duration-300 cursor-pointer overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-teal-900/5 ${
                   idx === 0 ? 'bg-teal-700 text-white border-teal-600' : 'bg-slate-50 hover:bg-white text-slate-900'
                 }`}
@@ -1145,7 +1221,7 @@ IMPORTANT GUIDELINES:
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                onClick={() => post.link && setPage(post.link)}
+                onClick={() => navigate(getPath(post.link))}
                 className={`bg-white rounded-[2rem] overflow-hidden shadow-sm border border-slate-100 group cursor-pointer hover:shadow-lg transition-all duration-500 ${post.link ? 'hover:border-teal-200' : ''}`}
               >
                 <div className="h-48 overflow-hidden relative">
@@ -1242,13 +1318,13 @@ IMPORTANT GUIDELINES:
               </ul>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
-                  onClick={() => setPage('treatment-plan')}
+                  onClick={() => navigate('/treatment-plan')}
                   className="flex-1 bg-white text-slate-900 border border-slate-200 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all shadow-sm text-sm"
                 >
                   Sample Health Plan
                 </button>
                 <button 
-                  onClick={() => setPage('booking')}
+                  onClick={() => navigate('/book')}
                   className="flex-1 bg-teal-600 text-white py-4 rounded-xl font-bold hover:bg-teal-700 transition-all shadow-lg text-sm"
                 >
                   Get Analysis
@@ -1361,7 +1437,7 @@ IMPORTANT GUIDELINES:
                 ].map((area, i) => (
                   <div 
                     key={i} 
-                    onClick={() => area.page && setPage(area.page as Page)}
+                    onClick={() => navigate(getPath(area.page as string))}
                     className={`bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all ${area.page ? 'cursor-pointer hover:border-teal-200' : ''}`}
                   >
                     <h3 className="font-bold text-slate-900 mb-2 flex items-center justify-between gap-2">
@@ -1543,7 +1619,7 @@ IMPORTANT GUIDELINES:
                 ))}
               </div>
               <button 
-                onClick={() => setPage('contact')}
+                onClick={() => navigate('/contact')}
                 className="text-teal-700 font-bold text-base flex items-center gap-2 hover:gap-3 transition-all"
               >
                 Check your area <ArrowRight size={18} />
@@ -1579,7 +1655,7 @@ IMPORTANT GUIDELINES:
                 <motion.button 
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => setPage('booking')}
+                  onClick={() => navigate('/book')}
                   className="bg-teal-700 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-teal-800 transition-all shadow-2xl w-full sm:w-auto"
                 >
                   Book Appointment
@@ -1612,7 +1688,7 @@ IMPORTANT GUIDELINES:
               </div>
             </div>
           </div>
-          <HubLink setPage={setPage} index={0} />
+        <HubLink index={0} />
         </div>
       </section>
     </div>

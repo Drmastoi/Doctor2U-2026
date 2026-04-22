@@ -1,11 +1,11 @@
 import React from 'react';
 import { Page, FAQ } from '../types';
 import HubLink from '../components/HubLink';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { CheckCircle2, ArrowRight, Phone, MessageSquare, ChevronDown } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Phone, MessageSquare, ChevronDown, Shield as ShieldIcon } from 'lucide-react';
 
 interface ServiceDetailProps {
-  setPage: (page: Page) => void;
   title: string;
   subtitle: string;
   description: React.ReactNode;
@@ -17,16 +17,16 @@ interface ServiceDetailProps {
 }
 
 export default function ServiceDetail({ 
-  setPage, 
   title, 
   subtitle, 
   description, 
   whoItIsFor, 
   whatHappens, 
   pricing, 
-  faqs, 
-  image 
+  faqs,
+  image
 }: ServiceDetailProps) {
+  const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = React.useState<number | null>(null);
 
   return (
@@ -49,7 +49,7 @@ export default function ServiceDetail({
               </div>
               <div className="flex flex-wrap gap-4">
                 <button 
-                  onClick={() => setPage('booking')}
+                  onClick={() => navigate('/book')}
                   className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all shadow-lg flex items-center gap-2"
                 >
                   Book Online
@@ -122,7 +122,7 @@ export default function ServiceDetail({
                 We provide transparent, fixed-price consultations with no hidden fees. All prescriptions and referrals are included in the price.
               </p>
               <button 
-                onClick={() => setPage('booking')}
+                onClick={() => navigate('/book')}
                 className="w-full bg-teal-600 text-white py-4 rounded-xl font-bold hover:bg-teal-700 transition-all shadow-lg mb-4"
               >
                 Book Online Now
@@ -163,7 +163,7 @@ export default function ServiceDetail({
         </section>
       )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <HubLink setPage={setPage} index={12} />
+        <HubLink index={12} />
       </div>
     </div>
   );

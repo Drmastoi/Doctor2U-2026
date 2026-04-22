@@ -1,18 +1,18 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   CheckCircle2, ArrowRight, User as DoctorIcon, Clock, ShieldCheck, Star, 
   MapPin, Phone, MessageSquare, BrainCircuit, Users, Stethoscope, 
   ChevronDown, Calendar, Activity, ClipboardList
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Page } from '../../types';
 import HubLink from '../../components/HubLink';
 
-interface PrivateDoctorManchesterProps {
-  setPage: (page: Page) => void;
-}
+interface PrivateDoctorManchesterProps {}
 
-export default function PrivateDoctorManchesterPage({ setPage }: PrivateDoctorManchesterProps) {
+export default function PrivateDoctorManchesterPage({}: PrivateDoctorManchesterProps) {
+  const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = React.useState<number | null>(null);
 
   React.useEffect(() => {
@@ -90,7 +90,7 @@ export default function PrivateDoctorManchesterPage({ setPage }: PrivateDoctorMa
               </p>
               <div className="flex flex-wrap gap-4 mb-8">
                 <button 
-                  onClick={() => setPage('booking')}
+                  onClick={() => navigate('/book')}
                   className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all shadow-xl shadow-teal-900/20 flex items-center gap-2"
                 >
                   Book Online Today
@@ -145,7 +145,7 @@ export default function PrivateDoctorManchesterPage({ setPage }: PrivateDoctorMa
               Manchester is home to some of the world's leading medical facilities, yet accessing primary care can still be Frustratingly slow. Our <strong>Private Doctor Manchester</strong> service was established to provide a convenient, reliable, and high-quality alternative for those who value their time and their health.
             </p>
             <div className="bg-teal-50 p-6 rounded-2xl border border-teal-100 mb-8 font-bold text-teal-900">
-               We also provide a <button onClick={() => setPage('doctor-home-visit-manchester')} className="text-teal-700 underline underline-offset-4 decoration-2 decoration-teal-300 hover:text-teal-900 transition-colors">home visit GP in Manchester</button> for patients who cannot travel.
+               We also provide a <button onClick={() => navigate('/doctor-home-visit-manchester')} className="text-teal-700 underline underline-offset-4 decoration-2 decoration-teal-300 hover:text-teal-900 transition-colors">home visit GP in Manchester</button> for patients who cannot travel.
             </div>
             <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">The Benefits of Private Healthcare in Manchester</h3>
             <p className="text-slate-600 mb-6 leading-relaxed">
@@ -172,22 +172,22 @@ export default function PrivateDoctorManchesterPage({ setPage }: PrivateDoctorMa
 
             <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">Meeting E-E-A-T Standards: Our Clinical Integrity</h3>
             <p className="text-slate-600 mb-6 leading-relaxed">
-              Trust is the foundation of any medical relationship. At Doctor2U, we ensure that every patient interaction meets the highest standards of General Medical Council (GMC) regulations. Our doctors are not just clinicians; they are health advocates who practice under a rigorous <button onClick={() => setPage('clinical-governance')} className="text-teal-700 font-bold hover:underline">Clinical Governance</button> framework. We believe that by providing direct access to <button onClick={() => setPage('our-doctors')} className="text-teal-700 font-bold hover:underline">GMC-registered doctors</button>, we provide more than just an appointment—we provide peace of mind.
+              Trust is the foundation of any medical relationship. At Doctor2U, we ensure that every patient interaction meets the highest standards of General Medical Council (GMC) regulations. Our doctors are not just clinicians; they are health advocates who practice under a rigorous <button onClick={() => navigate('/clinical-governance')} className="text-teal-700 font-bold hover:underline">Clinical Governance</button> framework. We believe that by providing direct access to <button onClick={() => navigate('/our-doctors')} className="text-teal-700 font-bold hover:underline">GMC-registered doctors</button>, we provide more than just an appointment—we provide peace of mind.
             </p>
 
             <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">Specialised Care Across Manchester</h3>
             <p className="text-slate-600 mb-8 leading-relaxed">
-              We recognize that medical needs are diverse. That is why we have established specialist care pathways within our Manchester practice. If you are a parent seeking an <button onClick={() => setPage('urgent-childrens-doctor-manchester')} className="text-teal-700 font-bold hover:underline">urgent children's doctor in Manchester</button>, or you require immediate assistance for infections such as <button onClick={() => setPage('emergency-uti-treatment-manchester')} className="text-teal-700 font-bold hover:underline">Emergency UTI treatment</button>, we have the clinical expertise ready to assist. For our more vulnerable community members, we offer dedicated <button onClick={() => setPage('elderly-care-home-visit-manchester')} className="text-teal-700 font-bold hover:underline">elderly care home visits</button> to ensure continuity of care in a comfortable setting.
+              We recognize that medical needs are diverse. That is why we have established specialist care pathways within our Manchester practice. If you are a parent seeking an <button onClick={() => navigate('/services/childrens-health')} className="text-teal-700 font-bold hover:underline">urgent children's doctor in Manchester</button>, or you require immediate assistance for infections such as <button onClick={() => navigate('/book')} className="text-teal-700 font-bold hover:underline">Emergency UTI treatment</button>, we have the clinical expertise ready to assist. For our more vulnerable community members, we offer dedicated <button onClick={() => navigate('/services/home-visit')} className="text-teal-700 font-bold hover:underline">elderly care home visits</button> to ensure continuity of care in a comfortable setting.
             </p>
 
             <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">NICE-Aligned Clinical Standards</h3>
             <p className="text-slate-600 mb-8 leading-relaxed">
-              Every clinical decision made by our private doctors is backed by the latest evidence. We align our practice with the National Institute for Health and Care Excellence (NICE) guidelines. Whether we are managing minor infections, respiratory issues like <button onClick={() => setPage('chest-infection-home-visit-manchester')} className="text-teal-700 font-bold hover:underline">chest infections</button>, or complex chronic conditions, you can be rest assured that your care follows the Gold standard of UK medical practice.
+              Every clinical decision made by our private doctors is backed by the latest evidence. We align our practice with the National Institute for Health and Care Excellence (NICE) guidelines. Whether we are managing minor infections, respiratory issues like <button onClick={() => navigate('/book')} className="text-teal-700 font-bold hover:underline">chest infections</button>, or complex chronic conditions, you can be rest assured that your care follows the Gold standard of UK medical practice.
             </p>
 
             <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">A Patient-First Philosophy in the North West</h3>
             <p className="text-slate-600 mb-8 leading-relaxed">
-              Our Manchester practice is built on a simple "Patient-First" philosophy. This means zero registration requirements, transparent pricing, and a commitment to seeing you on the same day you call. We don't believe in barriers; we believe in health. From our central Manchester clinical hub, we serve the entire Greater Manchester footprint including Salford, Trafford, and Stockport. If you are experiencing <button onClick={() => setPage('out-of-hours-doctor-manchester')} className="text-teal-700 font-bold hover:underline">out-of-hours health concerns</button>, our extended availability ensures you are never left without a professional medical opinion.
+              Our Manchester practice is built on a simple "Patient-First" philosophy. This means zero registration requirements, transparent pricing, and a commitment to seeing you on the same day you call. We don't believe in barriers; we believe in health. From our central Manchester clinical hub, we serve the entire Greater Manchester footprint including Salford, Trafford, and Stockport. If you are experiencing <button onClick={() => navigate('/book')} className="text-teal-700 font-bold hover:underline">out-of-hours health concerns</button>, our extended availability ensures you are never left without a professional medical opinion.
             </p>
 
             <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">Innovative AI Pre-Consultation Insights</h3>
@@ -231,9 +231,15 @@ export default function PrivateDoctorManchesterPage({ setPage }: PrivateDoctorMa
                   </div>
                 </button>
                 {activeFaq === index && (
-                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="px-8 pb-8">
-                    <p className="text-slate-500 text-sm leading-relaxed">{faq.answer}</p>
-                  </motion.div>
+                  <AnimatePresence>
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }} 
+                      animate={{ opacity: 1, height: 'auto' }} 
+                      className="px-8 pb-8"
+                    >
+                      <p className="text-slate-500 text-sm leading-relaxed">{faq.answer}</p>
+                    </motion.div>
+                  </AnimatePresence>
                 )}
               </div>
             ))}
@@ -250,7 +256,7 @@ export default function PrivateDoctorManchesterPage({ setPage }: PrivateDoctorMa
           </p>
           <div className="flex flex-col sm:flex-row gap-5 justify-center">
             <button 
-              onClick={() => setPage('booking')}
+              onClick={() => navigate('/book')}
               className="bg-teal-700 text-white px-10 py-5 rounded-2xl font-bold shadow-xl shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center justify-center gap-2"
             >
               Book My Appointment
@@ -265,7 +271,7 @@ export default function PrivateDoctorManchesterPage({ setPage }: PrivateDoctorMa
             </a>
           </div>
         </div>
-        <HubLink setPage={setPage} index={4} />
+        <HubLink index={4} />
       </section>
     </div>
   );

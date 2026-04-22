@@ -1,11 +1,11 @@
 import React from 'react';
-import { Page, FAQ } from '../types';
+import { useNavigate } from 'react-router-dom';
+import { FAQ } from '../types';
 import HubLink from '../components/HubLink';
 import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowRight, Phone, MapPin, ShieldCheck, Clock, Star, MessageSquare, ChevronDown, BrainCircuit, Users, Stethoscope } from 'lucide-react';
 
 interface LocationLandingProps {
-  setPage: (page: Page) => void;
   locationName: string;
   serviceType: string;
   h1: string;
@@ -18,7 +18,6 @@ interface LocationLandingProps {
 }
 
 export default function LocationLanding({
-  setPage,
   locationName,
   serviceType,
   h1,
@@ -30,6 +29,7 @@ export default function LocationLanding({
   image
 }: LocationLandingProps) {
   const [activeFaq, setActiveFaq] = React.useState<number | null>(null);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     // Set document title for SEO
@@ -107,7 +107,7 @@ export default function LocationLanding({
               </p>
               <div className="flex flex-wrap gap-4 mb-8">
                 <button 
-                  onClick={() => setPage('booking')}
+                  onClick={() => navigate('/book')}
                   className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all shadow-lg flex items-center gap-2"
                 >
                   Book Online
@@ -170,7 +170,7 @@ export default function LocationLanding({
                     ))}
                   </ul>
                   <button 
-                    onClick={() => setPage('booking')}
+                    onClick={() => navigate('/book')}
                     className="w-full mt-10 bg-white text-slate-900 py-4 rounded-xl font-bold hover:bg-teal-50 transition-all flex items-center justify-center gap-2"
                   >
                     Check Availability in {locationName}
@@ -221,7 +221,7 @@ export default function LocationLanding({
                 Review your generated health insights in your own time, then choose to share them with our GMC-registered doctors. This ensures your clinic or home visit time is focused purely on your diagnosis and treatment plan.
               </p>
               <button 
-                onClick={() => setPage('booking')}
+                onClick={() => navigate('/book')}
                 className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all flex items-center gap-2 group"
               >
                 Try AI Insights First
@@ -315,7 +315,7 @@ export default function LocationLanding({
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
-              onClick={() => setPage('booking')}
+              onClick={() => navigate('/book')}
               className="bg-white text-teal-900 px-10 py-5 rounded-2xl font-bold hover:bg-teal-50 transition-all shadow-xl shadow-black/20 flex items-center justify-center gap-2"
             >
               Book Your Appointment
@@ -330,7 +330,7 @@ export default function LocationLanding({
             </a>
           </div>
         </div>
-        <HubLink setPage={setPage} index={10} />
+        <HubLink index={10} />
       </section>
     </div>
   );

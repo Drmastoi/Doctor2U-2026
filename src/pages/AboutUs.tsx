@@ -1,18 +1,15 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { 
   History, Users, Target, Heart, ShieldCheck, 
   MapPin, Stethoscope, BrainCircuit, Activity,
   ArrowRight, CheckCircle2
 } from 'lucide-react';
-import { Page } from '../types';
+import { useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
 
-interface AboutUsProps {
-  setPage: (page: Page) => void;
-}
-
-export default function AboutUs({ setPage }: AboutUsProps) {
+export default function AboutUs() {
+  const navigate = useNavigate();
   React.useEffect(() => {
     document.title = "About Us | The Doctor2U Mission | Manchester Private Doctors";
   }, []);
@@ -153,14 +150,14 @@ export default function AboutUs({ setPage }: AboutUsProps) {
              </p>
              <div className="flex flex-col sm:flex-row gap-6 justify-center">
                <button 
-                 onClick={() => setPage('our-doctors')}
+                 onClick={() => navigate('/our-doctors')}
                  className="bg-medical-500 text-slate-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-medical-400 transition-all flex items-center justify-center gap-2"
                >
                  Meet Our Doctors
                  <ArrowRight size={20} />
                </button>
                <button 
-                 onClick={() => setPage('clinical-governance')}
+                 onClick={() => navigate('/clinical-governance')}
                  className="bg-white/10 text-white border border-white/20 px-10 py-5 rounded-2xl font-black text-lg hover:bg-white/20 transition-all"
                >
                  Our Governance
@@ -180,7 +177,7 @@ export default function AboutUs({ setPage }: AboutUsProps) {
             ))}
           </div>
         </div>
-        <HubLink setPage={setPage} index={1} />
+        <HubLink index={1} />
       </div>
     </div>
   );

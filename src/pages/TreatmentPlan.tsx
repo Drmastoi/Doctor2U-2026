@@ -4,14 +4,11 @@ import {
   CheckCircle2, Download, Printer, Calendar, Pill, 
   FileText, ArrowLeft, HeartPulse, Activity, ShieldCheck 
 } from 'lucide-react';
-import { Page } from '../types';
+import { useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
 
-interface TreatmentPlanProps {
-  setPage: (page: Page) => void;
-}
-
-export default function TreatmentPlan({ setPage }: TreatmentPlanProps) {
+export default function TreatmentPlan() {
+  const navigate = useNavigate();
   // Mock data for a treatment plan
   const planData = {
     patientName: "John Doe",
@@ -36,7 +33,7 @@ export default function TreatmentPlan({ setPage }: TreatmentPlanProps) {
     <div className="bg-slate-50 min-h-screen pt-32 pb-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <button 
-          onClick={() => setPage('home')}
+          onClick={() => navigate('/')}
           className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors mb-8 group"
         >
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
@@ -141,7 +138,7 @@ export default function TreatmentPlan({ setPage }: TreatmentPlanProps) {
                 Print Plan
               </button>
               <button 
-                onClick={() => setPage('booking')}
+                onClick={() => navigate('/book')}
                 className="bg-slate-900 text-white px-8 py-4 rounded-xl font-bold hover:bg-slate-800 transition-all ml-auto"
               >
                 Book Follow-up
@@ -156,7 +153,7 @@ export default function TreatmentPlan({ setPage }: TreatmentPlanProps) {
             </div>
           </div>
         </motion.div>
-        <HubLink setPage={setPage} index={13} />
+        <HubLink index={13} />
       </div>
     </div>
   );

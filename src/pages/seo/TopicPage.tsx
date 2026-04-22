@@ -1,18 +1,18 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { 
   CheckCircle2, ArrowRight, ShieldCheck, Clock, MapPin, 
   Phone, AlertCircle, Activity, HeartPulse, Stethoscope 
 } from 'lucide-react';
-import { Page } from '../../types';
+import { useNavigate } from 'react-router-dom';
 import HubLink from '../../components/HubLink';
 
 interface TopicPageProps {
-  setPage: (page: Page) => void;
   title: string;
   subtitle: string;
   h1: string;
   metaTitle: string;
+  metaTitleSuffix?: string;
   metaDesc: string;
   openingText: string;
   conditionsLabel: string;
@@ -23,9 +23,10 @@ interface TopicPageProps {
 }
 
 export default function TopicPage({ 
-  setPage, title, subtitle, h1, metaTitle, metaDesc, openingText, 
+  title, subtitle, h1, metaTitle, metaDesc, openingText, 
   conditionsLabel, conditions, whyChooseUs, faqs, ctaText 
 }: TopicPageProps) {
+  const navigate = useNavigate();
   React.useEffect(() => {
     document.title = metaTitle;
     const metaTag = document.querySelector('meta[name="description"]');
@@ -58,7 +59,7 @@ export default function TopicPage({
         {/* Breadcrumb */}
         <div className="mb-12">
           <button 
-            onClick={() => setPage('doctor-home-visit-manchester')}
+            onClick={() => navigate('/services/home-visit')}
             className="text-slate-400 hover:text-teal-700 transition-colors text-xs font-black uppercase tracking-widest flex items-center gap-2"
           >
             ← Home Visits Manchester
@@ -82,7 +83,7 @@ export default function TopicPage({
           </p>
           <div className="flex flex-wrap gap-4">
             <button 
-              onClick={() => setPage('booking')}
+              onClick={() => navigate('/book')}
               className="bg-slate-900 text-white px-10 py-5 rounded-2xl font-black hover:bg-slate-800 transition-all shadow-2xl flex items-center gap-2"
             >
               Book Specialist Visit
@@ -126,7 +127,7 @@ export default function TopicPage({
           </div>
           
           <div className="p-8 bg-teal-50 rounded-[2rem] border border-teal-100 text-teal-900 font-bold italic text-center">
-            Need immediate care? We offer a <button onClick={() => setPage('doctor-home-visit-manchester')} className="text-teal-700 underline underline-offset-4 decoration-2 decoration-teal-300 hover:text-teal-900 transition-colors">{homeAnchor}</button> for patients who prefer to be seen at home.
+            Need immediate care? We offer a <button onClick={() => navigate('/services/home-visit')} className="text-teal-700 underline underline-offset-4 decoration-2 decoration-teal-300 hover:text-teal-900 transition-colors">{homeAnchor}</button> for patients who prefer to be seen at home.
           </div>
         </section>
 
@@ -182,31 +183,31 @@ export default function TopicPage({
           </h2>
           <div className="flex flex-col items-center gap-6">
             <button 
-              onClick={() => setPage('booking')}
+              onClick={() => navigate('/book')}
               className="bg-medical-500 text-slate-900 px-12 py-5 rounded-2xl font-black text-xl hover:bg-medical-400 transition-all shadow-2xl"
             >
               Request Doctor Now
             </button>
             <p className="text-sm text-slate-400">
-              Or book a <button onClick={() => setPage('same-day-doctor-manchester')} className="text-teal-400 font-bold hover:underline">{gpAnchor}</button> for faster clinic access.
+              Or book a <button onClick={() => navigate('/services/clinic')} className="text-teal-400 font-bold hover:underline">{gpAnchor}</button> for faster clinic access.
             </p>
           </div>
         </div>
 
         {/* Footer Internal Links */}
         <div className="mt-24 pt-12 border-t border-slate-100 italic">
-           <HubLink setPage={setPage} index={h1.length} />
+           <HubLink index={h1.length} />
            <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-300 mt-8 mb-8">Authoritative Resources</h4>
            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
              {[
-               { id: 'our-doctors', label: 'Meet Our GMC Team' },
-               { id: 'clinical-governance', label: 'Clinical Standards' },
-               { id: 'same-day-doctor-manchester', label: 'Urgent Clinic' },
-               { id: 'doctor-home-visit-manchester', label: 'Full Home Visit Guide' }
+               { path: '/our-doctors', label: 'Meet Our GMC Team' },
+               { path: '/clinical-governance', label: 'Clinical Standards' },
+               { path: '/services/clinic', label: 'Urgent Clinic' },
+               { path: '/services/home-visit', label: 'Full Home Visit Guide' }
              ].map(link => (
                <button
-                 key={link.id}
-                 onClick={() => setPage(link.id as Page)}
+                 key={link.path}
+                 onClick={() => navigate(link.path)}
                  className="text-[10px] font-bold text-slate-400 hover:text-teal-700 text-left transition-colors uppercase tracking-widest"
                >
                  {link.label}

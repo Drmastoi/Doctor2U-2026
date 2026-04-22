@@ -1,24 +1,20 @@
 import React from 'react';
 import { Shield, ArrowLeft, Brain, Lock, Eye } from 'lucide-react';
-import { Page } from '../types';
+import { Link } from 'react-router-dom';
 import HubLink from '../components/HubLink';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
-interface PrivacyPolicyProps {
-  setPage: (page: Page) => void;
-}
-
-export default function PrivacyPolicy({ setPage }: PrivacyPolicyProps) {
+export default function PrivacyPolicy() {
   return (
     <div className="bg-white min-h-screen pt-32 pb-16 relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <button 
-          onClick={() => setPage('home')}
+        <Link 
+          to="/"
           className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors mb-8 group"
         >
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
           <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
-        </button>
+        </Link>
 
         <div className="text-center mb-16">
           <motion.div 
@@ -77,7 +73,7 @@ export default function PrivacyPolicy({ setPage }: PrivacyPolicyProps) {
             Under GDPR, you have the right to access your medical records, request corrections, or ask for your data to be deleted (subject to clinical record-keeping requirements).
           </p>
         </div>
-        <HubLink setPage={setPage} index={11} />
+        <HubLink index={11} />
       </div>
     </div>
   );

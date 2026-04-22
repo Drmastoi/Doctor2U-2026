@@ -1,25 +1,46 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, ShieldCheck, Award, Clock, MessageSquare } from 'lucide-react';
-import { Page } from '../types';
+import { Link } from 'react-router-dom';
 import Logo from './Logo';
 
-interface FooterProps {
-  setPage: (page: Page) => void;
-}
+interface FooterProps {}
 
-export default function Footer({ setPage }: FooterProps) {
+export default function Footer({}: FooterProps) {
+  const getPath = (id: string) => {
+    const paths: Record<string, string> = {
+      'home': '/',
+      'services': '/services',
+      'contact': '/contact',
+      'booking': '/book',
+      'innovation': '/innovation',
+      'privacy': '/privacy',
+      'about-us': '/about-us',
+      'our-doctors': '/our-doctors',
+      'clinical-governance': '/clinical-governance',
+      'urgent-childrens-doctor-manchester': '/services/childrens-health',
+      'emergency-uti-treatment-manchester': '/book',
+      'elderly-care-home-visit-manchester': '/services/home-visit',
+      'chest-infection-home-visit-manchester': '/book',
+      'back-pain-home-visit-manchester': '/book',
+      'doctor-home-visit-manchester': '/doctor-home-visit-manchester',
+      'same-day-doctor-manchester': '/same-day-doctor-manchester',
+      'urgent-doctor-manchester': '/urgent-doctor-manchester',
+      'pgp-manchester': '/private-doctor/manchester',
+      'out-of-hours-doctor-manchester': '/services/out-of-hours',
+      'doctor-nursing-home-manchester': '/services/home-visit'
+    };
+    return paths[id] || '/';
+  };
+
   return (
     <footer className="bg-slate-50 text-slate-900 pt-24 pb-12 border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           {/* Brand */}
           <div className="space-y-8">
-            <div 
-              className="cursor-pointer"
-              onClick={() => setPage('home')}
-            >
+            <Link to="/" className="cursor-pointer block">
               <Logo variant="dark" />
-            </div>
+            </Link>
             <p className="text-slate-500 leading-relaxed max-w-xs">
               your Home , Your time , Your Doctor. GMC-registered expert medical care across Lancashire and Manchester.
             </p>
@@ -44,13 +65,13 @@ export default function Footer({ setPage }: FooterProps) {
                 { id: 'contact', label: 'Contact & Support' }
               ].map((item) => (
                 <li key={item.id}>
-                  <button 
-                    onClick={() => setPage(item.id as Page)}
+                  <Link 
+                    to={getPath(item.id)}
                     className="text-slate-500 hover:text-teal-700 transition-colors flex items-center gap-2 group"
                   >
                     <div className="w-1.5 h-1.5 rounded-full bg-teal-600 opacity-0 group-hover:opacity-100 transition-all"></div>
                     {item.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -68,13 +89,13 @@ export default function Footer({ setPage }: FooterProps) {
                 { id: 'back-pain-home-visit-manchester', label: 'Acute Back Pain Relief' }
               ].map((item) => (
                 <li key={item.id}>
-                  <button 
-                    onClick={() => setPage(item.id as Page)}
+                  <Link 
+                    to={getPath(item.id)}
                     className="text-slate-500 hover:text-teal-700 transition-colors flex items-center gap-2 group text-left"
                   >
                     <div className="w-1.5 h-1.5 rounded-full bg-teal-600 opacity-0 group-hover:opacity-100 transition-all"></div>
                     {item.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -93,13 +114,13 @@ export default function Footer({ setPage }: FooterProps) {
                 { id: 'doctor-nursing-home-manchester', label: 'Nursing Home Visits' }
               ].map((item) => (
                 <li key={item.id}>
-                  <button 
-                    onClick={() => setPage(item.id as Page)}
+                  <Link 
+                    to={getPath(item.id)}
                     className="text-slate-500 hover:text-teal-700 transition-colors flex items-center gap-2 group text-left"
                   >
                     <div className="w-1.5 h-1.5 rounded-full bg-teal-600 opacity-0 group-hover:opacity-100 transition-all"></div>
                     {item.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -113,9 +134,9 @@ export default function Footer({ setPage }: FooterProps) {
               © {new Date().getFullYear()} Doctor2U. All rights reserved. Registered in England & Wales.
             </p>
             <div className="flex gap-8 text-sm text-slate-400">
-              <button onClick={() => setPage('privacy')} className="hover:text-teal-700 transition-colors">Privacy Policy</button>
-              <button onClick={() => setPage('home')} className="hover:text-teal-700 transition-colors">Terms of Service</button>
-              <button onClick={() => setPage('home')} className="hover:text-teal-700 transition-colors">Cookie Policy</button>
+              <Link to="/privacy" className="hover:text-teal-700 transition-colors">Privacy Policy</Link>
+              <Link to="/" className="hover:text-teal-700 transition-colors">Terms of Service</Link>
+              <Link to="/" className="hover:text-teal-700 transition-colors">Cookie Policy</Link>
             </div>
           </div>
           

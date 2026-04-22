@@ -1,15 +1,10 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, ShieldCheck, Clock, ArrowLeft, Brain, CheckCircle2 } from 'lucide-react';
-import { Page } from '../types';
+import { Link } from 'react-router-dom';
 import HubLink from '../components/HubLink';
 
-interface BookingPageProps {
-  setPage: (page: Page) => void;
-  sharedAnalysis?: string;
-}
-
-export default function BookingPage({ setPage, sharedAnalysis }: BookingPageProps) {
+export default function BookingPage() {
   return (
     <div className="bg-white min-h-screen pt-32 pb-16 relative overflow-hidden">
       {/* Background Blobs for Modern Feel */}
@@ -20,13 +15,13 @@ export default function BookingPage({ setPage, sharedAnalysis }: BookingPageProp
       </div>
 
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <button 
-          onClick={() => setPage('home')}
+        <Link 
+          to="/"
           className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors mb-8 group"
         >
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
           <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
-        </button>
+        </Link>
 
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div 
@@ -48,25 +43,6 @@ export default function BookingPage({ setPage, sharedAnalysis }: BookingPageProp
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
           <div className="lg:col-span-1 space-y-4">
-            {sharedAnalysis && (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-teal-700 text-white p-6 rounded-2xl shadow-xl shadow-teal-900/20 border border-teal-600 mb-6"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <Brain size={20} className="text-teal-300" />
-                  <h3 className="font-bold tracking-tight">Analysis Attached</h3>
-                </div>
-                <p className="text-xs text-teal-100 leading-relaxed mb-4 line-clamp-4">
-                  {sharedAnalysis}
-                </p>
-                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-teal-300">
-                  <CheckCircle2 size={12} />
-                  Ready for your Doctor
-                </div>
-              </motion.div>
-            )}
             {[
               { icon: Calendar, title: "Instant Booking", desc: "Real-time availability with immediate confirmation." },
               { icon: ShieldCheck, title: "Secure Portal", desc: "End-to-end encryption for your medical data." },
@@ -115,7 +91,7 @@ export default function BookingPage({ setPage, sharedAnalysis }: BookingPageProp
             </motion.div>
           </div>
         </div>
-        <HubLink setPage={setPage} index={7} />
+        <HubLink index={7} />
       </div>
     </div>
   );

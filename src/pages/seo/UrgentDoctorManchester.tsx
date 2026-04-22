@@ -1,17 +1,17 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { 
   CheckCircle2, ArrowRight, Clock, ShieldCheck, Star, 
   MapPin, Phone, Activity, AlertCircle, Calendar, HeartPulse, Stethoscope, ChevronDown
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Page } from '../../types';
 import HubLink from '../../components/HubLink';
 
-interface UrgentDoctorManchesterProps {
-  setPage: (page: Page) => void;
-}
+interface UrgentDoctorManchesterProps {}
 
-export default function UrgentDoctorManchester({ setPage }: UrgentDoctorManchesterProps) {
+export default function UrgentDoctorManchester({}: UrgentDoctorManchesterProps) {
+  const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = React.useState<number | null>(null);
 
   React.useEffect(() => {
@@ -64,7 +64,7 @@ export default function UrgentDoctorManchester({ setPage }: UrgentDoctorManchest
             </p>
             <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
               <button 
-                onClick={() => setPage('booking')}
+                onClick={() => navigate('/book')}
                 className="bg-medical-500 text-slate-900 px-12 py-5 rounded-2xl font-bold text-xl shadow-2xl hover:bg-medical-400 transition-all flex items-center gap-3"
               >
                 Get Urgent Care
@@ -85,7 +85,7 @@ export default function UrgentDoctorManchester({ setPage }: UrgentDoctorManchest
             
             <div className="bg-teal-50 p-8 rounded-3xl border border-teal-100 mb-12">
                <p className="text-teal-900 font-bold text-lg mb-4">
-                 We also provide a <button onClick={() => setPage('doctor-home-visit-manchester')} className="text-teal-700 underline underline-offset-4 decoration-2 decoration-teal-300 hover:text-teal-900 transition-colors">home visit GP in Manchester</button> for patients who cannot travel.
+                 We also provide a <button onClick={() => navigate('/services/home-visit')} className="text-teal-700 underline underline-offset-4 decoration-2 decoration-teal-300 hover:text-teal-900 transition-colors">home visit GP in Manchester</button> for patients who cannot travel.
                </p>
             </div>
 
@@ -99,13 +99,13 @@ export default function UrgentDoctorManchester({ setPage }: UrgentDoctorManchest
       <section className="py-24 bg-medical-500">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <button 
-             onClick={() => setPage('booking')}
+             onClick={() => navigate('/book')}
              className="bg-slate-900 text-white px-12 py-6 rounded-2xl font-bold text-xl"
           >
             Book Urgent Review
           </button>
         </div>
-        <HubLink setPage={setPage} index={15} />
+        <HubLink index={15} />
       </section>
     </div>
   );

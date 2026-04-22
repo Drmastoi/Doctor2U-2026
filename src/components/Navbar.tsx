@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, MessageSquare, Calendar, Activity, ArrowRight } from 'lucide-react';
-import { Page } from '../types';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 import { motion, AnimatePresence } from 'motion/react';
 
-interface NavbarProps {
-  currentPage: Page;
-  setPage: (page: Page) => void;
-}
+interface NavbarProps {}
 
-export default function Navbar({ currentPage, setPage }: NavbarProps) {
+export default function Navbar({}: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const location = useLocation();
 
   React.useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -20,12 +18,14 @@ export default function Navbar({ currentPage, setPage }: NavbarProps) {
   }, []);
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'services', label: 'Services' },
-    { id: 'innovation', label: 'Innovation' },
-    { id: 'booking', label: 'Book Online' },
-    { id: 'contact', label: 'Contact Us' },
+    { path: '/', label: 'Home' },
+    { path: '/services', label: 'Services' },
+    { path: '/innovation', label: 'Innovation' },
+    { path: '/book', label: 'Book Online' },
+    { path: '/contact', label: 'Contact Us' },
   ];
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
@@ -38,34 +38,31 @@ export default function Navbar({ currentPage, setPage }: NavbarProps) {
             : 'bg-white/40 backdrop-blur-md border-white/20 py-4 shadow-sm'
         }`}>
           {/* Logo */}
-          <div 
-            className="cursor-pointer"
-            onClick={() => setPage('home')}
-          >
+          <Link to="/" className="cursor-pointer">
             <Logo variant="dark" />
-          </div>
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => setPage(item.id as Page)}
+              <Link
+                key={item.path}
+                to={item.path}
                 className={`text-sm font-bold transition-all hover:text-teal-700 relative group ${
-                  currentPage === item.id ? 'text-teal-700' : 'text-slate-600'
+                  isActive(item.path) ? 'text-teal-700' : 'text-slate-600'
                 }`}
               >
                 {item.label}
-                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-700 transition-all group-hover:w-full ${currentPage === item.id ? 'w-full' : ''}`}></span>
-              </button>
+                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-700 transition-all group-hover:w-full ${isActive(item.path) ? 'w-full' : ''}`}></span>
+              </Link>
             ))}
             <div className="h-6 w-px bg-slate-200 ml-2 mr-2"></div>
-            <button 
-              onClick={() => setPage('booking')}
+            <Link 
+              to="/book"
               className="bg-teal-700 text-white px-8 py-3 rounded-2xl text-xs font-bold hover:bg-teal-800 transition-all shadow-lg shadow-teal-900/20 flex items-center gap-2 uppercase tracking-widest"
             >
               Book Now
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -93,30 +90,26 @@ export default function Navbar({ currentPage, setPage }: NavbarProps) {
             className="md:hidden absolute top-24 left-4 right-4 bg-white/95 backdrop-blur-2xl rounded-[2.5rem] border border-slate-100 shadow-2xl p-6 space-y-2 z-[110]"
           >
             {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => {
-                  setPage(item.id as Page);
-                  setIsMenuOpen(false);
-                }}
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setIsMenuOpen(false)}
                 className={`block w-full text-left px-6 py-4 rounded-2xl text-base font-bold transition-all ${
-                  currentPage === item.id ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50'
+                  isActive(item.path) ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50'
                 }`}
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
             <div className="pt-4 grid grid-cols-2 gap-3">
-              <button 
-                onClick={() => {
-                  setPage('booking');
-                  setIsMenuOpen(false);
-                }}
+              <Link 
+                to="/book"
+                onClick={() => setIsMenuOpen(false)}
                 className="bg-teal-700 text-white px-4 py-4 rounded-2xl text-sm font-bold shadow-lg shadow-teal-900/20 flex items-center justify-center gap-2"
               >
                 <Calendar size={18} />
                 Book Online
-              </button>
+              </Link>
               <a 
                 href="https://wa.me/443333395773"
                 className="bg-emerald-600 text-white px-4 py-4 rounded-2xl text-sm font-bold shadow-lg shadow-emerald-900/20 flex items-center justify-center gap-2"

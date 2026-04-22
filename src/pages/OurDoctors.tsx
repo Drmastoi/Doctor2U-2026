@@ -1,15 +1,11 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { 
   ShieldCheck, Award, GraduationCap, Heart, Stethoscope, 
   Linkedin, CheckCircle2, Star, Clock, Globe, Activity
 } from 'lucide-react';
-import { Page } from '../types';
+import { useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
-
-interface OurDoctorsProps {
-  setPage: (page: Page) => void;
-}
 
 const doctors = [
   {
@@ -41,7 +37,8 @@ const doctors = [
   }
 ];
 
-export default function OurDoctors({ setPage }: OurDoctorsProps) {
+export default function OurDoctors() {
+  const navigate = useNavigate();
   React.useEffect(() => {
     document.title = "Our Doctors | Meet the GMC-Registered Team | Doctor2U";
   }, []);
@@ -178,13 +175,13 @@ export default function OurDoctors({ setPage }: OurDoctorsProps) {
         <div className="text-center mb-32">
           <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 mb-10 tracking-tight italic">Ready to meet your doctor?</h2>
           <button 
-            onClick={() => setPage('booking')}
+            onClick={() => navigate('/book')}
             className="bg-medical-500 text-slate-900 px-12 py-6 rounded-2xl font-black text-xl hover:bg-medical-400 transition-all shadow-2xl"
           >
             Book My Private Consultation
           </button>
         </div>
-        <HubLink setPage={setPage} index={2} />
+        <HubLink index={2} />
       </div>
     </div>
   );

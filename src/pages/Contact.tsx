@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send, MessageSquare, Clock, CheckCircle2, ArrowLeft, ShieldAlert } from 'lucide-react';
-import { Page } from '../types';
+import { Link, useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
 
-interface ContactPageProps {
-  setPage: (page: Page) => void;
-}
-
-export default function ContactPage({ setPage }: ContactPageProps) {
+export default function ContactPage() {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({ name: '', email: '', phone: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
@@ -49,11 +46,11 @@ export default function ContactPage({ setPage }: ContactPageProps) {
 
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <button 
-          onClick={() => setPage('home')}
+          onClick={() => navigate(-1)}
           className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors mb-8 group"
         >
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
+          <span className="text-sm font-bold uppercase tracking-widest">Back</span>
         </button>
 
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -229,7 +226,7 @@ export default function ContactPage({ setPage }: ContactPageProps) {
             )}
           </motion.div>
         </div>
-        <HubLink setPage={setPage} index={8} />
+        <HubLink index={8} />
       </div>
     </div>
   );

@@ -1,18 +1,18 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { 
   CheckCircle2, ArrowRight, Home as HomeIcon, Clock, ShieldCheck, Star, 
   MapPin, Phone, MessageSquare, BrainCircuit, Users, Stethoscope, 
   ChevronDown, Activity, AlertCircle, HeartPulse, Calendar
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Page } from '../../types';
 import HubLink from '../../components/HubLink';
 
-interface DoctorHomeVisitManchesterProps {
-  setPage: (page: Page) => void;
-}
+interface DoctorHomeVisitManchesterProps {}
 
-export default function DoctorHomeVisitManchester({ setPage }: DoctorHomeVisitManchesterProps) {
+export default function DoctorHomeVisitManchester({}: DoctorHomeVisitManchesterProps) {
+  const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = React.useState<number | null>(null);
 
   React.useEffect(() => {
@@ -95,7 +95,7 @@ export default function DoctorHomeVisitManchester({ setPage }: DoctorHomeVisitMa
         {/* Navigation Breadcrumb / Control */}
         <div className="mb-12 flex items-center justify-between">
           <button 
-            onClick={() => setPage('home')}
+            onClick={() => navigate('/')}
             className="text-slate-500 hover:text-teal-700 transition-colors flex items-center gap-2 text-sm font-bold uppercase tracking-widest"
           >
             ← Home
@@ -130,7 +130,7 @@ export default function DoctorHomeVisitManchester({ setPage }: DoctorHomeVisitMa
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
                 <button 
-                  onClick={() => setPage('booking')}
+                  onClick={() => navigate('/book')}
                   className="bg-medical-500 text-slate-900 px-10 py-5 rounded-2xl font-black hover:bg-medical-400 transition-all flex items-center justify-center gap-3 text-lg"
                 >
                   Book My Home Visit
@@ -155,18 +155,18 @@ export default function DoctorHomeVisitManchester({ setPage }: DoctorHomeVisitMa
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
             {[
-              { label: "Fever, infections, and flu-like illness", id: 'same-day-flu-doctor-manchester' },
-              { label: "Chest infections, cough, and breathlessness", id: 'chest-infection-home-visit-manchester' },
-              { label: "Urinary tract infections (UTIs)", id: 'emergency-uti-treatment-manchester' },
-              { label: "Acute Back pain & Spasms", id: 'back-pain-home-visit-manchester' },
-              { label: "Skin infections and rashes", id: 'doctor-home-visit-manchester' },
-              { label: "Minor injuries and acute pain", id: 'doctor-home-visit-manchester' },
-              { label: "Elderly care and mobility issues", id: 'elderly-care-home-visit-manchester' },
-              { label: "Children’s illnesses", id: 'urgent-childrens-doctor-manchester' }
+              { label: "Fever, infections, and flu-like illness", path: '/book' },
+              { label: "Chest infections, cough, and breathlessness", path: '/book' },
+              { label: "Urinary tract infections (UTIs)", path: '/book' },
+              { label: "Acute Back pain & Spasms", path: '/book' },
+              { label: "Skin infections and rashes", path: '/services/home-visit' },
+              { label: "Minor injuries and acute pain", path: '/services/home-visit' },
+              { label: "Elderly care and mobility issues", path: '/services/home-visit' },
+              { label: "Children’s illnesses", path: '/services/childrens-health' }
             ].map((item) => (
               <button 
                 key={item.label} 
-                onClick={() => setPage(item.id as Page)}
+                onClick={() => navigate(item.path)}
                 className="flex items-center gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-teal-200 hover:bg-white transition-all text-left w-full"
               >
                 <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-teal-700 shadow-sm border border-slate-100 group-hover:bg-teal-700 group-hover:text-white transition-all">
@@ -289,7 +289,7 @@ export default function DoctorHomeVisitManchester({ setPage }: DoctorHomeVisitMa
             </div>
             <p className="text-2xl font-bold mb-8">👉 We aim to get a doctor to you <span className="italic">as quickly as possible</span></p>
             <button 
-              onClick={() => setPage('booking')}
+              onClick={() => navigate('/book')}
               className="bg-slate-900 text-white px-12 py-5 rounded-2xl font-black text-xl hover:bg-slate-800 transition-all shadow-2xl"
             >
               Book Urgent Visit
@@ -356,7 +356,7 @@ export default function DoctorHomeVisitManchester({ setPage }: DoctorHomeVisitMa
                 </div>
               </div>
               <button 
-                onClick={() => setPage('booking')}
+                onClick={() => navigate('/book')}
                 className="block w-full text-center bg-slate-900 text-white py-5 rounded-2xl font-black text-xl hover:bg-slate-800 transition-all"
               >
                 Book Online Now
@@ -423,35 +423,35 @@ export default function DoctorHomeVisitManchester({ setPage }: DoctorHomeVisitMa
           <div className="space-y-4">
              <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-300">Authority Pages</h4>
              {[
-               { id: 'our-doctors', label: 'Meet Our Doctors' },
-               { id: 'clinical-governance', label: 'Clinical Governance' },
-               { id: 'about-us', label: 'Our Mission & Story' }
+               { path: '/our-doctors', label: 'Meet Our Doctors' },
+               { path: '/clinical-governance', label: 'Clinical Governance' },
+               { path: '/about-us', label: 'Our Mission & Story' }
              ].map(link => (
-               <button key={link.id} onClick={() => setPage(link.id as Page)} className="block text-sm font-bold text-slate-500 hover:text-teal-700 transition-colors uppercase tracking-tight">/ {link.label}</button>
+               <button key={link.path} onClick={() => navigate(link.path)} className="block text-sm font-bold text-slate-500 hover:text-teal-700 transition-colors uppercase tracking-tight">/ {link.label}</button>
              ))}
           </div>
           <div className="space-y-4">
              <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-300">Specialist Visits</h4>
              {[
-               { id: 'urgent-childrens-doctor-manchester', label: 'Children\'s Home Visit' },
-               { id: 'elderly-care-home-visit-manchester', label: 'Elderly Medical Care' },
-               { id: 'emergency-uti-treatment-manchester', label: 'UTI Rapid Treatment' }
+               { path: '/services/childrens-health', label: 'Children\'s Home Visit' },
+               { path: '/services/home-visit', label: 'Elderly Medical Care' },
+               { path: '/book', label: 'UTI Rapid Treatment' }
              ].map(link => (
-               <button key={link.id} onClick={() => setPage(link.id as Page)} className="block text-sm font-bold text-slate-500 hover:text-teal-700 transition-colors uppercase tracking-tight">/ {link.label}</button>
+               <button key={link.path} onClick={() => navigate(link.path)} className="block text-sm font-bold text-slate-500 hover:text-teal-700 transition-colors uppercase tracking-tight">/ {link.label}</button>
              ))}
           </div>
           <div className="space-y-4">
              <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-300">Urgent Support</h4>
              {[
-               { id: 'out-of-hours-doctor-manchester', label: 'Out Of Hours Doctor' },
-               { id: 'chest-infection-home-visit-manchester', label: 'Chest Infection Visit' },
-               { id: 'back-pain-home-visit-manchester', label: 'Acute Back Pain Doctor' }
+               { path: '/services/out-of-hours', label: 'Out Of Hours Doctor' },
+               { path: '/book', label: 'Chest Infection Visit' },
+               { path: '/book', label: 'Acute Back Pain Doctor' }
              ].map(link => (
-               <button key={link.id} onClick={() => setPage(link.id as Page)} className="block text-sm font-bold text-slate-500 hover:text-teal-700 transition-colors uppercase tracking-tight">/ {link.label}</button>
+               <button key={link.path} onClick={() => navigate(link.path)} className="block text-sm font-bold text-slate-500 hover:text-teal-700 transition-colors uppercase tracking-tight">/ {link.label}</button>
              ))}
           </div>
         </div>
-        <HubLink setPage={setPage} index={14} />
+        <HubLink index={14} />
       </div>
     </div>
   );

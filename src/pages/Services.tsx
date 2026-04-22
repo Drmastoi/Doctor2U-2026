@@ -1,14 +1,13 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { SERVICES, Page } from '../types';
+import { useNavigate, Link } from 'react-router-dom';
+import { SERVICES } from '../types';
 import HubLink from '../components/HubLink';
+import SEO from '../components/SEO';
 import { Video, User, Home as HomeIcon, CheckCircle2, ArrowRight, ArrowLeft } from 'lucide-react';
 
-interface ServicesProps {
-  setPage: (page: Page) => void;
-}
-
-export default function ServicesPage({ setPage }: ServicesProps) {
+export default function ServicesPage() {
+  const navigate = useNavigate();
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'Video': return <Video size={32} />;
@@ -20,6 +19,10 @@ export default function ServicesPage({ setPage }: ServicesProps) {
 
   return (
     <div className="bg-white min-h-screen pt-32 pb-16 relative overflow-hidden">
+      <SEO 
+        title="Private Doctor Services Manchester & Lancashire | Doctor2U"
+        description="Explore our range of private medical services including same-day GP consultations, home visits, drivers medicals, and blood tests across Manchester and Lancashire."
+      />
       {/* Background Blobs for Modern Feel */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-teal-100/30 rounded-full blur-[120px] animate-blob"></div>
@@ -28,13 +31,13 @@ export default function ServicesPage({ setPage }: ServicesProps) {
       </div>
 
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <button 
-          onClick={() => setPage('home')}
+        <Link 
+          to="/"
           className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors mb-8 group"
         >
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
           <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
-        </button>
+        </Link>
 
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div 
@@ -93,7 +96,7 @@ export default function ServicesPage({ setPage }: ServicesProps) {
                   ))}
                 </div>
                 <button 
-                  onClick={() => setPage('booking')}
+                  onClick={() => navigate('/book')}
                   className="bg-teal-700 text-white px-8 py-4 rounded-2xl font-bold hover:bg-teal-800 transition-all self-start flex items-center gap-2 shadow-lg shadow-teal-900/20"
                 >
                   Book Online
@@ -125,7 +128,7 @@ export default function ServicesPage({ setPage }: ServicesProps) {
           </div>
         </div>
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-           <HubLink setPage={setPage} index={6} />
+           <HubLink index={6} />
         </div>
       </div>
     </div>
