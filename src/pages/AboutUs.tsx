@@ -1,24 +1,28 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { 
-  History, Users, Target, Heart, ShieldCheck, 
-  MapPin, Stethoscope, BrainCircuit, Activity,
-  ArrowRight, CheckCircle2
+import {
+  Users,
+  Target,
+  ShieldCheck,
+  MapPin,
+  Stethoscope,
+  BrainCircuit,
+  ArrowRight,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
+import SEO from '../components/SEO';
 
 export default function AboutUs() {
   const navigate = useNavigate();
-  React.useEffect(() => {
-    document.title = "About Us | The Doctor2U Mission | Manchester Private Doctors";
-  }, []);
 
   return (
     <div className="bg-white min-h-screen pt-32">
+      <SEO
+        title="About Doctor2U Private Doctors"
+        description="Learn about Doctor2U, our mission, clinical standards, and private doctor service across Manchester and Lancashire."
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Hero Section */}
         <div className="mb-32">
           <div className="max-w-3xl">
             <motion.div
@@ -45,13 +49,12 @@ export default function AboutUs() {
           </div>
         </div>
 
-        {/* Our Approach */}
         <section className="mb-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative">
               <div className="aspect-square rounded-[4rem] overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200" 
+                <img
+                  src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200"
                   alt="Doctor preparing for a home visit"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
@@ -92,7 +95,7 @@ export default function AboutUs() {
                 <div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-3 tracking-tight">Tech-Enabled Care</h3>
                   <p className="text-lg text-slate-600 leading-relaxed">
-                    Our AI innovation isn't about replacement; it's about empowerment. We use data to help you and your doctor focus on what matters most—your recovery.
+                    Our AI innovation isn't about replacement; it's about empowerment. We use data to help you and your doctor focus on what matters most-your recovery.
                   </p>
                 </div>
               </div>
@@ -100,7 +103,6 @@ export default function AboutUs() {
           </div>
         </section>
 
-        {/* Core Values */}
         <section className="py-32 bg-[#fafafa] rounded-[4rem] px-8 md:px-20 mb-32 border border-slate-100">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 tracking-tight mb-6 italic">The values that drive us.</h2>
@@ -110,9 +112,9 @@ export default function AboutUs() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { title: "Academic Rigour", desc: "Every pathway is NICE-aligned and rooted in the latest clinical evidence.", icon: <Stethoscope size={24} /> },
-              { title: "Absolute Trust", desc: "Every doctor is GMC-registered and DBS-cleared for your total peace of mind.", icon: <ShieldCheck size={24} /> },
-              { title: "Local Presence", desc: "We are born in Manchester and serve the communities we live in.", icon: <MapPin size={24} /> }
+              { title: 'Academic Rigour', desc: 'Every pathway is NICE-aligned and rooted in the latest clinical evidence.', icon: <Stethoscope size={24} /> },
+              { title: 'Absolute Trust', desc: 'Every doctor is GMC-registered and DBS-cleared for your total peace of mind.', icon: <ShieldCheck size={24} /> },
+              { title: 'Local Presence', desc: 'We are born in Manchester and serve the communities we live in.', icon: <MapPin size={24} /> }
             ].map((value, idx) => (
               <div key={idx} className="p-10 bg-white rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 hover:border-teal-300 transition-all">
                 <div className="w-12 h-12 rounded-xl bg-slate-900 text-teal-400 flex items-center justify-center mb-6">
@@ -125,13 +127,12 @@ export default function AboutUs() {
           </div>
         </section>
 
-        {/* Statistics or Social Proof */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-32">
           {[
-            { label: "Patient Satisfaction", value: "99%" },
-            { label: "GMC Registered Doctors", value: "100%" },
-            { label: "Average Response Time", value: "< 4hrs" },
-            { label: "Consultation Length", value: "30min" }
+            { label: 'Patient Satisfaction', value: '99%' },
+            { label: 'GMC Registered Doctors', value: '100%' },
+            { label: 'Average Response Time', value: '< 4hrs' },
+            { label: 'Consultation Length', value: '30min' }
           ].map((stat, idx) => (
             <div key={idx} className="text-center p-8 bg-white border border-slate-100 rounded-[2rem] shadow-sm">
               <p className="text-4xl md:text-5xl font-display font-black text-teal-700 mb-2">{stat.value}</p>
@@ -140,7 +141,6 @@ export default function AboutUs() {
           ))}
         </div>
 
-        {/* Meet the team CTA */}
         <div className="max-w-4xl mx-auto mb-32 text-center">
           <div className="bg-slate-900 rounded-[4rem] p-12 md:p-20 text-white shadow-2xl shadow-teal-900/40 relative overflow-hidden">
              <div className="absolute top-0 left-0 w-64 h-64 bg-medical-500/10 rounded-full blur-3xl -ml-32 -mt-32"></div>
@@ -149,14 +149,14 @@ export default function AboutUs() {
                Our leadership team combined has over 40 years of experience in UK primary care, emergency medicine, and health-tech innovation.
              </p>
              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-               <button 
+               <button
                  onClick={() => navigate('/our-doctors')}
                  className="bg-medical-500 text-slate-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-medical-400 transition-all flex items-center justify-center gap-2"
                >
                  Meet Our Doctors
                  <ArrowRight size={20} />
                </button>
-               <button 
+               <button
                  onClick={() => navigate('/clinical-governance')}
                  className="bg-white/10 text-white border border-white/20 px-10 py-5 rounded-2xl font-black text-lg hover:bg-white/20 transition-all"
                >
@@ -166,7 +166,6 @@ export default function AboutUs() {
           </div>
         </div>
 
-        {/* Locations Link */}
         <div className="mb-32">
           <h3 className="text-lg font-black uppercase tracking-widest text-slate-300 mb-10 text-center">Our Greater Manchester Footprint</h3>
           <div className="flex flex-wrap justify-center gap-4">
