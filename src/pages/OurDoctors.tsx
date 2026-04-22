@@ -1,55 +1,55 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { 
-  ShieldCheck, Award, GraduationCap, Heart, Stethoscope, 
-  Linkedin, CheckCircle2, Star, Clock, Globe, Activity
+import {
+  ShieldCheck, Award, GraduationCap,
+  CheckCircle2, Activity
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
+import SEO from '../components/SEO';
 
 const doctors = [
   {
-    name: "Dr. Alexander Thorne",
-    title: "Lead Clinical Physician",
-    gmc: "GMC Number: 7248192",
-    credentials: "MBBS, MRCGP, DipGM",
-    specialties: ["Acute Medicine", "Minor Surgery", "Emergency Care"],
-    bio: "Dr. Thorne is a highly experienced physician with over 15 years in both the NHS and private healthcare. He specialises in rapid-response home visits and complex clinical assessments in Manchester.",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=400&h=500"
+    name: 'Dr. Alexander Thorne',
+    title: 'Lead Clinical Physician',
+    gmc: 'GMC Number: 7248192',
+    credentials: 'MBBS, MRCGP, DipGM',
+    specialties: ['Acute Medicine', 'Minor Surgery', 'Emergency Care'],
+    bio: 'Dr. Thorne is a highly experienced physician with over 15 years in both the NHS and private healthcare. He specialises in rapid-response home visits and complex clinical assessments in Manchester.',
+    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=400&h=500'
   },
   {
-    name: "Dr. Sarah Jenkins",
-    title: "Senior Private Doctor",
-    gmc: "GMC Number: 6982245",
-    credentials: "MBChB, MRCP (UK), DCH",
-    specialties: ["Paediatrics", "Women's Health", "Internal Medicine"],
-    bio: "Dr. Jenkins has a deep interest in family medicine and paediatric emergency reviews. She has over 12 years of post-graduate experience, primarily in acute hospital paediatrics and community GP roles.",
-    image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=400&h=500"
+    name: 'Dr. Sarah Jenkins',
+    title: 'Senior Private Doctor',
+    gmc: 'GMC Number: 6982245',
+    credentials: 'MBChB, MRCP (UK), DCH',
+    specialties: ['Paediatrics', "Women's Health", 'Internal Medicine'],
+    bio: 'Dr. Jenkins has a deep interest in family medicine and paediatric emergency reviews. She has over 12 years of post-graduate experience, primarily in acute hospital paediatrics and community GP roles.',
+    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=400&h=500'
   },
   {
-    name: "Dr. Michael Chen",
-    title: "Primary Care Consultant",
-    gmc: "GMC Number: 7451109",
-    credentials: "MBBS, MRCGP, AFOM",
-    specialties: ["Occupational Health", "Chronic Pain", "Geriatrics"],
-    bio: "Dr. Chen focuses on long-term wellness and geriatric support. With over 8 years as a GP Partner in local Manchester practices, he brings a wealth of local clinical knowledge to Every home visit.",
-    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=400&h=500"
+    name: 'Dr. Michael Chen',
+    title: 'Primary Care Consultant',
+    gmc: 'GMC Number: 7451109',
+    credentials: 'MBBS, MRCGP, AFOM',
+    specialties: ['Occupational Health', 'Chronic Pain', 'Geriatrics'],
+    bio: 'Dr. Chen focuses on long-term wellness and geriatric support. With over 8 years as a GP Partner in local Manchester practices, he brings a wealth of local clinical knowledge to every home visit.',
+    image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=400&h=500'
   }
 ];
 
 export default function OurDoctors() {
   const navigate = useNavigate();
-  React.useEffect(() => {
-    document.title = "Our Doctors | Meet the GMC-Registered Team | Doctor2U";
-  }, []);
 
   return (
     <div className="bg-white min-h-screen pt-32">
+      <SEO
+        title="Meet Our GMC Registered Doctors"
+        description="Meet the Doctor2U clinical team, including GMC-registered private doctors serving Manchester and Lancashire with home visits and consultations."
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
         <div className="mb-20 text-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="flex justify-center mb-6"
@@ -66,10 +66,9 @@ export default function OurDoctors() {
           </p>
         </div>
 
-        {/* Doctor Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-32">
           {doctors.map((doctor, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -77,8 +76,8 @@ export default function OurDoctors() {
               className="group"
             >
               <div className="relative mb-8 rounded-[3rem] overflow-hidden shadow-2xl shadow-slate-200 aspect-[4/5] bg-slate-100">
-                <img 
-                  src={doctor.image} 
+                <img
+                  src={doctor.image}
                   alt={doctor.name}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                   referrerPolicy="no-referrer"
@@ -102,7 +101,7 @@ export default function OurDoctors() {
                 <p className="text-slate-600 leading-relaxed mb-6 italic">
                   "{doctor.bio}"
                 </p>
-                
+
                 <div className="space-y-3">
                   <p className="text-xs font-black uppercase tracking-widest text-slate-400 border-b border-slate-100 pb-2">Clinical Specialties</p>
                   <div className="flex flex-wrap gap-2">
@@ -118,7 +117,6 @@ export default function OurDoctors() {
           ))}
         </div>
 
-        {/* Trust Framework */}
         <section className="bg-slate-900 rounded-[4rem] p-12 md:p-20 text-white mb-32 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl -mr-48 -mt-48"></div>
           <div className="lg:flex gap-20 items-center relative z-10">
@@ -171,10 +169,9 @@ export default function OurDoctors() {
           </div>
         </section>
 
-        {/* CTA */}
         <div className="text-center mb-32">
           <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 mb-10 tracking-tight italic">Ready to meet your doctor?</h2>
-          <button 
+          <button
             onClick={() => navigate('/book')}
             className="bg-medical-500 text-slate-900 px-12 py-6 rounded-2xl font-black text-xl hover:bg-medical-400 transition-all shadow-2xl"
           >
