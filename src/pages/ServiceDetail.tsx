@@ -1,10 +1,9 @@
 import React from 'react';
-import { FAQ } from '../types';
+import { Page, FAQ } from '../types';
 import HubLink from '../components/HubLink';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { CheckCircle2, ArrowRight, Phone, ChevronDown } from 'lucide-react';
-import SEO from '../components/SEO';
+import { CheckCircle2, ArrowRight, Phone, MessageSquare, ChevronDown, Shield as ShieldIcon } from 'lucide-react';
 
 interface ServiceDetailProps {
   title: string;
@@ -17,25 +16,22 @@ interface ServiceDetailProps {
   image: string;
 }
 
-export default function ServiceDetail({
-  title,
-  subtitle,
-  description,
-  whoItIsFor,
-  whatHappens,
-  pricing,
+export default function ServiceDetail({ 
+  title, 
+  subtitle, 
+  description, 
+  whoItIsFor, 
+  whatHappens, 
+  pricing, 
   faqs,
-  image,
+  image
 }: ServiceDetailProps) {
   const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = React.useState<number | null>(null);
 
   return (
     <div className="bg-white min-h-screen pt-24 pb-20">
-      <SEO
-        title={`${title} ${subtitle}`}
-        description={typeof description === 'string' ? description : `${title} with Doctor2U across Manchester and Lancashire.`}
-      />
+      {/* Hero Section */}
       <section className="relative py-20 bg-slate-50 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-teal-600/5 -skew-x-12 transform origin-top"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -52,14 +48,14 @@ export default function ServiceDetail({
                 {description}
               </div>
               <div className="flex flex-wrap gap-4">
-                <button
+                <button 
                   onClick={() => navigate('/book')}
                   className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all shadow-lg flex items-center gap-2"
                 >
                   Book Online
                   <ArrowRight size={20} />
                 </button>
-                <a
+                <a 
                   href="tel:07488879077"
                   className="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2"
                 >
@@ -74,9 +70,9 @@ export default function ServiceDetail({
               className="relative"
             >
               <div className="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
-                <img
-                  src={image}
-                  alt={title}
+                <img 
+                  src={image} 
+                  alt={title} 
                   className="w-full h-[500px] object-cover"
                   referrerPolicy="no-referrer"
                 />
@@ -86,9 +82,11 @@ export default function ServiceDetail({
         </div>
       </section>
 
+      {/* Details Grid */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {/* Who It Is For */}
             <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
               <h3 className="text-2xl font-bold text-slate-900 mb-6">Who It Is For</h3>
               <ul className="space-y-4">
@@ -101,6 +99,7 @@ export default function ServiceDetail({
               </ul>
             </div>
 
+            {/* What Happens */}
             <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
               <h3 className="text-2xl font-bold text-slate-900 mb-6">The Process</h3>
               <ul className="space-y-4">
@@ -115,13 +114,14 @@ export default function ServiceDetail({
               </ul>
             </div>
 
+            {/* Pricing & CTA */}
             <div className="bg-slate-900 text-white p-8 rounded-3xl shadow-xl">
               <h3 className="text-2xl font-bold mb-4">Investment</h3>
               <div className="text-4xl font-bold text-teal-400 mb-6">{pricing}</div>
               <p className="text-slate-400 mb-8 leading-relaxed">
                 We provide transparent, fixed-price consultations with no hidden fees. All prescriptions and referrals are included in the price.
               </p>
-              <button
+              <button 
                 onClick={() => navigate('/book')}
                 className="w-full bg-teal-600 text-white py-4 rounded-xl font-bold hover:bg-teal-700 transition-all shadow-lg mb-4"
               >
@@ -136,6 +136,7 @@ export default function ServiceDetail({
         </div>
       </section>
 
+      {/* FAQs */}
       {faqs.length > 0 && (
         <section className="py-24 bg-slate-50">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -143,7 +144,7 @@ export default function ServiceDetail({
             <div className="space-y-4">
               {faqs.map((faq, i) => (
                 <div key={i} className="bg-white rounded-2xl border border-slate-100 overflow-hidden">
-                  <button
+                  <button 
                     onClick={() => setActiveFaq(activeFaq === i ? null : i)}
                     className="w-full flex items-center justify-between p-6 text-left"
                   >
@@ -170,20 +171,20 @@ export default function ServiceDetail({
 
 function ShieldCircle({ className, size }: { className?: string, size?: number }) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size || 24}
-      height={size || 24}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width={size || 24} 
+      height={size || 24} 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
       className={className}
     >
-      <circle cx="12" cy="12" r="10" />
-      <path d="m9 12 2 2 4-4" />
+      <circle cx="12" cy="12" r="10"/>
+      <path d="m9 12 2 2 4-4"/>
     </svg>
   );
 }

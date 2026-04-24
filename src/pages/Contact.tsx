@@ -3,7 +3,6 @@ import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send, MessageSquare, Clock, CheckCircle2, ArrowLeft, ShieldAlert } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
-import SEO from '../components/SEO';
 
 export default function ContactPage() {
   const navigate = useNavigate();
@@ -38,10 +37,7 @@ export default function ContactPage() {
 
   return (
     <div className="bg-white min-h-screen pt-32 pb-16 relative overflow-hidden">
-      <SEO
-        title="Contact Doctor2U Manchester & Lancashire"
-        description="Contact Doctor2U for private GP appointments, home visits, and same-day medical enquiries across Manchester and Lancashire."
-      />
+      {/* Background Blobs for Modern Feel */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-teal-100/30 rounded-full blur-[120px] animate-blob"></div>
         <div className="absolute top-[20%] left-[-10%] w-[400px] h-[400px] bg-medical-100/20 rounded-full blur-[100px] animate-blob [animation-delay:2s]"></div>
@@ -75,15 +71,16 @@ export default function ContactPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Contact Info */}
           <div className="space-y-12">
             <div>
               <h2 className="text-3xl font-display font-bold text-slate-900 mb-8">Direct Contact</h2>
               <div className="space-y-6">
                 {[
-                  { icon: Phone, title: 'Call Us', value: '07488 879077', sub: 'Mon-Fri: 8am - 8pm | Sat: 9am - 5pm', color: 'text-teal-600' },
-                  { icon: MessageSquare, title: 'WhatsApp', value: '03333395773', sub: 'Instant Messaging Support', color: 'text-green-600' },
-                  { icon: Mail, title: 'Email Us', value: 'hello@doctor2u.co.uk', sub: 'General Enquiries', color: 'text-teal-600' },
-                  { icon: MapPin, title: 'Service Area', value: 'Lancashire & Manchester', sub: 'Home Visits & Clinics', color: 'text-teal-600' }
+                  { icon: Phone, title: "Call Us", value: "07488 879077", sub: "Mon-Fri: 8am - 8pm | Sat: 9am - 5pm", color: "text-teal-600" },
+                  { icon: MessageSquare, title: "WhatsApp", value: "03333395773", sub: "Instant Messaging Support", color: "text-green-600" },
+                  { icon: Mail, title: "Email Us", value: "hello@doctor2u.co.uk", sub: "General Enquiries", color: "text-teal-600" },
+                  { icon: MapPin, title: "Service Area", value: "Lancashire & Manchester", sub: "Home Visits & Clinics", color: "text-teal-600" }
                 ].map((item, index) => (
                   <motion.div 
                     key={index}
@@ -93,7 +90,7 @@ export default function ContactPage() {
                     className="flex items-start gap-6 group"
                   >
                     <div className="bg-white p-4 rounded-2xl text-slate-900 border border-slate-100 group-hover:bg-teal-700 group-hover:text-white group-hover:border-teal-700 transition-all shadow-sm">
-                      <item.icon size={24} className={item.color + ' group-hover:text-white transition-colors'} />
+                      <item.icon size={24} className={item.color + " group-hover:text-white transition-colors"} />
                     </div>
                     <div>
                       <h4 className="font-bold text-slate-900 mb-1">{item.title}</h4>
@@ -126,6 +123,7 @@ export default function ContactPage() {
             </motion.div>
           </div>
 
+          {/* Contact Form */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

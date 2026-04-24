@@ -32,6 +32,9 @@
   --color-brand-muted: #64748B;
   --color-brand-accent: #F47C3C;
   --color-brand-success: #3AB9A3;
+
+  --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+  --shadow-soft-xl: 0 20px 60px -15px rgba(0, 0, 0, 0.08);
 }
 
 @layer base {
@@ -85,15 +88,7 @@
     100% { transform: translate(0px, 0px) scale(1); }
   }
 
-  .shadow-soft {
-    shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-  }
-
-  .shadow-soft-xl {
-    shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.08);
-  }
-
   .innovation-card {
-    @apply relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-slate-900/40 backdrop-blur-xl transition-all duration-500 hover:border-medical-500/50;
+    @apply relative overflow-hidden rounded-[2.5rem] border border-slate-100 bg-white shadow-soft transition-all duration-500 hover:shadow-soft-xl hover:border-teal-100;
   }
 }

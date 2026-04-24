@@ -22,6 +22,7 @@ import ClinicalGovernance from './pages/ClinicalGovernance';
 import TopicPage from './pages/seo/TopicPage';
 import UrgentDoctorManchester from './pages/seo/UrgentDoctorManchester';
 import PrestonLandingPage from './pages/PrestonLandingPage';
+import AIHealthInsights from './pages/AIHealthInsights';
 import { Page } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, Phone } from 'lucide-react';
@@ -64,6 +65,7 @@ export default function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/book" element={<BookingPage />} />
               <Route path="/innovation" element={<InnovationPage />} />
+              <Route path="/ai-health-insights" element={<AIHealthInsights />} />
               <Route path="/treatment-plan" element={<TreatmentPlan />} />
               
               <Route path="/services/private-gp" element={

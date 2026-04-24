@@ -155,106 +155,6 @@ export default function Home() {
 
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [testimonialIdx, setTestimonialIdx] = useState(0);
-  const [symptoms, setSymptoms] = useState('');
-  const [aiAnalysis, setAiAnalysis] = useState('');
-  const [isLoadingAnalysis, setIsLoadingAnalysis] = useState(false);
-  const [isSendingEmail, setIsSendingEmail] = useState(false);
-  const [emailStatus, setEmailStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [isEmergencyConfirmed, setIsEmergencyConfirmed] = useState(false);
-
-  const QUICK_SYMPTOMS = [
-    "Persistent Fatigue",
-    "Skin Rash or Irritation",
-    "Lower Back Pain",
-    "Breathlessness",
-    "Recurring Headaches"
-  ];
-
-  const getAnalysis = async () => {
-    if (!symptoms.trim()) return;
-    
-    setIsLoadingAnalysis(true);
-    setAiAnalysis('');
-    
-    // Step 2: Smart Triage - Check for emergency keywords
-    const emergencyKeywords = ['chest pain', 'shortness of breath', 'stroke', 'numbness', 'heavy bleeding', 'unconscious', 'seizure'];
-    const hasEmergency = emergencyKeywords.some(keyword => symptoms.toLowerCase().includes(keyword));
-
-    if (hasEmergency) {
-      setAiAnalysis("⚠️ EMERGENCY ALERT: Your symptoms suggest a potentially serious medical condition that requires immediate attention. \n\nPLEASE CALL 999 OR ATTEND YOUR NEAREST A&E IMMEDIATELY. \n\nDo not wait for an online consultation or AI analysis if you are experiencing severe pain, difficulty breathing, or signs of a stroke.");
-      setIsLoadingAnalysis(false);
-      return;
-    }
-    
-    try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: `As a professional medical assistant for "Doctor2U", provide a highly structured, professional pre-consultation analysis based on these symptoms: "${symptoms}". 
-
-Please structure your response into these exact bolded sections:
-
-**1. Summary of Health Concerns**
-Briefly summarize the symptoms in a professional, empathetic tone.
-
-**2. Possible Clinical Themes for Discussion**
-Outline potential areas, body systems, or health domains that the doctor might explore based on your input. Do NOT provide a diagnosis, but explain why these areas are relevant for clinical exploration.
-
-**3. What to Discuss with Your Doctor during your Appointment**
-Provide a structured list of specific questions, observations (e.g., triggers, timing, severity), or lifestyle factors the patient should mention to help the doctor during the consultation.
-
-**4. Consultation Preparation**
-List any information or vitals (like heart rate or temperature) the patient should have ready if available.
-
-IMPORTANT GUIDELINES:
-- Use bold headers and clear bullet points for structure.
-- DO NOT provide a diagnosis or prescribe any medication.
-- Ensure the tone is calm, professional, and reassuring.
-- MANDATORY: Include a clear disclaimer at the end stating that this AI-generated summary is for preparation only and is not a substitute for professional medical advice or diagnosis.`,
-      });
-      
-      setAiAnalysis(response.text || 'Unable to generate analysis at this time. Please try again.');
-    } catch (error) {
-      console.error('Error generating analysis:', error);
-      setAiAnalysis('An error occurred while generating analysis. Please ensure your internet connection is stable and try again.');
-    } finally {
-      setIsLoadingAnalysis(false);
-    }
-  };
-
-  const handleShareWithDoctor = async () => {
-    setIsSendingEmail(true);
-    setEmailStatus('idle');
-    try {
-      const response = await fetch('/api/send-analysis', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          analysis: aiAnalysis,
-          symptoms: symptoms 
-        }),
-      });
-
-      if (response.ok) {
-        setEmailStatus('success');
-        // Delay navigation slightly so user can see success message
-        setTimeout(() => {
-          navigate('/book');
-        }, 1500);
-      } else {
-        const errorData = await response.json();
-        console.error('Failed to send email:', errorData);
-        setEmailStatus('error');
-      }
-    } catch (error) {
-      console.error('Error sharing analysis:', error);
-      setEmailStatus('error');
-    } finally {
-      setIsSendingEmail(false);
-    }
-  };
 
   const nextTestimonial = () => setTestimonialIdx((prev) => (prev + 1) % TESTIMONIALS.length);
   const prevTestimonial = () => setTestimonialIdx((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
@@ -296,20 +196,42 @@ IMPORTANT GUIDELINES:
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="flex-1 text-center lg:text-left"
             >
-              <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-2 rounded-full text-[11px] font-bold mb-10 tracking-[0.2em] uppercase">
+              <div className="mb-8 flex justify-center lg:justify-start">
+                <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-emerald-50 border border-emerald-100 rounded-full shadow-sm">
+                  <div className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                  </div>
+                  <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-widest">Manchester, Preston & Lancashire Docs: Available within 2 hours</span>
+                </div>
+              </div>
+
+              <h1 className="text-[55px] md:text-[80px] font-display font-bold leading-[1.02] mb-6 text-slate-900 tracking-tighter">
+                Book Doctors' <br />
+                <span className="text-teal-700 italic">Home Visits Now.</span>
+              </h1>
+
+              <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-2 rounded-full text-[13px] font-bold mb-12 tracking-[0.2em] uppercase">
                 <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
                 <span>Your Home • Your Time • Your Doctor</span>
               </div>
               
-              <h1 className="text-[55px] md:text-[80px] font-display font-bold leading-[1.02] mb-8 text-slate-900 tracking-tighter">
-                Modern Health, <br />
-                <span className="text-teal-700 italic">Redefined.</span>
-              </h1>
-              
-              <p className="text-xl md:text-2xl text-slate-600 mb-14 leading-relaxed max-w-2xl mx-auto lg:mx-0 tracking-tight font-medium opacity-80 line-clamp-3">
-                Experience GMC-registered medical care that respects your time. 
-                Use AI health insights to prepare, speak with local experts, and get treatment plans on your own terms.
-              </p>
+              <div className="space-y-6 mb-14">
+                <p className="text-xl md:text-2xl text-slate-600 leading-snug max-w-2xl mx-auto lg:mx-0 tracking-tight font-medium">
+                  Experienced <span className="text-slate-900 font-bold border-b-2 border-teal-100">GMC-registered doctor</span> who values your time.
+                </p>
+                
+                <div className="flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-teal-500"></div>
+                    <span className="text-base md:text-lg font-display text-slate-600 font-medium tracking-tight">Personalised care to suit your needs</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-teal-500"></div>
+                    <span className="text-base md:text-lg font-display text-slate-600 font-medium tracking-tight">For Adults and Children</span>
+                  </div>
+                </div>
+              </div>
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center">
                 <motion.button 
@@ -420,126 +342,6 @@ IMPORTANT GUIDELINES:
         </div>
       </section>
 
-      {/* The Doctor2U Difference - Scroll-Triggered Reveal */}
-      <section className="py-32 bg-white relative z-20">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col lg:flex-row items-end justify-between mb-24 gap-12"
-          >
-            <div className="max-w-3xl text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-slate-100 text-slate-600 px-5 py-2 rounded-full text-[11px] font-bold mb-8 tracking-[0.3em] uppercase">
-                <Award size={14} className="text-teal-600" />
-                <span>The Patient-First Choice</span>
-              </div>
-              <h2 className="text-5xl md:text-8xl font-display font-bold text-slate-900 tracking-tighter leading-[0.9] mb-4">
-                Redefining the <br />
-                <span className="text-teal-700 italic">Medical Standard.</span>
-              </h2>
-            </div>
-            <p className="text-xl text-slate-500 max-w-md font-medium leading-relaxed pb-2">
-              We've combined clinical expertise with modern innovation to create a healthcare experience that respects your time and health.
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {[
-              {
-                icon: Sparkles,
-                title: "AI-Powered Preparation",
-                subtitle: "The Innovation",
-                desc: "Map your symptoms with our clinical-grade AI tool before your appointment. Walk in feeling prepared and walk out with a clear medical roadmap.",
-                accent: "bg-teal-50 text-teal-700",
-                gradient: "from-teal-50 to-teal-100/30"
-              },
-              {
-                icon: HomeIcon,
-                title: "Care That Comes to You",
-                subtitle: "The Convenience",
-                desc: "No more waiting rooms. Choose from secure Video calls, local Clinic visits, or Expert Home visits across Manchester and Lancashire.",
-                accent: "bg-teal-600 text-white",
-                gradient: "from-white to-teal-50/20"
-              },
-              {
-                icon: ShieldCheck,
-                title: "Full Clinical Authority",
-                subtitle: "The Treatment",
-                desc: "We don't just 'suggest'—we treat. Receive GMC-registered prescriptions, private specialist referrals, and blood tests on the same day.",
-                accent: "bg-teal-900 text-teal-100",
-                gradient: "from-white to-slate-50"
-              }
-            ].map((pillar, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2, duration: 0.6 }}
-                whileHover={{ y: -15, scale: 1.02 }}
-                className={`p-12 rounded-[3.5rem] border border-slate-100 bg-gradient-to-br ${pillar.gradient} shadow-sm hover:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.08)] transition-all duration-700 group flex flex-col items-center text-center md:items-start md:text-left cursor-pointer`}
-              >
-                <div className={`w-20 h-20 rounded-[1.75rem] ${pillar.accent} flex items-center justify-center mb-10 shadow-lg group-hover:rotate-12 transition-transform duration-500`}>
-                  <pillar.icon size={40} />
-                </div>
-                <span className="text-[11px] font-extrabold uppercase tracking-[0.4em] text-teal-700/50 mb-4 block leading-none">{pillar.subtitle}</span>
-                <h3 className="text-3xl font-display font-bold text-slate-900 mb-6 tracking-tight leading-none group-hover:text-teal-700 transition-colors">{pillar.title}</h3>
-                <p className="text-slate-500 leading-relaxed text-lg font-medium opacity-80">{pillar.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3-Step Process Strip */}
-      <section className="bg-teal-700 py-8 relative z-20 shadow-2xl">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
-            <div className="flex items-center gap-4 text-white group">
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-teal-400 border border-white/20 group-hover:bg-white group-hover:text-teal-700 transition-all text-xs">1</div>
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Step One</p>
-                <p className="text-sm font-bold">AI health insights (optional)</p>
-              </div>
-            </div>
-            <div className="hidden md:block text-teal-500/30">
-              <ArrowRight size={20} />
-            </div>
-            <div className="flex items-center gap-4 text-white group">
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-teal-400 border border-white/20 group-hover:bg-white group-hover:text-teal-700 transition-all text-xs">2</div>
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Step Two</p>
-                <p className="text-sm font-bold">Share with doctor & book consultation</p>
-              </div>
-            </div>
-            <div className="hidden md:block text-teal-500/30">
-              <ArrowRight size={20} />
-            </div>
-            <div className="flex items-center gap-4 text-white group">
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-teal-400 border border-white/20 group-hover:bg-white group-hover:text-teal-700 transition-all text-xs">3</div>
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Step Three</p>
-                <p className="text-sm font-bold">Personalised plan & prescriptions/referrals</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trusted By Section */}
-      <section className="py-10 bg-white border-b border-slate-100">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-            <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">NHS-EXPERIENCED DOCTORS</span>
-            <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">GMC REGISTERED</span>
-            <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">BMA MEMBER</span>
-            <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">ICO CERTIFIED</span>
-          </div>
-        </div>
-      </section>
-      
       {/* Home Visit Benefits CTA */}
       <section className="py-20 bg-teal-50/30">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -612,311 +414,6 @@ IMPORTANT GUIDELINES:
         </div>
       </section>
 
-      {/* Integrated Journey Section: How It Works + AI Tool */}
-      <section id="how-it-works" className="py-24 bg-slate-50 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-medical-100/40 rounded-full blur-[120px]"></div>
-        </div>
-
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col lg:flex-row gap-16 items-start">
-            {/* Left Column: The Process */}
-            <div className="lg:w-1/3">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="inline-flex items-center gap-2 bg-teal-100 border border-teal-200 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
-              >
-                <Activity size={12} />
-                <span>The Journey</span>
-              </motion.div>
-              <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 tracking-tight text-slate-900">
-                How It <span className="text-teal-700">Works</span>
-              </h2>
-              
-              <div className="space-y-8 relative">
-                {/* Vertical Line */}
-                <div className="absolute left-6 top-8 bottom-8 w-px bg-slate-200 hidden sm:block"></div>
-                
-                {[
-                  { icon: ClipboardList, title: "1. AI health insights (optional)", desc: "Use our optional tool to gain structured insights and review them in your own time." },
-                  { icon: Stethoscope, title: "2. Share with doctor & book consultation", desc: "Choose to share your analysis and book a private consultation at your home or in-clinic." },
-                  { icon: HeartPulse, title: "3. Personalised plan & prescriptions/referrals", desc: "Speak with a GMC-registered doctor and receive your expert treatment plan and medical support." }
-                ].map((step, i) => (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex gap-6 relative z-10 group"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-teal-600 shrink-0 shadow-lg shadow-teal-900/5 group-hover:bg-teal-700 group-hover:text-white transition-all duration-300">
-                      <step.icon size={24} />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-slate-900 mb-1">{step.title}</h3>
-                      <p className="text-sm text-slate-500 leading-relaxed">{step.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Column: AI Tool */}
-            <div className={`lg:w-2/3 w-full`}>
-              <div 
-                className="rounded-[3rem] p-8 md:p-12 border border-slate-100 shadow-2xl shadow-teal-900/5 relative overflow-hidden"
-                style={{ backgroundColor: '#cee8d1' }}
-              >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-teal-50 rounded-bl-[100px] -z-0"></div>
-                
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-medical-100 flex items-center justify-center text-medical-700">
-                      <Brain size={20} />
-                    </div>
-                    <div>
-                      <h3 
-                        className="font-bold text-slate-900 tracking-tight"
-                        style={{ fontSize: '29px', color: '#0a4816', borderWidth: '2px', borderRadius: '2px' }}
-                      >
-                        Get Your AI Health Insights <span className="text-sm text-amber-500 block sm:inline mt-1 sm:mt-0">(Optional)</span>
-                      </h3>
-                    </div>
-                  </div>
-
-                  {/* Enhanced Progress Tracker */}
-                  <div className="mb-10 flex items-center justify-between px-2 relative">
-                    <div className="absolute top-1/2 left-0 w-full h-px bg-slate-200 -z-10"></div>
-                    {[
-                      { label: "Describe", active: !aiAnalysis && !isLoadingAnalysis },
-                      { label: "Review", active: isLoadingAnalysis },
-                      { label: "Consult", active: !!aiAnalysis }
-                    ].map((step, i) => (
-                      <div key={i} className="flex flex-col items-center gap-2">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold border-2 transition-all duration-500 ${
-                          step.active ? 'bg-teal-700 border-teal-700 text-white scale-110 shadow-lg' : 'bg-white border-slate-200 text-slate-400'
-                        }`}>
-                          {i + 1}
-                        </div>
-                        <span className={`text-[9px] font-bold uppercase tracking-wider ${step.active ? 'text-teal-700' : 'text-slate-400'}`}>
-                          {step.label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mb-6">
-                    <p className="text-sm text-slate-600 leading-relaxed mb-4">
-                      Our optional AI tool helps you organize your health concerns into a structured summary, ensuring you feel prepared and focused when speaking with our GMC-registered doctors.
-                    </p>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-teal-50/50 p-4 rounded-2xl border border-teal-100/50">
-                      <div className="flex flex-col gap-1">
-                        <span className="text-[10px] font-bold text-teal-700 uppercase tracking-wider">Step 1</span>
-                        <p className="text-xs text-slate-600 font-medium leading-tight line-clamp-2">Enter symptoms and any specific questions you have.</p>
-                      </div>
-                      <div className="flex flex-col gap-1 border-t md:border-t-0 md:border-l border-teal-100/50 pt-3 md:pt-0 md:pl-4">
-                        <span className="text-[10px] font-bold text-teal-700 uppercase tracking-wider">Step 2</span>
-                        <p className="text-xs text-slate-600 font-medium leading-tight line-clamp-2">Review your AI-generated health insights privately.</p>
-                      </div>
-                      <div className="flex flex-col gap-1 border-t md:border-t-0 md:border-l border-teal-100/50 pt-3 md:pt-0 md:pl-4">
-                        <span className="text-[10px] font-bold text-teal-700 uppercase tracking-wider">Step 3</span>
-                        <p className="text-xs text-slate-600 font-medium leading-tight line-clamp-2">Optionally share your analysis with a doctor and book online.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mb-4">
-                    <label className="flex items-start gap-3 p-3 bg-rose-50 border border-rose-100 rounded-xl cursor-pointer group mb-4">
-                      <div className="relative flex items-center mt-0.5">
-                        <input
-                          type="checkbox"
-                          checked={isEmergencyConfirmed}
-                          onChange={(e) => setIsEmergencyConfirmed(e.target.checked)}
-                          className="w-5 h-5 rounded border-rose-300 text-teal-700 focus:ring-teal-700 cursor-pointer"
-                        />
-                      </div>
-                      <span className="text-[11px] font-bold text-rose-900 leading-tight">
-                        I confirm this is not a medical emergency and I am not experiencing symptoms of a heart attack, stroke, or severe breathing difficulty.
-                      </span>
-                    </label>
-
-                    <textarea
-                      id="symptoms"
-                      rows={4}
-                      value={symptoms}
-                      onChange={(e) => setSymptoms(e.target.value)}
-                      placeholder="Describe your symptoms or health concerns (e.g., fatigue, breathlessness)..."
-                      className="w-full border focus:ring-2 focus:ring-teal-700 focus:border-transparent transition-all resize-none shadow-inner text-sm"
-                      style={{ borderColor: '#185908', borderWidth: '3px', borderRadius: '18px', backgroundColor: '#f0f2f9' }}
-                    />
-                  </div>
-
-                  {/* Quick-Select Symptoms */}
-                  <div className="mb-8 overflow-x-auto no-scrollbar pb-2">
-                    <div className="flex gap-2 min-w-max">
-                      <span className="text-[10px] font-bold text-teal-800/60 uppercase tracking-widest self-center mr-2">Quick Start:</span>
-                      {QUICK_SYMPTOMS.map((symptom) => (
-                        <button
-                          key={symptom}
-                          onClick={() => setSymptoms(symptom)}
-                          className="px-4 py-2 rounded-full border border-teal-800/10 bg-white/40 backdrop-blur-sm text-[11px] font-bold text-teal-900 hover:bg-teal-700 hover:text-white transition-all whitespace-nowrap shadow-sm"
-                        >
-                          {symptom}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100 mb-6">
-                    <h4 className="font-bold text-slate-900 text-sm mb-4 flex items-center gap-2">
-                      <ShieldCheck size={16} className="text-teal-600" />
-                      How we use your data
-                    </h4>
-                    <p className="text-[11px] text-slate-500 leading-relaxed">
-                      Your information is processed securely using industry-standard encryption. We use your data exclusively to prepare information for our clinical team to review during your consultation. We never sell your medical data or use it for marketing without explicit consent.
-                    </p>
-                  </div>
-
-                  <div className="flex justify-between items-center gap-4">
-                    <p className="text-[10px] text-slate-400 font-medium max-w-[250px] leading-tight">
-                      *This tool is for personal preparation only; it does not diagnose, treat, or replace the clinical judgment of a qualified doctor.
-                    </p>
-                    <button
-                      onClick={getAnalysis}
-                      disabled={isLoadingAnalysis || !symptoms.trim() || !isEmergencyConfirmed}
-                      className={`bg-teal-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed text-sm whitespace-nowrap`}
-                    >
-                      {isLoadingAnalysis ? (
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      ) : (
-                        <>
-                          Get Analysis
-                          <Sparkles size={18} />
-                        </>
-                      )}
-                    </button>
-                  </div>
-
-                  <div className="mt-8 pt-8 border-t border-slate-100">
-                    <h4 className="font-bold text-slate-900 text-sm mb-4">How the AI Tool Fits Into Your Care</h4>
-                    <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                      Our AI tool is designed to empower you by organizing your health information before you speak with a clinician. It acts as a bridge between your initial concerns and a professional consultation, ensuring every minute with your doctor is used effectively.
-                    </p>
-                    <ul className="space-y-2 mb-4">
-                      {[
-                        "You enter your symptoms and any specific health questions.",
-                        "The tool creates a structured summary and suggests topics for your consultation.",
-                        "You can review these insights privately or choose to share them with our team.",
-                        "A GMC-registered doctor reviews the shared analysis alongside their own clinical assessment to create your plan."
-                      ].map((item, i) => (
-                        <li key={i} className="flex gap-2 text-[11px] text-slate-500">
-                          <CheckCircle2 size={12} className="text-teal-600 shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="text-[10px] text-slate-400 font-bold italic leading-tight border-l-2 border-teal-500 pl-3">
-                      The AI tool is a preparatory aid only; it does not diagnose, treat, or replace the professional judgment of our GMC-registered doctors.
-                    </p>
-                  </div>
-
-                  <AnimatePresence>
-                    {aiAnalysis && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="mt-8 pt-8 border-t border-slate-100 overflow-hidden"
-                      >
-                        <div className="bg-slate-50 rounded-2xl p-6 border border-teal-50">
-                          <div className="flex items-center gap-2 mb-4 text-teal-700">
-                            <Brain size={18} />
-                            <h4 className="font-bold text-sm">Generated Analysis Summary</h4>
-                          </div>
-                          <div className="text-slate-600 text-sm leading-relaxed mb-6 [&_strong]:text-slate-900 [&_strong]:font-bold [&_h3]:text-slate-900 [&_h3]:font-bold [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mt-2 [&_p]:mb-4">
-                            <Markdown>{aiAnalysis}</Markdown>
-                          </div>
-                          
-                          {!aiAnalysis.includes('EMERGENCY ALERT') && (
-                            <div className="mt-8 space-y-4">
-                              <div className="flex flex-col items-end gap-3">
-                                {emailStatus === 'success' && (
-                                  <motion.div 
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="bg-emerald-100 text-emerald-700 px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2"
-                                  >
-                                    <CheckCircle2 size={14} />
-                                    Analysis shared with clinican! Redirecting...
-                                  </motion.div>
-                                )}
-                                {emailStatus === 'error' && (
-                                  <motion.div 
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="bg-rose-100 text-rose-700 px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2"
-                                  >
-                                    <ShieldAlert size={14} />
-                                    Failed to share. Please check RESEND_API_KEY.
-                                  </motion.div>
-                                )}
-                                <button
-                                  onClick={handleShareWithDoctor}
-                                  disabled={isSendingEmail}
-                                  className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all flex items-center gap-2 text-sm shadow-lg shadow-teal-900/20 group disabled:opacity-50 disabled:cursor-not-allowed"
-                                >
-                                  {isSendingEmail ? (
-                                    <>
-                                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                                      Sharing with Clinician...
-                                    </>
-                                  ) : (
-                                    <>
-                                      Share Analysis & Book Appointment
-                                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                    </>
-                                  )}
-                                </button>
-                              </div>
-                              <p className="text-[11px] text-slate-500 text-right leading-relaxed max-w-sm ml-auto">
-                                Your analysis summary will be securely sent to our clinical team. You can then choose a convenient time for your online consultation, clinic visit, or home visit, where a GMC-registered doctor will review your details with you personally.
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Full Width Patient Benefits Bar */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 pt-8 border-t border-slate-200"
-          >
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <span className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.3em]">Patient Benefits & Standards</span>
-              <div className="flex flex-wrap justify-center md:justify-end gap-x-12 gap-y-4">
-                {['GMC Registered Doctors', 'Same-day Prescriptions', 'Private Referrals'].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 text-xs text-slate-600 font-bold uppercase tracking-widest group">
-                    <div className="w-2 h-2 rounded-full bg-teal-500 group-hover:scale-125 transition-transform"></div>
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* What Happens After I Book Section */}
       <section className="py-24 bg-white border-y border-slate-100">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -943,23 +440,171 @@ IMPORTANT GUIDELINES:
         </div>
       </section>
 
-      {/* Specialist Services - Clean & Professional */}
-      <section className="py-24 bg-slate-900 text-white">
+      {/* 3-Step Process Strip */}
+      <section className="bg-teal-700 py-8 relative z-20 shadow-2xl">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
+            <div className="flex items-center gap-4 text-white group">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-teal-400 border border-white/20 group-hover:bg-white group-hover:text-teal-700 transition-all text-xs">1</div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Step One</p>
+                <p className="text-sm font-bold">AI health insights (optional)</p>
+              </div>
+            </div>
+            <div className="hidden md:block text-teal-500/30">
+              <ArrowRight size={20} />
+            </div>
+            <div className="flex items-center gap-4 text-white group">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-teal-400 border border-white/20 group-hover:bg-white group-hover:text-teal-700 transition-all text-xs">2</div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Step Two</p>
+                <p className="text-sm font-bold">Share with doctor & book consultation</p>
+              </div>
+            </div>
+            <div className="hidden md:block text-teal-500/30">
+              <ArrowRight size={20} />
+            </div>
+            <div className="flex items-center gap-4 text-white group">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-teal-400 border border-white/20 group-hover:bg-white group-hover:text-teal-700 transition-all text-xs">3</div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Step Three</p>
+                <p className="text-sm font-bold">Personalised plan & prescriptions/referrals</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trusted By Section */}
+      <section className="py-10 bg-white border-b border-slate-100">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+            <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">NHS-EXPERIENCED DOCTORS</span>
+            <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">GMC REGISTERED</span>
+            <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">BMA MEMBER</span>
+            <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">ICO CERTIFIED</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Simple Journey Section: How It Works */}
+      <section id="how-it-works" className="py-24 bg-slate-50 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-medical-100/40 rounded-full blur-[120px]"></div>
+        </div>
+
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 bg-teal-100 border border-teal-200 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
+            >
+              <Activity size={12} />
+              <span>The Journey</span>
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight text-slate-900">
+              How It <span className="text-teal-700">Works</span>
+            </h2>
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+              We've refined private healthcare to be as efficient and empathetic as possible.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+            {/* Connection Line */}
+            <div className="absolute top-1/2 left-0 w-full h-px bg-slate-200 -z-10 hidden md:block"></div>
+            
+            {[
+              { 
+                icon: ClipboardList, 
+                title: "1. AI health insights", 
+                desc: "Prepare for your appointment with our standalone AI Health Tool for structured insights.",
+                link: "/ai-health-insights",
+                linkText: "Launch Tool"
+              },
+              { 
+                icon: Stethoscope, 
+                title: "2. Personalised Consultation", 
+                desc: "Book a private consultation at your home, in-clinic, or online with a GMC-registered doctor.",
+                link: "/book",
+                linkText: "Book Now"
+              },
+              { 
+                icon: HeartPulse, 
+                title: "3. Treatment & Plan", 
+                desc: "Receive your expert treatment plan, prescriptions, and specialist referrals immediately.",
+                link: "/treatment-plan",
+                linkText: "View Example"
+              }
+            ].map((step, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-soft group hover:translate-y-[-8px] transition-all duration-300 flex flex-col items-center text-center"
+              >
+                <div className="w-16 h-16 rounded-2xl bg-teal-50 flex items-center justify-center text-teal-700 mb-6 group-hover:bg-teal-700 group-hover:text-white transition-colors">
+                  <step.icon size={32} />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{step.title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed mb-6">{step.desc}</p>
+                <Link 
+                  to={step.link}
+                  className="mt-auto inline-flex items-center gap-2 text-teal-700 font-bold text-sm hover:gap-3 transition-all"
+                >
+                  {step.linkText}
+                  <ArrowRight size={16} />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-20 pt-12 border-t border-slate-200"
+          >
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              <span className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.3em]">Patient Benefits & Standards</span>
+              <div className="flex flex-wrap justify-center md:justify-end gap-x-12 gap-y-4">
+                {['GMC Registered Doctors', 'Same-day Prescriptions', 'Private Referrals'].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 text-xs text-slate-600 font-bold uppercase tracking-widest group">
+                    <div className="w-2 h-2 rounded-full bg-teal-500 group-hover:scale-125 transition-transform"></div>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Specialist Services - Sleeker & Professional */}
+      <section className="py-32 bg-slate-900 text-white overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
             <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight">Specialist Medical Services</h2>
-              <p className="text-lg text-slate-400">Comprehensive assessments and expert consultations for every stage of life.</p>
+              <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-teal-400 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
+                <Activity size={12} />
+                <span>Expert Precision</span>
+              </div>
+              <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight leading-tight">Specialist <br /><span className="text-teal-400">Medical Services</span></h2>
+              <p className="text-xl text-slate-400 font-light leading-relaxed">Comprehensive assessments and expert consultations for every stage of life.</p>
             </div>
             <button 
               onClick={() => navigate('/book')}
-              className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all shadow-lg shadow-teal-900/20"
+              className="bg-teal-600 text-white px-10 py-5 rounded-[2rem] font-bold hover:bg-teal-500 transition-all shadow-2xl shadow-teal-900/40 text-sm uppercase tracking-widest"
             >
               View All Services
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { title: 'Private Doctor Consultations', page: 'service-private-gp' },
               { title: 'Home Visit Doctor', page: 'service-home-visit' },
@@ -973,16 +618,19 @@ IMPORTANT GUIDELINES:
             ].map((item, idx) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.05 }}
-                className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group cursor-pointer"
+                className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group cursor-pointer"
                 onClick={() => navigate(getPath(item.page))}
               >
-                <div className="flex items-center gap-4">
-                  <div className="w-2 h-2 rounded-full bg-medical-500 group-hover:scale-150 transition-transform"></div>
-                  <span className="font-medium group-hover:text-medical-400 transition-colors">{item.title}</span>
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-1.5 h-1.5 rounded-full bg-teal-500 group-hover:scale-150 transition-transform"></div>
+                    <span className="text-lg font-medium group-hover:text-teal-400 transition-colors tracking-tight">{item.title}</span>
+                  </div>
+                  <ArrowRight size={18} className="text-white/20 group-hover:text-teal-400 group-hover:translate-x-1 transition-all" />
                 </div>
               </motion.div>
             ))}
@@ -990,24 +638,29 @@ IMPORTANT GUIDELINES:
         </div>
       </section>
 
-      {/* Core Services - Sleeker & Condensed */}
-      <section className="py-20 bg-white">
+      {/* Core Services - Sleeker & Intense */}
+      <section className="py-32 bg-white">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-12">
+          <div className="flex items-end justify-between mb-20">
             <div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2 tracking-tight">Our Core Services</h2>
-              <div className="w-12 h-1 bg-teal-600 rounded-full"></div>
+              <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
+                <Stethoscope size={12} />
+                <span>Medical Care</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 tracking-tight leading-tight">Our Core <span className="text-teal-700">Services.</span></h2>
             </div>
             <button 
               onClick={() => navigate('/services')}
-              className="text-teal-700 font-bold text-sm hover:text-teal-800 flex items-center gap-2 group"
+              className="text-teal-700 font-bold text-sm hover:text-teal-800 flex items-center gap-3 group transition-all"
             >
-              View Details
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              View Service Details
+              <div className="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center group-hover:bg-teal-700 group-hover:text-white transition-all">
+                <ArrowRight size={16} />
+              </div>
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {SERVICES.map((service, idx) => (
               <motion.div
                 key={service.id}
@@ -1016,26 +669,31 @@ IMPORTANT GUIDELINES:
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
                 onClick={() => navigate('/services')}
-                className={`group relative rounded-3xl p-6 transition-all duration-300 cursor-pointer overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-teal-900/5 ${
-                  idx === 0 ? 'bg-teal-700 text-white border-teal-600' : 'bg-slate-50 hover:bg-white text-slate-900'
+                className={`group relative rounded-[2.5rem] p-10 transition-all duration-500 cursor-pointer overflow-hidden ${
+                  idx === 0 
+                    ? 'bg-teal-700 text-white shadow-soft-xl hover:shadow-2xl hover:shadow-teal-900/40 border border-teal-600' 
+                    : 'bg-white hover:bg-slate-50 text-slate-900 shadow-soft hover:shadow-soft-xl border border-slate-100'
                 }`}
               >
                 <div className="relative z-10">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 shadow-sm transition-all duration-300 ${
-                    idx === 0 ? 'bg-white/10 text-white group-hover:bg-white group-hover:text-teal-700' : 'bg-white text-teal-700 group-hover:bg-teal-700 group-hover:text-white'
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-8 shadow-sm transition-all duration-500 ${
+                    idx === 0 ? 'bg-white/10 text-white group-hover:bg-white group-hover:text-teal-700' : 'bg-teal-50 text-teal-700 group-hover:bg-teal-700 group-hover:text-white'
                   }`}>
-                    {service.id === 'online' && <Activity size={24} />}
-                    {service.id === 'face-to-face' && <Users size={24} />}
-                    {service.id === 'home-visit' && <MapPin size={24} />}
+                    {service.id === 'online' && <Activity size={28} />}
+                    {service.id === 'face-to-face' && <Users size={28} />}
+                    {service.id === 'home-visit' && <MapPin size={28} />}
                   </div>
-                  <h3 className="text-xl font-display font-bold mb-2 tracking-tight">{service.title}</h3>
-                  <p className={`text-sm mb-6 line-clamp-2 leading-relaxed ${idx === 0 ? 'text-teal-50' : 'text-slate-500'}`}>{service.description}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xl font-bold">{service.price}</span>
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-                      idx === 0 ? 'bg-white text-teal-700' : 'bg-white text-slate-900 group-hover:bg-teal-700 group-hover:text-white'
+                  <h3 className="text-2xl font-display font-bold mb-4 tracking-tight leading-none">{service.title}</h3>
+                  <p className={`text-base mb-10 leading-relaxed font-light ${idx === 0 ? 'text-teal-50/80' : 'text-slate-500'}`}>{service.description}</p>
+                  <div className="flex items-center justify-between pt-6 border-t border-current/10">
+                    <div>
+                      <span className="text-[10px] uppercase tracking-[0.2em] font-bold opacity-60 block mb-1">Starting from</span>
+                      <span className="text-3xl font-display font-bold tracking-tighter">{service.price}</span>
+                    </div>
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 ${
+                      idx === 0 ? 'bg-white text-teal-700 rotate-[-15deg] group-hover:rotate-0' : 'bg-slate-900 text-white group-hover:bg-teal-700'
                     }`}>
-                      <ArrowRight size={14} />
+                      <ArrowRight size={20} />
                     </div>
                   </div>
                 </div>

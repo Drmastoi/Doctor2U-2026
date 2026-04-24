@@ -20,6 +20,7 @@ export default function Navbar({}: NavbarProps) {
   const navItems = [
     { path: '/', label: 'Home' },
     { path: '/services', label: 'Services' },
+    { path: '/ai-health-insights', label: 'AI Health Tool' },
     { path: '/innovation', label: 'Innovation' },
     { path: '/book', label: 'Book Online' },
     { path: '/contact', label: 'Contact Us' },
@@ -28,14 +29,14 @@ export default function Navbar({}: NavbarProps) {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-      scrolled ? 'py-3' : 'py-6'
+    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ${
+      scrolled ? 'py-3' : 'py-8'
     }`}>
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`flex items-center justify-between rounded-[2rem] px-6 transition-all duration-500 border border-transparent ${
+        <div className={`flex items-center justify-between rounded-[2rem] px-8 transition-all duration-700 ${
           scrolled 
-            ? 'bg-white/80 backdrop-blur-xl shadow-2xl shadow-teal-900/10 border-slate-100 py-3' 
-            : 'bg-white/40 backdrop-blur-md border-white/20 py-4 shadow-sm'
+            ? 'bg-white/80 backdrop-blur-xl shadow-soft border border-slate-100 py-3' 
+            : 'bg-transparent py-4'
         }`}>
           {/* Logo */}
           <Link to="/" className="cursor-pointer">

@@ -1,24 +1,24 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import {
-  ShieldCheck, AlertCircle, CheckCircle2,
-  Activity, Users, Scale, Microscope,
+import { 
+  ShieldCheck, AlertCircle, FileText, CheckCircle2, 
+  Activity, Users, Scale, HeartPulse, Microscope,
   Search, Lock, Info
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
-import SEO from '../components/SEO';
 
 export default function ClinicalGovernance() {
   const navigate = useNavigate();
+  React.useEffect(() => {
+    document.title = "Clinical Governance & Safety | Medical Standards | Doctor2U";
+  }, []);
 
   return (
     <div className="bg-[#fcfcfc] min-h-screen pt-32 pb-24">
-      <SEO
-        title="Clinical Governance and Safety Standards"
-        description="Read how Doctor2U manages clinical governance, NICE-aligned care, patient safety, escalation protocols, and data protection across private consultations."
-      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header Section */}
         <div className="mb-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -36,6 +36,7 @@ export default function ClinicalGovernance() {
           </p>
         </div>
 
+        {/* The Pillars */}
         <div className="space-y-12 mb-24">
           <div className="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-xl shadow-slate-200/50">
             <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-4">
@@ -74,7 +75,7 @@ export default function ClinicalGovernance() {
             </h2>
             <div className="prose prose-slate max-w-none text-red-900/80">
               <p className="mb-4">
-                Our doctors are trained to identify 'red flag' symptoms that require immediate secondary care intervention.
+                Our doctors are trained to identify 'red flag' symptoms that require immediate secondary care intervention. 
               </p>
               <ul className="space-y-4">
                 <li className="flex gap-3">
@@ -115,7 +116,7 @@ export default function ClinicalGovernance() {
             </h2>
             <div className="prose prose-slate max-w-none text-slate-600">
               <p className="mb-6 leading-relaxed">
-                Innovation must never compromise safety. Our AI insight tool is a purely supportive, informatics-based solution designed to help patients structure their history.
+                Innovation must never compromise safety. Our AI insight tool is a purely supportive, informatics-based solution designed to help patients structure their history. 
               </p>
               <div className="p-8 bg-medical-50 rounded-3xl border border-medical-200">
                 <h4 className="font-bold text-medical-900 mb-2 flex items-center gap-2">
@@ -130,6 +131,7 @@ export default function ClinicalGovernance() {
           </div>
         </div>
 
+        {/* Audit and Risk Section */}
         <section className="mb-24">
           <h2 className="text-3xl font-display font-bold text-slate-900 mb-10 tracking-tight">Audit & Continuous Improvement</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -168,19 +170,20 @@ export default function ClinicalGovernance() {
           </div>
         </section>
 
+        {/* Bottom CTA */}
         <div className="p-12 bg-slate-900 text-white rounded-[4rem] text-center shadow-2xll shadow-teal-900/40">
           <h3 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight">Committed to Patient Safety</h3>
           <p className="text-slate-400 mb-10 max-w-xl mx-auto leading-relaxed">
             If you have any questions regarding our clinical protocols or the qualifications of our medical team, please do not hesitate to contact us.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
+            <button 
               onClick={() => navigate('/contact')}
               className="bg-medical-500 text-slate-900 px-8 py-4 rounded-xl font-bold hover:bg-medical-400 transition-all font-display"
             >
               Contact Governance Team
             </button>
-            <button
+            <button 
               onClick={() => navigate('/our-doctors')}
               className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all"
             >

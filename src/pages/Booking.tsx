@@ -1,17 +1,13 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Calendar, ShieldCheck, Clock, ArrowLeft } from 'lucide-react';
+import { Calendar, ShieldCheck, Clock, ArrowLeft, Brain, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import HubLink from '../components/HubLink';
-import SEO from '../components/SEO';
 
 export default function BookingPage() {
   return (
     <div className="bg-white min-h-screen pt-32 pb-16 relative overflow-hidden">
-      <SEO
-        title="Book a Private Doctor Appointment Manchester & Lancashire"
-        description="Book a same-day private doctor appointment with Doctor2U for home visits, online GP consultations, and in-clinic care across Manchester and Lancashire."
-      />
+      {/* Background Blobs for Modern Feel */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-teal-100/30 rounded-full blur-[120px] animate-blob"></div>
         <div className="absolute top-[20%] left-[-10%] w-[400px] h-[400px] bg-medical-100/20 rounded-full blur-[100px] animate-blob [animation-delay:2s]"></div>
@@ -48,9 +44,9 @@ export default function BookingPage() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
           <div className="lg:col-span-1 space-y-4">
             {[
-              { icon: Calendar, title: 'Instant Booking', desc: 'Real-time availability with immediate confirmation.' },
-              { icon: ShieldCheck, title: 'Secure Portal', desc: 'End-to-end encryption for your medical data.' },
-              { icon: Clock, title: '24/7 Access', desc: 'Book at your convenience, anytime, anywhere.' }
+              { icon: Calendar, title: "Instant Booking", desc: "Real-time availability with immediate confirmation." },
+              { icon: ShieldCheck, title: "Secure Portal", desc: "End-to-end encryption for your medical data." },
+              { icon: Clock, title: "24/7 Access", desc: "Book at your convenience, anytime, anywhere." }
             ].map((item, index) => (
               <motion.div 
                 key={index}
