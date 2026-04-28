@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { SERVICES } from '../types';
 import HubLink from '../components/HubLink';
 import SEO from '../components/SEO';
-import { Video, User, Home as HomeIcon, CheckCircle2, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Video, User, Home as HomeIcon, CheckCircle2, ArrowRight, ArrowLeft, Brain, Apple } from 'lucide-react';
 
 export default function ServicesPage() {
   const navigate = useNavigate();
@@ -13,6 +13,8 @@ export default function ServicesPage() {
       case 'Video': return <Video size={32} />;
       case 'User': return <User size={32} />;
       case 'Home': return <HomeIcon size={32} />;
+      case 'Brain': return <Brain size={32} />;
+      case 'Apple': return <Apple size={32} />;
       default: return <CheckCircle2 size={32} />;
     }
   };

@@ -7,6 +7,7 @@ interface SEOProps {
   canonical?: string;
   ogType?: string;
   ogImage?: string;
+  schema?: Record<string, any>;
 }
 
 export default function SEO({ 
@@ -14,7 +15,8 @@ export default function SEO({
   description, 
   canonical, 
   ogType = 'website',
-  ogImage = 'https://doctor2u.co.uk/og-image.jpg' // Default OG image
+  ogImage = 'https://doctor2u.co.uk/og-image.jpg',
+  schema
 }: SEOProps) {
   const siteName = "Doctor2U";
   const fullTitle = `${title} | ${siteName}`;
@@ -40,6 +42,12 @@ export default function SEO({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+
+      {schema && (
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      )}
     </Helmet>
   );
 }

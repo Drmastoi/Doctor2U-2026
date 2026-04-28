@@ -16,6 +16,11 @@ import HomeVisitManchester from './pages/seo/HomeVisitManchester';
 import PrivateDoctorManchesterPage from './pages/seo/PrivateDoctorManchesterPage';
 import SameDayDoctorManchester from './pages/seo/SameDayDoctorManchester';
 import DoctorHomeVisitManchester from './pages/seo/DoctorHomeVisitManchester';
+import ADHDAssessment from './pages/ADHDAssessment';
+import MedicalWeightManagement from './pages/MedicalWeightManagement';
+import AIHomeVisit from './pages/AIHomeVisit';
+import ManchesterPage from './pages/ManchesterPage';
+import PrestonPage from './pages/PrestonPage';
 import AboutUs from './pages/AboutUs';
 import OurDoctors from './pages/OurDoctors';
 import ClinicalGovernance from './pages/ClinicalGovernance';
@@ -67,6 +72,11 @@ export default function App() {
               <Route path="/innovation" element={<InnovationPage />} />
               <Route path="/ai-health-insights" element={<AIHealthInsights />} />
               <Route path="/treatment-plan" element={<TreatmentPlan />} />
+              <Route path="/services/adhd-assessment" element={<ADHDAssessment />} />
+              <Route path="/services/weight-management" element={<MedicalWeightManagement />} />
+              <Route path="/services/ai-powered-home-visit" element={<AIHomeVisit />} />
+              <Route path="/services/private-gp-manchester" element={<ManchesterPage />} />
+              <Route path="/services/private-gp-preston" element={<PrestonPage />} />
               
               <Route path="/services/private-gp" element={
                 <ServiceDetail 

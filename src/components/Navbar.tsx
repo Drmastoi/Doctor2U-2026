@@ -20,10 +20,11 @@ export default function Navbar({}: NavbarProps) {
   const navItems = [
     { path: '/', label: 'Home' },
     { path: '/services', label: 'Services' },
-    { path: '/ai-health-insights', label: 'AI Health Tool' },
+    { path: '/services/ai-powered-home-visit', label: 'AI Advantage' },
+    { path: '/services/adhd-assessment', label: 'ADHD' },
+    { path: '/services/weight-management', label: 'Weight' },
     { path: '/innovation', label: 'Innovation' },
-    { path: '/book', label: 'Book Online' },
-    { path: '/contact', label: 'Contact Us' },
+    { path: '/contact', label: 'Contact' },
   ];
 
   const isActive = (path: string) => location.pathname === path;

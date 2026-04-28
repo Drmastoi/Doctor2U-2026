@@ -13,6 +13,8 @@ import HubLink from '../components/HubLink';
 import { GoogleGenAI } from "@google/genai";
 import Markdown from 'react-markdown';
 
+import SEO from '../components/SEO';
+
 const FAQS: FAQ[] = [
   {
     question: "Do you see children?",
@@ -92,6 +94,49 @@ const BLOG_POSTS = [
   }
 ];
 
+const HOME_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "Doctor2U",
+  "image": "https://doctor2u.co.uk/logo.png",
+  "@id": "https://doctor2u.co.uk",
+  "url": "https://doctor2u.co.uk",
+  "telephone": "+447488879077",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Greater Manchester and Lancashire",
+    "addressLocality": "Manchester",
+    "addressRegion": "Manchester",
+    "postalCode": "M1",
+    "addressCountry": "UK"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 53.4808,
+    "longitude": -2.2426
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "08:00",
+    "closes": "22:00"
+  },
+  "sameAs": [
+    "https://facebook.com/doctor2u",
+    "https://instagram.com/doctor2u",
+    "https://twitter.com/doctor2u"
+  ],
+  "medicalSpecialty": "General Practice"
+};
+
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -161,6 +206,11 @@ export default function Home() {
 
   return (
     <div ref={containerRef} className="flex flex-col relative overflow-hidden bg-white">
+      <SEO 
+        title="Private GP Home Visits Manchester & Preston | Same-Day Doctor" 
+        description="Book a GMC-registered private doctor for a same-day home visit in Manchester and Preston. Expert clinical care in the comfort of your own home."
+        schema={HOME_SCHEMA}
+      />
       {/* Disclaimer Banner */}
       <div className="bg-amber-50 border-b border-amber-100 py-2 px-4 relative z-50">
         <div className="max-w-[1600px] mx-auto flex items-center justify-center gap-3 text-amber-800 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center text-wrap lg:text-nowrap">
@@ -186,9 +236,9 @@ export default function Home() {
       </div>
 
       {/* Hero Section - Clean Modern Light Theme with Parallax */}
-      <section className="relative h-[90vh] flex items-center pt-32 md:pt-40 overflow-hidden bg-white">
+      <section className="relative min-h-[75vh] flex items-center pt-24 md:pt-32 overflow-hidden bg-white">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="flex flex-col lg:flex-row items-center gap-12 xl:gap-20">
+          <div className="flex flex-col lg:flex-row items-center gap-10 xl:gap-16">
             <motion.div 
               style={{ y: heroTextY, opacity: heroOpacity }}
               initial={{ opacity: 0, x: -50 }}
@@ -196,7 +246,7 @@ export default function Home() {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="flex-1 text-center lg:text-left"
             >
-              <div className="mb-8 flex justify-center lg:justify-start">
+              <div className="mb-6 flex justify-center lg:justify-start">
                 <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-emerald-50 border border-emerald-100 rounded-full shadow-sm">
                   <div className="relative flex h-2.5 w-2.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -206,22 +256,22 @@ export default function Home() {
                 </div>
               </div>
 
-              <h1 className="text-[55px] md:text-[80px] font-display font-bold leading-[1.02] mb-6 text-slate-900 tracking-tighter">
+              <h1 className="text-[50px] md:text-[72px] font-display font-bold leading-[1.02] mb-5 text-slate-900 tracking-tighter">
                 Book Doctors' <br />
                 <span className="text-teal-700 italic">Home Visits Now.</span>
               </h1>
 
-              <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-2 rounded-full text-[13px] font-bold mb-12 tracking-[0.2em] uppercase">
+              <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[12px] font-bold mb-8 tracking-[0.2em] uppercase">
                 <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
                 <span>Your Home • Your Time • Your Doctor</span>
               </div>
               
-              <div className="space-y-6 mb-14">
-                <p className="text-xl md:text-2xl text-slate-600 leading-snug max-w-2xl mx-auto lg:mx-0 tracking-tight font-medium">
+              <div className="space-y-4 mb-10">
+                <p className="text-lg md:text-xl text-slate-600 leading-snug max-w-2xl mx-auto lg:mx-0 tracking-tight font-medium">
                   Experienced <span className="text-slate-900 font-bold border-b-2 border-teal-100">GMC-registered doctor</span> who values your time.
                 </p>
                 
-                <div className="flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-3">
+                <div className="flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-teal-500"></div>
                     <span className="text-base md:text-lg font-display text-slate-600 font-medium tracking-tight">Personalised care to suit your needs</span>
@@ -254,23 +304,6 @@ export default function Home() {
                   </div>
                   See how it works
                 </motion.button>
-              </div>
-
-              <div className="mt-20 flex flex-wrap items-center justify-center lg:justify-start gap-12 md:gap-16">
-                <div className="flex flex-col gap-1">
-                  <span className="text-4xl font-display font-bold text-slate-900 leading-none">100%</span>
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-bold">Transparent</span>
-                </div>
-                <div className="w-px h-12 bg-slate-100 hidden sm:block"></div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-4xl font-display font-bold text-slate-900 leading-none">24/7</span>
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-bold">Available</span>
-                </div>
-                <div className="w-px h-12 bg-slate-100 hidden sm:block"></div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-4xl font-display font-bold text-slate-900 leading-none">4.9/5</span>
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-bold">Reviews</span>
-                </div>
               </div>
             </motion.div>
 
@@ -343,25 +376,25 @@ export default function Home() {
       </section>
 
       {/* Home Visit Benefits CTA */}
-      <section className="py-20 bg-teal-50/30">
+      <section className="py-12 bg-teal-50/30">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-[4rem] p-8 md:p-16 border border-teal-100 shadow-2xl shadow-teal-900/10 flex flex-col lg:flex-row items-center gap-12 overflow-hidden relative">
+          <div className="bg-white rounded-[3rem] p-8 md:p-12 border border-teal-100 shadow-2xl shadow-teal-900/10 flex flex-col lg:flex-row items-center gap-10 overflow-hidden relative">
             <div className="absolute top-0 right-0 w-64 h-64 bg-teal-50 rounded-full blur-[100px] -z-0 opacity-50"></div>
             
             <div className="flex-1 relative z-10 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
+              <div className="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-4 py-1 rounded-full text-[10px] font-bold mb-4 tracking-[0.2em] uppercase">
                 <HomeIcon size={14} />
                 <span>The Home Visit Advantage</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight text-slate-900 leading-tight">
-                Medical Care Where <br />
-                <span className="text-teal-700">You Are Most Comfortable.</span>
+              <h2 className="text-3xl md:text-4xl font-display font-bold mb-5 tracking-tight text-slate-900 leading-tight">
+                Private Doctor Home Visits: <br />
+                <span className="text-teal-700">Medical Care in Comfort.</span>
               </h2>
-              <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                Experience the gold standard of private medical care. Our home visits eliminate the stress of travel and waiting rooms, allowing for a thorough consultation and physical examination in the peace of your own home.
+              <p className="text-base text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
+                Experience the gold standard of private medical care in Manchester and Lancashire. Our home visits eliminate the stress of travel, providing unhurried clinical time in the privacy of your own home.
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 text-left">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-left">
                 {[
                   "No travel or waiting rooms required",
                   "Comprehensive physical examination",
@@ -414,14 +447,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* What Happens After I Book Section */}
-      <section className="py-24 bg-white border-y border-slate-100">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">What Happens <span className="text-teal-700">After I Book?</span></h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">Providing reassurance and clarity from the moment you schedule your appointment.</p>
+      {/* Patient Experience Statistics */}
+      <section className="py-10 bg-slate-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
+            {[
+              { label: 'Avg. Response Time', value: '2 Hours' },
+              { label: 'Patient Satisfaction', value: '99%' },
+              { label: 'GMC Clinicians', value: '100%' },
+              { label: 'North West Coverage', value: 'Local' },
+            ].map((stat, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="text-center"
+              >
+                <div className="text-2xl md:text-4xl font-display font-bold text-teal-400 mb-1">{stat.value}</div>
+                <div className="text-[9px] uppercase tracking-[0.2em] text-teal-100/50 font-bold">{stat.label}</div>
+              </motion.div>
+            ))}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        </div>
+      </section>
+
+      {/* What Happens After I Book Section */}
+      <section className="py-16 bg-white border-y border-slate-100">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4 tracking-tight">What Happens <span className="text-teal-700">After I Book?</span></h2>
+            <p className="text-base text-slate-600 max-w-2xl mx-auto">Providing reassurance and clarity from the moment you schedule your appointment.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { title: "Immediate Confirmation", desc: "You'll receive an instant confirmation email and SMS with all the details of your booking." },
               { title: "Secure Video Link", desc: "For online consultations, a secure, encrypted video link is sent 10 minutes before your start time." },
@@ -440,45 +500,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3-Step Process Strip */}
-      <section className="bg-teal-700 py-8 relative z-20 shadow-2xl">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
-            <div className="flex items-center gap-4 text-white group">
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-teal-400 border border-white/20 group-hover:bg-white group-hover:text-teal-700 transition-all text-xs">1</div>
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Step One</p>
-                <p className="text-sm font-bold">AI health insights (optional)</p>
-              </div>
-            </div>
-            <div className="hidden md:block text-teal-500/30">
-              <ArrowRight size={20} />
-            </div>
-            <div className="flex items-center gap-4 text-white group">
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-teal-400 border border-white/20 group-hover:bg-white group-hover:text-teal-700 transition-all text-xs">2</div>
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Step Two</p>
-                <p className="text-sm font-bold">Share with doctor & book consultation</p>
-              </div>
-            </div>
-            <div className="hidden md:block text-teal-500/30">
-              <ArrowRight size={20} />
-            </div>
-            <div className="flex items-center gap-4 text-white group">
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-teal-400 border border-white/20 group-hover:bg-white group-hover:text-teal-700 transition-all text-xs">3</div>
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Step Three</p>
-                <p className="text-sm font-bold">Personalised plan & prescriptions/referrals</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Trusted By Section */}
-      <section className="py-10 bg-white border-b border-slate-100">
+      <section className="py-6 bg-white border-b border-slate-100">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 opacity-40 grayscale hover:grayscale-0 transition-all duration-500 text-center">
             <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">NHS-EXPERIENCED DOCTORS</span>
             <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">GMC REGISTERED</span>
             <span className="text-xl font-display font-bold text-slate-900 tracking-tighter">BMA MEMBER</span>
@@ -488,31 +513,31 @@ export default function Home() {
       </section>
 
       {/* Simple Journey Section: How It Works */}
-      <section id="how-it-works" className="py-24 bg-slate-50 relative overflow-hidden">
+      <section id="how-it-works" className="py-16 bg-slate-50 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-medical-100/40 rounded-full blur-[120px]"></div>
         </div>
-
+ 
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 bg-teal-100 border border-teal-200 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
+              className="inline-flex items-center gap-2 bg-teal-100 border border-teal-200 text-teal-700 px-4 py-1 rounded-full text-[10px] font-bold mb-4 tracking-[0.2em] uppercase"
             >
               <Activity size={12} />
               <span>The Journey</span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight text-slate-900">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 tracking-tight text-slate-900">
               How It <span className="text-teal-700">Works</span>
             </h2>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+            <p className="text-base text-slate-500 max-w-2xl mx-auto">
               We've refined private healthcare to be as efficient and empathetic as possible.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             {/* Connection Line */}
             <div className="absolute top-1/2 left-0 w-full h-px bg-slate-200 -z-10 hidden md:block"></div>
             
@@ -584,205 +609,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Specialist Services - Sleeker & Professional */}
-      <section className="py-32 bg-slate-900 text-white overflow-hidden">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-teal-400 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
-                <Activity size={12} />
-                <span>Expert Precision</span>
-              </div>
-              <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight leading-tight">Specialist <br /><span className="text-teal-400">Medical Services</span></h2>
-              <p className="text-xl text-slate-400 font-light leading-relaxed">Comprehensive assessments and expert consultations for every stage of life.</p>
-            </div>
-            <button 
-              onClick={() => navigate('/book')}
-              className="bg-teal-600 text-white px-10 py-5 rounded-[2rem] font-bold hover:bg-teal-500 transition-all shadow-2xl shadow-teal-900/40 text-sm uppercase tracking-widest"
-            >
-              View All Services
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: 'Private Doctor Consultations', page: 'service-private-gp' },
-              { title: 'Home Visit Doctor', page: 'service-home-visit' },
-              { title: 'Drivers Medicals (HGV/Taxi)', page: 'service-drivers-medicals' },
-              { title: 'Health Screening (MOT)', page: 'service-health-screening' },
-              { title: 'Children\'s Health Checks', page: 'service-childrens-health' },
-              { title: 'Accident & Injury Claims', page: 'service-accident-injury' },
-              { title: 'Life Insurance Medicals', page: 'service-life-insurance' },
-              { title: 'Chronic Disease Management', page: 'service-chronic-care' },
-              { title: 'Private Referrals & Scans', page: 'service-referrals' },
-            ].map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05 }}
-                className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group cursor-pointer"
-                onClick={() => navigate(getPath(item.page))}
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-1.5 h-1.5 rounded-full bg-teal-500 group-hover:scale-150 transition-transform"></div>
-                    <span className="text-lg font-medium group-hover:text-teal-400 transition-colors tracking-tight">{item.title}</span>
-                  </div>
-                  <ArrowRight size={18} className="text-white/20 group-hover:text-teal-400 group-hover:translate-x-1 transition-all" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Core Services - Sleeker & Intense */}
-      <section className="py-32 bg-white">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-20">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
-                <Stethoscope size={12} />
-                <span>Medical Care</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 tracking-tight leading-tight">Our Core <span className="text-teal-700">Services.</span></h2>
-            </div>
-            <button 
-              onClick={() => navigate('/services')}
-              className="text-teal-700 font-bold text-sm hover:text-teal-800 flex items-center gap-3 group transition-all"
-            >
-              View Service Details
-              <div className="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center group-hover:bg-teal-700 group-hover:text-white transition-all">
-                <ArrowRight size={16} />
-              </div>
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {SERVICES.map((service, idx) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                onClick={() => navigate('/services')}
-                className={`group relative rounded-[2.5rem] p-10 transition-all duration-500 cursor-pointer overflow-hidden ${
-                  idx === 0 
-                    ? 'bg-teal-700 text-white shadow-soft-xl hover:shadow-2xl hover:shadow-teal-900/40 border border-teal-600' 
-                    : 'bg-white hover:bg-slate-50 text-slate-900 shadow-soft hover:shadow-soft-xl border border-slate-100'
-                }`}
-              >
-                <div className="relative z-10">
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-8 shadow-sm transition-all duration-500 ${
-                    idx === 0 ? 'bg-white/10 text-white group-hover:bg-white group-hover:text-teal-700' : 'bg-teal-50 text-teal-700 group-hover:bg-teal-700 group-hover:text-white'
-                  }`}>
-                    {service.id === 'online' && <Activity size={28} />}
-                    {service.id === 'face-to-face' && <Users size={28} />}
-                    {service.id === 'home-visit' && <MapPin size={28} />}
-                  </div>
-                  <h3 className="text-2xl font-display font-bold mb-4 tracking-tight leading-none">{service.title}</h3>
-                  <p className={`text-base mb-10 leading-relaxed font-light ${idx === 0 ? 'text-teal-50/80' : 'text-slate-500'}`}>{service.description}</p>
-                  <div className="flex items-center justify-between pt-6 border-t border-current/10">
-                    <div>
-                      <span className="text-[10px] uppercase tracking-[0.2em] font-bold opacity-60 block mb-1">Starting from</span>
-                      <span className="text-3xl font-display font-bold tracking-tighter">{service.price}</span>
-                    </div>
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 ${
-                      idx === 0 ? 'bg-white text-teal-700 rotate-[-15deg] group-hover:rotate-0' : 'bg-slate-900 text-white group-hover:bg-teal-700'
-                    }`}>
-                      <ArrowRight size={20} />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* What Is Doctor 2 U Help Section */}
-      <section className="py-16 bg-white border-b border-slate-50">
+      {/* Meet Your Doctor Section */}
+      <section className="py-16 bg-white overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1">
-              <div className="inline-flex items-center gap-2 bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-[9px] font-bold mb-4 tracking-[0.2em] uppercase">
-                <Activity size={12} />
-                Doctor-Led Medical Service
-              </div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-6 tracking-tighter">Healthcare Redefined</h2>
-              <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                Doctor 2 U is a premium medical service providing expert consultations on your terms. We offer an optional AI-powered preparation tool to help you organise your health concerns before your appointment, ensuring a deeper and more effective consultation with our clinicians.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  { icon: Stethoscope, title: "Expert Doctors", desc: "GMC registered private clinicians." },
-                  { icon: ClipboardList, title: "Full Treatment", desc: "Prescriptions, referrals & plans." },
-                  { icon: MapPin, title: "Flexible Care", desc: "Home, Clinic, or Online visits." },
-                  { icon: Brain, title: "AI Preparation", desc: "Optional tool for health analysis." }
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-3">
-                    <div className="shrink-0 w-8 h-8 rounded-lg bg-teal-50 flex items-center justify-center text-teal-600">
-                      <item.icon size={16} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-xs">{item.title}</h4>
-                      <p className="text-[10px] text-slate-500">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="flex-1 relative">
-              <div className="rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white">
-                <img 
-                  src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800" 
-                  alt="AI Health Analysis" 
-                  className="w-full h-[350px] object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Meet Your Doctor Section */}
-      <section className="py-24 bg-white overflow-hidden">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="flex-1">
-              <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-8 tracking-tight">Meet Your <span className="text-teal-700">Doctors</span></h2>
-              <div className="space-y-8">
-                <div className="bg-slate-50 p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col md:flex-row gap-8 items-center md:items-start group hover:shadow-xl transition-all">
-                  <div className="w-32 h-32 rounded-3xl overflow-hidden shrink-0 border-4 border-white shadow-md">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-6 tracking-tight">Meet Your <span className="text-teal-700">Doctors</span></h2>
+              <div className="space-y-6">
+                <div className="bg-slate-50 p-6 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 items-center md:items-start group hover:shadow-xl transition-all">
+                  <div className="w-28 h-28 rounded-2xl overflow-hidden shrink-0 border-4 border-white shadow-md">
                     <img src="https://i.pravatar.cc/150?u=doc1" alt="Dr. Ahmed Iqbal" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Dr. Ahmed Iqbal</h3>
-                    <p className="text-teal-700 font-bold text-sm mb-4 uppercase tracking-widest">GMC Number: 7041470</p>
-                    <p className="text-slate-600 leading-relaxed mb-6">Expert General Practitioner with extensive experience in both NHS and private practice. Specialising in preventative medicine and health screenings.</p>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">Dr. Ahmed Iqbal</h3>
+                    <p className="text-teal-700 font-bold text-xs mb-3 uppercase tracking-widest">GMC Number: 7041470</p>
+                    <p className="text-sm text-slate-600 leading-relaxed mb-4">Expert General Practitioner with extensive experience in both NHS and private practice. Specialising in preventative medicine and health screenings.</p>
                     <div className="flex flex-wrap gap-2">
                       {['MBBS', 'MRCGP', 'MRCS'].map(tag => (
-                        <span key={tag} className="px-3 py-1 bg-white border border-slate-200 rounded-full text-[10px] font-bold text-slate-500 uppercase tracking-widest">{tag}</span>
+                        <span key={tag} className="px-2 py-0.5 bg-white border border-slate-200 rounded-full text-[9px] font-bold text-slate-500 uppercase tracking-widest">{tag}</span>
                       ))}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="flex-1 grid grid-cols-2 gap-6">
-              <div className="bg-teal-700 p-8 rounded-[2.5rem] text-white shadow-xl shadow-teal-900/20">
-                <ShieldCheck size={40} className="mb-6 text-teal-400" />
-                <h4 className="text-xl font-bold mb-4">GMC Registered</h4>
-                <p className="text-teal-100/70 text-sm leading-relaxed">All our clinicians are fully licensed to practice in the UK and adhere to the highest clinical standards set by the General Medical Council.</p>
+            <div className="flex-1 grid grid-cols-2 gap-4">
+              <div className="bg-teal-700 p-6 rounded-[2rem] text-white shadow-xl shadow-teal-900/20">
+                <ShieldCheck size={36} className="mb-4 text-teal-400" />
+                <h4 className="text-lg font-bold mb-3">GMC Registered</h4>
+                <p className="text-teal-100/70 text-xs leading-relaxed">All our clinicians are fully licensed to practice in the UK and adhere to the highest clinical standards set by the General Medical Council.</p>
               </div>
-              <div className="bg-slate-900 p-8 rounded-[2.5rem] text-white shadow-xl">
-                <Award size={40} className="mb-6 text-teal-400" />
-                <h4 className="text-xl font-bold mb-4">500+ Reviews</h4>
-                <p className="text-teal-100/70 text-sm leading-relaxed">Our patients consistently rate us 4.9/5 for professional care, convenience, and thoroughness.</p>
+              <div className="bg-slate-900 p-6 rounded-[2rem] text-white shadow-xl">
+                <Award size={36} className="mb-4 text-teal-400" />
+                <h4 className="text-lg font-bold mb-3">500+ Reviews</h4>
+                <p className="text-teal-100/70 text-xs leading-relaxed">Our patients consistently rate us 4.9/5 for professional care, convenience, and thoroughness.</p>
               </div>
             </div>
           </div>
@@ -790,23 +650,23 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-white overflow-hidden">
+      <section className="py-12 bg-white overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
+          <div className="flex flex-col lg:flex-row items-center gap-10">
             <div className="flex-1">
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-6 leading-tight tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-display font-bold text-slate-900 mb-4 leading-tight tracking-tight">
                   What Our <br />
                   <span className="text-teal-700">Patients Say.</span>
                 </h2>
-                <p className="text-base text-slate-600 mb-8 leading-relaxed">
+                <p className="text-sm text-slate-600 mb-6 leading-relaxed">
                   We pride ourselves on providing a level of care that exceeds expectations. Read about the experiences of those who trust us with their health.
                 </p>
-                <div className="flex gap-3">
+                <div className="flex gap-2">
                   <button 
                     onClick={prevTestimonial}
                     className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-teal-700 hover:text-white hover:border-teal-700 transition-all"
@@ -857,17 +717,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Blog / Health Insights Section */}
-      <section className="py-16 bg-slate-50">
+      {/* Blog / Medical Insights Section */}
+      <section className="py-12 bg-slate-50">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-10 gap-6">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-8 gap-4">
             <div className="max-w-xl">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4 tracking-tight">Health <span className="text-teal-700">Analysis</span></h2>
-              <p className="text-base text-slate-600 leading-relaxed">Expert medical advice and the latest news from the world of private healthcare.</p>
+              <h2 className="text-2xl md:text-3xl font-display font-bold text-slate-900 mb-2 tracking-tight">Medical <span className="text-teal-700">Insights</span></h2>
+              <p className="text-sm text-slate-600 leading-relaxed">Expert medical advice and the latest news from the world of private healthcare.</p>
             </div>
-            <button className="text-teal-700 font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all group">
+            <button className="text-teal-700 font-bold text-xs flex items-center gap-2 hover:gap-3 transition-all group">
               View All Articles
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
@@ -911,19 +771,19 @@ export default function Home() {
       </section>
 
       {/* Who This Is For Section */}
-      <section className="py-16 bg-slate-900 text-white">
+      <section className="py-12 bg-slate-900 text-white">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-3xl md:text-5xl font-display font-bold mb-8 tracking-tighter">Who Doctor2U Is For</h2>
-              <div className="space-y-6">
+              <h2 className="text-2xl md:text-4xl font-display font-bold mb-6 tracking-tighter">Who Doctor2U Is For</h2>
+              <div className="space-y-4">
                 <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center text-teal-400 shrink-0">
-                    <Activity size={24} />
+                  <div className="w-10 h-10 rounded-xl bg-teal-500/20 flex items-center justify-center text-teal-400 shrink-0">
+                    <Activity size={20} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-1 tracking-tight">Unexplained Symptoms</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">People with ongoing or unexplained symptoms looking for root-cause analysis. Start by using our AI tool to structure your symptom history, then decide if you'd like to share the analysis with a doctor for a deeper clinical review.</p>
+                    <h3 className="text-lg font-bold mb-1 tracking-tight">Unexplained Symptoms</h3>
+                    <p className="text-xs text-slate-400 leading-relaxed">People with ongoing or unexplained symptoms looking for root-cause analysis. Our doctors provide unhurried clinical time to thoroughly investigate your concerns.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -932,7 +792,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold mb-1 tracking-tight">Busy Professionals</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">People seeking fast access to medical care while juggling a hectic schedule. Get a quick summary of your health insights in your own time, then optionally share it with a doctor and book a same-day appointment.</p>
+                    <p className="text-sm text-slate-400 leading-relaxed">People seeking fast access to medical care while juggling a hectic schedule. Get expert medical support and same-day prescriptions at a time that works for you.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -941,7 +801,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold mb-1 tracking-tight">Worried Parents</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">Parents needing reassurance and professional advice for their child's health. Use the AI tool to clarify your child's symptoms first, then choose to share the summary with a doctor for a comprehensive review.</p>
+                    <p className="text-sm text-slate-400 leading-relaxed">Parents needing reassurance and professional advice for their child's health. Our GMC-registered doctors provide comprehensive paediatric reviews in the comfort of your home.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -950,7 +810,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold mb-1 tracking-tight">Ongoing Conditions</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">Those managing long-term health issues. Track changes by structuring your regular symptoms through our AI tool first, then share the report with your doctor during your next management check-up.</p>
+                    <p className="text-sm text-slate-400 leading-relaxed">Those managing long-term health issues. Receive dedicated chronic disease management and personalised treatment plans from a consistent medical team.</p>
                   </div>
                 </div>
               </div>
@@ -983,9 +843,9 @@ export default function Home() {
                 </button>
                 <button 
                   onClick={() => navigate('/book')}
-                  className="flex-1 bg-teal-600 text-white py-4 rounded-xl font-bold hover:bg-teal-700 transition-all shadow-lg text-sm"
+                  className="flex-1 bg-teal-600 text-white py-4 rounded-xl font-bold hover:bg-teal-700 transition-all shadow-lg text-sm transition-all"
                 >
-                  Get Analysis
+                  Book Consultation
                 </button>
               </div>
             </div>
@@ -1139,6 +999,59 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Clinical Standards & GMC Trust Section */}
+      <section className="py-16 bg-white relative z-20">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+          <div className="bg-slate-50 rounded-[3rem] p-8 md:p-16 border border-slate-100 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden">
+            <div className="absolute -top-24 -left-24 w-64 h-64 bg-teal-50 rounded-full blur-[100px] opacity-60"></div>
+            
+            <div className="flex-1 relative z-10">
+              <div className="inline-flex items-center gap-3 bg-white text-teal-700 px-5 py-1.5 rounded-full text-[10px] font-bold mb-6 shadow-sm border border-teal-50 tracking-widest uppercase">
+                <ShieldCheck size={16} />
+                Regulated Excellence
+              </div>
+              <h2 className="text-3xl md:text-[44px] font-display font-bold text-slate-900 mb-6 tracking-tighter leading-none">
+                Clinically Governed. <br />
+                <span className="text-teal-700 italic">Patient Focused.</span>
+              </h2>
+              <div className="space-y-4 text-left">
+                {[
+                  { title: "GMC Registered Practitioners", desc: "Every doctor at Doctor2U is fully licensed by the General Medical Council and completes annual appraisals." },
+                  { title: "Data Protection Certified", desc: "We are registered with the Information Commissioner's Office (ICO) and use clinical-grade encryption." },
+                  { title: "Standard of Care (GMC)", desc: "Our consultations and treatment plans strictly adhere to the GMC's Good Medical Practice guidelines." }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-6 items-start group">
+                    <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-teal-600 shadow-sm border border-slate-100 group-hover:bg-teal-700 group-hover:text-white transition-all shrink-0">
+                      <CheckCircle2 size={24} />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-slate-900 mb-1">{item.title}</h4>
+                      <p className="text-slate-500 leading-relaxed font-light text-sm md:text-base">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="flex-1 w-full max-w-lg md:max-w-none">
+              <div className="bg-white p-10 rounded-[3rem] shadow-soft-xl border border-slate-100 text-center relative group">
+                <div className="w-24 h-24 rounded-full bg-teal-50 flex items-center justify-center text-teal-700 mx-auto mb-8 group-hover:scale-110 transition-transform duration-500">
+                  <Award size={48} />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">Quality Medical Practice</h3>
+                <p className="text-slate-500 mb-10 leading-relaxed max-w-sm mx-auto">We maintain the highest standards of private medical practice in the UK, ensuring every patient receives safe, evidence-based care.</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link to="/clinical-governance" className="inline-flex items-center gap-3 text-teal-700 font-bold hover:gap-5 transition-all text-sm uppercase tracking-widest">
+                    Governance Standards
+                    <ArrowRight size={20} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="py-16 bg-white relative overflow-hidden">
         {/* JSON-LD LocalBusiness Schema */}
@@ -1239,54 +1152,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Area Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="flex-1 order-2 lg:order-1">
-              <div className="relative">
-                <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-xl">
-                  <img 
-                    src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=1000" 
-                    alt="Community Care" 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                <div className="absolute -bottom-6 -right-6 glass-card p-6 rounded-2xl max-w-[200px] hidden md:block">
-                  <div className="flex items-center gap-1 text-yellow-400 mb-2">
-                    {[1,2,3,4,5].map(i => <Star key={i} size={10} fill="currentColor" />)}
-                  </div>
-                  <p className="text-xs font-medium text-slate-700 italic">"The gold standard for private healthcare."</p>
-                  <p className="mt-2 font-bold text-slate-900 text-[10px]">Michael T., Lancashire</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex-1 order-1 lg:order-2">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-6 tracking-tight">Serving Lancashire & Manchester</h2>
-              <p className="text-base text-slate-600 mb-8 leading-relaxed">
-                We provide expert medical care across the entire North West region. Whether you're in the heart of Manchester or the quiet corners of Lancashire, our doctors are ready to help.
-              </p>
-              <div className="grid grid-cols-2 gap-3 mb-8">
-                {['Manchester', 'Preston', 'Blackburn', 'Bolton', 'Lancaster', 'Chorley', 'Wigan', 'Burnley'].map(area => (
-                  <div key={area} className="flex items-center gap-2 text-slate-700 font-semibold text-sm">
-                    <CheckCircle2 size={14} className="text-teal-700" />
-                    {area}
-                  </div>
-                ))}
-              </div>
-              <button 
-                onClick={() => navigate('/contact')}
-                className="text-teal-700 font-bold text-base flex items-center gap-2 hover:gap-3 transition-all"
-              >
-                Check your area <ArrowRight size={18} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section - High Impact */}
       <section className="py-16 px-4">
         <div className="max-w-[1600px] mx-auto">
@@ -1341,12 +1206,19 @@ export default function Home() {
               </div>
               <div className="mt-10 pt-10 border-t border-white/10">
                 <p className="text-slate-400 text-[9px] uppercase tracking-[0.3em] font-bold max-w-2xl mx-auto leading-relaxed">
-                  Doctor2U is a registered private medical service. The AI support tool helps organize your health information for your doctor but does not provide diagnosis or treatment. All medical decisions, prescriptions, and referrals are made solely by GMC-registered clinicians during your consultation.
+                  Doctor2U is a registered private medical service providing expert clinical care. All medical decisions, prescriptions, and referrals are made solely by GMC-registered clinicians during your consultation.
                 </p>
               </div>
             </div>
           </div>
         <HubLink index={0} />
+          
+          <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 text-slate-500 text-xs font-bold uppercase tracking-widest">
+            <button onClick={() => navigate('/services/private-gp-manchester')} className="hover:text-teal-600 transition-colors">Manchester Private GP</button>
+            <button onClick={() => navigate('/services/private-gp-preston')} className="hover:text-teal-600 transition-colors">Preston Doctor House Calls</button>
+            <button onClick={() => navigate('/services/adhd-assessment')} className="hover:text-teal-600 transition-colors">Private ADHD Assessments</button>
+            <button onClick={() => navigate('/services/weight-management')} className="hover:text-teal-600 transition-colors">Medical Weight Loss</button>
+          </div>
         </div>
       </section>
     </div>
