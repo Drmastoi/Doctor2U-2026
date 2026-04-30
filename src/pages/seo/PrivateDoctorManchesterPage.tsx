@@ -8,6 +8,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { Page } from '../../types';
 import HubLink from '../../components/HubLink';
+import SEO from '../../components/SEO';
 
 interface PrivateDoctorManchesterProps {}
 
@@ -16,8 +17,6 @@ export default function PrivateDoctorManchesterPage({}: PrivateDoctorManchesterP
   const [activeFaq, setActiveFaq] = React.useState<number | null>(null);
 
   React.useEffect(() => {
-    document.title = "Private Doctor Manchester – Same-Day Private Appointments | Doctor2U";
-    
     // SEO Schema Injections
     const faqSchema = {
       "@context": "https://schema.org",
@@ -69,8 +68,12 @@ export default function PrivateDoctorManchesterPage({}: PrivateDoctorManchesterP
 
   return (
     <div className="bg-white min-h-screen">
+      <SEO 
+        title="Private Doctor Manchester | Same-Day Private GP Clinic Lancashire"
+        description="Priority medical care in Manchester and Lancashire. Same-day private doctor appointments, 30-minute consultations, and GMC-registered expert GPs at Doctor2U."
+      />
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-teal-50 overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-teal-50 overflow-hidden text-slate-900">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-teal-600/5 -skew-x-12 transform origin-top"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -80,13 +83,13 @@ export default function PrivateDoctorManchesterPage({}: PrivateDoctorManchesterP
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-bold uppercase tracking-widest mb-6 border border-teal-200">
                 <DoctorIcon size={14} />
-                Private Doctor Manchester
+                Private Doctor Manchester & Lancashire
               </div>
               <h1 className="text-4xl md:text-7xl font-display font-bold text-slate-900 mb-6 tracking-tight leading-tight">
-                Private Doctor Manchester: <span className="text-teal-700">Priority Medical Care.</span>
+                Private GP Manchester: <span className="text-teal-700">Priority Medical Care.</span>
               </h1>
               <p className="text-xl text-slate-600 mb-8 leading-relaxed max-w-xl">
-                Experience healthcare as it should be. Unhurried, 30-minute consultations with GMC-registered private doctors in Manchester centre. Same-day appointments, prescriptions, and expert diagnostics.
+                Experience healthcare as it should be. Unhurried, 30-minute consultations with GMC-registered private doctors in Manchester and Lancashire. Call us on <a href="tel:07488879077" className="text-teal-700 font-bold decoration-2 underline">07488 879077</a>.
               </p>
               <div className="flex flex-wrap gap-4 mb-8">
                 <button 
@@ -98,7 +101,7 @@ export default function PrivateDoctorManchesterPage({}: PrivateDoctorManchesterP
                 </button>
                 <a 
                   href="tel:07488879077"
-                  className="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2"
+                  className="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2 shadow-xl shadow-slate-200/50"
                 >
                   <Phone size={20} className="text-teal-700" />
                   07488 879077

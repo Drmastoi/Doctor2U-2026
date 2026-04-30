@@ -64,13 +64,24 @@ export default function Navbar({}: NavbarProps) {
                 <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-700 transition-all group-hover:w-full ${isActive(item.path) ? 'w-full' : ''}`}></span>
               </Link>
             ))}
-            <div className="h-6 w-px bg-slate-200 ml-2 mr-2"></div>
-            <Link 
-              to="/book"
-              className="bg-teal-700 text-white px-8 py-3 rounded-2xl text-xs font-bold hover:bg-teal-800 transition-all shadow-lg shadow-teal-900/20 flex items-center gap-2 uppercase tracking-widest"
-            >
-              Book Now
-            </Link>
+            
+            <div className="flex items-center gap-6 ml-4">
+              <a 
+                href="tel:07488879077" 
+                className="flex items-center gap-2 text-slate-900 font-bold text-sm hover:text-teal-700 transition-colors"
+              >
+                <div className="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center text-teal-700">
+                  <Phone size={14} />
+                </div>
+                07488 879077
+              </a>
+              <Link 
+                to="/book"
+                className="bg-teal-700 text-white px-8 py-3 rounded-2xl text-xs font-bold hover:bg-teal-800 transition-all shadow-lg shadow-teal-900/20 flex items-center gap-2 uppercase tracking-widest"
+              >
+                Book Now
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}

@@ -8,31 +8,49 @@ import {
 import { useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
 
+import SEO from '../components/SEO';
+import { Phone } from 'lucide-react';
+
 export default function ClinicalGovernance() {
   const navigate = useNavigate();
-  React.useEffect(() => {
-    document.title = "Clinical Governance & Safety | Medical Standards | Doctor2U";
-  }, []);
 
   return (
     <div className="bg-[#fcfcfc] min-h-screen pt-32 pb-24">
+      <SEO 
+        title="Clinical Governance & Private GP Safety Manchester | Doctor2U"
+        description="Our clinical governance framework ensures the highest medical standards for private GP services in Manchester and Lancashire. Safe, expert home visit doctor care."
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
         <div className="mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 text-teal-700 font-bold text-xs uppercase tracking-[0.2em] mb-6"
-          >
-            <ShieldCheck size={18} />
-            Clinical Standards Framework
-          </motion.div>
+          <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-3 text-teal-700 font-bold text-xs uppercase tracking-[0.2em]"
+            >
+              <ShieldCheck size={18} />
+              Clinical Standards | Private GP Lancashire
+            </motion.div>
+            <div className="flex items-center gap-4">
+              <a href="tel:07488879077" className="flex items-center gap-2 text-slate-900 font-bold hover:text-teal-700 transition-colors">
+                <Phone size={18} className="text-teal-600" />
+                07488 879077
+              </a>
+              <button 
+                onClick={() => navigate('/book')}
+                className="bg-teal-700 text-white px-6 py-3 rounded-xl font-bold hover:bg-teal-800 transition-all shadow-lg text-sm"
+              >
+                Book Now
+              </button>
+            </div>
+          </div>
           <h1 className="text-4xl md:text-7xl font-display font-bold text-slate-900 mb-8 tracking-tighter leading-none">
-            Clinical <br /> <span className="text-teal-700">Governance.</span>
+            Private GP <br /> <span className="text-teal-700 font-display italic">Manchester & Lancashire.</span>
           </h1>
-          <p className="text-xl text-slate-600 leading-relaxed font-medium mb-12">
-            Safety, quality, and evidence-based medicine are the pillars of our practice. Our clinical governance framework ensures that every patient interaction in Manchester meets the highest regulatory and ethical standards.
+          <p className="text-xl text-slate-600 leading-relaxed font-medium mb-8">
+            Clinical excellence for the North West. Call us on <a href="tel:07488879077" className="text-teal-700 font-bold underline">07488 879077</a> for inquiries regarding our medical standards.
           </p>
         </div>
 

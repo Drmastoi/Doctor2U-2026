@@ -7,6 +7,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { Page } from '../../types';
 import HubLink from '../../components/HubLink';
+import SEO from '../../components/SEO';
 
 interface UrgentDoctorManchesterProps {}
 
@@ -14,62 +15,46 @@ export default function UrgentDoctorManchester({}: UrgentDoctorManchesterProps) 
   const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = React.useState<number | null>(null);
 
-  React.useEffect(() => {
-    document.title = "Urgent Doctor Manchester – Immediate Medical Assistance | Doctor2U";
-    
-    // SEO Schema Injections
-    const faqSchema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "I need an urgent doctor in Manchester, how fast can you help?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We specialise in rapid response medical care. Most urgent cases are seen within 4 hours by a GMC-registered private doctor."
-          }
-        }
-      ]
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.innerHTML = JSON.stringify(faqSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
   const faqs = [
     {
       question: "Is this a 24/7 service?",
-      answer: "We offer extended hours including evenings and weekends for urgent medical concerns. While we are not a replace for A&E in life-threatening situations, we provide rapid access for everything else."
+      answer: "We offer extended hours including evenings and weekends for urgent medical concerns. While we are not a replace for A&E in life-threatening situations, we provide rapid access for everything else across Manchester and Lancashire."
     }
   ];
 
   return (
     <div className="bg-white min-h-screen">
+      <SEO 
+        title="Urgent Private Doctor Manchester | Emergency GP Lancashire"
+        description="Need an urgent private doctor in Manchester or Lancashire? Immediate medical assistance, GMC-registered GPs, and same-day home visits at Doctor2U."
+      />
       <section className="relative pt-32 pb-20 bg-slate-900 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-8xl font-display font-bold mb-8 tracking-tighter leading-[0.9]">
-              Urgent <span className="text-teal-400 italic font-serif">Doctor</span> <br />
-              Manchester.
+              Urgent <span className="text-teal-400 italic font-serif">Private Doctor</span> <br />
+              Manchester & Lancashire.
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 mb-12 leading-relaxed max-w-2xl mx-auto">
-              Need immediate medical advice? Speak to a private doctor today without the GP waitlist.
+              Need immediate medical advice? Speak to a private doctor today without the GP waitlist. Call us on <a href="tel:07488879077" className="text-teal-400 font-bold decoration-2 underline">07488 879077</a>.
             </p>
             <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
               <button 
                 onClick={() => navigate('/book')}
-                className="bg-medical-500 text-slate-900 px-12 py-5 rounded-2xl font-bold text-xl shadow-2xl hover:bg-medical-400 transition-all flex items-center gap-3"
+                className="bg-medical-500 text-slate-900 px-12 py-5 rounded-2xl font-bold text-xl shadow-2xl hover:bg-medical-400 transition-all flex items-center gap-3 shadow-medical-900/20"
               >
                 Get Urgent Care
                 <ArrowRight size={24} />
               </button>
+              <a 
+                href="tel:07488879077"
+                className="flex items-center gap-3 px-8 py-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+              >
+                <div className="w-10 h-10 rounded-xl bg-teal-500/20 flex items-center justify-center text-teal-400">
+                  <Phone size={20} />
+                </div>
+                <span className="text-sm font-bold text-white">07488 879077</span>
+              </a>
             </div>
           </div>
         </div>

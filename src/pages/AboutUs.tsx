@@ -8,40 +8,67 @@ import {
 import { useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
 
+import SEO from '../components/SEO';
+import { Phone, PhoneCall } from 'lucide-react';
+
 export default function AboutUs() {
   const navigate = useNavigate();
-  React.useEffect(() => {
-    document.title = "About Us | The Doctor2U Mission | Manchester Private Doctors";
-  }, []);
 
   return (
     <div className="bg-white min-h-screen pt-32">
+      <SEO 
+        title="About Us | Private GP Manchester & Lancashire | Doctor2U"
+        description="Learn about Doctor2U, the leading provider of same-day private GP home visits in Manchester and Lancashire. Dedicated to clinical excellence and patient-centric care."
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Hero Section */}
         <div className="mb-32">
-          <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              <span className="text-teal-700 font-bold uppercase tracking-[0.2em] text-xs mb-6 block">Our Story & Ambition</span>
-              <h1 className="text-4xl md:text-8xl font-display font-bold text-slate-900 mb-10 tracking-tighter leading-[0.9]">
-                Bringing <br /> <span className="text-teal-700 italic">Clinical</span> <br /> Excellence Home.
-              </h1>
-              <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium max-w-2xl mb-8">
-                Doctor2U is a UK-based private GP service dedicated to bringing uncompromised primary care directly to your door.
-              </p>
-              <div className="p-8 bg-teal-50 rounded-3xl border border-teal-100 mb-10">
-                <h4 className="font-bold text-teal-950 mb-2">Our Response Time Promise</h4>
-                <p className="text-teal-800 leading-relaxed">
-                  We understand that medical needs are urgent. We promise a same-day response for all Manchester bookings, with most home visits conducted within 4 hours of initial contact.
+          <div className="flex flex-col lg:flex-row gap-16 items-start">
+            <div className="max-w-3xl flex-1">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <span className="text-teal-700 font-bold uppercase tracking-[0.2em] text-xs mb-6 block">Our Story & Ambition | Private GP Lancashire</span>
+                <h1 className="text-4xl md:text-8xl font-display font-bold text-slate-900 mb-10 tracking-tighter leading-[0.9]">
+                  Private GP <br /> <span className="text-teal-700 italic">Manchester</span> <br /> & Lancashire.
+                </h1>
+                <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium max-w-2xl mb-8">
+                  Doctor2U is a UK-based private GP service bringing clinical excellence directly to your door in Manchester and Lancashire.
                 </p>
+                <div className="p-8 bg-teal-50 rounded-3xl border border-teal-100 mb-10">
+                  <h4 className="font-bold text-teal-950 mb-2">Our Response Time Promise</h4>
+                  <p className="text-teal-800 leading-relaxed">
+                    We promise a same-day response for all Manchester & Lancashire bookings. Most home visits conducted within 4 hours. Call <a href="tel:07488879077" className="font-bold text-teal-700">07488 879077</a>.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+            <div className="lg:w-80 w-full shrink-0">
+              <div className="bg-slate-900 p-10 rounded-[2.5rem] text-white shadow-2xl">
+                <h3 className="text-xl font-bold mb-6">Book Your Visit</h3>
+                <p className="text-slate-400 text-sm mb-8 leading-relaxed">
+                  Speak with a private GP in Manchester or Lancashire today. Professional care, unhurried service.
+                </p>
+                <div className="space-y-4">
+                  <button 
+                    onClick={() => navigate('/book')}
+                    className="w-full bg-teal-600 hover:bg-teal-500 text-white py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2"
+                  >
+                    Book Now
+                    <ArrowRight size={18} />
+                  </button>
+                  <a 
+                    href="tel:07488879077"
+                    className="w-full bg-white/10 hover:bg-white/20 text-white py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 border border-white/10"
+                  >
+                    <Phone size={18} className="text-teal-400" />
+                    07488 879077
+                  </a>
+                </div>
               </div>
-              <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium max-w-2xl">
-                Founded in Manchester, our mission is to redefine the patient experience by blending traditional medical values with cutting-edge technology.
-              </p>
-            </motion.div>
+            </div>
           </div>
         </div>
 

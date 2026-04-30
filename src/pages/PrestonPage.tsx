@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { MapPin, Clock, Stethoscope, CheckCircle2, ArrowRight, ShieldCheck, HeartPulse } from 'lucide-react';
+import { MapPin, Clock, Stethoscope, CheckCircle2, ArrowRight, ShieldCheck, HeartPulse, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 
@@ -65,8 +65,8 @@ export default function PrestonPage() {
   return (
     <div className="bg-white min-h-screen">
       <SEO 
-        title="Private GP Home Visits Preston | Lancashire Doctor House Calls" 
-        description="Looking for a private GP in Preston? Doctor2U offers specialist home visit consultations across Preston and Lancashire. High-quality clinical care at home."
+        title="Private GP Lancashire & Preston | Same-Day Doctor Home Visits" 
+        description="Book a GMC-registered private doctor for a same-day home visit in Preston and across Lancashire. Expert clinical care and private GP Lancashire services."
         schema={PRESTON_SCHEMA}
         canonical="/services/private-gp-preston"
       />
@@ -81,25 +81,26 @@ export default function PrestonPage() {
                 <span>Lancashire Coverage</span>
               </div>
               <h1 className="text-4xl md:text-6xl font-display font-bold text-slate-900 mb-8 tracking-tighter leading-tight">
-                Private GP House Calls <br />
-                <span className="text-teal-700 italic">In Preston & Lancashire.</span>
+                Private GP <span className="text-teal-700 italic">Lancashire.</span> <br />
+                Same-Day House Calls.
               </h1>
               <p className="text-xl text-slate-600 max-w-2xl font-light leading-relaxed mb-10">
-                Leading private medical provider for home visits across Preston. We bring the clinic to you, providing unhurried and comprehensive GP consultations.
+                Leading private medical provider for home visits across Preston and Lancashire. Call us on <a href="tel:07488879077" className="text-teal-700 font-bold decoration-2 underline">07488 879077</a> for same-day care.
               </p>
               <div className="flex flex-wrap gap-4">
                 <button 
                   onClick={() => navigate('/book')}
                   className="bg-teal-700 text-white px-10 py-5 rounded-2xl font-bold hover:bg-teal-800 transition-all shadow-xl shadow-teal-900/20"
                 >
-                  Book Preston Visit
+                  Book Private GP
                 </button>
-                <button 
-                  onClick={() => navigate('/contact')}
-                  className="bg-white text-slate-900 border border-slate-200 px-10 py-5 rounded-2xl font-bold hover:bg-slate-50 transition-all"
+                <a 
+                  href="tel:07488879077"
+                  className="bg-white text-slate-900 border border-slate-200 px-10 py-5 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2 shadow-xl shadow-slate-200/50"
                 >
-                  Contact Clinician
-                </button>
+                  <Phone size={20} className="text-teal-600" />
+                  07488 879077
+                </a>
               </div>
             </div>
             <div className="flex-1 relative">
@@ -174,7 +175,7 @@ export default function PrestonPage() {
       <section className="py-24 bg-slate-900 text-white overflow-hidden relative">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-4xl md:text-6xl font-display font-bold mb-10 tracking-tighter">Access Private Medecine in Preston.</h2>
+          <h2 className="text-4xl md:text-6xl font-display font-bold mb-10 tracking-tighter">Access Private Medicine in Preston.</h2>
           <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-light">Join waitlist-free healthcare today. Our Preston-based medical team is ready to support you.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <button 

@@ -5,7 +5,7 @@ import { SERVICES } from '../types';
 import SEO from '../components/SEO';
 import { 
   Video, User, Home as HomeIcon, CheckCircle2, ArrowRight, ArrowLeft, 
-  Brain, Apple, ShieldCheck, Zap, HeartPulse, Sparkles 
+  Brain, Apple, ShieldCheck, Zap, HeartPulse, Sparkles, Phone 
 } from 'lucide-react';
 
 export default function OurFeesPage() {
@@ -25,8 +25,8 @@ export default function OurFeesPage() {
   return (
     <div className="bg-white min-h-screen pt-32 pb-16 relative overflow-hidden">
       <SEO 
-        title="Our Fees & Transparent Pricing | Doctor2U Private GP"
-        description="View our transparent pricing for private GP consultations, home visits, and specialist assessments. We offer a money-back guarantee for your peace of mind."
+        title="Private GP Fees Manchester & Lancashire | Transparent Pricing"
+        description="View transparent pricing for private GP consultations in Manchester and Lancashire. Same-day appointments, home visits, and expert clinical care with no hidden costs."
       />
       
       {/* Background Decor */}
@@ -36,13 +36,33 @@ export default function OurFeesPage() {
       </div>
 
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <Link 
-          to="/"
-          className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors mb-12 group inline-flex"
-        >
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
-        </Link>
+        <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-8">
+          <Link 
+            to="/"
+            className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors group inline-flex"
+          >
+            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+            <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
+          </Link>
+          <div className="flex items-center gap-4">
+            <a 
+              href="tel:07488879077"
+              className="flex items-center gap-3 text-slate-900 font-bold text-lg hover:text-teal-700 transition-colors"
+            >
+              <div className="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-700">
+                <Phone size={18} />
+              </div>
+              07488 879077
+            </a>
+            <button 
+              onClick={() => navigate('/book')}
+              className="bg-teal-700 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-teal-800 transition-all shadow-lg"
+            >
+              Book Now
+              <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
 
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-20">
@@ -52,14 +72,13 @@ export default function OurFeesPage() {
             className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
           >
             <ShieldCheck size={12} />
-            <span>Honest & Clear Pricing</span>
+            <span>Private GP Lancashire & Manchester</span>
           </motion.div>
           <h1 className="text-5xl md:text-7xl font-display font-bold text-slate-900 mb-8 tracking-tight">
-            Our <span className="text-teal-700">Fees</span>
+            Our <span className="text-teal-700">Fees.</span>
           </h1>
-          <p className="text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            At Doctor2U, we believe healthcare should be accessible and its cost predictable. 
-            No hidden charges, no administrative surprises—just expert medical care.
+          <p className="text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto mb-8">
+            Transparent pricing for your health. Call us on <a href="tel:07488879077" className="text-teal-700 font-bold">07488 879077</a> for inquiries or book online today.
           </p>
         </div>
 

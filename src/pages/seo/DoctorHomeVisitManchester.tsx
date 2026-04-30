@@ -9,74 +9,20 @@ import { useNavigate } from 'react-router-dom';
 import { Page } from '../../types';
 import HubLink from '../../components/HubLink';
 
+import SEO from '../../components/SEO';
+
 interface DoctorHomeVisitManchesterProps {}
 
 export default function DoctorHomeVisitManchester({}: DoctorHomeVisitManchesterProps) {
   const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = React.useState<number | null>(null);
 
-  React.useEffect(() => {
-    document.title = "Home Visit Doctor Manchester | Same Day Private Doctor at Home | Doctor2U";
-    
-    // SEO Meta Description
-    const metaDescription = "Book a same-day home visit doctor in Manchester. Experienced private doctors, rapid response, evening & weekend availability. Call now for urgent care at home.";
-    const metaTag = document.querySelector('meta[name="description"]');
-    if (metaTag) {
-      metaTag.setAttribute('content', metaDescription);
-    }
-
-    // SEO Schema Injection
-    const faqSchema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How quickly can a doctor come to my home in Manchester?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We aim for same-day appointments, often within a few hours depending on location and demand."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can you prescribe medication during a home visit?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes — our doctors can issue private prescriptions and advise on treatment immediately."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do you cover evenings and weekends?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes — we offer extended hours including evenings and weekends for urgent cases."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is a home visit doctor suitable for children?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Absolutely — home visits are ideal for children, reducing stress and exposure to waiting rooms."
-          }
-        }
-      ]
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.innerHTML = JSON.stringify(faqSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
   return (
     <div className="bg-white min-h-screen pt-24 pb-16">
+      <SEO 
+        title="Home Visit Private Doctor Manchester | Same-Day Private GP Lancashire"
+        description="Book a same-day home visit doctor in Manchester or Lancashire. Experienced private doctors, rapid response, evening & weekend availability. Call now for urgent care at home."
+      />
       {/* Sticky Call Button for Mobile */}
       <div className="fixed bottom-0 left-0 right-0 z-50 p-4 lg:hidden pointer-events-none">
         <div className="max-w-md mx-auto pointer-events-auto">
@@ -115,33 +61,36 @@ export default function DoctorHomeVisitManchester({}: DoctorHomeVisitManchesterP
           className="mb-16"
         >
           <h1 className="text-4xl md:text-6xl font-display font-bold text-slate-900 mb-8 leading-tight tracking-tight">
-            Home Visit <span className="text-teal-700">Doctor</span> in Manchester – Same Day Private Doctor at Your Door
+            Home Visit <span className="text-teal-700 font-display italic">Doctor in Manchester & Lancashire</span> – Same Day Private GP at Your Door
           </h1>
           
           <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-white relative overflow-hidden shadow-2xl shadow-teal-900/20">
             <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
             <div className="relative z-10">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight">Need a doctor at home today?</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight">Need a private GP at home today?</h2>
               <p className="text-lg text-slate-300 mb-8 leading-relaxed">
-                If you or a family member are unwell, travelling to a clinic isn’t always practical — especially with pain, fever, mobility issues, or young children.
+                If you or a family member are unwell, travelling to a clinic isn’t always practical — especially with pain, fever, mobility issues, or young children in Lancashire or Manchester.
               </p>
               <p className="text-lg text-white font-bold leading-relaxed mb-10">
-                At Doctor2U, we provide <span className="text-teal-400">rapid same-day home visit doctor services across Manchester</span>, bringing experienced UK doctors directly to your door.
+                At Doctor2U, we provide <span className="text-teal-400 font-display underline italic cursor-pointer" onClick={() => navigate('/book')}>rapid same-day home visit doctor services across the North West</span>, bringing experienced GMC doctors to you. Call <a href="tel:07488879077" className="text-teal-400">07488 879077</a>.
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
                 <button 
                   onClick={() => navigate('/book')}
                   className="bg-medical-500 text-slate-900 px-10 py-5 rounded-2xl font-black hover:bg-medical-400 transition-all flex items-center justify-center gap-3 text-lg"
                 >
-                  Book My Home Visit
+                  Book Private Home Visit
                   <ArrowRight size={22} />
                 </button>
-                <div className="flex items-center gap-3 px-6 py-4 bg-white/5 rounded-2xl border border-white/10">
+                <a 
+                  href="tel:07488879077"
+                  className="flex items-center gap-3 px-6 py-4 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors"
+                >
                   <div className="w-10 h-10 rounded-xl bg-teal-500/20 flex items-center justify-center text-teal-400">
-                    <Star size={20} className="fill-current" />
+                    <Phone size={20} />
                   </div>
-                  <span className="text-sm font-bold">5-Star Patient Reviews</span>
-                </div>
+                  <span className="text-sm font-bold">07488 879077</span>
+                </a>
               </div>
             </div>
           </div>

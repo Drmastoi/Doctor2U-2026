@@ -7,14 +7,17 @@ import {
 import { useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
 
+import SEO from '../components/SEO';
+import { Phone } from 'lucide-react';
+
 export default function TreatmentPlan() {
   const navigate = useNavigate();
   // Mock data for a treatment plan
   const planData = {
     patientName: "John Doe",
     date: "April 11, 2026",
-    doctor: "Dr. Iqbal",
-    summary: "Patient presented with fatigue and mild headaches. Initial assessment suggests metabolic health optimization and stress management as key focus areas.",
+    doctor: "Dr. Thorne",
+    summary: "Patient presented with fatigue and mild headaches. Initial assessment suggests metabolic health optimization and stress management as key focus areas for recovery in Manchester.",
     prescriptions: [
       { name: "Vitamin D3 5000IU", dosage: "1 capsule daily", duration: "3 months" },
       { name: "Magnesium Glycinate", dosage: "400mg before bed", duration: "Ongoing" }
@@ -30,15 +33,27 @@ export default function TreatmentPlan() {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen pt-32 pb-16">
+    <div className="bg-slate-50 min-h-screen pt-32 pb-16 text-slate-900">
+      <SEO 
+        title="Your Private GP Treatment Plan | Manchester & Lancashire Doctor"
+        description="View your personalised private medical treatment plan. Secure access to your clinic summaries, prescriptions, and follow-up steps with Doctor2U."
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <button 
-          onClick={() => navigate('/')}
-          className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors mb-8 group"
-        >
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
-        </button>
+        <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-6">
+          <button 
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors group"
+          >
+            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+            <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
+          </button>
+          <div className="flex items-center gap-4">
+            <a href="tel:07488879077" className="flex items-center gap-2 text-slate-900 font-bold hover:text-teal-700 transition-colors">
+              <Phone size={18} className="text-teal-600" />
+              07488 879077
+            </a>
+          </div>
+        </div>
 
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -51,10 +66,10 @@ export default function TreatmentPlan() {
             <div className="relative z-10">
               <div className="flex items-center gap-3 text-teal-400 mb-4">
                 <HeartPulse size={24} />
-                <span className="font-bold uppercase tracking-[0.2em] text-xs">Digital Health Plan</span>
+                <span className="font-bold uppercase tracking-[0.2em] text-xs">Manchester & Lancashire Private GP</span>
               </div>
-              <h1 className="text-4xl font-display font-bold mb-2 tracking-tight">Your Personalised Recovery Plan</h1>
-              <p className="text-slate-400">Prepared by {planData.doctor} on {planData.date}</p>
+              <h1 className="text-4xl font-display font-bold mb-2 tracking-tight">Your Personalised Private Recovery Plan</h1>
+              <p className="text-slate-400">Securely managed by our Manchester clinical team. For urgent queries, call <a href="tel:07488879077" className="text-teal-400 font-bold">07488 879077</a>.</p>
             </div>
           </div>
 

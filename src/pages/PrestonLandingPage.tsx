@@ -6,6 +6,7 @@ import {
   Calendar, Zap, ChevronRight, Home as HomeIcon
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 export default function PrestonLandingPage() {
   const navigate = useNavigate();
@@ -36,6 +37,10 @@ export default function PrestonLandingPage() {
 
   return (
     <div ref={containerRef} className="bg-white min-h-screen pt-20 overflow-hidden">
+      <SEO 
+        title="Private Doctor Preston | Home Visits & Same-Day Clinic"
+        description="Leading private GP service in Preston. Same-day appointments, home visits, and drivers medicals with GMC-registered doctors. Expert care without the wait."
+      />
       {/* Dynamic Hero Section */}
       <section className="relative h-[90vh] flex items-center justify-center overflow-hidden bg-brand-secondary selection:bg-brand-primary selection:text-white">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">

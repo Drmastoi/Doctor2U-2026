@@ -22,6 +22,22 @@ export default function SEO({
   const fullTitle = `${title} | ${siteName}`;
   const url = `https://doctor2u.co.uk${canonical || ''}`;
 
+  const medicalBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Doctor2U",
+    "description": "Private GP service covering Lancashire and Manchester",
+    "url": "https://www.doctor2u.co.uk",
+    "telephone": "07488 879077",
+    "medicalSpecialty": "GeneralPractice",
+    "areaServed": ["Lancashire", "Manchester", "Preston", "Blackburn", "Burnley"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Lancashire",
+      "addressCountry": "GB"
+    }
+  };
+
   return (
     <Helmet>
       {/* Basic Meta Tags */}
@@ -42,6 +58,11 @@ export default function SEO({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+
+      {/* Global Business Schema */}
+      <script type="application/ld+json">
+        {JSON.stringify(medicalBusinessSchema)}
+      </script>
 
       {schema && (
         <script type="application/ld+json">

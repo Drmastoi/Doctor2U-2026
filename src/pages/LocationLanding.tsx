@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FAQ } from '../types';
 import HubLink from '../components/HubLink';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowRight, Phone, MapPin, ShieldCheck, Clock, Star, MessageSquare, ChevronDown, BrainCircuit, Users, Stethoscope } from 'lucide-react';
 
@@ -32,10 +33,6 @@ export default function LocationLanding({
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    // Set document title for SEO
-    const serviceTitle = serviceType === 'Private Doctor' ? 'Private Doctor' : 'Home Visit Doctor';
-    document.title = `${serviceTitle} ${locationName} – Same-Day Appointments & Home Visits | Doctor2U`;
-
     // Inject Local Business Schema
     const script = document.createElement('script');
     script.type = 'application/ld+json';
@@ -84,8 +81,14 @@ export default function LocationLanding({
     };
   }, [locationName, serviceType, openingParagraph, price]);
 
+  const serviceTitle = serviceType === 'Private Doctor' ? 'Private Doctor' : 'Home Visit Doctor';
+
   return (
-    <div className="bg-white min-h-screen pt-24 pb-20">
+    <div className="bg-white min-h-screen pt-24 pb-20 text-slate-900">
+      <SEO 
+        title={`${serviceTitle} ${locationName} | Same-Day Private GP Lancashire & Manchester`}
+        description={`Same-day ${serviceType} in ${locationName}. Professional GMC-registered doctors providing private GP home visits and clinic appointments across Manchester and Lancashire.`}
+      />
       {/* SEO Hero Section */}
       <section className="relative py-20 bg-slate-50 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-teal-600/5 -skew-x-12 transform origin-top"></div>
@@ -97,25 +100,25 @@ export default function LocationLanding({
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-bold uppercase tracking-wider mb-6">
                 <MapPin size={14} />
-                Serving {locationName}
+                Private GP Lancashire & Manchester
               </div>
               <h1 className="text-4xl md:text-6xl font-display font-bold text-slate-900 mb-6 tracking-tight leading-tight">
-                {h1}
+                {h1} <br /><span className="text-teal-700 italic">North West.</span>
               </h1>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
-                {openingParagraph}
+                {openingParagraph} Call us on <a href="tel:07488879077" className="text-teal-700 font-bold decoration-2 underline">07488 879077</a> for same-day bookings in {locationName}.
               </p>
               <div className="flex flex-wrap gap-4 mb-8">
                 <button 
                   onClick={() => navigate('/book')}
-                  className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all shadow-lg flex items-center gap-2"
+                  className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all shadow-lg flex items-center gap-2 shadow-teal-900/20"
                 >
-                  Book Online
+                  Book Private GP
                   <ArrowRight size={20} />
                 </button>
                 <a 
                   href="tel:07488879077"
-                  className="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2"
+                  className="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2 shadow-xl shadow-slate-200/50"
                 >
                   <Phone size={20} className="text-teal-700" />
                   07488 879077

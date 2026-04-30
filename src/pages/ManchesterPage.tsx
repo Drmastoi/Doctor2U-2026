@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { MapPin, Clock, Stethoscope, CheckCircle2, ArrowRight, ShieldCheck, Star } from 'lucide-react';
+import { MapPin, Clock, Stethoscope, CheckCircle2, ArrowRight, ShieldCheck, Star, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 
@@ -65,8 +65,8 @@ export default function ManchesterPage() {
   return (
     <div className="bg-white min-h-screen">
       <SEO 
-        title="Private GP Home Visits Manchester | Same Day Doctor" 
-        description="Need a private GP home visit in Manchester? Doctor2U provides professional, GMC-registered doctor house calls across Manchester. Book same-day visits online."
+        title="Private GP Manchester | Same-Day Doctor Home Visits" 
+        description="Book a GMC-registered private doctor for a same-day home visit in Manchester. Expert clinical care and private GP Manchester services in the comfort of your own home."
         schema={MANCHESTER_SCHEMA}
         canonical="/services/private-gp-manchester"
       />
@@ -81,25 +81,26 @@ export default function ManchesterPage() {
                 <span>Greater Manchester Coverage</span>
               </div>
               <h1 className="text-4xl md:text-6xl font-display font-bold text-slate-900 mb-8 tracking-tighter leading-tight">
-                Private GP Home Visits <br />
-                <span className="text-teal-700 italic">In Manchester.</span>
+                Private GP <span className="text-teal-700 italic">Manchester.</span> <br />
+                Same-Day Home Visits.
               </h1>
               <p className="text-xl text-slate-600 max-w-2xl font-light leading-relaxed mb-10">
-                Experience the gold standard of private healthcare. Our GMC-registered doctors provide same-day house calls across Manchester city centre and surrounding areas.
+                Experience the gold standard of private healthcare. Our doctors provide same-day house calls across Manchester. Call us on <a href="tel:07488879077" className="text-teal-700 font-bold">07488 879077</a> for urgent care.
               </p>
               <div className="flex flex-wrap gap-4">
                 <button 
                   onClick={() => navigate('/book')}
                   className="bg-teal-700 text-white px-10 py-5 rounded-2xl font-bold hover:bg-teal-800 transition-all shadow-xl shadow-teal-900/20"
                 >
-                  Book Same Day Visit
+                  Book Now
                 </button>
-                <button 
-                  onClick={() => navigate('/contact')}
-                  className="bg-white text-slate-900 border border-slate-200 px-10 py-5 rounded-2xl font-bold hover:bg-slate-50 transition-all"
+                <a 
+                  href="tel:07488879077"
+                  className="bg-white text-slate-900 border border-slate-200 px-10 py-5 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2"
                 >
-                  Speak to Our Team
-                </button>
+                  <Phone size={20} className="text-teal-600" />
+                  07488 879077
+                </a>
               </div>
             </div>
             <div className="flex-1 relative">

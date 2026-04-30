@@ -94,49 +94,6 @@ const BLOG_POSTS = [
   }
 ];
 
-const HOME_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
-  "name": "Doctor2U",
-  "image": "https://doctor2u.co.uk/logo.png",
-  "@id": "https://doctor2u.co.uk",
-  "url": "https://doctor2u.co.uk",
-  "telephone": "+447488879077",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Greater Manchester and Lancashire",
-    "addressLocality": "Manchester",
-    "addressRegion": "Manchester",
-    "postalCode": "M1",
-    "addressCountry": "UK"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 53.4808,
-    "longitude": -2.2426
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday"
-    ],
-    "opens": "08:00",
-    "closes": "22:00"
-  },
-  "sameAs": [
-    "https://facebook.com/doctor2u",
-    "https://instagram.com/doctor2u",
-    "https://twitter.com/doctor2u"
-  ],
-  "medicalSpecialty": "General Practice"
-};
-
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -207,15 +164,14 @@ export default function Home() {
   return (
     <div ref={containerRef} className="flex flex-col relative overflow-hidden bg-white">
       <SEO 
-        title="Private GP Home Visits Manchester & Preston | Same-Day Doctor" 
-        description="Book a GMC-registered private doctor for a same-day home visit in Manchester and Preston. Expert clinical care in the comfort of your own home."
-        schema={HOME_SCHEMA}
+        title="Private GP Lancashire & Manchester | Same-Day Doctor Home Visits" 
+        description="Book a GMC-registered private doctor for a same-day home visit in Manchester and across Lancashire. Expert clinical care and private GP services in the comfort of your own home."
       />
       {/* Disclaimer Banner */}
       <div className="bg-amber-50 border-b border-amber-100 py-2 px-4 relative z-50">
         <div className="max-w-[1600px] mx-auto flex items-center justify-center gap-3 text-amber-800 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center text-wrap lg:text-nowrap">
           <ShieldAlert size={12} className="shrink-0" />
-          <span>Important: AI analysis does not diagnose, treat, or replace professional medical advice.</span>
+          <span>Important: AI analysis does not diagnose, treat, or replace professional medical advice. Call 07488 879077 for bookings.</span>
         </div>
       </div>
 
@@ -257,28 +213,28 @@ export default function Home() {
               </div>
 
               <h1 className="text-[50px] md:text-[72px] font-display font-bold leading-[1.02] mb-5 text-slate-900 tracking-tighter">
-                Book Doctors' <br />
-                <span className="text-teal-700 italic">Home Visits Now.</span>
+                Private GP <br />
+                <span className="text-teal-700 italic">Manchester & Lancashire.</span>
               </h1>
 
               <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[12px] font-bold mb-8 tracking-[0.2em] uppercase">
                 <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
-                <span>Your Home • Your Time • Your Doctor</span>
+                <span>Home Visit Doctors • Same-Day Appointments</span>
               </div>
               
               <div className="space-y-4 mb-10">
                 <p className="text-lg md:text-xl text-slate-600 leading-snug max-w-2xl mx-auto lg:mx-0 tracking-tight font-medium">
-                  Experienced <span className="text-slate-900 font-bold border-b-2 border-teal-100">GMC-registered doctor</span> who values your time.
+                  Expert clinical care delivered to your door. Call us on <a href="tel:07488879077" className="text-teal-700 font-bold hover:underline">07488 879077</a> to book.
                 </p>
                 
                 <div className="flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-teal-500"></div>
-                    <span className="text-base md:text-lg font-display text-slate-600 font-medium tracking-tight">Personalised care to suit your needs</span>
+                    <span className="text-base md:text-lg font-display text-slate-600 font-medium tracking-tight">Private GP Lancashire</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-teal-500"></div>
-                    <span className="text-base md:text-lg font-display text-slate-600 font-medium tracking-tight">For Adults and Children</span>
+                    <span className="text-base md:text-lg font-display text-slate-600 font-medium tracking-tight">Private GP Manchester</span>
                   </div>
                 </div>
               </div>
@@ -290,20 +246,19 @@ export default function Home() {
                   onClick={() => navigate('/book')}
                   className="bg-teal-700 text-white px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center justify-center gap-4 w-full sm:w-auto active:scale-95"
                 >
-                  Book Appointment
+                  Book Appointment Now
                   <ArrowRight size={24} />
                 </motion.button>
                 
-                <motion.button 
-                  whileHover={{ x: 5 }}
-                  onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
+                <a 
+                  href="tel:07488879077"
                   className="flex items-center gap-4 text-slate-900 font-bold text-xl group px-6 py-4"
                 >
                   <div className="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-slate-50 transition-all shadow-sm">
-                    <Play size={24} fill="currentColor" className="text-teal-600 translate-x-0.5" />
+                    <Phone size={24} className="text-teal-600" />
                   </div>
-                  See how it works
-                </motion.button>
+                  Call 07488 879077
+                </a>
               </div>
             </motion.div>
 

@@ -8,48 +8,13 @@ import { useNavigate } from 'react-router-dom';
 import { Page } from '../../types';
 import HubLink from '../../components/HubLink';
 
+import SEO from '../../components/SEO';
+
 interface SameDayDoctorManchesterProps {}
 
 export default function SameDayDoctorManchester({}: SameDayDoctorManchesterProps) {
   const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = React.useState<number | null>(null);
-
-  React.useEffect(() => {
-    document.title = "Same-Day Private Doctor Manchester | Urgent Medical Appointments | Doctor2U";
-    
-    // SEO Schema Injections
-    const faqSchema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Can I see a private doctor in Manchester on the same day?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, we reserved daily slots for immediate same-day consultations. We recommend booking before 11am for highest availability, but we often have evening slots for urgent requests."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How much for a same-day medical appointment in Manchester?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Our same-day private doctor consultations start from £100 for a 30-minute session. We also offer emergency home visits for those unable to travel."
-          }
-        }
-      ]
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.innerHTML = JSON.stringify(faqSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
 
   const faqs = [
     {
@@ -68,6 +33,10 @@ export default function SameDayDoctorManchester({}: SameDayDoctorManchesterProps
 
   return (
     <div className="bg-white min-h-screen">
+      <SEO 
+        title="Same-Day Private Doctor Manchester | Urgent GP Lancashire"
+        description="Book a same-day private doctor appointment in Manchester or Lancashire. Urgent medical consultations, prescriptions, and GMC doctors at Doctor2U."
+      />
       {/* Dynamic Urgency Hero */}
       <section className="relative pt-32 pb-20 bg-slate-900 text-white overflow-hidden">
         <div className="absolute top-0 right-0 w-full h-full">
@@ -87,12 +56,12 @@ export default function SameDayDoctorManchester({}: SameDayDoctorManchesterProps
             </motion.div>
             
             <h1 className="text-5xl md:text-8xl font-display font-bold mb-8 tracking-tighter leading-[0.9]">
-              Same-Day <span className="text-teal-400 italic font-serif">Doctor.</span> <br />
-              Manchester Excellence.
+              Same-Day <span className="text-teal-400 italic font-serif">Private Doctor.</span> <br />
+              Manchester & Lancashire.
             </h1>
             
             <p className="text-xl md:text-2xl text-slate-300 mb-12 leading-relaxed max-w-2xl mx-auto">
-              Bypass the two-week wait. See a GMC-registered private doctor in Manchester today for diagnosis, prescriptions, and expert treatments.
+              Bypass the two-week wait. See a GMC-registered private doctor in Manchester or Lancashire today. For urgent bookings call <a href="tel:07488879077" className="text-teal-400 decoration-2 underline">07488 879077</a>.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">

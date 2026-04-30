@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import HubLink from '../../components/HubLink';
+import SEO from '../../components/SEO';
 
 interface TopicPageProps {
   title: string;
@@ -27,12 +28,6 @@ export default function TopicPage({
   conditionsLabel, conditions, whyChooseUs, faqs, ctaText 
 }: TopicPageProps) {
   const navigate = useNavigate();
-  React.useEffect(() => {
-    document.title = metaTitle;
-    const metaTag = document.querySelector('meta[name="description"]');
-    if (metaTag) metaTag.setAttribute('content', metaDesc);
-    window.scrollTo(0, 0);
-  }, [metaTitle, metaDesc]);
 
   const homeVisitAnchors = [
     "home visit doctor in Manchester",
@@ -53,17 +48,24 @@ export default function TopicPage({
   const gpAnchor = sameDayGpAnchors[anchorIdx];
 
   return (
-    <div className="bg-white min-h-screen pt-32 pb-24">
+    <div className="bg-white min-h-screen pt-32 pb-24 text-slate-900">
+      <SEO title={metaTitle} description={metaDesc} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Breadcrumb */}
-        <div className="mb-12">
+        {/* Breadcrumb & Navigation */}
+        <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
           <button 
             onClick={() => navigate('/services/home-visit')}
             className="text-slate-400 hover:text-teal-700 transition-colors text-xs font-black uppercase tracking-widest flex items-center gap-2"
           >
-            ← Home Visits Manchester
+            ← Home Visits Manchester & Lancashire
           </button>
+          <div className="flex items-center gap-4">
+            <a href="tel:07488879077" className="flex items-center gap-2 text-slate-900 font-bold hover:text-teal-700 transition-colors">
+              <Phone size={18} className="text-teal-600" />
+              07488 879077
+            </a>
+          </div>
         </div>
 
         {/* Hero Section */}
@@ -73,13 +75,13 @@ export default function TopicPage({
           className="mb-16"
         >
           <div className="inline-block px-4 py-1.5 bg-medical-50 text-medical-800 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-6 border border-medical-200">
-            {subtitle}
+            {subtitle} | Private GP North West
           </div>
           <h1 className="text-4xl md:text-7xl font-display font-bold text-slate-900 mb-8 tracking-tighter leading-[0.9]">
             {h1}
           </h1>
           <p className="text-xl text-slate-600 leading-relaxed font-medium mb-10">
-            {openingText}
+            {openingText}. Call us on <a href="tel:07488879077" className="text-teal-700 font-bold decoration-2 underline">07488 879077</a> for immediate assistance in Manchester or Lancashire.
           </p>
           <div className="flex flex-wrap gap-4">
             <button 
@@ -91,10 +93,10 @@ export default function TopicPage({
             </button>
             <a 
               href="tel:07488879077"
-              className="px-10 py-5 bg-medical-500 text-slate-900 rounded-2xl font-black hover:bg-medical-400 transition-all flex items-center gap-2"
+              className="px-10 py-5 bg-medical-500 text-slate-900 rounded-2xl font-black hover:bg-medical-400 transition-all flex items-center gap-2 shadow-xl shadow-medical-900/10"
             >
               <Phone size={20} />
-              Call Now
+              07488 879077
             </a>
           </div>
         </motion.div>

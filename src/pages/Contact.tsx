@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send, MessageSquare, Clock, CheckCircle2, ArrowLeft, ShieldAlert } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
+import SEO from '../components/SEO';
 
 export default function ContactPage() {
   const navigate = useNavigate();
@@ -37,6 +38,10 @@ export default function ContactPage() {
 
   return (
     <div className="bg-white min-h-screen pt-32 pb-16 relative overflow-hidden">
+      <SEO 
+        title="Contact Private GP Manchester & Lancashire | Book Same-Day Doctor"
+        description="Get in touch with Doctor2U for same-day private GP home visits in Manchester and Lancashire. Call us at 07488 879077 to book your professional medical consultation."
+      />
       {/* Background Blobs for Modern Feel */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-teal-100/30 rounded-full blur-[120px] animate-blob"></div>
@@ -45,13 +50,27 @@ export default function ContactPage() {
       </div>
 
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <button 
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors mb-8 group"
-        >
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-bold uppercase tracking-widest">Back</span>
-        </button>
+        <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-8">
+          <button 
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors group"
+          >
+            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+            <span className="text-sm font-bold uppercase tracking-widest">Back</span>
+          </button>
+          <div className="flex items-center gap-4">
+            <a href="tel:07488879077" className="flex items-center gap-2 text-slate-900 font-bold hover:text-teal-700 transition-colors">
+              <Phone size={18} className="text-teal-600" />
+              07488 879077
+            </a>
+            <button 
+              onClick={() => navigate('/book')}
+              className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-800 transition-all shadow-lg"
+            >
+              Book Now
+            </button>
+          </div>
+        </div>
 
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div 
@@ -60,13 +79,13 @@ export default function ContactPage() {
             className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
           >
             <MessageSquare size={12} />
-            <span>Get in Touch</span>
+            <span>Private GP Lancashire & Manchester</span>
           </motion.div>
           <h1 className="text-4xl md:text-6xl font-display font-bold text-slate-900 mb-6 tracking-tight">
-            Contact <span className="text-teal-700">Us</span>
+            Private GP <span className="text-teal-700">Manchester & Lancashire.</span>
           </h1>
-          <p className="text-lg text-slate-600 leading-relaxed">
-            Book your appointment or ask us a question. Our team is here to help you across Lancashire and Manchester.
+          <p className="text-xl text-slate-600 leading-relaxed font-medium">
+            Contact your local private doctor today. Call us on <a href="tel:07488879077" className="text-teal-700 font-bold">07488 879077</a> for same-day bookings.
           </p>
         </div>
 

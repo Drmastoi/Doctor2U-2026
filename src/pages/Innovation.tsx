@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import HubLink from '../components/HubLink';
+import SEO from '../components/SEO';
 
 export default function InnovationPage() {
   const navigate = useNavigate();
@@ -41,6 +42,10 @@ export default function InnovationPage() {
 
   return (
     <div className="bg-white min-h-screen relative overflow-hidden">
+      <SEO 
+        title="AI Healthcare Innovation Manchester & Lancashire | Doctor2U"
+        description="Leading healthtech innovation in Manchester and Lancashire. Bespoke AI health apps for hospitals, PCNs, and GP practices. AI-driven clinical solutions and private GP expertise."
+      />
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex items-center pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -61,18 +66,18 @@ export default function InnovationPage() {
             className="max-w-3xl"
           >
             <div className="inline-flex items-center gap-2 bg-teal-500/20 border border-teal-500/30 text-teal-400 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
-              AI Healthcare Innovation
+              AI Healthcare Innovation Manchester & Lancashire
             </div>
             <h1 className="text-5xl md:text-8xl font-display font-bold text-white mb-6 tracking-tighter leading-[0.95]">
               <span className="inline-block w-20 h-4 bg-teal-500 mr-4 mb-2"></span>
-              AI Healthcare <br />
-              <span className="text-teal-400">Innovation Hub</span>
+              Private GP <br />
+              <span className="text-teal-400">Innovation Hub.</span>
             </h1>
             <p className="text-2xl md:text-3xl font-display font-bold text-white mb-6 tracking-tight">
-              Specialists in Clinical AI & HealthTech Systems
+              Specialists in Clinical AI Manchester & Lancashire
             </p>
             <p className="text-lg text-slate-300 mb-10 leading-relaxed max-w-2xl">
-              A leading healthtech company providing bespoke AI health applications, AI-driven consultation systems, and innovative clinical solutions for hospitals, PCNs, and GP practices worldwide.
+              A leading healthtech company providing bespoke AI health applications and innovative clinical solutions for hospitals, PCNs, and GP practices. Call us on <a href="tel:07488879077" className="text-teal-400 font-bold">07488 879077</a> for consultations.
             </p>
             <div className="flex flex-wrap gap-4">
               <button 
@@ -81,12 +86,13 @@ export default function InnovationPage() {
               >
                 Try AI Assessment (Free)
               </button>
-              <button 
-                onClick={() => navigate('/services')}
-                className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all"
+              <a 
+                href="tel:07488879077"
+                className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all flex items-center gap-2"
               >
-                Our Services
-              </button>
+                <Phone size={20} className="text-teal-400" />
+                07488 879077
+              </a>
             </div>
           </motion.div>
         </div>

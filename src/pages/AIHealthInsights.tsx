@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
-  Brain, Sparkles, Activity, ShieldCheck, CheckCircle2, ShieldAlert, ArrowRight, ClipboardList, Stethoscope, HeartPulse
+  Brain, Sparkles, Activity, ShieldCheck, CheckCircle2, ShieldAlert, ArrowRight, ClipboardList, Stethoscope, HeartPulse, Phone
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleGenAI } from "@google/genai";
@@ -112,8 +112,8 @@ IMPORTANT GUIDELINES:
   return (
     <div className="bg-slate-50 min-h-screen">
       <SEO 
-        title="AI Health Insights Tool" 
-        description="Organise your health concerns before your appointment with our clinical-grade AI tool. Prepare for your consultation with Doctor2U."
+        title="AI Health Symptoms Assessment Manchester & Lancashire | Doctor2U" 
+        description="Free clinical-grade AI symptom assessment tool for patients in Manchester and Lancashire. Organise your health concerns before your private doctor consultation."
       />
       
       {/* Hero Header */}
@@ -125,14 +125,31 @@ IMPORTANT GUIDELINES:
             className="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
           >
             <Brain size={16} />
-            <span>Innovation in Care</span>
+            <span>Private GP Lancashire & Manchester</span>
           </motion.div>
           <h1 className="text-4xl md:text-6xl font-display font-bold text-slate-900 mb-6 tracking-tight">
-            AI Health <span className="text-teal-700">Insights</span>
+            AI Health Assessment <br />
+            <span className="text-teal-700">Manchester & Lancashire</span>
           </h1>
-          <p className="text-xl text-slate-500 max-w-2xl mx-auto font-light leading-relaxed">
-            A clinical-grade preparatory tool designed to help you organise your symptoms into a structured summary before you speak with our doctors.
+          <p className="text-xl text-slate-500 max-w-2xl mx-auto font-light leading-relaxed mb-8">
+            A clinical-grade tool to help you organise your symptoms before you speak with our doctors. Call us on <a href="tel:07488879077" className="text-teal-700 font-bold">07488 879077</a> or book below.
           </p>
+          <div className="flex justify-center gap-4">
+            <button 
+              onClick={() => navigate('/book')}
+              className="bg-teal-700 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-teal-800 transition-all"
+            >
+              Book Now
+              <ArrowRight size={18} />
+            </button>
+            <a 
+              href="tel:07488879077"
+              className="bg-white border border-slate-200 text-slate-900 px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-slate-50 transition-all"
+            >
+              <Phone size={18} className="text-teal-600" />
+              07488 879077
+            </a>
+          </div>
         </div>
       </section>
 

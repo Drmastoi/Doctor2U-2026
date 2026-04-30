@@ -6,6 +6,8 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import HubLink from '../components/HubLink';
+import SEO from '../components/SEO';
+import { Phone } from 'lucide-react';
 
 const doctors = [
   {
@@ -39,12 +41,13 @@ const doctors = [
 
 export default function OurDoctors() {
   const navigate = useNavigate();
-  React.useEffect(() => {
-    document.title = "Our Doctors | Meet the GMC-Registered Team | Doctor2U";
-  }, []);
 
   return (
     <div className="bg-white min-h-screen pt-32">
+      <SEO 
+        title="Meet Our Private doctors Manchester & Lancashire | Doctor2U"
+        description="Meet our team of GMC-registered private doctors serving Manchester and Lancashire. Expert clinicians providing home visits and clinical care."
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -55,15 +58,31 @@ export default function OurDoctors() {
             className="flex justify-center mb-6"
           >
             <div className="bg-medical-50 text-medical-800 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border border-medical-200">
-              GMC-Registered & Licensed
+              Private GP Lancashire & Manchester
             </div>
           </motion.div>
           <h1 className="text-4xl md:text-7xl font-display font-bold text-slate-900 mb-8 tracking-tighter">
             Our <span className="text-teal-700">Doctors.</span>
           </h1>
-          <p className="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed">
-            Every physician at Doctor2U is a fully licensed, UK-registered doctor with extensive experience in the NHS and private sectors. We adhere to the highest standards of General Medical Council (GMC) regulations.
+          <p className="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed mb-8">
+            Fully licensed, GMC-registered private doctors in Manchester and Lancashire. Call us on <a href="tel:07488879077" className="text-teal-700 font-bold">07488 879077</a> for bookings.
           </p>
+          <div className="flex justify-center gap-4">
+            <button 
+              onClick={() => navigate('/book')}
+              className="bg-teal-700 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-teal-800 transition-all transition-all shadow-lg"
+            >
+              Book Now
+              <Stethoscope size={18} />
+            </button>
+            <a 
+              href="tel:07488879077"
+              className="bg-white border border-slate-200 text-slate-900 px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-slate-50 transition-all"
+            >
+              <Phone size={18} className="text-teal-600" />
+              07488 879077
+            </a>
+          </div>
         </div>
 
         {/* Doctor Grid */}

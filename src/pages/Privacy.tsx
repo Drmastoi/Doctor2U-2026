@@ -4,17 +4,32 @@ import { Link } from 'react-router-dom';
 import HubLink from '../components/HubLink';
 import { motion } from 'motion/react';
 
+import SEO from '../components/SEO';
+import { Phone } from 'lucide-react';
+
 export default function PrivacyPolicy() {
   return (
     <div className="bg-white min-h-screen pt-32 pb-16 relative overflow-hidden">
+      <SEO 
+        title="Privacy Policy | Private GP Manchester & Lancashire | Doctor2U"
+        description="Read the privacy policy of Doctor2U, providing secure private doctor services in Manchester and Lancashire. We prioritise your data security and medical confidentiality."
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <Link 
-          to="/"
-          className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors mb-8 group"
-        >
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
-        </Link>
+        <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-6">
+          <Link 
+            to="/"
+            className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors group"
+          >
+            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+            <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
+          </Link>
+          <div className="flex items-center gap-4">
+            <a href="tel:07488879077" className="flex items-center gap-2 text-slate-900 font-bold hover:text-teal-700 transition-colors text-sm">
+              <Phone size={14} className="text-teal-600" />
+              07488 879077
+            </a>
+          </div>
+        </div>
 
         <div className="text-center mb-16">
           <motion.div 
@@ -23,13 +38,13 @@ export default function PrivacyPolicy() {
             className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
           >
             <Shield size={12} />
-            <span>Updated April 2026</span>
+            <span>Private GP Lancashire & Manchester</span>
           </motion.div>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">
-            Privacy <span className="text-teal-700">Policy</span>
+            Privacy <span className="text-teal-700">Policy.</span>
           </h1>
           <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            Your privacy is our priority. This policy outlines how we handle your personal and medical data at Doctor2U.
+            Your privacy is our priority in Manchester and Lancashire. Call <a href="tel:07488879077" className="text-teal-700 font-bold">07488 879077</a> for data queries.
           </p>
         </div>
 

@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { SERVICES } from '../types';
 import HubLink from '../components/HubLink';
 import SEO from '../components/SEO';
-import { Video, User, Home as HomeIcon, CheckCircle2, ArrowRight, ArrowLeft, Brain, Apple, FileText, Stethoscope, ClipboardList, Search } from 'lucide-react';
+import { Video, User, Home as HomeIcon, CheckCircle2, ArrowRight, ArrowLeft, Brain, Apple, FileText, Stethoscope, ClipboardList, Search, Phone } from 'lucide-react';
 
 export default function ServicesPage() {
   const navigate = useNavigate();
@@ -22,8 +22,8 @@ export default function ServicesPage() {
   return (
     <div className="bg-white min-h-screen pt-32 pb-16 relative overflow-hidden">
       <SEO 
-        title="Private Doctor Services Manchester & Lancashire | Doctor2U"
-        description="Explore our range of private medical services including same-day GP consultations, home visits, drivers medicals, and blood tests across Manchester and Lancashire."
+        title="Private GP Services Manchester & Lancashire | Same-Day Doctor"
+        description="Comprehensive private GP services across Manchester and Lancashire. Same-day doctor appointments, home visits, health screenings, and professional medical assessments."
       />
       {/* Background Blobs for Modern Feel */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -33,13 +33,33 @@ export default function ServicesPage() {
       </div>
 
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <Link 
-          to="/"
-          className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors mb-8 group"
-        >
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
-        </Link>
+        <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-8">
+          <Link 
+            to="/"
+            className="flex items-center gap-2 text-slate-500 hover:text-teal-700 transition-colors group"
+          >
+            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+            <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
+          </Link>
+          <div className="flex items-center gap-4">
+            <a 
+              href="tel:07488879077"
+              className="flex items-center gap-3 text-slate-900 font-bold text-lg hover:text-teal-700 transition-colors"
+            >
+              <div className="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-700">
+                <Phone size={18} />
+              </div>
+              07488 879077
+            </a>
+            <button 
+              onClick={() => navigate('/book')}
+              className="bg-teal-700 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-teal-800 transition-all shadow-lg shadow-teal-900/20"
+            >
+              Book Now
+              <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
 
         {/* New Services Grid Section moved from Innovation */}
         <section id="services-grid" className="mb-24">
@@ -49,12 +69,15 @@ export default function ServicesPage() {
               animate={{ opacity: 1, y: 0 }}
               className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
             >
-              <CheckCircle2 size={12} />
-              <span>Comprehensive Solutions</span>
+              <Stethoscope size={12} />
+              <span>Private GP Lancashire & Manchester</span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">Our Core <span className="text-teal-700">Expertise</span></h2>
+            <h1 className="text-4xl md:text-6xl font-display font-bold text-slate-900 mb-6 tracking-tight">
+              Private Doctor <span className="text-teal-700">Services</span> <br />
+              <span className="text-slate-400 text-3xl md:text-4xl">Manchester & Lancashire Expertise</span>
+            </h1>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Innovative healthcare solutions combining cutting-edge technology with traditional medical expertise.
+              Professional healthcare delivered at home, in-clinic, or via video. Our doctors are based in Manchester and cover all of Lancashire for same-day care.
             </p>
           </div>
 
