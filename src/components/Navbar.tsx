@@ -53,7 +53,14 @@ export default function Navbar({}: NavbarProps) {
                   isActive(item.path) ? 'text-teal-700' : 'text-slate-600'
                 }`}
               >
-                {item.label}
+                {item.label.includes('(Free)') ? (
+                  <>
+                    {item.label.replace('(Free)', '')}
+                    <span className="text-orange-600 font-extrabold ml-1">(FREE)</span>
+                  </>
+                ) : (
+                  item.label
+                )}
                 <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-700 transition-all group-hover:w-full ${isActive(item.path) ? 'w-full' : ''}`}></span>
               </Link>
             ))}
@@ -99,7 +106,14 @@ export default function Navbar({}: NavbarProps) {
                   isActive(item.path) ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50'
                 }`}
               >
-                {item.label}
+                {item.label.includes('(Free)') ? (
+                  <>
+                    {item.label.replace('(Free)', '')}
+                    <span className="text-orange-600 font-extrabold ml-1">(FREE)</span>
+                  </>
+                ) : (
+                  item.label
+                )}
               </Link>
             ))}
             <div className="pt-4 grid grid-cols-2 gap-3">
