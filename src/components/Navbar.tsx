@@ -20,10 +20,9 @@ export default function Navbar({}: NavbarProps) {
   const navItems = [
     { path: '/', label: 'Home' },
     { path: '/services', label: 'Services' },
-    { path: '/services/ai-powered-home-visit', label: 'AI Advantage' },
-    { path: '/services/adhd-assessment', label: 'ADHD' },
-    { path: '/services/weight-management', label: 'Weight' },
-    { path: '/innovation', label: 'Innovation' },
+    { path: '/fees', label: 'Our Fees' },
+    { path: '/ai-health-insights', label: 'Get AI health Assessment (Free)' },
+    { path: '/innovation', label: 'AI healthcare Innovation' },
     { path: '/contact', label: 'Contact' },
   ];
 

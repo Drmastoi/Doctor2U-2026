@@ -3,12 +3,13 @@ import { motion } from 'motion/react';
 import { 
   ArrowRight, ShieldCheck, Clock, MapPin, CheckCircle2, Phone, 
   Activity, Users, HeartPulse, MessageSquare, Send, Mail,
-  Brain, FileText, Home as HomeIcon, Stethoscope, ClipboardList, Search, ShieldAlert
+  Brain, FileText, Home as HomeIcon, Stethoscope, ClipboardList, Search, ShieldAlert, Zap, Beaker
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import HubLink from '../components/HubLink';
 
 export default function InnovationPage() {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({ name: '', email: '', service: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
@@ -64,67 +65,195 @@ export default function InnovationPage() {
             </div>
             <h1 className="text-5xl md:text-8xl font-display font-bold text-white mb-6 tracking-tighter leading-[0.95]">
               <span className="inline-block w-20 h-4 bg-teal-500 mr-4 mb-2"></span>
-              Private <br />
-              <span className="text-teal-400">Health Care</span>
+              AI Healthcare <br />
+              <span className="text-teal-400">Innovation Hub</span>
             </h1>
             <p className="text-2xl md:text-3xl font-display font-bold text-white mb-6 tracking-tight">
-              Pioneering AI-Driven Healthcare Solutions
+              Specialists in Clinical AI & HealthTech Systems
             </p>
             <p className="text-lg text-slate-300 mb-10 leading-relaxed max-w-2xl">
-              Leading healthtech company providing bespoke AI health applications, comprehensive medical services, and innovative healthcare solutions for organisations and individuals.
+              A leading healthtech company providing bespoke AI health applications, AI-driven consultation systems, and innovative clinical solutions for hospitals, PCNs, and GP practices worldwide.
             </p>
             <div className="flex flex-wrap gap-4">
               <button 
-                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => navigate('/ai-health-insights')}
                 className="bg-teal-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-700 transition-all shadow-lg shadow-teal-900/20"
               >
-                Our Services
+                Try AI Assessment (Free)
               </button>
               <button 
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-slate-900 transition-all"
+                onClick={() => navigate('/services')}
+                className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all"
               >
-                Contact Us
+                Our Services
               </button>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-24 bg-slate-50">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">Our Services</h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Comprehensive healthcare solutions combining innovative technology with traditional medical expertise
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { icon: Brain, title: "Bespoke AI Health Apps", desc: "Custom AI-powered health applications developed specifically for organisations, leveraging cutting-edge technology to improve healthcare outcomes." },
-              { icon: FileText, title: "Medico-Legal Reporting", desc: "Professional medical reports for legal proceedings, insurance claims, and regulatory compliance with expert medical analysis." },
-              { icon: HomeIcon, title: "Doctor2u – Home Visits", desc: "Qualified doctors providing medical consultations and treatments in the comfort of your own home for personalised care." },
-              { icon: Stethoscope, title: "Occupational Medicine", desc: "Expert advice on workplace health, occupational hazards assessment, and employee wellness programmes tailored to your organisation." },
-              { icon: ClipboardList, title: "Drivers' Medicals", desc: "Comprehensive medical examinations for professional drivers, ensuring compliance with DVLA and transport authority requirements." },
-              { icon: Search, title: "Health Screening", desc: "Preventive health assessments and comprehensive screenings to detect potential health issues early and maintain optimal wellbeing." }
-            ].map((service, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all group"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-teal-50 flex items-center justify-center text-teal-600 mb-6 group-hover:bg-teal-600 group-hover:text-white transition-all">
-                  <service.icon size={28} />
+      {/* Interactive AI Assessment Section */}
+      <section className="py-24 bg-slate-900 overflow-hidden relative">
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px]"></div>
+          <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px]"></div>
+        </div>
+        
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-[3rem] p-12 md:p-24 border border-white/5 relative overflow-hidden">
+            <div className="flex flex-col lg:flex-row items-center gap-16">
+              <div className="lg:w-1/2">
+                <div className="inline-flex items-center gap-2 bg-teal-500/20 text-teal-400 px-4 py-1.5 rounded-full text-[10px] font-bold mb-8 tracking-[0.2em] uppercase">
+                  <Brain size={14} />
+                  <span>Interactive Diagnostics</span>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-4 tracking-tight">{service.title}</h3>
-                <p className="text-slate-500 leading-relaxed text-sm">{service.desc}</p>
-              </motion.div>
-            ))}
+                <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-8 tracking-tighter leading-tight">
+                  Your AI-Powered <br />
+                  <span className="text-teal-400">Health Companion (Free)</span>
+                </h2>
+                <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+                  Experience our intelligent symptom checker that leverages sophisticated AI to provide instant medical insights and actionable health suggestions.
+                </p>
+                <div className="space-y-6 mb-10">
+                  {[
+                    "Input your symptoms in natural language",
+                    "Receive evidence-based clinical suggestions",
+                    "Share detailed insights directly with your GP",
+                    "Accelerate your diagnosis and treatment"
+                  ].map((benefit, i) => (
+                    <div key={i} className="flex items-center gap-4 text-slate-300">
+                      <div className="w-6 h-6 rounded-full bg-teal-500/20 flex items-center justify-center shrink-0">
+                        <CheckCircle2 size={14} className="text-teal-400" />
+                      </div>
+                      <span className="font-medium">{benefit}</span>
+                    </div>
+                  ))}
+                </div>
+                <button 
+                  onClick={() => navigate('/ai-health-insights')}
+                  className="bg-teal-600 text-white px-10 py-5 rounded-2xl font-bold hover:bg-teal-500 hover:scale-105 transition-all shadow-xl shadow-teal-900/40 flex items-center gap-3 group"
+                >
+                  Start Your Assessment
+                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+              <div className="lg:w-1/2 relative">
+                <div className="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
+                  <div className="bg-slate-800 p-8 flex items-center justify-center min-h-[400px]">
+                    <div className="text-center">
+                      <div className="w-24 h-24 bg-teal-50/10 rounded-full flex items-center justify-center text-teal-400 mx-auto mb-6">
+                        <Brain size={48} className="animate-pulse" />
+                      </div>
+                      <p className="text-teal-400 font-mono text-[10px] mb-2 uppercase tracking-[0.3em] font-bold">System Status: Active</p>
+                      <h4 className="text-2xl font-display font-bold text-white mb-4">Neural Health Engine</h4>
+                      <div className="flex items-center justify-center gap-2 mb-6 text-slate-400 font-mono text-[10px]">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        LIVE DATA STREAMING
+                      </div>
+                      <p className="text-slate-500 text-sm max-w-xs mx-auto leading-relaxed">
+                        Processing clinical input patterns to provide real-time suggestions and structured summaries.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute top-10 -right-4 w-32 h-32 bg-teal-500/20 rounded-full blur-2xl animate-pulse text-teal-500 flex items-center justify-center">
+                  <Zap size={40} />
+                </div>
+                <div className="absolute -bottom-6 -left-4 w-40 h-40 bg-emerald-500/20 rounded-full blur-2xl animate-pulse delay-700 text-emerald-500 flex items-center justify-center">
+                   <Activity size={40} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The AI Advantage: Traditional vs Hybrid */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-20">
+            <div className="lg:w-1/2">
+               <div className="inline-flex items-center gap-2 bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold mb-8 tracking-[0.2em] uppercase">
+                <Zap size={14} className="text-teal-600" />
+                <span>The AI Advantage</span>
+              </div>
+              <h2 className="text-4xl md:text-7xl font-display font-bold text-slate-900 mb-8 tracking-tighter leading-[0.95]">
+                Why AI-Powered <br />
+                <span className="text-teal-600 italic">Medical Precision?</span>
+              </h2>
+              <p className="text-xl text-slate-500 mb-12 font-light leading-relaxed">
+                Traditional home visits often start with 20 minutes of repetitive history-taking. With Doctor2U, our AI observes, organises, and briefs your doctor <span className="text-teal-700 font-bold italic">before</span> they arrive.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                  <div className="text-slate-400 text-[10px] font-bold uppercase mb-6 tracking-widest">Traditional Visit</div>
+                  <div className="space-y-4">
+                    {[
+                      "Wait hours for a callback",
+                      "Explain history from scratch",
+                      "Time wasted on administration",
+                      "Standard verbal reports only"
+                    ].map((item, i) => (
+                      <div key={i} className="flex gap-3 items-center text-slate-400">
+                        <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
+                        <span className="text-sm">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="bg-teal-700 p-8 rounded-[2rem] text-white shadow-xl shadow-teal-900/20">
+                  <div className="text-teal-400 text-[10px] font-bold uppercase mb-6 tracking-widest">Doctor2U AI Hybrid</div>
+                  <div className="space-y-4">
+                    {[
+                      "Instant AI triage 24/7",
+                      "Deep context already briefed",
+                      "100% time on clinical care",
+                      "Detailed AI-enhanced reports"
+                    ].map((item, i) => (
+                      <div key={i} className="flex gap-3 items-center">
+                        <CheckCircle2 size={16} className="text-teal-400 shrink-0" />
+                        <span className="text-sm font-bold">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {[
+                { 
+                  icon: Clock, 
+                  title: "Instant Triage", 
+                  desc: "Structure your health concerns the moment they arise, day or night." 
+                },
+                { 
+                  icon: Beaker, 
+                  title: "Clinical Synthesis", 
+                  desc: "Symptoms are synthesized into a professional summary for the clinician." 
+                },
+                { 
+                  icon: Activity, 
+                  title: "Data Integrity", 
+                  desc: "Organized data leads to fewer errors and more accurate treatment plans." 
+                },
+                { 
+                  icon: ShieldCheck, 
+                  title: "Patient Focused", 
+                  desc: "More time for touch, empathy, and thorough physical examination." 
+                }
+              ].map((feature, i) => (
+                <div key={i} className="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 hover:bg-white hover:shadow-xl transition-all group">
+                  <div className="w-14 h-14 rounded-2xl bg-white text-teal-600 flex items-center justify-center mb-6 shadow-sm group-hover:bg-teal-600 group-hover:text-white transition-all">
+                    <feature.icon size={28} />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2 uppercase tracking-wider text-xs">{feature.title}</h3>
+                  <p className="text-slate-500 text-sm leading-relaxed">{feature.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -162,20 +291,20 @@ export default function InnovationPage() {
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1">
               <h2 className="text-4xl md:text-6xl font-display font-bold text-slate-900 mb-8 tracking-tighter leading-tight">
-                Leading Healthcare Innovation
+                Driving the Future of Clinical Care
               </h2>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                Prime Private Health Care is a pioneering healthtech company at the forefront of medical innovation. We specialise in developing bespoke AI health applications that transform how organisations deliver healthcare services.
+                Prime Private Health Care is a pioneering healthtech company at the forefront of medical innovation. We specialise in developing bespoke AI health applications and <span className="text-teal-700 font-bold">AI consultation systems</span> specifically designed for clinical settings.
               </p>
               <p className="text-lg text-slate-600 mb-10 leading-relaxed">
-                Our comprehensive range of services combines cutting-edge technology with traditional medical expertise, ensuring that our clients receive the highest standard of care across all healthcare disciplines.
+                From high-capacity <span className="text-teal-700 font-bold">hospitals</span> to local <span className="text-teal-700 font-bold">PCNs and GP practices</span>, we provide comprehensive medical services and tech-driven solutions that bridge the gap between innovation and traditional practice.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {[
-                  { title: "Expert Team", desc: "Qualified medical professionals with extensive experience" },
-                  { title: "Innovation Focus", desc: "Cutting-edge AI and healthcare technology solutions" },
-                  { title: "Comprehensive Care", desc: "Full spectrum of medical and legal health services" },
-                  { title: "Personalised Approach", desc: "Tailored solutions for organisations and individuals" }
+                  { title: "Clinical AI Systems", desc: "Advanced AI-powered consultation tools for clinical settings" },
+                  { title: "Bespoke Development", desc: "Custom apps for Hospitals, PCNs, and GP practices" },
+                  { title: "Organisation Support", desc: "Comprehensive solutions for healthcare organisations" },
+                  { title: "Hybrid Innovation", desc: "Combining digital intelligence with physical clinical expertise" }
                 ].map((item, i) => (
                   <div key={i} className="flex gap-3">
                     <CheckCircle2 className="text-teal-600 shrink-0" size={20} />
@@ -317,7 +446,8 @@ export default function InnovationPage() {
                       onChange={e => setFormState({...formState, service: e.target.value})}
                     >
                       <option value="">Select a service</option>
-                      <option value="ai-apps">Bespoke AI Health Apps</option>
+                      <option value="clinical-ai">AI Consultation Systems</option>
+                      <option value="bespoke-apps">Bespoke Health Apps (PCN/GP/Hospitals)</option>
                       <option value="medico-legal">Medico-Legal Reporting</option>
                       <option value="home-visits">Home Visits</option>
                       <option value="occupational">Occupational Medicine</option>

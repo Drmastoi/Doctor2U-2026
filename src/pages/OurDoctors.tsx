@@ -32,7 +32,7 @@ const doctors = [
     gmc: "GMC Number: 7451109",
     credentials: "MBBS, MRCGP, AFOM",
     specialties: ["Occupational Health", "Chronic Pain", "Geriatrics"],
-    bio: "Dr. Chen focuses on long-term wellness and geriatric support. With over 8 years as a GP Partner in local Manchester practices, he brings a wealth of local clinical knowledge to Every home visit.",
+    bio: "Dr. Chen focuses on long-term wellness and geriatric support. With over 8 years as a GP Partner in local Manchester practices, he brings a wealth of local clinical knowledge to every home visit.",
     image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=400&h=500"
   }
 ];

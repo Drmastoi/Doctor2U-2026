@@ -28,6 +28,7 @@ import TopicPage from './pages/seo/TopicPage';
 import UrgentDoctorManchester from './pages/seo/UrgentDoctorManchester';
 import PrestonLandingPage from './pages/PrestonLandingPage';
 import AIHealthInsights from './pages/AIHealthInsights';
+import OurFees from './pages/OurFees';
 import { Page } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, Phone } from 'lucide-react';
@@ -67,6 +68,7 @@ export default function App() {
               } />
               
               <Route path="/services" element={<ServicesPage />} />
+              <Route path="/fees" element={<OurFees />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/book" element={<BookingPage />} />
               <Route path="/innovation" element={<InnovationPage />} />
@@ -74,7 +76,7 @@ export default function App() {
               <Route path="/treatment-plan" element={<TreatmentPlan />} />
               <Route path="/services/adhd-assessment" element={<ADHDAssessment />} />
               <Route path="/services/weight-management" element={<MedicalWeightManagement />} />
-              <Route path="/services/ai-powered-home-visit" element={<AIHomeVisit />} />
+              <Route path="/services/ai-powered-home-visit" element={<InnovationPage />} />
               <Route path="/services/private-gp-manchester" element={<ManchesterPage />} />
               <Route path="/services/private-gp-preston" element={<PrestonPage />} />
               
@@ -111,7 +113,7 @@ export default function App() {
                 <ServiceDetail 
                   title="Driver Medicals"
                   subtitle="HGV / LGV / Taxi"
-                  description="Fast and affordable driver medical assessments. Same-day appointments available for essential license renewals."
+                  description="Fast and affordable driver medical assessments. Same-day appointments available for essential licence renewals."
                   whoItIsFor={["Taxi drivers", "HGV / LGV drivers", "Forklift operators", "Bus & Coach drivers"]}
                   whatHappens={["Eyesight check", "Medical history review", "Blood pressure monitor", "DVLA form completion"]}
                   pricing="£50 per assessment"
@@ -189,7 +191,7 @@ export default function App() {
                 <ServiceDetail 
                   title="Specialist Referrals"
                   subtitle="Fast-Track Access"
-                  description="Immediate private referrals to the UK's leading specialists and diagnostic centers. No NHS gatekeeping."
+                  description="Immediate private referrals to the UK's leading specialists and diagnostic centres. No NHS gatekeeping."
                   whoItIsFor={["Seeking second opinions", "Needing MRI/CT scans", "Urgent surgery needs", "Consultant access"]}
                   whatHappens={["Clinical review", "Selection of specialist", "Direct referral letter", "Fast-track imaging"]}
                   pricing="£50 for referral"

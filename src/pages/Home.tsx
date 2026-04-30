@@ -512,6 +512,99 @@ export default function Home() {
         </div>
       </section>
 
+      {/* New Interactive AI Assessment Feature - HIGH PROMINENCE */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-slate-900 rounded-[4rem] p-12 md:p-24 relative overflow-hidden shadow-2xl">
+            {/* Background Effects */}
+            <div className="absolute top-0 right-0 w-full h-full pointer-events-none">
+              <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px]"></div>
+              <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px]"></div>
+            </div>
+
+            <div className="flex flex-col lg:flex-row items-center gap-16 relative z-10">
+              <div className="lg:w-1/2">
+                <div className="inline-flex items-center gap-2 bg-teal-500/20 text-teal-400 px-4 py-1.5 rounded-full text-[10px] font-bold mb-8 tracking-[0.2em] uppercase">
+                  <Brain size={14} />
+                  <span>AI Symptoms to Suggestions</span>
+                </div>
+                <h2 className="text-4xl md:text-7xl font-display font-bold text-white mb-8 tracking-tighter leading-[0.95]">
+                  AI-Powered <br />
+                  <span className="text-teal-400">Health Analysis (Free)</span>
+                </h2>
+                <p className="text-xl text-slate-300 mb-10 leading-relaxed font-light">
+                  Input your symptoms to receive instant medical insights. Our AI prepares a detailed summary for your doctor, ensuring a more focused and effective consultation.
+                </p>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+                  {[
+                    { icon: MessageSquare, title: "Natural Language", desc: "Describe concerns in your own words" },
+                    { icon: Brain, title: "Clinical Insights", desc: "Structured summaries for your GP" },
+                    { icon: Clock, title: "Instant Analysis", desc: "Results ready in under 30 seconds" },
+                    { icon: ShieldCheck, title: "Secure & Private", desc: "Your medical data stays encrypted" }
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-teal-400 shrink-0">
+                        <item.icon size={20} />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white text-sm mb-1">{item.title}</h4>
+                        <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <button 
+                    onClick={() => navigate('/ai-health-insights')}
+                    className="bg-teal-600 text-white px-10 py-5 rounded-2xl font-bold hover:bg-teal-500 transition-all shadow-xl shadow-teal-900/40 flex items-center justify-center gap-3 group"
+                  >
+                    Launch AI Assessment
+                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  </button>
+                  <button 
+                    onClick={() => navigate('/innovation')}
+                    className="bg-white/5 backdrop-blur-md text-white border border-white/10 px-10 py-5 rounded-2xl font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-3"
+                  >
+                    Learn our Tech
+                  </button>
+                </div>
+              </div>
+
+              <div className="lg:w-1/2 relative">
+                <div className="relative z-10 rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl bg-slate-800/50 backdrop-blur-sm p-12 flex flex-col items-center justify-center text-center min-h-[450px]">
+                  <div className="w-24 h-24 bg-teal-500/20 rounded-full flex items-center justify-center text-teal-400 mx-auto mb-8 animate-pulse shadow-[0_0_50px_rgba(20,184,166,0.2)]">
+                    <Brain size={48} />
+                  </div>
+                  <div className="space-y-4 max-w-sm">
+                    <div className="h-2 w-32 bg-teal-500/20 rounded-full mx-auto"></div>
+                    <div className="h-2 w-48 bg-white/10 rounded-full mx-auto"></div>
+                    <div className="h-2 w-40 bg-white/5 rounded-full mx-auto"></div>
+                  </div>
+                  <h3 className="text-2xl font-display font-bold text-white mt-12 mb-4 tracking-tight">Experience Smarter Care</h3>
+                  <p className="text-slate-400 text-sm mb-8 leading-relaxed">
+                    Used by hundreds of patients to streamline their diagnosis and get faster treatments.
+                  </p>
+                  <div className="flex -space-x-4 mb-2">
+                    {[1,2,3,4].map(i => (
+                      <div key={i} className="w-10 h-10 rounded-full border-2 border-slate-800 overflow-hidden shadow-lg">
+                        <img src={`https://i.pravatar.cc/100?img=${i+20}`} alt="User" />
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-[10px] text-teal-400 font-bold uppercase tracking-widest">Highly Rated by Patients</p>
+                </div>
+                
+                {/* Decorative Elements */}
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-teal-500/20 rounded-full blur-[80px] animate-pulse"></div>
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-500/20 rounded-full blur-[80px] animate-pulse delay-1000"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Simple Journey Section: How It Works */}
       <section id="how-it-works" className="py-16 bg-slate-50 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">

@@ -41,7 +41,7 @@ export default function AIHomeVisit() {
                 <span className="text-teal-400 italic">Medical Precision.</span>
               </h1>
               <p className="text-xl text-slate-400 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed mb-10">
-                Wait times are over. Experience the first private GP service that uses AI to organize your health data <span className="text-teal-400 font-medium">before</span> the doctor even steps through your door.
+                Wait times are over. Experience the first private GP service that uses AI to organise your health data <span className="text-teal-400 font-medium">before</span> the doctor even steps through your door.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                 <button 
@@ -103,7 +103,7 @@ export default function AIHomeVisit() {
               <div className="text-teal-400 text-[10px] font-bold uppercase mb-8 tracking-widest">Doctor2U AI Hybrid</div>
               <div className="space-y-6">
                 {[
-                  "AI organizes symptoms 24/7 instantly",
+                  "AI organises symptoms 24/7 instantly",
                   "Doctor arrives with deep context already briefed",
                   "100% of time spent on clinical care",
                   "Detailed AI-enhanced treatment reports"

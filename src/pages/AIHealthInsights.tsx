@@ -131,7 +131,7 @@ IMPORTANT GUIDELINES:
             AI Health <span className="text-teal-700">Insights</span>
           </h1>
           <p className="text-xl text-slate-500 max-w-2xl mx-auto font-light leading-relaxed">
-            A clinical-grade preparatory tool designed to help you organize your symptoms into a structured summary before you speak with our doctors.
+            A clinical-grade preparatory tool designed to help you organise your symptoms into a structured summary before you speak with our doctors.
           </p>
         </div>
       </section>

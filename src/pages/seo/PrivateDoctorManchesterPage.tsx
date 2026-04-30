@@ -158,7 +158,7 @@ export default function PrivateDoctorManchesterPage({}: PrivateDoctorManchesterP
               </div>
               <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
                 <h4 className="text-xl font-bold text-slate-900 mb-4">Same-Day Prescriptions</h4>
-                <p className="text-sm text-slate-500">Medication is issued during your appointment. We can send prescriptions electronically to the pharmacy of your choice in Manchester center or near your home, ensuring treatment begins immediately.</p>
+                <p className="text-sm text-slate-500">Medication is issued during your appointment. We can send prescriptions electronically to the pharmacy of your choice in Manchester centre or near your home, ensuring treatment begins immediately.</p>
               </div>
               <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
                 <h4 className="text-xl font-bold text-slate-900 mb-4">Expert Referrals</h4>
