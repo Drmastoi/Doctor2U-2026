@@ -61,14 +61,20 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               { icon: Brain, title: "AI Health Assessment (Free)", desc: "Interactive symptom-to-suggestion tool that provides instant medical insights and prepares a structured summary for your doctor consultation.", link: "/ai-health-insights" },
+              { icon: User, title: "Private GP Service", desc: "Expert private doctor consultations for all non-emergency health concerns. Avoid long waits and get unhurried, professional medical care.", link: "/services/private-gp" },
+              { icon: HomeIcon, title: "Doctor2u – Home Visits", desc: "Qualified doctors providing medical consultations and treatments in the comfort of your own home for personalised care.", link: "/services/home-visit" },
               { icon: Brain, title: "ADHD Assessment", desc: "Specialist-led ADHD assessment pathway following NICE guidelines for comprehensive clinical evaluations and diagnostic reports.", link: "/services/adhd-assessment" },
               { icon: Apple, title: "Weight Management", desc: "Doctor-led medical weight management combining metabolic testing with evidence-based treatments and clinical oversight.", link: "/services/weight-management" },
+              { icon: Stethoscope, title: "Specialist Referrals", desc: "Immediate private referrals to the UK's leading specialists and diagnostic centres. No NHS gatekeeping or long waiting lists.", link: "/services/referrals" },
               { icon: Brain, title: "Bespoke AI Health Apps", desc: "Custom clinical AI applications and consultation systems developed for hospitals, PCNs, and GP practices to transform healthcare delivery.", link: "/innovation" },
-              { icon: FileText, title: "Medico-Legal Reporting", desc: "Professional medical reports for legal proceedings, insurance claims, and regulatory compliance with expert medical analysis." },
-              { icon: HomeIcon, title: "Doctor2u – Home Visits", desc: "Qualified doctors providing medical consultations and treatments in the comfort of your own home for personalised care.", link: "/innovation" },
-              { icon: Stethoscope, title: "Occupational Medicine", desc: "Expert advice on workplace health, occupational hazards assessment, and employee wellness programmes tailored to your organisation." },
-              { icon: ClipboardList, title: "Drivers' Medicals", desc: "Comprehensive medical examinations for professional drivers, ensuring compliance with DVLA and transport authority requirements." },
-              { icon: Search, title: "Health Screening", desc: "Preventive health assessments and comprehensive screenings to detect potential health issues early and maintain optimal wellbeing." }
+              { icon: ClipboardList, title: "Drivers' Medicals", desc: "Comprehensive medical examinations for professional drivers, ensuring compliance with DVLA and transport authority requirements.", link: "/services/drivers-medicals" },
+              { icon: Search, title: "Health Screening", desc: "Preventive health assessments and comprehensive screenings to detect potential health issues early and maintain optimal wellbeing.", link: "/services/health-screening" },
+              { icon: FileText, title: "Medico-Legal Reporting", desc: "Professional medical reports for legal proceedings, insurance claims, and regulatory compliance with expert medical analysis.", link: "/services/accident-injury" },
+              { icon: Stethoscope, title: "Occupational Medicine", desc: "Expert advice on workplace health, occupational hazards assessment, and employee wellness programmes tailored to your organisation.", link: "/services/occupational-medicine" },
+              { icon: User, title: "Children's Health", desc: "Gentle, expert paediatric consultations at home or in-clinic. Our doctors are experienced with infants and children of all ages.", link: "/services/childrens-health" },
+              { icon: FileText, title: "Life Insurance Medicals", desc: "Professional medical examinations for life insurance or income protection policies. Accurate, timely and thorough.", link: "/services/life-insurance" },
+              { icon: HomeIcon, title: "Chronic Care Management", desc: "Continuous support for long-term conditions like diabetes, hypertension, and asthma with personalised management plans.", link: "/services/chronic-care" },
+              { icon: Stethoscope, title: "Out of Hours Doctor", desc: "Urgent private doctor visits during evenings and weekends when standard services are reaching capacity.", link: "/services/out-of-hours" }
             ].map((service, i) => (
               <motion.div 
                 key={i}

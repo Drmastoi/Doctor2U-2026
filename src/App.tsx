@@ -213,6 +213,19 @@ export default function App() {
                 />
               } />
 
+              <Route path="/services/occupational-medicine" element={
+                <ServiceDetail 
+                  title="Occupational Medicine"
+                  subtitle="Workforce Health"
+                  description="Expert clinical advice on workplace health, injury management, and statutory medical assessments for your employees."
+                  whoItIsFor={["Local businesses", "HR departments", "High-risk industries", "Employees returning to work"]}
+                  whatHappens={["Work-place hazard review", "Employee clinical assessment", "Fitness to work reports", "Ergonomic advice"]}
+                  pricing="From £100"
+                  faqs={[{ question: "Do you do on-site visits?", answer: "Yes, we can arrange to visit your place of business for employee assessments or environmental reviews." }]}
+                  image="https://images.unsplash.com/photo-1581578731548-c64695ce6958?auto=format&fit=crop&q=80&w=1200"
+                />
+              } />
+
               <Route path="/locations/preston" element={<PrestonLandingPage />} />
               <Route path="/private-doctor/manchester" element={<PrivateDoctorManchesterPage />} />
               <Route path="/home-visit-doctor/manchester" element={<HomeVisitManchester />} />

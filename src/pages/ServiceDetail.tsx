@@ -116,7 +116,7 @@ export default function ServiceDetail({
 
             {/* Pricing & CTA */}
             <div className="bg-slate-900 text-white p-8 rounded-3xl shadow-xl">
-              <h3 className="text-2xl font-bold mb-4">Investment</h3>
+              <h3 className="text-2xl font-bold mb-4">Fee</h3>
               <div className="text-4xl font-bold text-teal-400 mb-6">{pricing}</div>
               <p className="text-slate-400 mb-8 leading-relaxed">
                 We provide transparent, fixed-price consultations with no hidden fees. All prescriptions and referrals are included in the price.
