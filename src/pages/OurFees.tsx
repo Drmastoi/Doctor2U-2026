@@ -67,7 +67,6 @@ export default function OurFeesPage() {
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-20">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
           >
@@ -103,7 +102,6 @@ export default function OurFeesPage() {
           ].map((item, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
@@ -130,7 +128,6 @@ export default function OurFeesPage() {
             {SERVICES.map((service, idx) => (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}

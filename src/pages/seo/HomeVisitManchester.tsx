@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Page } from '../../types';
+import SEO from '../../components/SEO';
 
 interface HomeVisitManchesterProps {}
 
@@ -15,74 +16,66 @@ export default function HomeVisitManchester({}: HomeVisitManchesterProps) {
   const [activeFaq, setActiveFaq] = React.useState<number | null>(null);
 
   React.useEffect(() => {
-    document.title = "Home Visit Doctor Manchester – Same-Day Private Doctor Visits | Doctor2U";
-    
-    // SEO Schema Injections
-    const faqSchema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How quickly can a home visit doctor arrive in Manchester?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We aim for same-day home visits across Greater Manchester. For calls received before 11am, we usually guarantee a consultation on the same day."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do I need to be registered with an NHS GP to use Doctor2U?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No, you do not need to be registered with us or any specific NHS GP. We provide one-off or ongoing private medical care for everyone."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What areas of Manchester do you cover for home visits?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We cover the entire Greater Manchester area, including Manchester City Centre, Salford, Stockport, Trafford, Bury, Bolton, Rochdale, and Oldham."
-          }
-        }
-      ]
-    };
-
-    const medicalSchema = {
-      "@context": "https://schema.org",
-      "@type": "MedicalClinic",
-      "name": "Doctor2U Manchester Home Visits",
-      "alternateName": "Home Visit Doctor Manchester",
-      "url": window.location.href,
-      "logo": "https://doctor2u.co.uk/logo.png",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+447488879077",
-        "contactType": "customer service",
-        "areaServed": "Manchester",
-        "availableLanguage": "English"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Manchester",
-        "addressRegion": "Greater Manchester",
-        "addressCountry": "GB"
-      }
-    };
-
-    const scripts = [faqSchema, medicalSchema].map(schema => {
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.innerHTML = JSON.stringify(schema);
-      document.head.appendChild(script);
-      return script;
-    });
-
-    return () => {
-      scripts.forEach(script => document.head.removeChild(script));
-    };
+    window.scrollTo(0, 0);
   }, []);
+
+  const HOME_VISIT_MANCHESTER_SCHEMA = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How quickly can a home visit doctor arrive in Manchester?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We aim for same-day home visits across Greater Manchester. For calls received before 11am, we usually guarantee a consultation on the same day."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to be registered with an NHS GP to use Doctor2U?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, you do not need to be registered with us or any specific NHS GP. We provide one-off or ongoing private medical care for everyone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What areas of Manchester do you cover for home visits?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We cover the entire Greater Manchester area, including Manchester City Centre, Salford, Stockport, Trafford, Bury, Bolton, Rochdale, and Oldham."
+        }
+      }
+    ]
+  };
+
+  const MEDICAL_SCHEMA = {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "name": "Doctor2U Manchester Home Visits",
+    "alternateName": "Home Visit Doctor Manchester",
+    "url": "https://doctor2u.co.uk/locations/manchester-home-visit",
+    "logo": "https://doctor2u.co.uk/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+447488879077",
+      "contactType": "customer service",
+      "areaServed": "Manchester",
+      "availableLanguage": "English"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Manchester",
+      "addressRegion": "Greater Manchester",
+      "addressCountry": "GB"
+    }
+  };
+
+  const COMBINED_SCHEMA = {
+    "@context": "https://schema.org",
+    "@graph": [HOME_VISIT_MANCHESTER_SCHEMA, MEDICAL_SCHEMA]
+  };
 
   const faqs = [
     {
@@ -109,6 +102,11 @@ export default function HomeVisitManchester({}: HomeVisitManchesterProps) {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEO 
+        title="Home Visit Doctor Manchester | Same-Day Private GP Lancashire"
+        description="Book a same-day home visit doctor in Manchester or Lancashire. Experienced private doctors, rapid response, evening & weekend availability. Expert care at home."
+        schema={COMBINED_SCHEMA}
+      />
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden">
@@ -122,7 +120,6 @@ export default function HomeVisitManchester({}: HomeVisitManchesterProps) {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl"
           >
@@ -415,7 +412,6 @@ export default function HomeVisitManchester({}: HomeVisitManchesterProps) {
                 </button>
                 {activeFaq === index && (
                   <motion.div 
-                    initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     className="px-8 pb-8"
                   >

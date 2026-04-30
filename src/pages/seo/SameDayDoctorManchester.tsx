@@ -47,7 +47,6 @@ export default function SameDayDoctorManchester({}: SameDayDoctorManchesterProps
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-medical-500/10 border border-medical-500/20 text-medical-400 text-sm font-bold uppercase tracking-widest mb-10"
             >
@@ -220,7 +219,7 @@ export default function SameDayDoctorManchester({}: SameDayDoctorManchesterProps
                   </div>
                 </button>
                 {activeFaq === index && (
-                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="px-8 pb-8">
+                  <motion.div animate={{ opacity: 1, height: 'auto' }} className="px-8 pb-8">
                     <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
                   </motion.div>
                 )}

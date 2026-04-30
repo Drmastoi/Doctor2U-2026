@@ -1,60 +1,35 @@
 import React from 'react';
-import { motion } from 'motion/react';
 import { MapPin, Clock, Stethoscope, CheckCircle2, ArrowRight, ShieldCheck, HeartPulse, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 
 const PRESTON_SCHEMA = {
   "@context": "https://schema.org",
-  "@graph": [
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@type": "MedicalBusiness",
-      "name": "Doctor2U Private GP Home Visits Preston",
-      "description": "Expert private GP house calls across Preston and Lancashire. Book same-day medical consultations in the privacy of your own home.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Preston",
-        "addressRegion": "Lancashire",
-        "addressCountry": "UK"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "53.7609",
-        "longitude": "-2.7033"
-      },
-      "url": "https://doctor2u.co.uk/services/private-gp-preston",
-      "telephone": "+443301281484",
-      "openingHours": "Mo-Su 08:00-22:00",
-      "priceRange": "££"
+      "@type": "Question",
+      "name": "How soon can a private GP visit me in Preston?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We aim for same-day visits, often arriving within 2-4 hours of initial booking depending on your location in Preston and surrounding Lancashire."
+      }
     },
     {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How soon can a private GP visit me in Preston?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We aim for same-day visits, often arriving within 2-4 hours of initial booking depending on your location in Preston and surrounding Lancashire."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do you offer private GP home visits on weekends in Lancashire?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, Doctor2U provides 7-day-a-week service including Saturdays and Sundays across Preston and major Lancashire towns."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can you provide prescriptions during the house call?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, our GMC-registered doctors can issue private prescriptions which can be fulfilled at any pharmacy in Preston or Lancashire."
-          }
-        }
-      ]
+      "@type": "Question",
+      "name": "Do you offer private GP home visits on weekends in Lancashire?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Doctor2U provides 7-day-a-week service including Saturdays and Sundays across Preston and major Lancashire towns."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you provide prescriptions during the house call?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, our GMC-registered doctors can issue private prescriptions which can be fulfilled at any pharmacy in Preston or Lancashire."
+      }
     }
   ]
 };

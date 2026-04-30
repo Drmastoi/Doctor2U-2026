@@ -53,7 +53,6 @@ export default function OurDoctors() {
         {/* Header */}
         <div className="mb-20 text-center">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="flex justify-center mb-6"
           >
@@ -90,7 +89,6 @@ export default function OurDoctors() {
           {doctors.map((doctor, idx) => (
             <motion.div 
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
               className="group"

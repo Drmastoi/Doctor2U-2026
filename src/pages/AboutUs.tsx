@@ -27,7 +27,6 @@ export default function AboutUs() {
           <div className="flex flex-col lg:flex-row gap-16 items-start">
             <div className="max-w-3xl flex-1">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
                 <span className="text-teal-700 font-bold uppercase tracking-[0.2em] text-xs mb-6 block">Our Story & Ambition | Private GP Lancashire</span>

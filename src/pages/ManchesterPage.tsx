@@ -1,60 +1,35 @@
 import React from 'react';
-import { motion } from 'motion/react';
 import { MapPin, Clock, Stethoscope, CheckCircle2, ArrowRight, ShieldCheck, Star, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 
 const MANCHESTER_SCHEMA = {
   "@context": "https://schema.org",
-  "@graph": [
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@type": "MedicalBusiness",
-      "name": "Doctor2U Private GP Home Visits Manchester",
-      "description": "Same-day private GP home visits across Manchester and Greater Manchester. GMC-registered doctors visiting you in the comfort of your own home.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Manchester",
-        "addressRegion": "Greater Manchester",
-        "addressCountry": "UK"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "53.4808",
-        "longitude": "-2.2426"
-      },
-      "url": "https://doctor2u.co.uk/services/private-gp-manchester",
-      "telephone": "+443301281484",
-      "openingHours": "Mo-Su 08:00-22:00",
-      "priceRange": "££"
+      "@type": "Question",
+      "name": "How soon can a private GP visit me in Manchester?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We aim for same-day visits, often arriving within 2-4 hours of initial booking depending on your location in Manchester."
+      }
     },
     {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How soon can a private GP visit me in Manchester?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We aim for same-day visits, often arriving within 2-4 hours of initial booking depending on your location in Manchester."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do you offer private GP home visits on weekends?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, Doctor2U provides 7-day-a-week service including Saturdays and Sundays across Manchester."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can you provide prescriptions during the visit?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, our GMC-registered doctors can issue private prescriptions which can be fulfilled at any local pharmacy in Manchester."
-          }
-        }
-      ]
+      "@type": "Question",
+      "name": "Do you offer private GP home visits on weekends?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Doctor2U provides 7-day-a-week service including Saturdays and Sundays across Manchester."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you provide prescriptions during the visit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, our GMC-registered doctors can issue private prescriptions which can be fulfilled at any local pharmacy in Manchester."
+      }
     }
   ]
 };

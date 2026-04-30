@@ -78,7 +78,6 @@ export default function PrivateDoctorManchesterPage({}: PrivateDoctorManchesterP
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-bold uppercase tracking-widest mb-6 border border-teal-200">
@@ -119,7 +118,6 @@ export default function PrivateDoctorManchesterPage({}: PrivateDoctorManchesterP
               </div>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               className="relative hidden lg:block"
             >
@@ -236,7 +234,6 @@ export default function PrivateDoctorManchesterPage({}: PrivateDoctorManchesterP
                 {activeFaq === index && (
                   <AnimatePresence>
                     <motion.div 
-                      initial={{ opacity: 0, height: 0 }} 
                       animate={{ opacity: 1, height: 'auto' }} 
                       className="px-8 pb-8"
                     >

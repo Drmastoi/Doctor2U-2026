@@ -20,7 +20,6 @@ export default function MedicalWeightManagement() {
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1 text-center lg:text-left">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-4 py-1 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
               >

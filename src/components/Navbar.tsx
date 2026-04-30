@@ -103,7 +103,6 @@ export default function Navbar({}: NavbarProps) {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             className="md:hidden absolute top-24 left-4 right-4 bg-white/95 backdrop-blur-2xl rounded-[2.5rem] border border-slate-100 shadow-2xl p-6 space-y-2 z-[110]"

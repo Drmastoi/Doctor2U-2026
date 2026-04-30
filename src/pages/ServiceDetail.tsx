@@ -4,6 +4,7 @@ import HubLink from '../components/HubLink';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { CheckCircle2, ArrowRight, Phone, MessageSquare, ChevronDown, Shield as ShieldIcon } from 'lucide-react';
+import SEO from '../components/SEO';
 
 interface ServiceDetailProps {
   title: string;
@@ -31,13 +32,16 @@ export default function ServiceDetail({
 
   return (
     <div className="bg-white min-h-screen pt-24 pb-20">
+      <SEO 
+        title={`${title} Lancashire & Manchester`}
+        description={typeof description === 'string' ? description : `${title} in Lancashire and Manchester. Professional private GP services with GMC-registered doctors.`}
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-slate-50 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-teal-600/5 -skew-x-12 transform origin-top"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
             >
               <h1 className="text-4xl md:text-6xl font-display font-bold text-slate-900 mb-6 tracking-tight">
@@ -65,7 +69,6 @@ export default function ServiceDetail({
               </div>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               className="relative"
             >

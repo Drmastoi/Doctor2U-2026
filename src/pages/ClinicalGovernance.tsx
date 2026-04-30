@@ -26,7 +26,6 @@ export default function ClinicalGovernance() {
         <div className="mb-20">
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-3 text-teal-700 font-bold text-xs uppercase tracking-[0.2em]"
             >

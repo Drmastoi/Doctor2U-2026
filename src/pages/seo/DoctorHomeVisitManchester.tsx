@@ -56,7 +56,6 @@ export default function DoctorHomeVisitManchester({}: DoctorHomeVisitManchesterP
 
         {/* H1 Section */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-16"
         >
@@ -355,7 +354,6 @@ export default function DoctorHomeVisitManchester({}: DoctorHomeVisitManchesterP
                 </button>
                 {activeFaq === index && (
                   <motion.div 
-                    initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     className="px-8 pb-8"
                   >

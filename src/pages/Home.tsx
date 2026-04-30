@@ -166,6 +166,18 @@ export default function Home() {
       <SEO 
         title="Private GP Lancashire & Manchester | Same-Day Doctor Home Visits" 
         description="Book a GMC-registered private doctor for a same-day home visit in Manchester and across Lancashire. Expert clinical care and private GP services in the comfort of your own home."
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": FAQS.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }}
       />
       {/* Disclaimer Banner */}
       <div className="bg-amber-50 border-b border-amber-100 py-2 px-4 relative z-50">
@@ -197,7 +209,6 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row items-center gap-10 xl:gap-16">
             <motion.div 
               style={{ y: heroTextY, opacity: heroOpacity }}
-              initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="flex-1 text-center lg:text-left"
@@ -264,7 +275,6 @@ export default function Home() {
 
             <motion.div 
               style={{ scale: heroScale, y: heroImageY, opacity: heroOpacity }}
-              initial={{ opacity: 0, scale: 0.9, x: 50 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
               className="flex-1 relative hidden lg:block"
@@ -415,7 +425,6 @@ export default function Home() {
             ].map((stat, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
@@ -569,7 +578,6 @@ export default function Home() {
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="inline-flex items-center gap-2 bg-teal-100 border border-teal-200 text-teal-700 px-4 py-1 rounded-full text-[10px] font-bold mb-4 tracking-[0.2em] uppercase"
@@ -614,7 +622,6 @@ export default function Home() {
             ].map((step, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
@@ -637,7 +644,6 @@ export default function Home() {
           </div>
 
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="mt-20 pt-12 border-t border-slate-200"
@@ -703,7 +709,6 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row items-center gap-10">
             <div className="flex-1">
               <motion.div 
-                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
@@ -740,7 +745,6 @@ export default function Home() {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={testimonialIdx}
-                    initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.4 }}
@@ -783,7 +787,6 @@ export default function Home() {
             {BLOG_POSTS.map((post, i) => (
               <motion.div 
                 key={post.id}
-                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
@@ -1102,60 +1105,6 @@ export default function Home() {
 
       {/* FAQ Section */}
       <section className="py-16 bg-white relative overflow-hidden">
-        {/* JSON-LD LocalBusiness Schema */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "MedicalClinic",
-            "name": "Doctor2U",
-            "image": "https://doctor2u.co.uk/logo.png",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Manchester",
-              "addressRegion": "Greater Manchester",
-              "postalCode": "M1",
-              "addressCountry": "UK"
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 53.4808,
-              "longitude": -2.2426
-            },
-            "url": "https://doctor2u.co.uk",
-            "telephone": "+447488879077",
-            "openingHoursSpecification": [
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                  "Saturday",
-                  "Sunday"
-                ],
-                "opens": "00:00",
-                "closes": "23:59"
-              }
-            ]
-          })}
-        </script>
-        {/* JSON-LD FAQ Schema */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": FAQS.map(faq => ({
-              "@type": "Question",
-              "name": faq.question,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": faq.answer
-              }
-            }))
-          })}
-        </script>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4 tracking-tight">Common <span className="text-teal-700">Questions</span></h2>
@@ -1166,9 +1115,6 @@ export default function Home() {
             {FAQS.map((faq, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 className="border border-slate-100 rounded-2xl overflow-hidden"
               >
                 <button 
@@ -1183,7 +1129,6 @@ export default function Home() {
                 <AnimatePresence>
                   {activeFaq === i && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}

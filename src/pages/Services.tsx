@@ -65,7 +65,6 @@ export default function ServicesPage() {
         <section id="services-grid" className="mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
             >
@@ -101,7 +100,6 @@ export default function ServicesPage() {
             ].map((service, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}

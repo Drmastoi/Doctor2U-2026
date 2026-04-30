@@ -74,7 +74,6 @@ export default function ContactPage() {
 
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
           >
@@ -103,7 +102,6 @@ export default function ContactPage() {
                 ].map((item, index) => (
                   <motion.div 
                     key={index}
-                    initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     className="flex items-start gap-6 group"
@@ -122,7 +120,6 @@ export default function ContactPage() {
             </div>
 
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4 }}
               className="bg-slate-900 text-white p-8 rounded-[2rem] shadow-2xl border border-slate-800 relative overflow-hidden group"
@@ -144,14 +141,12 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className="bg-white/80 backdrop-blur-xl p-10 rounded-[2.5rem] shadow-2xl shadow-teal-900/10 border border-white/40"
           >
             {isSubmitted ? (
               <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center py-20"
               >

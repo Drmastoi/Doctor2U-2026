@@ -33,7 +33,6 @@ export default function PrivacyPolicy() {
 
         <div className="text-center mb-16">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
           >

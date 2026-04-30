@@ -31,7 +31,6 @@ export default function PrestonLandingPage() {
   const heroOpacity = useTransform(smoothProgress, [0, 0.35], [1, 0]);
 
   React.useEffect(() => {
-    document.title = "Private Doctor Preston | Home Visits & Same-Day Clinic | Doctor2U";
     window.scrollTo(0, 0);
   }, []);
 
@@ -58,7 +57,6 @@ export default function PrestonLandingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               style={{ y: heroTextY, opacity: heroOpacity }}
-              initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
@@ -116,7 +114,6 @@ export default function PrestonLandingPage() {
 
             <motion.div
               style={{ scale: heroScale, y: heroImageY, opacity: heroOpacity }}
-              initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="relative"
@@ -140,7 +137,6 @@ export default function PrestonLandingPage() {
 
               {/* Float Widget */}
               <motion.div 
-                initial={{ x: 50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 1, duration: 0.8 }}
                 className="absolute -bottom-8 -left-8 bg-white/95 backdrop-blur-md p-6 rounded-[2rem] shadow-2xl border border-white/20 max-w-[260px] hidden md:block"
@@ -165,7 +161,6 @@ export default function PrestonLandingPage() {
       <section className="py-32 bg-white relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
@@ -204,7 +199,6 @@ export default function PrestonLandingPage() {
             ].map((service, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2, duration: 0.6 }}
@@ -239,7 +233,6 @@ export default function PrestonLandingPage() {
          
          <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
@@ -258,7 +251,6 @@ export default function PrestonLandingPage() {
       <section className="py-40 bg-white">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}

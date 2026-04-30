@@ -56,7 +56,6 @@ export default function TreatmentPlan() {
         </div>
 
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="bg-white rounded-[3rem] shadow-xl shadow-teal-900/5 border border-slate-100 overflow-hidden"
         >

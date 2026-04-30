@@ -120,7 +120,6 @@ IMPORTANT GUIDELINES:
       <section className="pt-32 pb-20 bg-white border-b border-slate-100">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
           >
@@ -280,7 +279,6 @@ IMPORTANT GUIDELINES:
               <AnimatePresence>
                 {aiAnalysis && (
                   <motion.div
-                    initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     className="mt-8 pt-8 border-t border-slate-100 overflow-hidden"
@@ -299,7 +297,6 @@ IMPORTANT GUIDELINES:
                           <div className="flex flex-col items-center md:items-end gap-6 text-center md:text-right">
                             {emailStatus === 'success' && (
                               <motion.div 
-                                initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 className="bg-emerald-100 text-emerald-700 px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-2"
                               >
@@ -309,7 +306,6 @@ IMPORTANT GUIDELINES:
                             )}
                             {emailStatus === 'error' && (
                               <motion.div 
-                                initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 className="bg-rose-100 text-rose-700 px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-2"
                               >

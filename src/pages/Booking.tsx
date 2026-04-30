@@ -3,10 +3,15 @@ import { motion } from 'motion/react';
 import { Calendar, ShieldCheck, Clock, ArrowLeft, Brain, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import HubLink from '../components/HubLink';
+import SEO from '../components/SEO';
 
 export default function BookingPage() {
   return (
     <div className="bg-white min-h-screen pt-32 pb-16 relative overflow-hidden">
+      <SEO 
+        title="Book Your Private GP Appointment | Same-Day Service"
+        description="Schedule a same-day private doctor consultation in Manchester or Lancashire. Home visits, in-clinic appointments, and online GP services available."
+      />
       {/* Background Blobs for Modern Feel */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-teal-100/30 rounded-full blur-[120px] animate-blob"></div>
@@ -25,7 +30,6 @@ export default function BookingPage() {
 
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.2em] uppercase"
           >
@@ -50,7 +54,6 @@ export default function BookingPage() {
             ].map((item, index) => (
               <motion.div 
                 key={index}
-                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
                 className="bg-white/80 backdrop-blur-xl border border-white/40 p-6 rounded-2xl group hover:shadow-2xl hover:shadow-teal-900/10 transition-all shadow-sm"
@@ -66,7 +69,6 @@ export default function BookingPage() {
 
           <div className="lg:col-span-3">
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
               className="bg-white rounded-[2rem] shadow-2xl shadow-medical-900/10 overflow-hidden border border-slate-100 min-h-[800px] relative"
