@@ -223,9 +223,9 @@ export default function Home() {
                 </div>
               </div>
 
-              <h1 className="text-[50px] md:text-[72px] font-display font-bold leading-[1.02] mb-5 text-slate-900 tracking-tighter">
-                Private GP <br />
-                <span className="text-teal-700 italic">Manchester & Lancashire.</span>
+              <h1 className="text-[45px] md:text-[72px] font-display font-bold leading-[1.1] mb-5 text-slate-900 tracking-tighter uppercase">
+                PRIVATE GP <br />
+                <span className="text-teal-700 italic">PRESTON, LANCASHIRE & MANCHESTER</span>
               </h1>
 
               <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[12px] font-bold mb-8 tracking-[0.2em] uppercase">

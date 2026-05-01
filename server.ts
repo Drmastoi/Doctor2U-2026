@@ -99,6 +99,30 @@ async function startServer() {
     }
   });
 
+  // Explicitly serve robots.txt and sitemap.xml
+  app.get('/robots.txt', (req, res) => {
+    const robotsPath = process.env.NODE_ENV === 'production' 
+      ? path.resolve(__dirname, 'dist/client/robots.txt')
+      : path.resolve(__dirname, 'public/robots.txt');
+    if (fs.existsSync(robotsPath)) {
+      res.sendFile(robotsPath);
+    } else {
+      res.status(404).end();
+    }
+  });
+
+  app.get('/sitemap.xml', (req, res) => {
+    const sitemapPath = process.env.NODE_ENV === 'production' 
+      ? path.resolve(__dirname, 'dist/client/sitemap.xml')
+      : path.resolve(__dirname, 'public/sitemap.xml');
+    if (fs.existsSync(sitemapPath)) {
+      res.set('Content-Type', 'application/xml');
+      res.sendFile(sitemapPath);
+    } else {
+      res.status(404).end();
+    }
+  });
+
   // Vite middleware for development
   let vite: any;
   if (process.env.NODE_ENV !== "production") {
