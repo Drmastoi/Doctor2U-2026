@@ -233,19 +233,24 @@ export default function Home() {
                 <span>Home Visit Doctors • Same-Day Appointments</span>
               </div>
               
-              <div className="space-y-4 mb-10">
-                <p className="text-lg md:text-xl text-slate-600 leading-snug max-w-2xl mx-auto lg:mx-0 tracking-tight font-medium">
-                  Expert clinical care delivered to your door. Call us on <a href="tel:07488879077" className="text-teal-700 font-bold hover:underline">07488 879077</a> to book.
-                </p>
+              <div className="space-y-8 mb-12">
+                <div className="border-l-4 border-teal-500 pl-6 py-2">
+                  <p className="text-[20px] md:text-[28px] text-slate-800 leading-tight max-w-2xl mx-auto lg:mx-0 font-bold tracking-tight mb-3">
+                    Expert clinical care delivered to your door.
+                  </p>
+                  <p className="text-lg md:text-xl text-slate-600 font-medium">
+                    Call <a href="tel:07488879077" className="text-teal-700 font-bold hover:underline tabular-nums underline-offset-4 decoration-2">07488 879077</a> for same-day private GP bookings.
+                  </p>
+                </div>
                 
-                <div className="flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-teal-500"></div>
-                    <span className="text-base md:text-lg font-display text-slate-600 font-medium tracking-tight">Private GP Lancashire</span>
+                <div className="flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-3">
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-teal-600" />
+                    <span className="text-[13px] font-bold text-slate-700 uppercase tracking-[0.1em]">Private GP Lancashire</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-teal-500"></div>
-                    <span className="text-base md:text-lg font-display text-slate-600 font-medium tracking-tight">Private GP Manchester</span>
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-teal-600" />
+                    <span className="text-[13px] font-bold text-slate-700 uppercase tracking-[0.1em]">Private GP Manchester</span>
                   </div>
                 </div>
               </div>
