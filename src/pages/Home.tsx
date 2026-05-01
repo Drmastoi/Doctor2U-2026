@@ -204,76 +204,76 @@ export default function Home() {
       </div>
 
       {/* Hero Section - Clean Modern Light Theme with Parallax */}
-      <section className="relative min-h-[75vh] flex items-center pt-24 md:pt-32 overflow-hidden bg-white">
+      <section className="relative flex items-center pt-20 md:pt-24 pb-12 overflow-hidden bg-white">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="flex flex-col lg:flex-row items-center gap-10 xl:gap-16">
             <motion.div 
               style={{ y: heroTextY, opacity: heroOpacity }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="flex-1 text-center lg:text-left"
+              className="flex-1 text-center lg:text-left text-[16px]"
             >
-              <div className="mb-6 flex justify-center lg:justify-start">
-                <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-emerald-50 border border-emerald-100 rounded-full shadow-sm">
-                  <div className="relative flex h-2.5 w-2.5">
+              <div className="mb-4 flex justify-center lg:justify-start">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-100 rounded-full shadow-sm">
+                  <div className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                   </div>
-                  <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-widest">Manchester, Preston & Lancashire Docs: Available within 2 hours</span>
+                  <span className="text-[12px] font-bold text-[#d28628] uppercase tracking-widest leading-none">Docs Available within 2 hours</span>
                 </div>
               </div>
 
-              <h1 className="text-[45px] md:text-[72px] font-display font-bold leading-[1.1] mb-5 text-slate-900 tracking-tighter uppercase">
-                PRIVATE GP <br />
-                <span className="text-teal-700 italic">PRESTON, LANCASHIRE & MANCHESTER</span>
+              <h1 className="text-[40px] md:text-[60px] font-display font-bold leading-[0.95] md:leading-[0.95] mb-4 text-slate-900 tracking-tighter uppercase">
+                PRIVATE GP VISIT <br />
+                <span className="text-teal-700 italic text-[32px] md:text-[48px]">LANCASHIRE & MANCHESTER</span>
               </h1>
 
-              <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-[12px] font-bold mb-8 tracking-[0.2em] uppercase">
-                <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
-                <span>Home Visit Doctors • Same-Day Appointments</span>
+              <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-3 py-1 rounded-full text-[10px] font-bold mb-6 tracking-[0.15em] uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse"></span>
+                <span className="text-[#daa633]">Home Visits • Same-Day Appointments</span>
               </div>
               
-              <div className="space-y-8 mb-12">
-                <div className="border-l-4 border-teal-500 pl-6 py-2">
-                  <p className="text-[20px] md:text-[28px] text-slate-800 leading-tight max-w-2xl mx-auto lg:mx-0 font-bold tracking-tight mb-3">
+              <div className="space-y-6 mb-10">
+                <div className="border-l-[3px] border-teal-500 pl-5 pt-1">
+                  <p className="text-[18px] md:text-[24px] text-slate-800 leading-tight max-w-2xl mx-auto lg:mx-0 font-bold tracking-tight mb-2">
                     Expert clinical care delivered to your door.
                   </p>
-                  <p className="text-lg md:text-xl text-slate-600 font-medium">
-                    Call <a href="tel:07488879077" className="text-teal-700 font-bold hover:underline tabular-nums underline-offset-4 decoration-2">07488 879077</a> for same-day private GP bookings.
+                  <p className="text-[15px] text-slate-600 font-medium">
+                    Call <a href="tel:07488879077" className="text-teal-700 font-bold hover:underline tabular-nums underline-offset-4 decoration-2">07488 879077</a> for same-day private GP.
                   </p>
                 </div>
                 
-                <div className="flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-3">
-                  <div className="flex items-center gap-2.5">
-                    <CheckCircle2 className="w-5 h-5 text-teal-600" />
-                    <span className="text-[13px] font-bold text-slate-700 uppercase tracking-[0.1em]">Private GP Lancashire</span>
+                <div className="flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-teal-600" />
+                    <span className="text-[12px] font-bold text-slate-700 uppercase tracking-wider">Private GP Lancashire</span>
                   </div>
-                  <div className="flex items-center gap-2.5">
-                    <CheckCircle2 className="w-5 h-5 text-teal-600" />
-                    <span className="text-[13px] font-bold text-slate-700 uppercase tracking-[0.1em]">Private GP Manchester</span>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-teal-600" />
+                    <span className="text-[12px] font-bold text-slate-700 uppercase tracking-wider">Private GP Manchester</span>
                   </div>
                 </div>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
                 <motion.button 
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => navigate('/book')}
-                  className="bg-teal-700 text-white px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center justify-center gap-4 w-full sm:w-auto active:scale-95"
+                  className="bg-teal-700 text-white px-8 py-4.5 rounded-xl font-bold text-lg shadow-xl shadow-teal-900/15 hover:bg-teal-800 transition-all flex items-center justify-center gap-3 w-full sm:w-auto active:scale-95"
                 >
                   Book Appointment Now
-                  <ArrowRight size={24} />
+                  <ArrowRight size={20} />
                 </motion.button>
                 
                 <a 
                   href="tel:07488879077"
-                  className="flex items-center gap-4 text-slate-900 font-bold text-xl group px-6 py-4"
+                  className="flex items-center gap-3 text-slate-900 font-bold text-lg group px-4 py-3"
                 >
-                  <div className="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-slate-50 transition-all shadow-sm">
-                    <Phone size={24} className="text-teal-600" />
+                  <div className="w-11 h-11 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-slate-50 transition-all shadow-sm">
+                    <Phone size={20} className="text-teal-600" />
                   </div>
-                  Call 07488 879077
+                  07488 879077
                 </a>
               </div>
             </motion.div>
@@ -284,21 +284,21 @@ export default function Home() {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
               className="flex-1 relative hidden lg:block"
             >
-              <div className="relative z-10 rounded-[5rem] overflow-hidden border border-white/50 shadow-[0_50px_100px_-20px_rgba(13,71,161,0.15)] group">
+              <div className="relative z-10 rounded-[4rem] overflow-hidden border border-white/50 shadow-[0_40px_80px_-15px_rgba(13,71,161,0.12)] group">
                 <img 
                   src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=1000" 
                   alt="Doctor providing home care" 
-                  className="w-full h-[700px] object-cover transition-transform duration-[2000ms] group-hover:scale-110"
+                  className="w-full h-[580px] object-cover transition-transform duration-[2000ms] group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-x-0 bottom-0 p-12 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pt-40">
+                <div className="absolute inset-x-0 bottom-0 p-10 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pt-32">
                   <div className="flex items-center gap-4 text-white">
-                    <div className="w-12 h-12 rounded-2xl bg-teal-500/20 backdrop-blur-md flex items-center justify-center border border-white/20">
-                      <Stethoscope size={24} />
+                    <div className="w-11 h-11 rounded-xl bg-teal-500/20 backdrop-blur-md flex items-center justify-center border border-white/20">
+                      <Stethoscope size={22} />
                     </div>
                     <div>
-                      <p className="text-sm font-bold opacity-80 uppercase tracking-widest leading-none mb-1">Clinic & Home</p>
-                      <h4 className="text-2xl font-bold tracking-tight">Personalised Assessment</h4>
+                      <p className="text-xs font-bold opacity-80 uppercase tracking-widest leading-none mb-1">Clinic & Home</p>
+                      <h4 className="text-xl font-bold tracking-tight">Personalised Assessment</h4>
                     </div>
                   </div>
                 </div>
@@ -306,37 +306,37 @@ export default function Home() {
               
               {/* Floating elements with Parallax-Aware Motion */}
               <motion.div 
-                animate={{ y: [0, -20, 0] }}
+                animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-10 -left-12 bg-white/90 backdrop-blur-2xl p-8 rounded-[2.5rem] z-20 border border-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)]"
+                className="absolute -bottom-6 -left-8 bg-white/95 backdrop-blur-xl p-6 rounded-[2rem] z-20 border border-white/50 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)]"
               >
-                <div className="flex items-center gap-5">
-                  <div className="bg-teal-700 w-16 h-16 rounded-[1.25rem] text-white shadow-xl shadow-teal-700/30 flex items-center justify-center">
-                    <ShieldCheck size={32} />
+                <div className="flex items-center gap-4">
+                  <div className="bg-teal-700 w-13 h-13 rounded-[1rem] text-white shadow-lg shadow-teal-700/20 flex items-center justify-center">
+                    <ShieldCheck size={28} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.3em] mb-1">GMC Registered</p>
-                    <p className="text-xl font-display font-bold text-slate-900 tracking-tight leading-none">Quality Certified</p>
+                    <p className="text-[9px] font-extrabold text-slate-400 uppercase tracking-[0.25em] mb-0.5">GMC Registered</p>
+                    <p className="text-lg font-display font-bold text-slate-900 tracking-tight leading-none">Quality Certified</p>
                   </div>
                 </div>
               </motion.div>
 
               <motion.div 
-                animate={{ y: [0, 20, 0] }}
+                animate={{ y: [0, 15, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute top-20 -right-12 bg-white/90 backdrop-blur-2xl p-6 rounded-[2rem] z-20 border border-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)]"
+                className="absolute top-16 -right-8 bg-white/95 backdrop-blur-xl p-5 rounded-[1.75rem] z-20 border border-white/50 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)]"
               >
-                <div className="flex items-center gap-4">
-                  <div className="flex -space-x-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex -space-x-2.5">
                     {[1,2,3].map(i => (
-                      <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-100 overflow-hidden shadow-sm">
+                      <div key={i} className="w-9 h-9 rounded-full border-2 border-white bg-slate-100 overflow-hidden shadow-sm">
                         <img src={`https://i.pravatar.cc/100?img=${i+15}`} alt="User" />
                       </div>
                     ))}
                   </div>
                   <div>
-                    <span className="text-sm font-bold text-slate-900 block leading-tight">Trusted Care</span>
-                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">500+ Patients</span>
+                    <span className="text-[13px] font-bold text-slate-900 block leading-tight">Trusted Care</span>
+                    <span className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">500+ Patients</span>
                   </div>
                 </div>
               </motion.div>
@@ -346,25 +346,25 @@ export default function Home() {
       </section>
 
       {/* Home Visit Benefits CTA */}
-      <section className="py-12 bg-teal-50/30">
+      <section className="py-8 bg-teal-50/20">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-[3rem] p-8 md:p-12 border border-teal-100 shadow-2xl shadow-teal-900/10 flex flex-col lg:flex-row items-center gap-10 overflow-hidden relative">
+          <div className="bg-white rounded-[2.5rem] p-6 md:p-10 border border-teal-100 shadow-xl shadow-teal-900/5 flex flex-col lg:flex-row items-center gap-8 overflow-hidden relative">
             <div className="absolute top-0 right-0 w-64 h-64 bg-teal-50 rounded-full blur-[100px] -z-0 opacity-50"></div>
             
             <div className="flex-1 relative z-10 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-4 py-1 rounded-full text-[10px] font-bold mb-4 tracking-[0.2em] uppercase">
-                <HomeIcon size={14} />
+              <div className="inline-flex items-center gap-1.5 bg-teal-50 text-teal-700 px-3 py-1 rounded-full text-[9px] font-bold mb-3 tracking-[0.15em] uppercase">
+                <HomeIcon size={12} />
                 <span>The Home Visit Advantage</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-5 tracking-tight text-slate-900 leading-tight">
+              <h2 className="text-2xl md:text-3xl font-display font-bold mb-4 tracking-tight text-slate-900 leading-tight">
                 Private Doctor Home Visits: <br />
                 <span className="text-teal-700">Medical Care in Comfort.</span>
               </h2>
-              <p className="text-base text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
+              <p className="text-[14px] text-slate-600 mb-6 leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
                 Experience the gold standard of private medical care in Manchester and Lancashire. Our home visits eliminate the stress of travel, providing unhurried clinical time in the privacy of your own home.
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-left">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6 text-left">
                 {[
                   "No travel or waiting rooms required",
                   "Comprehensive physical examination",
@@ -373,11 +373,11 @@ export default function Home() {
                   "Prescriptions delivered to your door",
                   "Manchester & Lancashire coverage"
                 ].map((benefit, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full bg-teal-100 flex items-center justify-center shrink-0">
-                      <Check size={14} className="text-teal-700" />
+                  <div key={i} className="flex items-center gap-2.5">
+                    <div className="w-5 h-5 rounded-full bg-teal-100 flex items-center justify-center shrink-0">
+                      <Check size={12} className="text-teal-700" />
                     </div>
-                    <span className="text-sm font-semibold text-slate-700">{benefit}</span>
+                    <span className="text-[13px] font-semibold text-slate-700">{benefit}</span>
                   </div>
                 ))}
               </div>
@@ -386,31 +386,31 @@ export default function Home() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => navigate('/book')}
-                className="bg-teal-700 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl shadow-teal-900/20 hover:bg-teal-800 transition-all flex items-center justify-center gap-3 w-full sm:w-auto"
+                className="bg-teal-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg shadow-teal-900/15 hover:bg-teal-800 transition-all flex items-center justify-center gap-3 w-full sm:w-auto"
               >
                 Book a Home Visit Now
-                <ArrowRight size={20} />
+                <ArrowRight size={18} />
               </motion.button>
             </div>
             
             <div className="flex-1 w-full lg:w-auto relative group">
-              <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
+              <div className="relative rounded-[2rem] overflow-hidden shadow-xl border-2 border-white">
                 <img 
                   src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=800"
                   alt="Doctor at home visit"
-                  className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-700"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-teal-900/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-teal-900/30 to-transparent"></div>
               </div>
               
               {/* Floating Badge */}
-              <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 max-w-[200px] hidden md:block">
-                <div className="flex items-center gap-2 mb-2">
-                  <Star className="text-amber-400 fill-amber-400" size={16} />
-                  <span className="text-sm font-bold text-slate-900">Rated Excellent</span>
+              <div className="absolute -bottom-4 -right-4 bg-white px-5 py-4 rounded-2xl shadow-xl border border-slate-100 max-w-[180px] hidden md:block">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <Star className="text-amber-400 fill-amber-400" size={14} />
+                  <span className="text-[12px] font-bold text-slate-900">Rated Excellent</span>
                 </div>
-                <p className="text-[10px] text-slate-500 leading-tight">"The most convenient doctor visit I've ever had. Truly exceptional care." - Sarah, Manchester</p>
+                <p className="text-[9px] text-slate-500 leading-tight italic">"The most convenient doctor visit I've ever had." - Sarah, Manchester</p>
               </div>
             </div>
           </div>
@@ -418,10 +418,10 @@ export default function Home() {
       </section>
 
       {/* Patient Experience Statistics */}
-      <section className="py-10 bg-slate-900 relative overflow-hidden">
+      <section className="py-8 bg-slate-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {[
               { label: 'Avg. Response Time', value: '2 Hours' },
               { label: 'Patient Satisfaction', value: '99%' },
@@ -435,8 +435,8 @@ export default function Home() {
                 transition={{ delay: i * 0.1 }}
                 className="text-center"
               >
-                <div className="text-2xl md:text-4xl font-display font-bold text-teal-400 mb-1">{stat.value}</div>
-                <div className="text-[9px] uppercase tracking-[0.2em] text-teal-100/50 font-bold">{stat.label}</div>
+                <div className="text-xl md:text-3xl font-display font-bold text-teal-400 mb-0.5">{stat.value}</div>
+                <div className="text-[8px] uppercase tracking-[0.2em] text-teal-100/50 font-bold">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -444,25 +444,25 @@ export default function Home() {
       </section>
 
       {/* What Happens After I Book Section */}
-      <section className="py-16 bg-white border-y border-slate-100">
+      <section className="py-12 bg-white border-y border-slate-100">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4 tracking-tight">What Happens <span className="text-teal-700">After I Book?</span></h2>
-            <p className="text-base text-slate-600 max-w-2xl mx-auto">Providing reassurance and clarity from the moment you schedule your appointment.</p>
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-slate-900 mb-3 tracking-tight">What Happens <span className="text-teal-700">After I Book?</span></h2>
+            <p className="text-[15px] text-slate-600 max-w-2xl mx-auto">Clear steps from the moment you schedule your appointment.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { title: "Immediate Confirmation", desc: "You'll receive an instant confirmation email and SMS with all the details of your booking." },
-              { title: "Secure Video Link", desc: "For online consultations, a secure, encrypted video link is sent 10 minutes before your start time." },
+              { title: "Immediate Confirmation", desc: "You'll receive an instant confirmation email and SMS with your booking details." },
+              { title: "Secure Video Link", desc: "For online consultations, a secure, encrypted link is sent before your start time." },
               { title: "Clinical Discussion", desc: "Spend a full 30 minutes with our GMC doctor discussing your concerns in depth." },
-              { title: "Follow-Up Support", desc: "Receive your treatment plan, prescription, and any necessary specialist referrals immediately after." }
+              { title: "Follow-Up Support", desc: "Receive your treatment plan and prescriptions immediately after your consultation." }
             ].map((item, i) => (
-              <div key={i} className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all group">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600 mb-6 group-hover:bg-teal-700 group-hover:text-white transition-all">
-                  <CheckCircle2 size={20} />
+              <div key={i} className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all group">
+                <div className="w-9 h-9 rounded-lg bg-teal-50 flex items-center justify-center text-teal-600 mb-4 group-hover:bg-teal-700 group-hover:text-white transition-all">
+                  <CheckCircle2 size={18} />
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3">{item.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+                <h3 className="text-base font-bold text-slate-900 mb-2">{item.title}</h3>
+                <p className="text-[13px] text-slate-500 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
