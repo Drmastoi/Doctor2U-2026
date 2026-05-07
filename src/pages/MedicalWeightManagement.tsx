@@ -3,6 +3,8 @@ import { motion } from 'motion/react';
 import { HeartPulse, CheckCircle2, Calendar, ShieldCheck, ArrowRight, Activity, Apple } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
+import MapEmbed from '../components/MapEmbed';
+import MedicalReviewFooter from '../components/MedicalReviewFooter';
 
 export default function MedicalWeightManagement() {
   const navigate = useNavigate();
@@ -138,6 +140,7 @@ export default function MedicalWeightManagement() {
 
       <section className="py-16 bg-white border-t border-slate-100">
         <div className="max-w-[800px] mx-auto px-4 text-center">
+          <MapEmbed location="lancashire" />
           <h2 className="text-2xl font-bold mb-8">Clinical Oversight</h2>
           <p className="text-slate-500 font-light leading-relaxed mb-8">
             Weight management is a complex medical journey. Our GMC-registered doctors provide the necessary clinical oversight to ensure that any pharmacological treatments or significant lifestyle changes are managed safely and effectively.
@@ -147,6 +150,8 @@ export default function MedicalWeightManagement() {
             Standards Registered Practice
           </div>
         </div>
+
+        <MedicalReviewFooter />
       </section>
     </div>
   );

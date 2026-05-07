@@ -6,6 +6,9 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../../components/SEO';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 export default function PrivatePrescriptionsLancashire() {
   const navigate = useNavigate();
@@ -121,7 +124,19 @@ export default function PrivatePrescriptionsLancashire() {
           <p>
             Our doctors have deep knowledge of the British National Formulary (BNF) and ensure that any private prescription issued in Lancashire is correctly cross-referenced with your existing medications to prevent any adverse interactions.
           </p>
+          <p>
+            Understanding your medication is just as important as receiving it. During your consultation, we provide comprehensive guidance on how to take your prescribed treatment, potential side effects to watch for, and the expected outcomes. We believe that an informed patient is better equipped to manage their health safely. Our private prescription service in Lancashire is not just about the paperwork; it's about the clinical conversation that surrounds it. We take the time to discuss alternative treatment options and address any anxieties you may have regarding new medications. Whether you are in the heart of Preston or a residential area of Blackburn, our goal is to provide a prescription service that is defined by its clinical rigour and patient-centric approach. We are committed to maintaining the highest standards of clinical governance, ensuring that every prescription is issued with the utmost care and in accordance with the latest evidence-based guidelines. Your safety is our primary concern, and we work diligently to ensure that your clinical journey is supported by expert medical advice and appropriate treatment plans. From the initial physical assessment until you have your medication in hand, we are here to provide the clinical clarity and professional oversight you deserve.
+          </p>
+
+          <MapEmbed location="lancashire" />
+          <ServiceSEOExpansion 
+            serviceName="Private Prescriptions" 
+            locationName="Lancashire" 
+            locationKey="lancashire" 
+          />
         </div>
+
+        <MedicalReviewFooter />
 
         {/* Comparison Section */}
         <section className="mb-24 px-10 py-16 bg-slate-50 rounded-[3rem] border border-slate-100">

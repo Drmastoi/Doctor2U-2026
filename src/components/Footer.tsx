@@ -36,7 +36,17 @@ export default function Footer({}: FooterProps) {
       'private-sick-note': '/private-sick-note',
       'private-gp-preston': '/private-gp-preston',
       'private-gp-blackburn': '/private-gp-blackburn',
-      'private-gp-burnley': '/private-gp-burnley'
+      'private-gp-burnley': '/private-gp-burnley',
+      'private-adhd-assessment': '/private-adhd-assessment-lancashire',
+      'private-gp-chorley': '/private-gp-chorley',
+      'private-gp-bolton': '/private-gp-bolton',
+      'private-gp-wigan': '/private-gp-wigan',
+      'private-gp-lancaster': '/private-gp-lancaster',
+      'urgent-doctor-lancashire': '/urgent-doctor-lancashire',
+      'drivers-medical-lancashire': '/drivers-medical-lancashire',
+      'drivers-medical-manchester': '/drivers-medical-manchester',
+      'private-gp-children': '/private-gp-children-lancashire',
+      'weight-management-lancashire': '/weight-management-lancashire'
     };
     return paths[id] || '/';
   };
@@ -88,21 +98,23 @@ export default function Footer({}: FooterProps) {
 
           {/* Professional Services */}
           <div>
-            <h4 className="text-sm font-bold mb-6 text-slate-900 uppercase tracking-widest">Medical Services</h4>
+            <h4 className="text-sm font-bold mb-6 text-slate-900 uppercase tracking-widest italic">Medical Services</h4>
             <ul className="space-y-3">
               {[
+                { id: 'private-adhd-assessment', label: 'ADHD Assessment' },
+                { id: 'weight-management-lancashire', label: 'Weight Management' },
                 { id: 'same-day-gp', label: 'Same-Day Private GP' },
                 { id: 'gp-home-visits', label: 'GP Home Visits' },
                 { id: 'private-prescriptions', label: 'Private Prescriptions' },
                 { id: 'private-sick-note', label: 'Private Sick Notes' },
-                { id: 'urgent-childrens-doctor-manchester', label: 'Children\'s Health' }
+                { id: 'private-gp-children', label: 'Children\'s Health' }
               ].map((item) => (
                 <li key={item.id}>
                   <Link 
                     to={getPath(item.id)}
-                    className="text-slate-500 hover:text-teal-700 transition-colors flex items-center gap-2 group text-sm text-left"
+                    className="text-slate-500 hover:text-teal-700 transition-colors flex items-center gap-2 group text-sm text-left italic"
                   >
-                    <div className="w-1 h-1 rounded-full bg-teal-600 opacity-0 group-hover:opacity-100 transition-all"></div>
+                    <div className="w-1 h-1 rounded-full bg-teal-600 opacity-0 group-hover:opacity-100 transition-all italic"></div>
                     {item.label}
                   </Link>
                 </li>
@@ -112,21 +124,21 @@ export default function Footer({}: FooterProps) {
 
           {/* Manchester Locations */}
           <div>
-            <h4 className="text-sm font-bold mb-6 text-slate-900 uppercase tracking-widest">Manchester</h4>
+            <h4 className="text-sm font-bold mb-6 text-slate-900 uppercase tracking-widest italic">Manchester</h4>
             <ul className="space-y-3">
               {[
                 { id: 'private-gp-manchester-seo', label: 'Private GP Manchester' },
+                { id: 'drivers-medical-manchester', label: 'Drivers Medical' },
                 { id: 'doctor-home-visit-manchester', label: 'Home Visit GP' },
                 { id: 'same-day-doctor-manchester', label: 'Same-Day Doctor' },
-                { id: 'urgent-doctor-manchester', label: 'Urgent Doctor' },
-                { id: 'pgp-manchester', label: 'Private GP Central' }
+                { id: 'urgent-doctor-manchester', label: 'Urgent Doctor' }
               ].map((item) => (
                 <li key={item.id}>
                   <Link 
                     to={getPath(item.id)}
-                    className="text-slate-500 hover:text-teal-700 transition-colors flex items-center gap-2 group text-sm text-left"
+                    className="text-slate-500 hover:text-teal-700 transition-colors flex items-center gap-2 group text-sm text-left italic"
                   >
-                    <div className="w-1 h-1 rounded-full bg-teal-600 opacity-0 group-hover:opacity-100 transition-all"></div>
+                    <div className="w-1 h-1 rounded-full bg-teal-600 opacity-0 group-hover:opacity-100 transition-all italic"></div>
                     {item.label}
                   </Link>
                 </li>
@@ -136,21 +148,26 @@ export default function Footer({}: FooterProps) {
 
           {/* Lancashire Locations */}
           <div>
-            <h4 className="text-sm font-bold mb-6 text-slate-900 uppercase tracking-widest">Lancashire</h4>
+            <h4 className="text-sm font-bold mb-6 text-slate-900 uppercase tracking-widest italic">Lancashire</h4>
             <ul className="space-y-3">
               {[
-                { id: 'private-gp-lancashire', label: 'Private GP Lancashire' },
-                { id: 'private-gp-preston', label: 'Private GP Preston' },
-                { id: 'private-gp-blackburn', label: 'Private GP Blackburn' },
-                { id: 'private-gp-burnley', label: 'Private GP Burnley' },
-                { id: 'gp-home-visits', label: 'Home Visits' }
+                { id: 'private-gp-lancashire', label: 'All Lancashire' },
+                { id: 'private-gp-preston', label: 'Preston' },
+                { id: 'private-gp-blackburn', label: 'Blackburn' },
+                { id: 'private-gp-burnley', label: 'Burnley' },
+                { id: 'private-gp-chorley', label: 'Chorley' },
+                { id: 'private-gp-bolton', label: 'Bolton' },
+                { id: 'private-gp-wigan', label: 'Wigan' },
+                { id: 'private-gp-lancaster', label: 'Lancaster' },
+                { id: 'urgent-doctor-lancashire', label: 'Urgent Doctor' },
+                { id: 'drivers-medical-lancashire', label: 'Drivers Medical' }
               ].map((item) => (
                 <li key={item.id}>
                   <Link 
                     to={getPath(item.id)}
-                    className="text-slate-500 hover:text-teal-700 transition-colors flex items-center gap-2 group text-sm text-left"
+                    className="text-slate-500 hover:text-teal-700 transition-colors flex items-center gap-2 group text-sm text-left italic"
                   >
-                    <div className="w-1 h-1 rounded-full bg-teal-600 opacity-0 group-hover:opacity-100 transition-all"></div>
+                    <div className="w-1 h-1 rounded-full bg-teal-600 opacity-0 group-hover:opacity-100 transition-all italic"></div>
                     {item.label}
                   </Link>
                 </li>

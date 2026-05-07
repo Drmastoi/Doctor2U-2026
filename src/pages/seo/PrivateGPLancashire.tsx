@@ -6,6 +6,9 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../../components/SEO';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 export default function PrivateGPLancashire() {
   const navigate = useNavigate();
@@ -127,11 +130,21 @@ export default function PrivateGPLancashire() {
 
           <h2 className="text-3xl font-display font-bold text-slate-900 tracking-tight italic mt-20">The Home Visit Advantage</h2>
           <p>
-            One of the defining features of our Lancashire private GP service is the ability to receive a doctor at your home. For families with young children, elderly patients with mobility issues, or busy professionals, home visits provide a unparalleled level of comfort and privacy.
+            One of the defining features of our Lancashire private GP service is the ability to receive a doctor at your home. For families with young children, elderly patients with mobility issues, or busy professionals, home visits provide a unparalleled level of comfort and privacy. This service covers the breadth of the county, ensuring that geographical location is never a barrier to receiving top-tier medical care.
           </p>
           <p>
-            Our clinicians arrive equipped with portable diagnostic tools, including blood pressure monitors, pulse oximeters, and kits for rapid testing. This means that for many patients, a diagnosis and treatment plan can be established without them ever having to leave their living room.
+            Our clinicians arrive equipped with portable diagnostic tools, including blood pressure monitors, pulse oximeters, and kits for rapid testing. This means that for many patients, a diagnosis and treatment plan can be established without them ever having to leave their living room. Our Lancashire doctors are familiar with the local area, from the rural Ribble Valley to the urban centres of Preston and Blackpool, ensuring a rapid and reliable service for all. We believe in providing medical care that is as convenient as it is comprehensive, ensuring every patient feels supported in their own environment.
           </p>
+          <p>
+            The depth of our clinical review is what differentiates us. We don't just look at the presenting complaint; we look at the whole person. This holistic approach is essential for identifying underlying health issues that might otherwise be missed in a shorter, more hurried consultation. Our Lancashire patients value this thoroughness, knowing that their health is being managed by a professional who has the time to listen and the expertise to act. Whether you are dealing with a recurring infection, a chronic health concern, or you simply need the peace of mind that comes from a professional medical assessment, our Lancashire private GP service is here to help. We are dedicated to maintaining the highest clinical standards, ensuring that every patient receives the best possible care, tailored to their individual needs and circumstances.
+          </p>
+
+          <MapEmbed location="lancashire" />
+          <ServiceSEOExpansion 
+            serviceName="Private GP" 
+            locationName="Lancashire" 
+            locationKey="lancashire" 
+          />
         </div>
 
         {/* Benefits Grid */}
@@ -203,6 +216,8 @@ export default function PrivateGPLancashire() {
             </div>
           </div>
         </section>
+
+        <MedicalReviewFooter />
 
         {/* CTA */}
         <div className="text-center">

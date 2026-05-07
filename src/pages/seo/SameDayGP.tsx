@@ -6,6 +6,9 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../../components/SEO';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 export default function SameDayGP() {
   const navigate = useNavigate();
@@ -122,9 +125,21 @@ export default function SameDayGP() {
 
           <h3 className="text-2xl font-display font-bold text-slate-900 mt-12 mb-6">Who is this service for?</h3>
           <p>
-            Our same-day service is utilised by everyone from visiting business travellers staying in Manchester hotels to parents in Preston needing quick reassurance about an infant's wellness. If it's a non-emergency but you feel it cannot wait until tomorrow, we are here for you.
+            Our same-day service is utilised by everyone from visiting business travellers staying in Manchester hotels to parents in Preston needing quick reassurance about an infant's wellness. If it's a non-emergency but you feel it cannot wait until tomorrow, we are here for you. We understand that medical concerns don't always follow a 9-to-5 schedule, which is why we offer flexible booking slots to accommodate your needs.
           </p>
+          <p>
+            The healthcare system can often feel like a maze, especially when you are worried about your health or the health of a loved one. Our same-day private GP service is designed to be a clear, straightforward alternative. We provide the clinical expertise of experienced General Practitioners without the administrative barriers. Every consultation is an opportunity for you to receive a professional diagnosis and a clear treatment plan on the same day you seek medical advice. Whether you are in a bustling office in central Manchester or a quiet residential street in deep Lancashire, our doctors are committed to providing the same high standard of clinical care. We believe that by providing rapid medical access, we are not only helping individual patients but also contributing to the overall wellbeing of the North West community. Your health is your most valuable asset, and we treated it with the respect and urgency it deserve.
+          </p>
+
+          <MapEmbed location="manchester" />
+          <ServiceSEOExpansion 
+            serviceName="Same Day Private GP" 
+            locationName="Manchester & Lancashire" 
+            locationKey="manchester" 
+          />
         </div>
+
+        <MedicalReviewFooter />
 
         {/* Urgency Callout */}
         <div className="p-10 bg-rose-50 rounded-[3rem] border border-rose-100 mb-24 flex flex-col md:flex-row items-center gap-10">

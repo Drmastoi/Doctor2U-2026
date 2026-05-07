@@ -3,6 +3,8 @@ import { motion } from 'motion/react';
 import { Brain, CheckCircle2, Calendar, ShieldCheck, ArrowRight, ClipboardList, Stethoscope } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
+import MapEmbed from '../components/MapEmbed';
+import MedicalReviewFooter from '../components/MedicalReviewFooter';
 
 export default function ADHDAssessment() {
   const navigate = useNavigate();
@@ -149,6 +151,7 @@ export default function ADHDAssessment() {
       {/* FAQ Mini */}
       <section className="py-16 bg-white">
         <div className="max-w-[800px] mx-auto px-4 text-center">
+          <MapEmbed location="lancashire" />
           <h2 className="text-2xl font-bold mb-8">Frequently Asked Questions</h2>
           <div className="space-y-6 text-left">
             <div>
@@ -161,6 +164,8 @@ export default function ADHDAssessment() {
             </div>
           </div>
         </div>
+
+        <MedicalReviewFooter />
       </section>
     </div>
   );

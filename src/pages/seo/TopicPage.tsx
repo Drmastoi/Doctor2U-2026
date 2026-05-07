@@ -2,11 +2,13 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { 
   CheckCircle2, ArrowRight, ShieldCheck, Clock, MapPin, 
-  Phone, AlertCircle, Activity, HeartPulse, Stethoscope 
+  Phone, AlertCircle, Activity, HeartPulse, Stethoscope, Users 
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import HubLink from '../../components/HubLink';
 import SEO from '../../components/SEO';
+import MapEmbed from '../../components/MapEmbed';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
 
 interface TopicPageProps {
   title: string;
@@ -145,6 +147,28 @@ export default function TopicPage({
           </div>
         </div>
 
+        {/* Service Details Section */}
+        <section className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="p-10 bg-slate-50 rounded-[3rem] border border-slate-100">
+            <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3 italic">
+              <Users className="text-teal-600" />
+              Who is this service for?
+            </h3>
+            <p className="text-slate-600 leading-relaxed font-medium">
+              This service is specifically designed for residents of Manchester and Lancashire who require professional, unhurried medical attention. It is ideal for busy professionals, parents with young children, or those with mobility issues who prefer professional care in a familiar environment.
+            </p>
+          </div>
+          <div className="p-10 bg-slate-50 rounded-[3rem] border border-slate-100">
+            <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3 italic">
+              <Stethoscope className="text-teal-600" />
+              What happens during your appointment?
+            </h3>
+            <p className="text-slate-600 leading-relaxed font-medium">
+              Your appointment involves a comprehensive clinical assessment. Our doctors take the time to gather a detailed medical history, perform necessary physical examinations using diagnostic tools, and provide immediate clinical reasoning. We can issue prescriptions, arrange referrals, and coordinate follow-up care as needed.
+            </p>
+          </div>
+        </section>
+
         {/* Why Us Section */}
         <section className="mb-24">
           <h2 className="text-3xl font-display font-bold text-slate-900 mb-10 tracking-tight">Expertise You Can Trust</h2>
@@ -165,6 +189,7 @@ export default function TopicPage({
 
         {/* FAQ Section */}
         <section className="mb-24">
+          <MapEmbed location="manchester" />
           <h2 className="text-3xl font-display font-bold text-slate-900 mb-10 tracking-tight text-center">Questions & Answers</h2>
           <div className="space-y-4">
             {faqs.map((faq, idx) => (
@@ -175,6 +200,8 @@ export default function TopicPage({
             ))}
           </div>
         </section>
+
+        <MedicalReviewFooter />
 
         {/* CTA */}
         <div className="text-center p-16 bg-slate-900 text-white rounded-[4rem] shadow-2xl relative overflow-hidden">

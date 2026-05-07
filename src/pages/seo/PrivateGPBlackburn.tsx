@@ -6,6 +6,9 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../../components/SEO';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 export default function PrivateGPBlackburn() {
   const navigate = useNavigate();
@@ -124,8 +127,21 @@ export default function PrivateGPBlackburn() {
 
           <h3 className="text-2xl font-display font-bold text-slate-900 mt-12 mb-6 not-prose tracking-tight">Rapid Response for East Lancashire</h3>
           <p>
-            If you need an appointment today, we aim to deliver. By calling before midday, most Blackburn residents can be seen by a private doctor on the same afternoon, providing rapid reassurance and starting your journey to recovery immediately.
+            If you need an appointment today, we aim to deliver. By calling before midday, most Blackburn residents can be seen by a private doctor on the same afternoon, providing rapid reassurance and starting your journey to recovery immediately. Our service is designed to complement existing healthcare structures, providing an additional layer of security for those who need it.
           </p>
+          <p>
+            Our East Lancashire team is deeply familiar with the local area, ensuring that we can reach even the more remote parts of the Ribble Valley and the Blackburn hinterland with ease. We believe that distance should never be a barrier to clinical excellence. Each of our doctors is committed to providing a thorough, evidence-based consultation that respects the patient's individual circumstances and provides a clear, actionable pathway towards health improvement. Whether you require a one-off assessment or ongoing management for a complex medical history, we are here to support your clinical needs in Blackburn.
+          </p>
+          <p>
+            The patient journey in Blackburn is often defined by long waits at central medical hubs. Our private service is a deliberate move away from this model. We focus on clinical accessibility and depth, ensuring that every interaction results in a meaningful health outcome. Our doctors take the time to discuss the biological underpinnings of your symptoms, providing an educational context that helps you manage your health more effectively in the long term. This commitment to patient empowerment is a core value of our Blackburn private GP service. We believe that by providing the luxury of time, we are enabling better clinical outcomes and a more satisfying medical experience for our patients across Blackburn and Darwen. Your health is unique, and it deserves a medical service that recognizes and treats it as such.
+          </p>
+
+          <MapEmbed location="blackburn" />
+          <ServiceSEOExpansion 
+            serviceName="Private GP" 
+            locationName="Blackburn" 
+            locationKey="blackburn" 
+          />
         </div>
 
         {/* Local Area Trust Section */}
@@ -180,6 +196,8 @@ export default function PrivateGPBlackburn() {
             ))}
           </div>
         </section>
+
+        <MedicalReviewFooter />
 
         {/* CTA */}
         <div className="text-center">

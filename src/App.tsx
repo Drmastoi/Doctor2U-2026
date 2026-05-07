@@ -35,6 +35,16 @@ import PrivateSickNoteLancashire from './pages/seo/PrivateSickNoteLancashire';
 import PrivateGPPreston from './pages/seo/PrivateGPPreston';
 import PrivateGPBlackburn from './pages/seo/PrivateGPBlackburn';
 import PrivateGPBurnley from './pages/seo/PrivateGPBurnley';
+import PrivateADHDAssessmentLancashire from './pages/seo/PrivateADHDAssessmentLancashire';
+import PrivateGPChorley from './pages/seo/PrivateGPChorley';
+import PrivateGPBolton from './pages/seo/PrivateGPBolton';
+import PrivateGPWigan from './pages/seo/PrivateGPWigan';
+import PrivateGPLancaster from './pages/seo/PrivateGPLancaster';
+import UrgentDoctorLancashire from './pages/seo/UrgentDoctorLancashire';
+import DriversMedicalLancashire from './pages/seo/DriversMedicalLancashire';
+import DriversMedicalManchester from './pages/seo/DriversMedicalManchester';
+import PrivateGPChildrenLancashire from './pages/seo/PrivateGPChildrenLancashire';
+import WeightManagementLancashire from './pages/seo/WeightManagementLancashire';
 import PrestonLandingPage from './pages/PrestonLandingPage';
 import AIHealthInsights from './pages/AIHealthInsights';
 import OurFees from './pages/OurFees';
@@ -238,6 +248,16 @@ export default function App() {
               <Route path="/private-gp-preston" element={<PrivateGPPreston />} />
               <Route path="/private-gp-blackburn" element={<PrivateGPBlackburn />} />
               <Route path="/private-gp-burnley" element={<PrivateGPBurnley />} />
+              <Route path="/private-adhd-assessment-lancashire" element={<PrivateADHDAssessmentLancashire />} />
+              <Route path="/private-gp-chorley" element={<PrivateGPChorley />} />
+              <Route path="/private-gp-bolton" element={<PrivateGPBolton />} />
+              <Route path="/private-gp-wigan" element={<PrivateGPWigan />} />
+              <Route path="/private-gp-lancaster" element={<PrivateGPLancaster />} />
+              <Route path="/urgent-doctor-lancashire" element={<UrgentDoctorLancashire />} />
+              <Route path="/drivers-medical-lancashire" element={<DriversMedicalLancashire />} />
+              <Route path="/drivers-medical-manchester" element={<DriversMedicalManchester />} />
+              <Route path="/private-gp-children-lancashire" element={<PrivateGPChildrenLancashire />} />
+              <Route path="/weight-management-lancashire" element={<WeightManagementLancashire />} />
               <Route path="/doctor-home-visit-manchester" element={<DoctorHomeVisitManchester />} />
               <Route path="/same-day-doctor-manchester" element={<SameDayDoctorManchester />} />
               <Route path="/urgent-doctor-manchester" element={<UrgentDoctorManchester />} />

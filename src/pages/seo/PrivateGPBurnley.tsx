@@ -6,6 +6,9 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../../components/SEO';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 export default function PrivateGPBurnley() {
   const navigate = useNavigate();
@@ -126,8 +129,21 @@ export default function PrivateGPBurnley() {
 
           <h3 className="text-2xl font-display font-bold text-slate-900 mt-12 mb-6 not-prose tracking-tight">Access Specialist Referrals Fast</h3>
           <p>
-            If your condition requires further investigation or specialist oversight, our Burnley GPs can provide immediate private referral letters. We have strong links with local private hospitals and imaging centres, ensuring you can access MRI, CT, or consultant expertise without the need for NHS gatekeeping.
+            If your condition requires further investigation or specialist oversight, our Burnley GPs can provide immediate private referral letters. We have strong links with local private hospitals and imaging centres, ensuring you can access MRI, CT, or consultant expertise without the need for NHS gatekeeping. Our goal is to streamline your clinical journey, providing a direct path to the answers you need regarding your health.
           </p>
+          <p>
+            The Burnley community deserves a healthcare option that is both high-quality and highly accessible. We pride ourselves on the clinical rigour of our assessments and the transparency of our treatment planning. Every Burnley patient is treated as an individual, with a unique set of medical needs and personal preferences. Our clinicians take the time to listen, to examine, and to explain—ensuring that by the end of your 30-minute consultation, you have a clear understanding of your diagnosis and a solid plan for the future. Whether you are visiting us for a routine check-up or an urgent medical concern, we are committed to providing the best possible care in Burnley.
+          </p>
+          <p>
+            The geographical layout of Burnley, with its various residential pockets and surrounding villages, means that a mobile clinical service is not just a luxury, but a necessity for many. We ensure that our home visit doctors are strategically deployed so that we can maintain our promise of same-day medical access. This level of responsiveness is vital during the cold winter months or when local viral outbreaks are putting pressure on standard surgeries. Our Burnley private GP service is an anchor for many families who require the peace of mind that comes from knowing a qualified doctor can be at their side within hours. We are dedicated to upholding the highest standards of the General Medical Council, ensuring that your clinical experience in Burnley is governed by expertise, safety, and a genuine commitment to your long-term health journey.
+          </p>
+
+          <MapEmbed location="burnley" />
+          <ServiceSEOExpansion 
+            serviceName="Private GP" 
+            locationName="Burnley" 
+            locationKey="burnley" 
+          />
         </div>
 
         {/* Localized Grid */}
@@ -179,6 +195,8 @@ export default function PrivateGPBurnley() {
             ))}
           </div>
         </section>
+
+        <MedicalReviewFooter />
 
         {/* Final CTA */}
         <div className="text-center">

@@ -6,6 +6,9 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../../components/SEO';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 export default function GPHomeVisitsLancashire() {
   const navigate = useNavigate();
@@ -123,9 +126,21 @@ export default function GPHomeVisitsLancashire() {
 
           <h3 className="text-2xl font-display font-bold text-slate-900 mt-12 mb-6">Expert Assessments for the Whole Family</h3>
           <p>
-            We take pride in our paediatric and geriatric care. We understand the specific needs of children and the complexities of elderly health, ensuring that every home visit is conducted with patience, empathy, and clinical rigour.
+            We take pride in our paediatric and geriatric care. We understand the specific needs of children and the complexities of elderly health, ensuring that every home visit is conducted with patience, empathy, and clinical rigour. Our doctors are adept at creating a calming atmosphere, which is essential when assessing a sick child or an elderly patient who may be feeling particularly vulnerable.
           </p>
+          <p>
+            The Lancashire community is at the heart of our home visit service. We recognize the geographical diversity of our county, from the urban hubs to the quiet, outlying villages. Our clinical pathways are designed to ensure that no matter where you are in Lancashire, you have access to high-quality private medical care. We believe that by bringing the doctor to the patient, we are not only addressing immediate medical needs but also fostering a more personalized and effective healthcare experience. Every home visit is an opportunity for us to provide the level of clinical time and attention that patients deserve. Our 30-minute consultations are just the beginning; we stay until your questions are answered and your treatment plan is clearly understood. This commitment to clinical depth and patient comfort is what makes our private GP home visit service in Lancashire a preferred choice for those seeking a more attentive medical experience.
+          </p>
+
+          <MapEmbed location="lancashire" />
+          <ServiceSEOExpansion 
+            serviceName="GP Home Visit" 
+            locationName="Lancashire" 
+            locationKey="lancashire" 
+          />
         </div>
+
+        <MedicalReviewFooter />
 
         {/* Feature List */}
         <section className="mb-24 px-8 py-16 bg-slate-900 rounded-[3rem] text-white overflow-hidden relative">

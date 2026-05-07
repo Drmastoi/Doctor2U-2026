@@ -9,7 +9,6 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import { Page, SERVICES, FAQ, Testimonial, BlogPost } from '../types';
 import Logo from '../components/Logo';
-import HubLink from '../components/HubLink';
 import { GoogleGenAI } from "@google/genai";
 import Markdown from 'react-markdown';
 
@@ -1209,7 +1208,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        <HubLink index={0} />
           
           <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 text-slate-500 text-xs font-bold uppercase tracking-widest">
             <button onClick={() => navigate('/services/private-gp-manchester')} className="hover:text-teal-600 transition-colors">Manchester Private GP</button>

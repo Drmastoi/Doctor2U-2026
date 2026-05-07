@@ -7,6 +7,9 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { Page } from '../../types';
 import HubLink from '../../components/HubLink';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 import SEO from '../../components/SEO';
 
@@ -194,6 +197,23 @@ export default function SameDayDoctorManchester({}: SameDayDoctorManchesterProps
                 <p className="text-slate-600 mb-10 leading-relaxed">
                   To further accelerate your journey to wellness, we offer an optional AI-driven pre-consultation tool. By inputting your symptoms and medical history securely into our system before your appointment, our AI generates a structured health insight summary. You can review this yourself, and if you choose to share it with your doctor, it serves as a powerful diagnostic 'head start.' This innovation means your actual face-to-face time is spent on the most important aspects of care: physical examination, clinical reasoning, and treatment finalization.
                 </p>
+
+                <div className="mt-16 prose prose-slate prose-lg max-w-none">
+                  <h3 className="text-2xl font-display font-bold text-slate-900 mb-6">Immediate Clinical Oversight in Manchester</h3>
+                  <p>
+                    The search for a same-day doctor often occurs during a period of high medical anxiety. Our Manchester-based clinicians understand the need for clarity and speed. We act as a critical clinical bridge, providing on-site diagnoses that help patients move forward with their recovery. Our same-day medical service is designed to be as straightforward as possible, removing the administrative layers that often slow down traditional primary care. 
+                  </p>
+                  <p>
+                    By choosing our private medical framework in Manchester, you are opting for a service that prioritizes clinical outcomes and patient comfort. We believe that receiving a diagnosis on the same day you experience symptoms is not just a luxury; it is a fundamental aspect of high-quality medical care. Our doctors are committed to providing the level of clinical rigour and attention to detail that each patient deserves, regardless of the urgency of their request.
+                  </p>
+
+                  <MapEmbed location="manchester" />
+                  <ServiceSEOExpansion 
+                    serviceName="Same-Day Doctor" 
+                    locationName="Manchester" 
+                    locationKey="manchester" 
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -228,6 +248,8 @@ export default function SameDayDoctorManchester({}: SameDayDoctorManchesterProps
           </div>
         </div>
       </section>
+
+        <MedicalReviewFooter />
 
       {/* Final Urgent CTA */}
       <section className="py-24 bg-medical-500 text-slate-900">

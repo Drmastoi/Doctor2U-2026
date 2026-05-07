@@ -6,6 +6,9 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../../components/SEO';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 export default function PrivateGPManchester() {
   const navigate = useNavigate();
@@ -133,8 +136,24 @@ export default function PrivateGPManchester() {
 
           <h3 className="text-2xl font-display font-bold text-slate-900 mt-12 mb-6">Serving the Professional Community</h3>
           <p>
-            For Manchester's professional community, time is the most valuable commodity. We can visit you at your place of work, providing a discreet consultation during your break, ensuring your health doesn't have to wait for your schedule.
+            For Manchester's professional community, time is the most valuable commodity. We can visit you at your place of work, providing a discreet consultation during your break, ensuring your health doesn't have to wait for your schedule. Our doctors are familiar with the major business hubs including Spinningfields, MediaCityUK, and the Central Business District.
           </p>
+          <p>
+            Whether you are a local resident, a visitor staying in a city centre hotel, or a student at one of the city's prestigious universities, our private GP services are accessible to all. We provide a bridge between traditional medical care and the modern requirement for flexibility. Our clinicians are not just medical providers; they are members of the Manchester community who are dedicated to improving the health outcomes of their neighbours through evidence-based, compassionate care.
+          </p>
+          <p>
+            The clinical environment in Manchester is fast-paced, but your health shouldn't be a casualty of that speed. We believe that by providing extended consultation times, we are offering a much-needed alternative for those who feel their health concerns haven't been fully explored. Our Manchester private GP service is defined by its commitment to clinical depth. We take the time to explain not just what is happening with your health, but why. This educational component is a vital part of our medical philosophy, empowering patients to take an active role in their own wellbeing. From the Northern Quarter to Didsbury, our doctors are respected for their thoroughness and clinical integrity. We ensure that every patient leaves their consultation with a clear treatment path and the confidence that their health is in expert hands.
+          </p>
+          <p>
+            We also offer specialized services such as wellness blood profiles, sexual health screenings, and corporate health packages. By choosing a private GP, you are investing in a system that allows for thorough clinical investigation without the pressure of a crowded waiting room. We believe that every patient deserves the luxury of time with their doctor—the time to explain symptoms, the time for a thorough examination, and the time to discuss a cohesive management plan.
+          </p>
+
+          <MapEmbed location="manchester" />
+          <ServiceSEOExpansion 
+            serviceName="Private GP" 
+            locationName="Manchester" 
+            locationKey="manchester" 
+          />
         </div>
 
         {/* Stats Section */}
@@ -188,6 +207,8 @@ export default function PrivateGPManchester() {
             </div>
           </div>
         </section>
+
+        <MedicalReviewFooter />
 
         {/* CTA */}
         <div className="text-center p-16 bg-slate-900 text-white rounded-[4rem] shadow-2xl relative overflow-hidden">

@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { CheckCircle2, ArrowRight, Phone, MessageSquare, ChevronDown, Shield as ShieldIcon } from 'lucide-react';
 import SEO from '../components/SEO';
+import MapEmbed from '../components/MapEmbed';
+import MedicalReviewFooter from '../components/MedicalReviewFooter';
 
 interface ServiceDetailProps {
   title: string;
@@ -143,6 +145,7 @@ export default function ServiceDetail({
       {faqs.length > 0 && (
         <section className="py-24 bg-slate-50">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <MapEmbed location="manchester" />
             <h2 className="text-3xl font-display font-bold text-slate-900 mb-12 text-center">Frequently Asked Questions</h2>
             <div className="space-y-4">
               {faqs.map((faq, i) => (
@@ -165,6 +168,9 @@ export default function ServiceDetail({
           </div>
         </section>
       )}
+      
+      <MedicalReviewFooter />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <HubLink index={12} />
       </div>

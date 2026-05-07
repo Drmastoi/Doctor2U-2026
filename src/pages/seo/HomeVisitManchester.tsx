@@ -8,6 +8,9 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { Page } from '../../types';
 import SEO from '../../components/SEO';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 interface HomeVisitManchesterProps {}
 
@@ -258,6 +261,23 @@ export default function HomeVisitManchester({}: HomeVisitManchesterProps) {
                     </div>
                   </div>
                 </div>
+
+                <div className="mt-16 prose prose-slate prose-lg max-w-none">
+                  <h3 className="text-2xl font-display font-bold text-slate-900 mb-6">Manchester Home Visit Clinical Excellence</h3>
+                  <p>
+                    Navigating the health landscape in a major city like Manchester can be challenging, especially during medical crises. Our home visit doctor service provides coverage across the entire city, from the bustling Northern Quarter to the residential areas of Didsbury and Chorlton. We prioritize cases that require immediate clinical oversight, ensuring that patients receive a professional diagnosis without the traditional delays associated with walk-in centres or emergency departments.
+                  </p>
+                  <p>
+                    The clinicians we assign to home requests are experienced in managing acute presentations in a non-hospital environment. They carry professional diagnostic tools that allow for a thorough physical examination, including testing for vital signs and biological indicators. This depth of care is what defines our service in Greater Manchester. We are committed to clinical transparency, ensuring that every patient understands their diagnosis and the recommended next steps. Whether you require an immediate private prescription or a formal referral to a specialist consultant, our doctors are equipped to facilitate your recovery pathway.
+                  </p>
+
+                  <MapEmbed location="manchester" />
+                  <ServiceSEOExpansion 
+                    serviceName="Home Visit Doctor" 
+                    locationName="Manchester" 
+                    locationKey="manchester" 
+                  />
+                </div>
               </div>
             </div>
 
@@ -427,7 +447,9 @@ export default function HomeVisitManchester({}: HomeVisitManchesterProps) {
       {/* CTA Footer */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="bg-teal-900 rounded-[4rem] p-12 md:p-24 text-center text-white relative overflow-hidden">
+          <MedicalReviewFooter />
+
+        <div className="bg-teal-900 rounded-[4rem] p-12 md:p-24 text-center text-white relative overflow-hidden">
             <div className="absolute top-0 left-0 w-64 h-64 bg-teal-400/10 rounded-full -ml-32 -mt-32 blur-3xl"></div>
             <div className="absolute bottom-0 right-0 w-64 h-64 bg-teal-400/10 rounded-full -mr-32 -mb-32 blur-3xl"></div>
             

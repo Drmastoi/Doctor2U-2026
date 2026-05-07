@@ -9,6 +9,9 @@ import { useNavigate } from 'react-router-dom';
 import { Page } from '../../types';
 import HubLink from '../../components/HubLink';
 import SEO from '../../components/SEO';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 interface PrivateDoctorManchesterProps {}
 
@@ -208,9 +211,28 @@ export default function PrivateDoctorManchesterPage({}: PrivateDoctorManchesterP
                 ))}
               </ul>
             </div>
+
+            <div className="mt-16 prose prose-slate prose-lg max-w-none">
+              <h3 className="text-2xl font-display font-bold text-slate-900 mb-6">Manchester's Leading Private Medical Provider</h3>
+              <p>
+                Our Manchester practice is situated at the intersection of traditional clinical values and modern medical technology. We believe that by providing extended consultation times, we are offering a much-needed alternative for those who feel their health concerns haven't been fully explored. Our Manchester private GP service is defined by its commitment to clinical depth. We take the time to explain not just what is happening with your health, but why. This educational component is a vital part of our medical philosophy, empowering patients to take an active role in their own wellbeing.
+              </p>
+              <p>
+                Whether you are a local resident, a visitor staying in a city centre hotel, or a student at one of the city's prestigious universities, our private doctor services are accessible to all. We provide a bridge between traditional medical care and the modern requirement for flexibility. Our clinicians are not just medical providers; they are members of the Manchester community who are dedicated to improving the health outcomes of their neighbours through evidence-based, compassionate care.
+              </p>
+
+              <MapEmbed location="manchester" />
+              <ServiceSEOExpansion 
+                serviceName="Private Doctor" 
+                locationName="Manchester" 
+                locationKey="manchester" 
+              />
+            </div>
           </div>
         </div>
       </section>
+
+        <MedicalReviewFooter />
 
       {/* FAQ Section */}
       <section className="py-24 bg-slate-50">

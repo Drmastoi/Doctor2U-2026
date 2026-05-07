@@ -6,6 +6,9 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../../components/SEO';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 export default function PrivateSickNoteLancashire() {
   const navigate = useNavigate();
@@ -124,7 +127,19 @@ export default function PrivateSickNoteLancashire() {
           <p>
             If your condition persists beyond the initial period on your fit note, we can arrange a follow-up review. Our Lancashire private GPs maintain a continuous record of your health status, making the process of ongoing assessments seamless and clinically sound.
           </p>
+          <p>
+            The role of a medical certificate is often misunderstood as merely a 'permission slip' for absence, but in reality, it is a clinical assessment of your functional capacity. Our doctors in Lancashire are trained to provide detailed advice on how you might be able to return to work with certain modifications, such as adjusted hours or different duties. This 'Fit Note' approach focuses on what you *can* do, supporting your recovery and preventing long-term absence where possible. We understand that every employment situation in Lancashire is unique, which is why our clinical assessments are tailored to your specific role and the requirements of your employer. By choosing our private service, you are opting for a level of clinical scrutiny and unhurried professional dialogue that ensures your documentation is both accurate and safe. We believe that medical certifications should be a helpful part of your recovery journey, providing clarity to both you and your employer. Whether you are dealing with a physical injury or a mental health concern, our GMC-registered clinicians provide the sympathetic and professional oversight you need to manage your health and your professional commitments effectively. Every sick note issued in Lancashire is backed by the clinical authority of a qualified General Practitioner, ensuring that your documentation is respected by HR departments and insurers alike. We are here to provide the clinical evidence you need to focus on what matters most—your recovery.
+          </p>
+
+          <MapEmbed location="lancashire" />
+          <ServiceSEOExpansion 
+            serviceName="Private Sick Notes" 
+            locationName="Lancashire" 
+            locationKey="lancashire" 
+          />
         </div>
+
+        <MedicalReviewFooter />
 
         {/* Use Cases Section */}
         <section className="mb-24 py-16 px-12 bg-slate-900 rounded-[3rem] text-white">

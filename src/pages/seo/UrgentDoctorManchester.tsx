@@ -8,6 +8,9 @@ import { useNavigate } from 'react-router-dom';
 import { Page } from '../../types';
 import HubLink from '../../components/HubLink';
 import SEO from '../../components/SEO';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 interface UrgentDoctorManchesterProps {}
 
@@ -77,9 +80,29 @@ export default function UrgentDoctorManchester({}: UrgentDoctorManchesterProps) 
             <p className="text-slate-600 mb-8">
                Our doctors can assist with sudden infections, acute pain, and worsening chronic conditions. We align with NICE guidelines to ensure every urgent review is evidence-based and safe.
             </p>
+
+            <h3 className="text-2xl font-display font-bold text-slate-900 mt-12 mb-6">Manchester Emergency GP Coverage</h3>
+            <p>
+              Navigating the health landscape in a major city like Manchester can be challenging, especially during medical crises. Our urgent doctor service provides coverage across the entire city, from the bustling Northern Quarter to the residential areas of Didsbury and Chorlton. We prioritize cases that require immediate clinical oversight, ensuring that patients receive a professional diagnosis without the traditional delays associated with walk-in centres or emergency departments.
+            </p>
+            <p>
+              The clinicians we assign to urgent requests are experienced in managing acute presentations in a non-hospital environment. They carry professional diagnostic tools that allow for a thorough physical examination, including testing for vital signs and biological indicators. This depth of care is what defines our urgent service in Greater Manchester. We are committed to clinical transparency, ensuring that every patient understands their diagnosis and the recommended next steps. Whether you require an immediate private prescription or a formal referral to a specialist consultant, our urgent doctors are equipped to facilitate your recovery pathway.
+            </p>
+            <p>
+              We believe that urgent medical care should be accessible, professional, and compassionate. By eliminating the 'wait-and-see' approach, we provide patients with the clinical clarity they need to move forward. Our service operates as an integrated part of the Manchester healthcare ecosystem, providing a vital clinical bridge for those who require rapid medical intervention. Every interaction is governed by the highest clinical standards, ensuring that your health is managed with the respect and expertise it deserves.
+            </p>
+
+            <MapEmbed location="manchester" />
+            <ServiceSEOExpansion 
+              serviceName="Urgent Doctor" 
+              locationName="Manchester" 
+              locationKey="manchester" 
+            />
           </div>
         </div>
       </section>
+
+      <MedicalReviewFooter />
 
       <section className="py-24 bg-medical-500">
         <div className="max-w-5xl mx-auto px-4 text-center">

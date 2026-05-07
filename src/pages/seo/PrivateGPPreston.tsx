@@ -6,6 +6,9 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../../components/SEO';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 export default function PrivateGPPreston() {
   const navigate = useNavigate();
@@ -134,8 +137,21 @@ export default function PrivateGPPreston() {
 
           <h3 className="text-2xl font-display font-bold text-slate-900 mt-12 mb-6 not-prose tracking-tight">Your Health, Your Timeline</h3>
           <p>
-            We operate outside the 'standard' hours often found in primary care. If you need a private GP in Preston on a Saturday afternoon or late on a Wednesday evening, we strive to accommodate you.
+            We operate outside the 'standard' hours often found in primary care. If you need a private GP in Preston on a Saturday afternoon or late on a Wednesday evening, we strive to accommodate you. Our commitment to the Preston community means we are always looking for ways to improve accessibility and clinical quality.
           </p>
+          <p>
+            From our baseline of thorough 30-minute consultations to our complex diagnostic capabilities, every aspect of our service in Preston is designed to provide you with a clearer understanding of your health. We don't just treat symptoms; we treat patients. This means taking into account your lifestyle, your concerns, and your long-term health goals. By choosing a private provider, you are ensuring that your medical care is delivered without compromise, in a timeframe that respects your busy life in Lancashire.
+          </p>
+          <p>
+            The clinical integrity of our Preston doctor service is maintained through continuous appraisal and adherence to the latest medical research. We believe that by providing a more attentive and unhurried clinical environment, we are able to reach more accurate diagnoses and develop more effective treatment plans. Our Preston patients value the professional distance we remove—fostering a relationship based on trust, clinical expertise, and real human connection. Whether you are navigating a new diagnosis or managing a long-term condition, our private GPs are here to provide the consistent, high-quality oversight you deserve.
+          </p>
+
+          <MapEmbed location="preston" />
+          <ServiceSEOExpansion 
+            serviceName="Private GP" 
+            locationName="Preston" 
+            locationKey="preston" 
+          />
         </div>
 
         {/* Local Features Grid */}
@@ -187,6 +203,8 @@ export default function PrivateGPPreston() {
             ))}
           </div>
         </section>
+
+        <MedicalReviewFooter />
 
         {/* CTA */}
         <div className="text-center">

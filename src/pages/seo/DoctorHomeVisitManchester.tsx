@@ -10,6 +10,9 @@ import { Page } from '../../types';
 import HubLink from '../../components/HubLink';
 
 import SEO from '../../components/SEO';
+import ServiceSEOExpansion from '../../components/ServiceSEOExpansion';
+import MedicalReviewFooter from '../../components/MedicalReviewFooter';
+import MapEmbed from '../../components/MapEmbed';
 
 interface DoctorHomeVisitManchesterProps {}
 
@@ -220,6 +223,23 @@ export default function DoctorHomeVisitManchester({}: DoctorHomeVisitManchesterP
             ))}
           </div>
           <p className="mt-12 text-center text-lg font-bold text-slate-900">Simple, fast, and focused on your needs.</p>
+
+          <div className="mt-16 prose prose-slate prose-lg max-w-none">
+            <h3 className="text-2xl font-display font-bold text-slate-900 mb-6">Expert Assessments in Your Own Environment</h3>
+            <p>
+              Receiving medical care at home is more than just a convenience; it's a clinical advantage. In the familiar surroundings of your own home in Manchester, our doctors can observe you in your natural state, which often provides vital clues about your health that might be missed in a clinical setting. We are dedicated to providing a healthcare experience that is as thorough as it is compassionate, ensuring that every patient feels supported and understood.
+            </p>
+            <p>
+              The Manchester and Lancashire communities are at the heart of our home visit service. We recognize the geographical diversity of our region, from the urban hubs to the quiet, outlying villages. Our clinical pathways are designed to ensure that no matter where you are, you have access to high-quality private medical care. We believe that by bringing the doctor to the patient, we are not only addressing immediate medical needs but also fostering a more personalized and effective healthcare experience. Every home visit is an opportunity for us to provide the level of clinical time and attention that patients deserve. 
+            </p>
+
+            <MapEmbed location="manchester" />
+            <ServiceSEOExpansion 
+              serviceName="Doctor Home Visit" 
+              locationName="Manchester & Lancashire" 
+              locationKey="manchester" 
+            />
+          </div>
         </section>
 
         {/* Urgent section */}
@@ -364,6 +384,8 @@ export default function DoctorHomeVisitManchester({}: DoctorHomeVisitManchesterP
             ))}
           </div>
         </section>
+
+        <MedicalReviewFooter />
 
         {/* Footer Internal Links */}
         <div className="mt-24 pt-12 border-t border-slate-100 grid grid-cols-2 lg:grid-cols-3 gap-12">
