@@ -9,11 +9,23 @@ import MedicalReviewFooter from '../components/MedicalReviewFooter';
 export default function MedicalWeightManagement() {
   const navigate = useNavigate();
 
+  const faqs = [
+    {
+      question: "What does the medical weight management programme involve?",
+      answer: "Our programme combines evidence-based medical treatments with metabolic testing, nutritional guidance, and ongoing clinical oversight from GMC-registered doctors."
+    },
+    {
+      question: "Is this service available to everyone?",
+      answer: "Eligibility is determined during an initial clinical consultation where we assess your medical history, current health status, and weight management goals."
+    }
+  ];
+
   return (
     <div className="bg-white min-h-screen">
       <SEO 
         title="Medical Weight Management & Specialist Support" 
         description="Doctor-led weight management programmes using evidence-based medical treatments and personalised metabolic support."
+        faq={faqs}
       />
       
       {/* Hero */}
@@ -54,7 +66,7 @@ export default function MedicalWeightManagement() {
             <div className="flex-1 relative">
               <div className="rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/3]">
                 <img 
-                  src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=800" 
+                  src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=60&w=800&fm=webp" 
                   alt="Metabolic Health" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"

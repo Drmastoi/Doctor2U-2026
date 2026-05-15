@@ -64,7 +64,7 @@ const BLOG_POSTS = [
     title: "Accessing a Private Doctor in Manchester",
     excerpt: "Why residents are choosing Private Doctor services in Manchester for same-day prescriptions and unhurried clinical time.",
     date: "April 15, 2026",
-    image: "https://images.unsplash.com/photo-1505751172107-5739a00723a5?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1505751172107-5739a00723a5?auto=format&fit=crop&q=60&w=800&fm=webp",
     link: '/private-doctor/manchester'
   },
   {
@@ -72,7 +72,7 @@ const BLOG_POSTS = [
     title: "Home Visit Doctors: The Best Choice for Lancashire",
     excerpt: "The rise of home-based medical care across Preston and Blackburn. Find out why a Home Visit Doctor in Lancashire might be right for you.",
     date: "April 8, 2026",
-    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=60&w=800&fm=webp",
     link: '/home-visit-doctor/manchester'
   },
   {
@@ -80,7 +80,7 @@ const BLOG_POSTS = [
     title: "Booking a Private Doctor in Preston",
     excerpt: "Fast-track your health with a Private Doctor in Preston. Avoiding the 2-week wait for an appointment and getting results in 48 hours.",
     date: "April 2, 2026",
-    image: "https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=60&w=800&fm=webp",
     link: '/pgp-preston'
   },
   {
@@ -88,7 +88,7 @@ const BLOG_POSTS = [
     title: "Drivers Medicals in Manchester: What to Bring",
     excerpt: "Preparing for your HGV or Taxi medical in Manchester. A complete list of forms, vision tests, and requirements.",
     date: "March 25, 2026",
-    image: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=60&w=800&fm=webp",
     link: '/services/drivers-medicals'
   }
 ];
@@ -165,18 +165,7 @@ export default function Home() {
       <SEO 
         title="Private GP Lancashire & Manchester | Same-Day Doctor Home Visits" 
         description="Book a GMC-registered private doctor for a same-day home visit in Manchester and across Lancashire. Expert clinical care and private GP services in the comfort of your own home."
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": FAQS.map(faq => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": faq.answer
-            }
-          }))
-        }}
+        faq={FAQS}
       />
       {/* Disclaimer Banner */}
       <div className="bg-amber-50 border-b border-amber-100 py-2 px-4 relative z-50">
@@ -285,7 +274,7 @@ export default function Home() {
             >
               <div className="relative z-10 rounded-[4rem] overflow-hidden border border-white/50 shadow-[0_40px_80px_-15px_rgba(13,71,161,0.12)] group">
                 <img 
-                  src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=1000" 
+                  src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=60&w=1000&fm=webp" 
                   alt="Doctor providing home care" 
                   className="w-full h-[580px] object-cover transition-transform duration-[2000ms] group-hover:scale-105"
                   referrerPolicy="no-referrer"
@@ -395,7 +384,7 @@ export default function Home() {
             <div className="flex-1 w-full lg:w-auto relative group">
               <div className="relative rounded-[2rem] overflow-hidden shadow-xl border-2 border-white">
                 <img 
-                  src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=800"
+                  src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=60&w=800&fm=webp"
                   alt="Doctor at home visit"
                   className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-700"
                   referrerPolicy="no-referrer"
@@ -1155,7 +1144,7 @@ export default function Home() {
           <div className="relative rounded-[3rem] overflow-hidden bg-medical-900 p-10 md:p-16 text-center">
             <div className="absolute inset-0 opacity-20">
               <img 
-                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1920" 
+                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=60&w=1920&fm=webp" 
                 alt="Medical Background" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"

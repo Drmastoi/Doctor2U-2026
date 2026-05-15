@@ -14,11 +14,31 @@ import { Phone, PhoneCall } from 'lucide-react';
 export default function AboutUs() {
   const navigate = useNavigate();
 
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Doctor2U",
+    "description": "Private GP home visit and clinical consultation service based in Manchester and Lancashire.",
+    "url": "https://www.doctor2u.co.uk",
+    "telephone": "07488 879077",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Preston",
+      "addressRegion": "Lancashire",
+      "addressCountry": "GB"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Dr Awais Iqbal"
+    }
+  };
+
   return (
     <div className="bg-white min-h-screen pt-32">
       <SEO 
         title="About Us | Private GP Manchester & Lancashire | Doctor2U"
         description="Learn about Doctor2U, the leading provider of same-day private GP home visits in Manchester and Lancashire. Dedicated to clinical excellence and patient-centric care."
+        schema={localBusinessSchema}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -77,7 +97,7 @@ export default function AboutUs() {
             <div className="relative">
               <div className="aspect-square rounded-[4rem] overflow-hidden shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200" 
+                  src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=60&w=1200&fm=webp" 
                   alt="Doctor preparing for a home visit"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"

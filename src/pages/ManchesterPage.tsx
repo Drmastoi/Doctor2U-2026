@@ -3,46 +3,30 @@ import { MapPin, Clock, Stethoscope, CheckCircle2, ArrowRight, ShieldCheck, Star
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 
-const MANCHESTER_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How soon can a private GP visit me in Manchester?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We aim for same-day visits, often arriving within 2-4 hours of initial booking depending on your location in Manchester."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you offer private GP home visits on weekends?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, Doctor2U provides 7-day-a-week service including Saturdays and Sundays across Manchester."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can you provide prescriptions during the visit?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, our GMC-registered doctors can issue private prescriptions which can be fulfilled at any local pharmacy in Manchester."
-      }
-    }
-  ]
-};
-
 export default function ManchesterPage() {
   const navigate = useNavigate();
+
+  const faqs = [
+    {
+      question: "How soon can a private GP visit me in Manchester?",
+      answer: "We aim for same-day visits, often arriving within 2-4 hours of initial booking depending on your location in Manchester."
+    },
+    {
+      question: "Do you offer private GP home visits on weekends?",
+      answer: "Yes, Doctor2U provides 7-day-a-week service including Saturdays and Sundays across Manchester."
+    },
+    {
+      question: "Can you provide prescriptions during the visit?",
+      answer: "Yes, our GMC-registered doctors can issue private prescriptions which can be fulfilled at any local pharmacy in Manchester."
+    }
+  ];
 
   return (
     <div className="bg-white min-h-screen">
       <SEO 
         title="Private GP Manchester | Same-Day Doctor Home Visits" 
         description="Book a GMC-registered private doctor for a same-day home visit in Manchester. Expert clinical care and private GP Manchester services in the comfort of your own home."
-        schema={MANCHESTER_SCHEMA}
+        faq={faqs}
         canonical="/services/private-gp-manchester"
       />
 
@@ -81,7 +65,7 @@ export default function ManchesterPage() {
             <div className="flex-1 relative">
               <div className="rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/3] relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1515588342416-247c6a690201?auto=format&fit=crop&q=80&w=800" 
+                  src="https://images.unsplash.com/photo-1515588342416-247c6a690201?auto=format&fit=crop&q=60&w=800&fm=webp" 
                   alt="Manchester City Healthcare" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"

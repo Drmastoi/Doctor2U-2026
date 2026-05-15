@@ -9,11 +9,23 @@ import MedicalReviewFooter from '../components/MedicalReviewFooter';
 export default function ADHDAssessment() {
   const navigate = useNavigate();
 
+  const faqs = [
+    {
+      question: "How long is the waiting list?",
+      answer: "We typically offer initial assessments within 10-14 working days of receiving your pre-screening questionnaires."
+    },
+    {
+      question: "Is the diagnosis recognised by my GP?",
+      answer: "Our assessments are conducted by GMC-registered specialists following NICE guidelines, which is the standard required for \"Shared Care\" agreements with most NHS GP practices."
+    }
+  ];
+
   return (
     <div className="bg-white min-h-screen">
       <SEO 
         title="Private ADHD Assessment & Support" 
         description="Comprehensive private ADHD assessments for adults. Professional clinical evaluations with GMC-registered psychiatrists and specialist GPs."
+        faq={faqs}
       />
       
       {/* Hero */}
@@ -53,7 +65,7 @@ export default function ADHDAssessment() {
             <div className="flex-1 relative">
               <div className="rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/3]">
                 <img 
-                  src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&q=80&w=800" 
+                  src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&q=60&w=800&fm=webp" 
                   alt="Clinical Consultation" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"

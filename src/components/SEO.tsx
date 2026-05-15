@@ -8,6 +8,7 @@ interface SEOProps {
   ogType?: string;
   ogImage?: string;
   schema?: Record<string, any>;
+  faq?: { question: string; answer: string; }[];
 }
 
 export default function SEO({ 
@@ -15,28 +16,64 @@ export default function SEO({
   description, 
   canonical, 
   ogType = 'website',
-  ogImage = 'https://doctor2u.co.uk/og-image.jpg',
-  schema
+  ogImage = 'https://www.doctor2u.co.uk/og-image.jpg',
+  schema,
+  faq
 }: SEOProps) {
   const siteName = "Doctor2U";
   const fullTitle = `${title} | ${siteName}`;
-  const url = `https://doctor2u.co.uk${canonical || ''}`;
+  const url = `https://www.doctor2u.co.uk${canonical || ''}`;
 
   const medicalBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
-    "name": "Doctor2U",
-    "description": "Private GP service covering Lancashire and Manchester",
+    "@type": "Physician",
+    "name": "Doctor2U | Dr Awais Iqbal",
+    "description": "Private GP and Home Visit Doctor service covering Lancashire and Greater Manchester.",
     "url": "https://www.doctor2u.co.uk",
     "telephone": "07488 879077",
-    "medicalSpecialty": "GeneralPractice",
-    "areaServed": ["Lancashire", "Manchester", "Preston", "Blackburn", "Burnley"],
     "address": {
       "@type": "PostalAddress",
+      "addressLocality": "Preston",
       "addressRegion": "Lancashire",
       "addressCountry": "GB"
-    }
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "53.7632",
+      "longitude": "-2.7044"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "22:00"
+      }
+    ],
+    "medicalSpecialty": "GeneralPractice",
+    "priceRange": "££"
   };
+
+  const faqSchema = faq ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  } : null;
 
   return (
     <Helmet>
@@ -51,6 +88,7 @@ export default function SEO({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:site_name" content={siteName} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -59,10 +97,16 @@ export default function SEO({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
 
-      {/* Global Business Schema */}
+      {/* Structured Data */}
       <script type="application/ld+json">
         {JSON.stringify(medicalBusinessSchema)}
       </script>
+
+      {faqSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      )}
 
       {schema && (
         <script type="application/ld+json">

@@ -15,6 +15,15 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // Non-www to www redirect
+  app.use((req, res, next) => {
+    const host = req.get('host');
+    if (host === 'doctor2u.co.uk') {
+      return res.redirect(301, `https://www.doctor2u.co.uk${req.originalUrl}`);
+    }
+    next();
+  });
+
   app.use(express.json());
 
   // Email API Endpoint
@@ -148,6 +157,7 @@ async function startServer() {
       } else {
         template = fs.readFileSync(path.resolve(__dirname, 'dist/client/index.html'), 'utf-8');
         // In production, we assume entry-server.js is built to dist/server
+        // @ts-ignore
         render = (await import('./dist/server/entry-server.js')).render;
       }
 

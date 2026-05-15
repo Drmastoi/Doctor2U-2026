@@ -3,46 +3,30 @@ import { MapPin, Clock, Stethoscope, CheckCircle2, ArrowRight, ShieldCheck, Hear
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 
-const PRESTON_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How soon can a private GP visit me in Preston?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We aim for same-day visits, often arriving within 2-4 hours of initial booking depending on your location in Preston and surrounding Lancashire."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you offer private GP home visits on weekends in Lancashire?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, Doctor2U provides 7-day-a-week service including Saturdays and Sundays across Preston and major Lancashire towns."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can you provide prescriptions during the house call?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, our GMC-registered doctors can issue private prescriptions which can be fulfilled at any pharmacy in Preston or Lancashire."
-      }
-    }
-  ]
-};
-
 export default function PrestonPage() {
   const navigate = useNavigate();
+
+  const faqs = [
+    {
+      question: "How soon can a private GP visit me in Preston?",
+      answer: "We aim for same-day visits, often arriving within 2-4 hours of initial booking depending on your location in Preston and surrounding Lancashire."
+    },
+    {
+      question: "Do you offer private GP home visits on weekends in Lancashire?",
+      answer: "Yes, Doctor2U provides 7-day-a-week service including Saturdays and Sundays across Preston and major Lancashire towns."
+    },
+    {
+      question: "Can you provide prescriptions during the house call?",
+      answer: "Yes, our GMC-registered doctors can issue private prescriptions which can be fulfilled at any pharmacy in Preston or Lancashire."
+    }
+  ];
 
   return (
     <div className="bg-white min-h-screen">
       <SEO 
         title="Private GP Lancashire & Preston | Same-Day Doctor Home Visits" 
         description="Book a GMC-registered private doctor for a same-day home visit in Preston and across Lancashire. Expert clinical care and private GP Lancashire services."
-        schema={PRESTON_SCHEMA}
+        faq={faqs}
         canonical="/services/private-gp-preston"
       />
 
@@ -81,7 +65,7 @@ export default function PrestonPage() {
             <div className="flex-1 relative">
               <div className="rounded-[4rem] overflow-hidden shadow-2xl border-4 border-white aspect-[5/4] relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800" 
+                  src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=60&w=800&fm=webp" 
                   alt="Private Medical Care Preston" 
                   className="w-full h-full object-cover grayscale-0 hover:scale-105 transition-transform duration-700"
                   referrerPolicy="no-referrer"
